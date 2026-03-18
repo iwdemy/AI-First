@@ -226,9 +226,9 @@ nav{padding:0 16px;height:52px;}
 .nav-logo{gap:8px;}
 .nav-logo-circle{width:30px;height:30px;border-width:1.5px;}
 .nav-logo-text{font-size:10px;letter-spacing:1px;}
-.nav-links{display:none !important;}
+.nav-links{display:none;}
 .nav-cta-group{gap:6px;}
-.nav-cta{font-size:9px;padding:8px 14px;border-radius:6px;letter-spacing:0.5px;min-height:36px;display:inline-flex;align-items:center;}
+.nav-cta{font-size:9px;padding:8px 14px;border-radius:6px;letter-spacing:0.5px;min-height:44px;display:inline-flex;align-items:center;}
 .nav-cta-ghost{padding:8px 10px;font-size:9px;}
 
 /* --- SECTION BASE (mobile: scrollable, no fixed height) --- */
@@ -262,7 +262,7 @@ section,.hero,.prob-section,.abi-section,.fac-section,.kur-section,.aha-section,
 .hero-bottom{padding:14px 20px 16px;border-radius:0;max-width:100%;background:linear-gradient(180deg,rgba(7,13,28,0.3) 0%,rgba(7,13,28,0.85) 30%,rgba(7,13,28,0.95) 100%);}
 .hero-tagline{font-size:8.5px;letter-spacing:4px;}
 .hero-byline{font-size:10.5px;margin-top:5px;line-height:1.45;}
-.byline-sub{font-size:7px;letter-spacing:1.5px;margin-top:2px;}
+.byline-sub{font-size:9px;letter-spacing:1.5px;margin-top:2px;}
 .ai-logo-strip{gap:4px;margin-top:8px;max-width:100%;}
 .ai-logo-chip{padding:3px 7px 3px 3px;gap:3px;}
 .ai-logo-chip img{height:14px;width:14px;}
@@ -321,7 +321,7 @@ section,.hero,.prob-section,.abi-section,.fac-section,.kur-section,.aha-section,
 .fac-card-header{gap:8px;flex-direction:row;text-align:left;align-items:center;}
 .fac-avatar{width:52px;height:52px;flex-shrink:0;}
 .fac-id{align-items:flex-start;}
-.fac-cred-badge{font-size:7.5px;padding:3px 8px;margin-bottom:2px;}
+.fac-cred-badge{font-size:9px;padding:3px 8px;margin-bottom:2px;}
 .fac-name{font-size:15px;}
 .fac-role{font-size:11px;line-height:1.4;}
 .fac-bio{font-size:13px;line-height:1.7;}
@@ -525,14 +525,13 @@ section,.hero,.prob-section,.abi-section,.fac-section,.kur-section,.aha-section,
   nav{padding:0 48px;height:64px;}
   .hamburger{display:none;}
   .nav-links{display:flex !important;position:absolute;flex-direction:row;}
-  .nav-links.is-open{position:absolute;flex-direction:row;top:auto;padding:0;background:none;border:none;backdrop-filter:none;}
   .nav-logo-circle{width:40px;height:40px;}
   .nav-logo-text{font-size:12px;letter-spacing:1.5px;}
   .nav-cta{font-size:11px;padding:10px 24px;border-radius:8px;}
 
   /* Every section = 1 viewport page */
   .hero,.prob-section,.abi-section,.fac-section,.kur-section,.aha-section,.prc-section,.tools-strip,.fcta-section{
-    height:100vh;max-height:100vh;min-height:100vh;overflow:hidden;
+    height:100vh;max-height:100vh;min-height:100vh;overflow:auto;
   }
   .hero{justify-content:space-between;}
   .hero-inner{flex:1;display:grid;align-items:center;}
