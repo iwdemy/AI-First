@@ -293,10 +293,10 @@ section,.hero,.prob-section,.abi-section,.fac-section,.kur-section,.aha-section,
 .hero-tagline{font-size:clamp(14px,3.5vw,18px);letter-spacing:clamp(8px,2vw,12px);}
 .hero-byline{font-size:clamp(14px,3.5vw,17px);margin-top:14px;line-height:1.60;}
 .byline-sub{font-size:clamp(10px,2.5vw,12px);letter-spacing:2.5px;margin-top:8px;}
-.ai-logo-strip{gap:8px;margin-top:18px;max-width:100%;}
-.ai-logo-chip{padding:6px 12px 6px 6px;gap:5px;}
-.ai-logo-chip img{height:20px;width:20px;}
-.ai-logo-chip-name{font-size:clamp(11px,2.8vw,13px);}
+.ai-logo-strip{gap:10px 8px;margin-top:20px;max-width:100%;justify-content:center;}
+.ai-logo-chip{padding:8px 14px 8px 8px;gap:6px;}
+.ai-logo-chip img{height:22px;width:22px;}
+.ai-logo-chip-name{font-size:clamp(12px,3vw,14px);}
 .hero-bg img{opacity:0.40;object-position:center 40%;}
 /* Mobile: every section = 1 viewport page */
 .prob-section,.abi-section,.fac-section,.kur-section,.aha-section,.prc-section,.tools-strip,.fcta-section{
@@ -309,14 +309,14 @@ html{scroll-snap-type:y mandatory;}
 /* ======================== */
 /* PROBLEM — mobile         */
 /* ======================== */
-.prob-section{padding:56px 16px 16px;}
-.prob-section 
-.prob-layout{grid-template-columns:1fr;gap:14px;}
+.prob-section{padding:56px 20px 20px;}
+.prob-section
+.prob-layout{grid-template-columns:1fr;gap:16px;}
 .prob-left{position:static;}
-.prob-headline{font-size:20px;margin-bottom:4px;line-height:1.15;}
-.prob-subhead{font-size:12px;line-height:1.55;margin-bottom:6px;max-width:100%;}
-.prob-resolution{padding-top:8px;margin-top:6px;}
-.res-text{font-size:12px;line-height:1.45;}
+.prob-headline{font-size:clamp(24px,6.5vw,32px);margin-bottom:6px;line-height:1.15;}
+.prob-subhead{font-size:clamp(14px,3.5vw,16px);line-height:1.60;margin-bottom:8px;max-width:100%;}
+.prob-resolution{padding-top:10px;margin-top:8px;}
+.res-text{font-size:clamp(14px,3.5vw,16px);line-height:1.50;}
 .prob-accordion{gap:6px;}
 .prob-acc-header{padding:10px 14px;min-height:44px;align-items:center;}
 .prob-acc-meta{gap:8px;}
@@ -331,10 +331,10 @@ html{scroll-snap-type:y mandatory;}
 /* ======================== */
 /* BI FRAMEWORK — mobile   */
 /* ======================== */
-.abi-section{padding:60px 18px 24px;}
-.abi-headline{font-size:22px;margin-bottom:8px;line-height:1.2;}
-.abi-formula-sub{font-size:13px;line-height:1.6;margin-bottom:14px;max-width:100%;}
-.abi-formula-row{font-size:28px;margin-bottom:10px;padding:12px 0 10px;}
+.abi-section{padding:56px 20px 24px;}
+.abi-headline{font-size:clamp(24px,6.5vw,32px);margin-bottom:10px;line-height:1.18;}
+.abi-formula-sub{font-size:clamp(14px,3.5vw,16px);line-height:1.60;margin-bottom:16px;max-width:100%;}
+.abi-formula-row{font-size:clamp(32px,8.5vw,42px);margin-bottom:12px;padding:14px 0 12px;}
 .abi-flip-row{flex-direction:row;flex-wrap:wrap;gap:8px;margin:8px auto 12px;justify-content:center;}
 .abi-flip-card{flex:1;min-width:90px;max-width:140px;}
 .abi-flip-card--accent{min-width:110px;max-width:160px;}
@@ -407,16 +407,17 @@ html{scroll-snap-type:y mandatory;}
 /* ======================== */
 /* AHA METHODOLOGY — mobile */
 /* ======================== */
-.aha-section{padding:60px 16px 24px;}
-.aha-header{margin-bottom:14px;}
-.aha-title{font-size:22px;margin-bottom:4px;line-height:1.2;}
-.aha-tagline{font-size:8px;letter-spacing:2px;margin-bottom:3px;}
-.aha-sub{font-size:12.5px;line-height:1.55;}
-.aha-grid{grid-template-columns:repeat(3,1fr);gap:8px;}
-.aha-card{padding:14px 10px 12px;border-radius:12px;}
-.aha-letter{font-size:24px;margin-bottom:3px;}
-.aha-word{font-size:9px;letter-spacing:1.5px;margin-bottom:4px;}
-.aha-desc{font-size:11px;line-height:1.5;}
+.aha-section{padding:56px 20px 24px;}
+.aha-header{margin-bottom:20px;}
+.aha-title{font-size:clamp(26px,7vw,36px);margin-bottom:6px;line-height:1.18;}
+.aha-tagline{font-size:clamp(9px,2.2vw,11px);letter-spacing:2.5px;margin-bottom:4px;}
+.aha-sub{font-size:clamp(14px,3.5vw,16px);line-height:1.60;}
+.aha-grid{grid-template-columns:repeat(3,1fr);gap:10px;}
+.aha-card{padding:18px 14px 16px;border-radius:14px;cursor:pointer;}
+.aha-letter{font-size:clamp(32px,8.5vw,44px);margin-bottom:4px;}
+.aha-word{font-size:clamp(10px,2.5vw,13px);letter-spacing:2px;margin-bottom:6px;}
+.aha-desc{font-size:clamp(11px,2.8vw,13px);line-height:1.55;max-height:0;overflow:hidden;transition:max-height 0.4s ease;opacity:0;margin:0;}
+.aha-card.is-open .aha-desc{max-height:120px;opacity:1;margin-top:6px;}
 .masonry-gallery{margin-top:16px;padding-top:16px;}
 .masonry-label{font-size:8px;letter-spacing:2.5px;margin-bottom:8px;}
 .masonry-grid{grid-template-columns:1fr 1fr;grid-template-rows:130px 110px 110px;gap:6px;}
@@ -468,27 +469,27 @@ html{scroll-snap-type:y mandatory;}
 /* ======================== */
 /* TOOLS STRIP — mobile     */
 /* ======================== */
-.tools-strip{padding:60px 16px 24px;}
-.tools-strip-label{font-size:20px;margin-bottom:4px;}
-.tools-strip-sublabel{font-size:11px;margin-bottom:12px;}
-.ts-logo-row{gap:5px;justify-content:center;}
-.tool-chip{padding:4px 8px 4px 5px;gap:4px;border-radius:16px;}
-.tool-chip-logo{width:18px;height:18px;border-radius:5px;padding:1px;}
-.tool-chip-name{font-size:9.5px;}
-.ts-category-bar{padding:10px 0 10px;}
-.ts-category-bar span{font-size:8px;letter-spacing:1.5px;padding:0 2px;}
-.ts-dot{font-size:5px;padding:0 4px;}
+.tools-strip{padding:56px 20px 28px;}
+.tools-strip-label{font-size:clamp(24px,6.5vw,32px);margin-bottom:6px;}
+.tools-strip-sublabel{font-size:clamp(14px,3.5vw,16px);margin-bottom:18px;}
+.ts-logo-row{gap:8px;justify-content:center;}
+.tool-chip{padding:6px 12px 6px 7px;gap:5px;border-radius:20px;}
+.tool-chip-logo{width:22px;height:22px;border-radius:6px;padding:2px;}
+.tool-chip-name{font-size:clamp(11px,2.8vw,13px);}
+.ts-category-bar{padding:14px 0 12px;}
+.ts-category-bar span{font-size:clamp(9px,2.2vw,11px);letter-spacing:2px;padding:0 3px;}
+.ts-dot{font-size:6px;padding:0 5px;}
 
 /* ======================== */
 /* CTA SECTION — mobile     */
 /* ======================== */
-.fcta-section{padding:60px 20px 28px;display:flex;align-items:center;justify-content:center;min-height:70vh;}
+.fcta-section{padding:56px 24px 32px;display:flex;align-items:center;justify-content:center;min-height:70vh;}
 .fcta-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.fcta-badge{font-size:8px;padding:5px 16px;margin-bottom:20px;letter-spacing:2px;}
-.fcta-headline{font-size:26px;margin-bottom:12px;line-height:1.15;}
-.fcta-sub-text{font-size:13px;line-height:1.6;margin-bottom:24px;}
-.fcta-btn{font-size:11px;padding:16px 28px;border-radius:10px;letter-spacing:0.8px;margin-bottom:20px;min-height:52px;width:auto;max-width:90%;justify-content:center;white-space:nowrap;}
-.fcta-wa{font-size:12px;gap:6px;}
+.fcta-badge{font-size:clamp(9px,2.2vw,11px);padding:6px 18px;margin-bottom:24px;letter-spacing:2.5px;}
+.fcta-headline{font-size:clamp(28px,7.5vw,38px);margin-bottom:14px;line-height:1.15;}
+.fcta-sub-text{font-size:clamp(14px,3.5vw,16px);line-height:1.60;margin-bottom:28px;}
+.fcta-btn{font-size:clamp(12px,3vw,14px);padding:18px 32px;border-radius:12px;letter-spacing:1px;margin-bottom:22px;min-height:52px;width:auto;max-width:90%;justify-content:center;white-space:nowrap;}
+.fcta-wa{font-size:clamp(13px,3.2vw,15px);gap:10px;}
 
 /* FOOTER mobile */
 .site-footer{padding:16px 18px;gap:8px;flex-direction:column;text-align:center;}
@@ -576,7 +577,7 @@ html{scroll-snap-type:y mandatory;}
   .aha-sub{font-size:clamp(12px,1.4vw,15px);}
   .aha-grid{gap:clamp(8px,1.2vh,14px);}
   .aha-card{padding:clamp(14px,2vh,22px);}
-  .aha-desc{font-size:clamp(11px,1.3vw,14px);}
+  .aha-desc{font-size:clamp(11px,1.3vw,14px);max-height:none !important;opacity:1 !important;margin-top:6px !important;}
   .masonry-grid{grid-template-columns:2fr 1fr 1fr;grid-template-rows:clamp(80px,12vh,140px) clamp(80px,12vh,140px);gap:6px;}
   .masonry-gallery{margin-top:clamp(16px,2.5vh,28px);padding-top:clamp(14px,2vh,24px);}
   .masonry-label{font-size:clamp(9px,1.2vw,11px);}
@@ -828,17 +829,17 @@ html{scroll-snap-type:y mandatory;}
 <p class="aha-sub">Menghargai waktu Anda. Memaksimalkan setiap momen belajar.</p>
 </div>
 <div class="aha-grid">
-<div class="aha-card">
+<div class="aha-card" onclick="this.classList.toggle('is-open')">
 <div class="aha-letter">A</div>
 <div class="aha-word">Adaptif</div>
 <p class="aha-desc">Materi multimodal — teks, video, praktik langsung, dan contoh kerja nyata. Fleksibel dengan ritme Anda.</p>
 </div>
-<div class="aha-card">
+<div class="aha-card" onclick="this.classList.toggle('is-open')">
 <div class="aha-letter">H</div>
 <div class="aha-word">Holistik</div>
 <p class="aha-desc">Program tidak berhenti di kelas. Ada rangkaian dari briefing, latihan, peer coaching, sampai action learning.</p>
 </div>
-<div class="aha-card">
+<div class="aha-card" onclick="this.classList.toggle('is-open')">
 <div class="aha-letter">A</div>
 <div class="aha-word">Aktif</div>
 <p class="aha-desc">Anda di driver seat. Pilih tujuan, konteks kerja sendiri, dan kumpulkan artefak yang siap dipakai.</p>
