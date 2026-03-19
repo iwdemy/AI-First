@@ -1,8 +1,8 @@
 <!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>AI First — IWDemy</title><link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700;900&display=swap" rel="stylesheet"/><style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}:root{--mustard:#FCB528;--navy:#070d1c;--s-hi:rgba(220,228,245,0.92);--s-md:rgba(190,205,228,0.68);--s-lo:rgba(150,170,205,0.45);--s-xs:rgba(136,153,187,0.16);--green:rgba(100,220,130,0.80);}html{scroll-snap-type:y proximity;scroll-behavior:smooth;overflow-x:hidden;}body{overflow-x:hidden;font-family:'Google Sans Flex',sans-serif;font-size:clamp(15px,1.5vw,17px);background:var(--navy);color:var(--s-hi);text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;}img,video,iframe{max-width:100%;height:auto;}
-.hero-page{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start;padding:60px 24px 40px;}
-.hero-page-1{align-items:flex-start;}
-.hero-page-2{align-items:center;}
-.hero-page-3{align-items:center;text-align:center;padding-bottom:32px;}
+.hero-page{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start;padding:52px 24px 24px;}
+.hero-page-1{align-items:flex-start;padding-top:52px;}
+.hero-page-2{align-items:center;padding-top:52px;}
+.hero-page-3{align-items:center;text-align:center;padding-top:52px;}
 .hero-page-2 .hero-right,.hero-page-3 .hero-bottom{position:relative;width:100%;}
 .hero-page-3 .hero-bottom{background:none;border-radius:0;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0;}
 .hero-page-3 .hero-bottom::before{display:none;}
@@ -280,23 +280,23 @@ section,.hero,.prob-section,.abi-section,.fac-section,.kur-section,.aha-section,
 .hero-inner{grid-template-columns:1fr;gap:0;padding:0 20px;align-items:start;flex:1;display:flex;flex-direction:column;justify-content:center;}
 .hero-left{align-items:flex-start;}
 
-.hero-h1{font-size:34px;letter-spacing:-1.8px;margin:0 0 8px;line-height:1.05;}
-.hero-punch{font-size:16px;line-height:1.35;margin:0 0 20px;letter-spacing:-0.2px;}
+.hero-h1{font-size:clamp(36px,10vw,52px);letter-spacing:-1.8px;margin:0 0 12px;line-height:1.08;}
+.hero-punch{font-size:clamp(18px,4.5vw,24px);line-height:1.40;margin:0 0 20px;letter-spacing:-0.2px;}
 .hero-punch span{font-size:1.3em;}
 .hero-right{justify-content:stretch;}
-.hero-card{padding:20px 20px 18px;border-radius:16px;max-width:100%;box-shadow:0 16px 48px rgba(0,0,0,0.40),0 1px 0 rgba(255,255,255,0.04) inset;}
-.hero-card-lead{font-size:15px;margin:0 0 6px;}
-.hero-card-body{font-size:13.5px;line-height:1.6;margin:0 0 10px;}
-.hero-card-divider{margin:0 0 10px;}
-.hero-card-quote{font-size:13px;line-height:1.5;}
-.hero-bottom{padding:14px 20px 16px;border-radius:0;max-width:100%;background:linear-gradient(180deg,rgba(7,13,28,0.3) 0%,rgba(7,13,28,0.85) 30%,rgba(7,13,28,0.95) 100%);}
-.hero-tagline{font-size:8.5px;letter-spacing:4px;}
-.hero-byline{font-size:10.5px;margin-top:5px;line-height:1.45;}
-.byline-sub{font-size:7px;letter-spacing:1.5px;margin-top:2px;}
-.ai-logo-strip{gap:4px;margin-top:8px;max-width:100%;}
-.ai-logo-chip{padding:3px 7px 3px 3px;gap:3px;}
-.ai-logo-chip img{height:14px;width:14px;}
-.ai-logo-chip-name{font-size:8px;}
+.hero-card{padding:clamp(24px,5vw,36px);border-radius:20px;max-width:100%;box-shadow:0 16px 48px rgba(0,0,0,0.40),0 1px 0 rgba(255,255,255,0.04) inset;}
+.hero-card-lead{font-size:clamp(18px,4.5vw,24px);margin:0 0 10px;}
+.hero-card-body{font-size:clamp(15px,3.8vw,18px);line-height:1.65;margin:0 0 14px;}
+.hero-card-divider{margin:0 0 14px;}
+.hero-card-quote{font-size:clamp(15px,4vw,18px);line-height:1.55;}
+.hero-bottom{padding:20px 24px 24px;border-radius:0;max-width:100%;background:none;}
+.hero-tagline{font-size:clamp(14px,3.5vw,18px);letter-spacing:clamp(8px,2vw,12px);}
+.hero-byline{font-size:clamp(14px,3.5vw,17px);margin-top:14px;line-height:1.60;}
+.byline-sub{font-size:clamp(10px,2.5vw,12px);letter-spacing:2.5px;margin-top:8px;}
+.ai-logo-strip{gap:8px;margin-top:18px;max-width:100%;}
+.ai-logo-chip{padding:6px 12px 6px 6px;gap:5px;}
+.ai-logo-chip img{height:20px;width:20px;}
+.ai-logo-chip-name{font-size:clamp(11px,2.8vw,13px);}
 .hero-bg img{opacity:0.40;object-position:center 40%;}
 
 /* ======================== */
