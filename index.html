@@ -190,7 +190,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .prc-c-desc{font-size:11px;color:rgba(26,37,53,0.62);line-height:1.55;min-height:36px;}
 .prc-c-bonus{font-size:9.5px;color:#b07d00;background:rgba(212,146,0,0.06);border:1px solid rgba(212,146,0,0.12);border-radius:8px;padding:6px 10px;line-height:1.4;}
 .prc-c-note{font-size:9.5px;color:rgba(26,37,53,0.50);margin-top:auto;}
-.prc-bundle{background:#0e1625;border-radius:14px;padding:20px 28px;margin-bottom:12px;position:relative;overflow:hidden;}
+.prc-bundle{background:#0e1625;border-radius:14px;padding:14px 20px;margin-bottom:8px;position:relative;overflow:hidden;}
 .prc-bundle-badge{position:absolute;top:10px;right:14px;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#0e1625;background:#FCB528;padding:3px 10px;border-radius:50px;}
 .prc-bundle-body{display:flex;align-items:center;justify-content:space-between;gap:32px;}
 .prc-bundle-left{flex:1;}
@@ -209,7 +209,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .prc-bottom-item strong{color:#1a2535;font-weight:700;}
 .prc-bottom-free{color:rgba(56,160,90,0.85);font-weight:800;}
 .prc-bottom-link{color:#d49200;font-weight:700;text-decoration:none;}
-.prc-cta-wrap{margin-bottom:12px;}
+.prc-cta-wrap{margin-bottom:8px;}
 .prc-cta-btn{display:inline-flex;align-items:center;font-size:12px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;text-decoration:none;background:#0e1625;color:#FCB528;padding:16px 48px;border-radius:12px;transition:all 0.2s ease;box-shadow:0 4px 20px rgba(0,0,0,0.08);}
 .prc-cta-btn:hover{background:#1a2535;box-shadow:0 8px 32px rgba(0,0,0,0.12);transform:translateY(-2px);}
 
@@ -298,11 +298,18 @@ section,.hero,.prob-section,.abi-section,.fac-section,.kur-section,.aha-section,
 .ai-logo-chip img{height:20px;width:20px;}
 .ai-logo-chip-name{font-size:clamp(11px,2.8vw,13px);}
 .hero-bg img{opacity:0.40;object-position:center 40%;}
+/* Mobile: every section = 1 viewport page */
+.prob-section,.abi-section,.fac-section,.kur-section,.aha-section,.prc-section,.tools-strip,.fcta-section{
+  height:100dvh;max-height:100dvh;display:flex;flex-direction:column;justify-content:center;
+  scroll-snap-align:start;overflow:hidden;
+}
+html{scroll-snap-type:y mandatory;}
+
 
 /* ======================== */
 /* PROBLEM — mobile         */
 /* ======================== */
-.prob-section{padding:60px 16px 20px;max-height:none;overflow:visible;}
+.prob-section{padding:56px 16px 16px;}
 .prob-section 
 .prob-layout{grid-template-columns:1fr;gap:14px;}
 .prob-left{position:static;}
@@ -420,10 +427,10 @@ section,.hero,.prob-section,.abi-section,.fac-section,.kur-section,.aha-section,
 /* ======================== */
 /* PRICING — mobile         */
 /* ======================== */
-.prc-section{padding:60px 16px 20px;}
-.tc-mb12{text-align:center;margin-bottom:8px;}
-.prc-headline{font-size:20px;margin-bottom:6px;line-height:1.2;}
-.prc-lead{font-size:12.5px;margin-bottom:14px;line-height:1.55;max-width:100%;}
+.prc-section{padding:52px 16px 8px;}
+.tc-mb12{text-align:center;margin-bottom:4px;}
+.prc-headline{font-size:19px;margin-bottom:4px;line-height:1.2;}
+.prc-lead{font-size:12px;margin-bottom:10px;line-height:1.45;max-width:100%;}
 .prc-cards-row{grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
 .prc-c{padding:14px 12px 12px;border-radius:12px;gap:4px;}
 .prc-c-head{gap:6px;margin-bottom:2px;min-height:auto;}
@@ -442,7 +449,7 @@ section,.hero,.prob-section,.abi-section,.fac-section,.kur-section,.aha-section,
 .prc-c--entry .prc-c-num{width:16px;height:16px;font-size:7px;}
 .prc-c--collapsed{padding:14px 12px;}
 .prc-c-tap{font-size:9px;}
-.prc-bundle{padding:14px 16px;margin-bottom:10px;border-radius:12px;}
+.prc-bundle{padding:10px 14px;margin-bottom:6px;border-radius:10px;}
 .prc-bundle-badge{font-size:7px;top:8px;right:10px;padding:2px 8px;}
 .prc-bundle-body{flex-direction:column;gap:8px;}
 .prc-bundle-tag{font-size:13px;margin-bottom:2px;}
