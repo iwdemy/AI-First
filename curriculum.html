@@ -132,6 +132,18 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 .navbar__links a:hover { color: rgba(235,230,220,0.95); }
 .navbar__links a:hover::after { width: 20px;
   left: calc(50% - 10px); }
+.navbar__home-mobile { display: none;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(240,236,228,0.70);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: color 0.3s;
+  letter-spacing: 0.02em; }
+.navbar__home-mobile:hover { color: rgba(235,230,220,0.95); }
 .navbar__right { display: flex;
   align-items: center;
   gap: 14px; }
@@ -216,6 +228,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 @media (min-width: 640px) {
   .navbar__links { display: flex; }
   .navbar__mobile-toggle { display: none; }
+  .navbar__home-mobile { display: none !important; }
   .navbar__main-bar { height: 60px; }
   .navbar__logo-container { padding: 5px 10px; gap: 8px; }
   .navbar__logo-img { height: 20px; }
@@ -665,6 +678,11 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 
   .cc-card:not(.expanded):hover .cc-sub { max-height: 0; opacity: 0; margin-top: 0; }
   .level-num { display: none; }
+  .navbar__cta { display: none; }
+  .navbar__home-mobile { display: inline-flex; }
+  .nav { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-btn { white-space: nowrap; flex-shrink: 0; }
   .day-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 6px; }
   .day-tabs::-webkit-scrollbar { display: none; }
   .day-tab { white-space: nowrap; min-height: 36px; display: inline-flex; align-items: center; }
@@ -722,10 +740,11 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
     </div>
 
     <ul class="navbar__links">
-      <li><a href="aifirst-homepage--v18.html">Homepage</a></li>
+      <li><a href="index.html">Homepage</a></li>
     </ul>
 
     <div class="navbar__right">
+      <a href="index.html" class="navbar__home-mobile">Homepage</a>
       <a href="https://wa.me/6285959435052" class="navbar__cta" target="_blank">Konsultasi</a>
       <button class="navbar__mobile-toggle" onclick="document.getElementById('mobileMenu').classList.add('open')" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -734,7 +753,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
   </div>
   <div class="navbar__mobile-menu" id="mobileMenu">
     <button class="navbar__mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close">&times;</button>
-    <a href="aifirst-homepage--v18.html" onclick="this.parentElement.classList.remove('open')">Homepage</a>
+    <a href="index.html" onclick="this.parentElement.classList.remove('open')">Homepage</a>
     <a href="https://wa.me/6285959435052" class="cta-primary" onclick="this.parentElement.classList.remove('open')" target="_blank">Konsultasi</a>
   </div>
 </header>
