@@ -1350,10 +1350,10 @@ body { font-family: var(--font-body);
   .check__field-row { grid-template-columns: 1fr; }
   .check__q-label { font-size: 14px; }
 
-  /* Mobile hero: symbol splash + hide tools */
+  /* Mobile hero: full-screen symbol splash */
   .hero__content { grid-template-columns: 1fr; text-align: center; gap: 24px; }
   .hero__visual { order: -1; display: flex; justify-content: center; }
-  .shift__symbol-wrap { width: clamp(160px, 45vw, 220px); height: clamp(160px, 45vw, 220px); }
+  .shift__symbol-wrap { width: clamp(180px, 50vw, 240px); height: clamp(180px, 50vw, 240px); }
   .hero__tools { display: none; }
   .hero__levels { justify-content: center; flex-wrap: wrap; }
   .hero__byline { align-items: center; }
@@ -1368,7 +1368,46 @@ body { font-family: var(--font-body);
 
   /* Mobile: tighter section spacing */
   .section { padding-top: 36px; padding-bottom: 36px; }
-  .hero { padding-top: 72px; min-height: auto; }
+  .hero { padding-top: 72px; min-height: 100dvh; }
+
+  /* ── Mobile cards: front stays visible, back slides below ── */
+
+  /* Formula cards: stack vertically */
+  .formula__flip-row { flex-direction: column; gap: 10px; max-width: 100%; }
+  .formula__flip-card { min-height: auto; flex: none; overflow: visible; }
+  .formula__flip-inner { height: auto; }
+  .formula__flip-front { padding: 16px; justify-content: flex-start; }
+  .formula__flip-back { position: relative; inset: auto; opacity: 0; max-height: 0; overflow: hidden;
+    transform: none; padding: 0 16px; background: rgba(30,28,24,0.96); border-radius: 0 0 14px 14px;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease; }
+  .formula__flip-card.expanded .formula__flip-front { opacity: 1; transform: none; }
+  .formula__flip-card.expanded .formula__flip-back { opacity: 1; max-height: 300px; padding: 14px 16px; }
+  .formula__flip-desc { font-size: 13px; }
+
+  /* Why cards: slide-down reveal */
+  .why__card { min-height: auto; overflow: visible; }
+  .why__card-back { position: relative; inset: auto; opacity: 0; max-height: 0; overflow: hidden;
+    transform: none; padding: 0 24px; background: transparent; border-radius: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease; }
+  .why__card.expanded .why__card-front { opacity: 1; transform: none; }
+  .why__card.expanded .why__card-back { opacity: 1; max-height: 300px; padding: 8px 0 0; }
+  .why__card-body { font-size: 13px; }
+
+  /* Outcome cards: slide-down reveal */
+  .outcome__card { overflow: visible; }
+  .outcome__card-back { position: relative; inset: auto; opacity: 0; max-height: 0; overflow: hidden;
+    transform: none; transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+    padding: 0; }
+  .outcome__card.expanded .outcome__card-front { opacity: 1; transform: none; }
+  .outcome__card.expanded .outcome__card-back { opacity: 1; max-height: 300px; padding-top: 8px; }
+
+  /* Prog level cards: slide-down reveal */
+  .prog__level { min-height: auto; overflow: visible; }
+  .prog__level-back { position: relative; inset: auto; opacity: 0; max-height: 0; overflow: hidden;
+    transform: none; padding: 0; background: transparent; border-radius: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease; }
+  .prog__level.active .prog__level-front { opacity: 1; transform: none; }
+  .prog__level.active .prog__level-back { opacity: 1; max-height: 400px; padding: 8px 14px 0; }
   .footer { padding: 28px 16px 20px; }
 
   /* Mobile: disable hover transforms on tap */
@@ -1416,24 +1455,18 @@ body { font-family: var(--font-body);
   .cred__person.expanded .cred__person-front { opacity: 0; transform: translateY(-8px); }
   .cred__person.expanded .cred__person-back { opacity: 1; transform: translateY(0); }
 
+  /* Formula, why, outcome, prog cards: handled by slide-down pattern above */
   .formula__flip-card:not(.expanded):hover .formula__flip-front { opacity: 1; transform: none; }
-  .formula__flip-card:not(.expanded):hover .formula__flip-back { opacity: 0; transform: translateY(8px); }
-  .formula__flip-card.expanded .formula__flip-front { opacity: 0; transform: translateY(-6px); }
-  .formula__flip-card.expanded .formula__flip-back { opacity: 1; transform: translateY(0); }
+  .formula__flip-card:not(.expanded):hover .formula__flip-back { max-height: 0; opacity: 0; }
 
   .outcome__card:not(.expanded):hover .outcome__card-front { opacity: 1; transform: none; }
-  .outcome__card:not(.expanded):hover .outcome__card-back { opacity: 0; transform: translateY(8px); }
-  .outcome__card.expanded .outcome__card-front { opacity: 0; transform: translateY(-6px); }
-  .outcome__card.expanded .outcome__card-back { opacity: 1; transform: translateY(0); }
+  .outcome__card:not(.expanded):hover .outcome__card-back { max-height: 0; opacity: 0; }
 
   .why__card:not(.expanded):hover .why__card-front { opacity: 1; transform: none; }
-  .why__card:not(.expanded):hover .why__card-back { opacity: 0; transform: translateY(8px); }
-  .why__card.expanded .why__card-front { opacity: 0; transform: translateY(-6px); }
-  .why__card.expanded .why__card-back { opacity: 1; transform: translateY(0); }
+  .why__card:not(.expanded):hover .why__card-back { max-height: 0; opacity: 0; }
 
-  .prog__level { min-height: 180px; }
   .prog__level:not(.active):hover .prog__level-front { opacity: 1; transform: none; }
-  .prog__level:not(.active):hover .prog__level-back { opacity: 0; transform: translateY(8px); }
+  .prog__level:not(.active):hover .prog__level-back { max-height: 0; opacity: 0; }
 }
 
 /* Tablet small (640px+) */
