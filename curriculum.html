@@ -725,6 +725,33 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 
   /* Mobile: CTA bar tighter */
   .level-cta-bar { margin-top: 20px; padding-top: 16px; }
+
+  /* Mobile: collapse learning-outcome + takeaway */
+  .level-meta-line { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s ease; }
+  .level-meta-line.m-open { max-height: 600px; opacity: 1; }
+  .learning-outcome { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s ease; }
+  .learning-outcome.m-open { max-height: 300px; opacity: 1; }
+
+  /* Mobile: collapse toggle trigger */
+  .m-toggle {
+    font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.08em; color: var(--gold); cursor: pointer;
+    padding: 6px 0; margin-top: 6px; display: inline-flex; align-items: center; gap: 4px;
+    transition: opacity 0.3s;
+  }
+  .m-toggle::after { content: '▾'; font-size: 9px; transition: transform 0.3s; }
+  .m-toggle.m-active::after { transform: rotate(180deg); }
+
+  /* Mobile: collapse timeline details */
+  .tl-sub, .tl-format { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.35s ease, opacity 0.25s ease, margin 0.25s ease; margin-top: 0; }
+  .tl-row.tl-open .tl-sub, .tl-row.tl-open .tl-format { max-height: 200px; opacity: 1; margin-top: 4px; }
+  .tl-card { cursor: pointer; }
+
+  /* Mobile: collapse footer descriptions */
+  .footer__contact { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.35s ease, opacity 0.25s ease; }
+  .footer__contact.m-open { max-height: 200px; opacity: 1; }
+  .footer__brand-name { cursor: pointer; }
+  .footer__brand-name::after { content: ' ▾'; font-size: 9px; color: var(--gold); }
 }
 
 @media print {
@@ -1260,6 +1287,49 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
       card.classList.toggle('expanded');
     });
   });
+
+  // ── Mobile collapse patterns ──
+  if (window.matchMedia('(max-width: 639px)').matches) {
+
+    // 1. Collapse learning-outcome + level-meta-line (takeaway/schedule)
+    document.querySelectorAll('.level-head').forEach(head => {
+      const outcome = head.querySelector('.learning-outcome');
+      const metaLine = head.querySelector('.level-meta-line');
+      if (!outcome && !metaLine) return;
+
+      const toggle = document.createElement('div');
+      toggle.className = 'm-toggle';
+      toggle.textContent = 'Detail program';
+
+      // Insert toggle after level-title
+      const title = head.querySelector('.level-title');
+      if (title) title.after(toggle);
+
+      toggle.addEventListener('click', () => {
+        toggle.classList.toggle('m-active');
+        if (outcome) outcome.classList.toggle('m-open');
+        if (metaLine) metaLine.classList.toggle('m-open');
+      });
+    });
+
+    // 2. Timeline rows: tap to reveal sub/format
+    document.querySelectorAll('.tl-row').forEach(row => {
+      row.addEventListener('click', () => {
+        row.classList.toggle('tl-open');
+      });
+    });
+
+    // 3. Footer: tap brand name to reveal contact
+    document.querySelectorAll('.footer__brands > div').forEach(brand => {
+      const name = brand.querySelector('.footer__brand-name');
+      const contact = brand.querySelector('.footer__contact');
+      if (name && contact) {
+        name.addEventListener('click', () => {
+          contact.classList.toggle('m-open');
+        });
+      }
+    });
+  }
 </script>
 </body>
 </html>
