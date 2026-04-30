@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Tjitra & Associates">
+<title>AI First Program — Full Curriculum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ── Design Tokens (synced with v18) ── */
+:root {
+  --bg-dark: #0E0E0E;
+  --bg-light: #F8F6F2;
+  --gold: #D4A84B;
+  --gold-muted: #8B7340;
+  --gold-bg: rgba(212,168,75,0.08);
+  --gold-border: rgba(212,168,75,0.22);
+  --gold-hover: rgba(212,168,75,0.06);
+  --text-hi: #F5F2EB;
+  --text-md: rgba(245,242,235,0.95);
+  --text-lo: rgba(240,236,228,0.75);
+  --text-xs: rgba(235,230,220,0.22);
+  --dark-text: #0A0A0A;
+  --dark-body: rgba(10,10,10,0.92);
+  --card-border: rgba(0,0,0,0.06);
+  --card-border-dark: rgba(212,168,75,0.16);
+  --dt-hi: #F5F2EB;
+  --dt-md: rgba(245,242,235,0.95);
+  --dt-lo: rgba(240,236,228,0.75);
+  --dt-xs: rgba(235,230,220,0.22);
+  --font-heading: 'Plus Jakarta Sans','Calibri','Arial',sans-serif;
+  --font-body: 'Inter','Calibri','Arial',sans-serif;
+  --font-mono: 'JetBrains Mono','Consolas','Courier New',monospace;
+  --ease: 0.35s cubic-bezier(0.4,0,0.2,1);
+  --section-px: clamp(20px, 6vw, 80px);
+  --content-max: 1040px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body { font-family: var(--font-body); background: var(--bg-dark); color: var(--text-hi); }
+
+/* Navbar (ported from v18) */
+.navbar { position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  border-bottom: 1px solid rgba(212,168,75,0.10);
+  transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; }
+.navbar.scrolled { background: rgba(10,10,10,0.98);
+  box-shadow: 0 2px 40px rgba(0,0,0,0.35), 0 0 60px rgba(212,168,75,0.04);
+  border-bottom-color: rgba(212,168,75,0.15); }
+.navbar::before { content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent 5%, rgba(212,168,75,0.6) 35%, var(--gold) 50%, rgba(212,168,75,0.6) 65%, transparent 95%); }
+.navbar::after { content: '';
+  position: absolute;
+  bottom: -1px; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,168,75,0.12), transparent); }
+.navbar__main-bar { max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--section-px);
+  height: 72px; }
+.navbar__brand-group { display: flex;
+  align-items: center;
+  gap: 18px; }
+.navbar__logo-container { display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: background 0.3s, box-shadow 0.3s; }
+.navbar__logo-container:hover { background: #fff;
+  box-shadow: 0 2px 12px rgba(255,255,255,0.10); }
+.navbar__logo-img { height: 26px;
+  width: auto; }
+.navbar__logo-divider { width: 1px;
+  height: 18px;
+  background: rgba(0,0,0,0.12); }
+.navbar__logo-sep { width: 1px;
+  height: 28px;
+  background: linear-gradient(180deg, transparent, rgba(212,168,75,0.25), transparent); }
+.navbar__brand { font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--text-hi);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 6px; }
+.navbar__brand span { background: linear-gradient(135deg, var(--gold) 0%, #e8c860 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; }
+.navbar__links { display: none;
+  gap: 4px;
+  list-style: none;
+  align-items: center; }
+.navbar__links a { font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(240,236,228,0.70);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  position: relative;
+  transition: color 0.3s;
+  letter-spacing: 0.02em; }
+.navbar__links a::after { content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background: var(--gold);
+  border-radius: 1px;
+  transition: width 0.3s ease, left 0.3s ease; }
+.navbar__links a:hover { color: rgba(235,230,220,0.95); }
+.navbar__links a:hover::after { width: 20px;
+  left: calc(50% - 10px); }
+.navbar__right { display: flex;
+  align-items: center;
+  gap: 14px; }
+.navbar__cta { font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  padding: 11px 28px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--gold) 0%, #C49A3C 50%, var(--gold) 100%);
+  background-size: 200% 100%;
+  color: var(--bg-dark);
+  text-decoration: none;
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.25s, box-shadow 0.25s, background-position 0.5s;
+  box-shadow: 0 2px 16px rgba(212,168,75,0.20), inset 0 1px 0 rgba(255,255,255,0.15); }
+.navbar__cta:hover { transform: translateY(-1px);
+  box-shadow: 0 4px 24px rgba(212,168,75,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+  background-position: 100% 0; }
+.navbar__mobile-toggle { display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  min-height: 48px;
+  min-width: 48px;
+  align-items: center;
+  justify-content: center; }
+.navbar__mobile-toggle span { display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--text-hi);
+  border-radius: 1px;
+  transition: transform 0.3s, opacity 0.3s; }
+.navbar__mobile-menu { display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10,10,10,0.98);
+  z-index: 99;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px; }
+.navbar__mobile-menu.open { display: flex; }
+.navbar__mobile-menu a { font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-hi);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: color 0.3s, letter-spacing 0.3s; }
+.navbar__mobile-menu a:hover { color: var(--gold);
+  letter-spacing: 0.02em; }
+.navbar__mobile-logos { display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px; }
+.navbar__mobile-logos img { height: 24px;
+  width: auto;
+  opacity: 0.85; }
+.navbar__mobile-close { position: absolute;
+  top: 24px;
+  right: 28px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: var(--text-lo);
+  cursor: pointer;
+  min-height: 48px;
+  min-width: 48px;
+  transition: color 0.3s; }
+.navbar__mobile-close:hover { color: var(--text-hi); }
+
+@media (min-width: 640px) {
+  .navbar__links { display: flex; }
+  .navbar__mobile-toggle { display: none; }
+  .navbar__main-bar { height: 60px; }
+  .navbar__logo-container { padding: 5px 10px; gap: 8px; }
+  .navbar__logo-img { height: 20px; }
+  .navbar__logo-divider { height: 14px; }
+  .navbar__brand { font-size: 16px; }
+  .navbar__logo-sep { height: 20px; }
+  .navbar__brand-group { gap: 10px; }
+}
+
+/* ── 4. Layout ── */
+.page { max-width: 1040px; margin: 0 auto; padding: 70px 16px 40px; }
+
+/* ── 5. Hero ── */
+.hero-landing {
+  text-align: left; padding: 28px 0 20px;
+  margin-bottom: 0; border-bottom: none;
+  position: relative; overflow: hidden;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-bg {
+  position: absolute; top: 50%; right: -4%; transform: translateY(-46%);
+  width: 58%; max-width: 560px; height: auto; opacity: 0.4;
+  pointer-events: none; z-index: 0;
+  mix-blend-mode: screen;
+  filter: contrast(3) brightness(1.2) invert(1) sepia(1) saturate(4) hue-rotate(5deg);
+}
+.hero-headline {
+  font-family: var(--font-heading); font-size: clamp(24px, 5.5vw, 40px);
+  font-weight: 800; line-height: 1.1; letter-spacing: -0.03em;
+  color: var(--text-hi); margin-bottom: 12px;
+}
+.hero-next {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border-radius: 999px;
+  background: var(--gold-bg); border: 1px solid var(--gold-border);
+  margin-bottom: 20px;
+}
+.hero-next .dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold); animation: blink 2s infinite;
+}
+.hero-tagline {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-lo);
+  margin-top: 16px;
+}
+
+/* ── 6. Nav Pills (sticky, pill-style like v18 eyebrow) ── */
+.nav-wrap {
+  position: sticky; top: 72px; z-index: 100;
+  background: var(--bg-dark);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--card-border-dark);
+  transition: box-shadow 0.3s;
+}
+.nav-wrap.stuck {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.nav-wrap::after {
+  content: ''; position: absolute; right: 0; top: 0; bottom: 0;
+  width: 40px; pointer-events: none;
+  background: linear-gradient(to right, transparent, var(--bg-dark));
+  z-index: 2;
+}
+.nav {
+  display: flex; gap: 6px; margin-bottom: 0; flex-wrap: nowrap;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  padding: 12px 0;
+  scrollbar-width: none; -ms-overflow-style: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-btn {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  padding: 8px 16px; min-height: 40px; border-radius: 999px;
+  border: 1px solid var(--text-xs); background: transparent;
+  color: var(--text-lo); cursor: pointer; transition: all var(--ease);
+  white-space: nowrap; letter-spacing: 0.08em; text-transform: uppercase;
+  display: inline-flex; align-items: center;
+}
+.nav-btn:hover { background: var(--gold-hover); border-color: var(--gold-border); color: var(--text-md); }
+.nav-btn.active {
+  background: var(--gold); color: var(--bg-dark);
+  border-color: var(--gold); box-shadow: 0 2px 10px rgba(139,115,64,0.25);
+}
+.nav-btn .nav-num {
+  font-size: 10px; font-weight: 700; opacity: 0.5; margin-right: 4px;
+}
+
+/* ── 7. Panels ── */
+.panel { display: none; animation: fadeIn 0.4s ease; }
+.panel.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── 8. Level Head ── */
+.level-head {
+  display: grid; grid-template-columns: 1fr; gap: 6px;
+  align-items: start; padding-bottom: 18px; margin-bottom: 18px;
+  border-bottom: 1px solid var(--text-xs);
+}
+.level-num {
+  font-family: var(--font-heading); font-weight: 800; font-size: 36px;
+  line-height: 1; letter-spacing: -3px; color: var(--gold); opacity: 0.20;
+  text-align: left;
+}
+.level-eyebrow {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 6px;
+  /* Pill style */
+  display: inline-flex; padding: 5px 14px; border-radius: 999px;
+  background: var(--gold-bg); border: 1px solid var(--gold-border);
+}
+.level-title {
+  font-family: var(--font-heading); font-size: clamp(20px, 4vw, 26px);
+  font-weight: 700; letter-spacing: -0.02em; line-height: 1.2;
+  color: var(--text-hi); margin-bottom: 10px;
+}
+.level-desc { font-size: 14px; font-weight: 500; color: var(--text-md); line-height: 1.7; max-width: 540px; }
+.level-meta-line { margin-top: 18px; display: flex; flex-direction: column; gap: 8px; }
+.schedule-tag { font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: var(--text-lo); }
+.schedule-tag .dot { display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); margin-right: 6px; vertical-align: middle; }
+.learning-outcome { font-size: 14px; font-weight: 500; color: var(--text-md); line-height: 1.7; max-width: 540px; }
+.learning-outcome strong { font-weight: 700; color: var(--text-hi); letter-spacing: -0.2px; }
+.ls-badge { font-size: 10px; font-weight: 400; letter-spacing: 0.3px; color: var(--text-lo); opacity: 0.8; }
+.prework-desc { font-size: 14px; font-weight: 500; color: var(--text-md); line-height: 1.65; padding: 12px 0 20px; border-bottom: 1px solid var(--card-border-dark); }
+/* ── 8b. Day Summary Cards ── */
+.day-summary {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  margin-bottom: 16px;
+}
+.day-summary-card {
+  background: var(--gold-bg); border: 1px solid var(--gold-border);
+  border-radius: 10px; padding: 12px 14px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.day-summary-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(139,115,64,0.08);
+}
+.day-summary-label {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 4px;
+}
+.day-summary-text {
+  font-size: 13px; font-weight: 500; color: var(--text-md); line-height: 1.5;
+}
+/* ── 9. Day Tabs ── */
+.day-tabs { display: flex; gap: 4px; margin-bottom: 14px; flex-wrap: wrap; }
+.day-tab {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 999px;
+  border: 1px solid var(--text-xs); background: transparent;
+  color: var(--text-lo); cursor: pointer; transition: all var(--ease);
+}
+.day-tab:hover { background: var(--gold-hover); color: var(--text-md); }
+.day-tab.active { background: var(--gold-bg); border-color: var(--gold-border); color: var(--gold); }
+.day-panel { display: none; animation: fadeIn 0.3s ease; }
+.day-panel.active { display: block; }
+
+/* ── 10. Sessions ── */
+.session {
+  display: grid; grid-template-columns: 1fr; gap: 6px;
+  padding: 16px 0; border-bottom: 1px solid var(--text-xs); align-items: start;
+}
+.session:last-child { border-bottom: none; }
+.s-time { font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--text-lo); }
+.s-title {
+  font-family: var(--font-heading); font-size: 15px; font-weight: 600;
+  color: var(--text-hi); letter-spacing: -0.2px; margin-bottom: 4px;
+}
+.s-title .gold { color: var(--gold); font-weight: 700; }
+.s-detail { font-size: 14px; font-weight: 500; color: var(--text-md); line-height: 1.65; }
+.s-detail em { font-style: italic; color: var(--text-lo); }
+.s-detail strong { font-weight: 600; color: var(--text-hi); }
+.session.is-break { padding: 10px 0; }
+.session.is-break .s-title { font-weight: 500; font-size: 12px; color: var(--text-lo); letter-spacing: 0; }
+.tools { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.chip {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  padding: 3px 10px; border-radius: 999px;
+  color: var(--text-lo); border: 1px solid var(--text-xs);
+}
+
+
+/* Session hover-reveal */
+.session .cc-grid,
+.session .s-detail { 
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease, margin 0.35s ease;
+  margin-top: 0;
+}
+.session:hover .cc-grid,
+.session:hover .s-detail,
+.session.expanded .cc-grid,
+.session.expanded .s-detail { 
+  max-height: 800px; opacity: 1; margin-top: 8px; 
+}
+.session.is-break .s-detail { max-height: none; opacity: 1; margin-top: 0; }
+.session:not(.is-break) { cursor: pointer; }
+.session:not(.is-break):hover { background: rgba(212,168,75,0.06); border-radius: 10px; padding-left: 12px; padding-right: 12px; margin-left: -12px; margin-right: -12px; }
+.session .s-expand {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  color: var(--gold); letter-spacing: 0.05em; margin-left: 8px;
+  opacity: 0.6; transition: opacity 0.3s;
+}
+.session:hover .s-expand,
+.session.expanded .s-expand { opacity: 0; }
+
+/* ── 12. Content Cards ── */
+.cc-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 16px; }
+.cc-card {
+  border: 1px solid var(--card-border-dark); border-radius: 12px;
+  padding: 14px 16px; background: rgba(255,255,255,0.03);
+  cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.35s ease, background 0.3s ease; overflow: hidden;
+}
+.cc-card:hover, .cc-card.expanded {
+  transform: translateY(-1px);
+  border-color: rgba(139,115,64,0.35); background: rgba(139,115,64,0.08);
+  box-shadow: 0 4px 16px rgba(139,115,64,0.08);
+}
+.cc-card .cc-name {
+  font-family: var(--font-heading); font-size: 14px; font-weight: 700;
+  color: var(--text-hi); letter-spacing: -0.02em;
+}
+.cc-card .cc-sub {
+  font-size: 13px; font-weight: 500; color: var(--text-md); line-height: 1.6;
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease, margin 0.35s ease;
+  margin-top: 0;
+}
+.cc-card:hover .cc-sub, .cc-card.expanded .cc-sub { max-height: 300px; opacity: 1; margin-top: 6px; }
+
+/* ── 13. Takeaway (Premium Gold) ── */
+.takeaway {
+  margin-top: 16px; padding: 18px 20px;
+  font-size: 14px; font-weight: 500; color: var(--text-md); line-height: 1.7;
+  max-width: 560px; border-radius: 12px;
+  background: linear-gradient(135deg, rgba(212,168,75,0.08) 0%, rgba(212,168,75,0.16) 100%);
+  border: 1px solid rgba(212,168,75,0.25);
+  border-left: 3px solid var(--gold);
+  position: relative; overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.takeaway::before {
+  content: ''; position: absolute; top: 0; right: 0;
+  width: 60px; height: 60px; border-radius: 0 12px 0 60px;
+  background: linear-gradient(135deg, transparent 40%, rgba(212,168,75,0.12) 100%);
+  pointer-events: none;
+}
+.takeaway:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(212,168,75,0.12), 0 2px 8px rgba(0,0,0,0.04);
+}
+.takeaway .takeaway-label {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 6px; margin-bottom: 6px;
+}
+.takeaway .takeaway-label::before {
+  content: '◆'; font-size: 8px; color: var(--gold); opacity: 0.7;
+}
+.takeaway .takeaway-text { font-weight: 700; color: var(--text-hi); font-size: 15px; }
+
+/* ── 14. Livestream ── */
+.livestream {
+  display: flex; align-items: center; gap: 8px; padding: 16px 0; margin: 8px 0;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-lo);
+  border-top: 1px solid var(--text-xs);
+}
+.pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+/* ── 15. Bullet List ── */
+.bullet-list { list-style: none; padding: 0; }
+.bullet-list li {
+  position: relative; padding: 8px 0 8px 18px;
+  font-size: 14px; font-weight: 500; color: var(--text-md); line-height: 1.65;
+}
+.bullet-list li strong { font-weight: 700; color: var(--text-hi); }
+.bullet-list li::before {
+  content: ''; position: absolute; left: 0; top: 16px;
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--gold); opacity: 0.5;
+}
+/* ── 16. Timeline ── */
+.timeline { position: relative; display: flex; flex-direction: column; }
+.tl-row { display: grid; grid-template-columns: 72px 28px 1fr; gap: 0; align-items: stretch; }
+.tl-date { text-align: left; padding-top: 18px; }
+.tl-date .month {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-lo);
+}
+.tl-date .days {
+  font-family: var(--font-heading); font-size: 22px; font-weight: 800;
+  color: var(--text-hi); letter-spacing: -1.5px; line-height: 1.15; margin-top: 1px;
+}
+.tl-track { display: flex; flex-direction: column; align-items: center; }
+.tl-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 2.5px solid var(--gold); background: var(--bg-dark);
+  z-index: 2; margin-top: 20px; flex-shrink: 0;
+}
+.tl-line { width: 1px; flex: 1; background: linear-gradient(to bottom, var(--gold-border), var(--text-xs)); }
+.tl-card { 
+  padding: 14px 12px 14px 16px; border-bottom: 1px solid var(--card-border-dark);
+  border-radius: 8px; transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.tl-row:last-child .tl-card { border-bottom: none; }
+.tl-row:not(.past) .tl-card:hover {
+  background: var(--gold-bg); box-shadow: 0 4px 16px rgba(212,168,75,0.08);
+}
+.tl-row.next .tl-card {
+  background: rgba(212,168,75,0.06); border: 1px solid rgba(212,168,75,0.15);
+}
+.tl-level {
+  font-family: var(--font-heading); font-size: 15px; font-weight: 700;
+  color: var(--gold); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 3px;
+}
+.tl-title { font-size: 12px; font-weight: 500; color: var(--text-md); margin-bottom: 4px; }
+.tl-sub { font-size: 12px; font-weight: 500; color: var(--text-lo); line-height: 1.5; }
+.tl-format {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.05em; color: var(--text-lo); margin-top: 8px;
+  padding: 4px 12px; background: rgba(255,255,255,0.05); border-radius: 999px;
+  display: inline-block;
+}
+.tl-row.graduation .tl-dot {
+  width: 12px; height: 12px; background: var(--gold);
+  border-color: var(--gold); box-shadow: 0 0 0 4px rgba(139,115,64,0.18);
+}
+.tl-row.graduation .tl-level { color: var(--gold); font-size: 17px; }
+/* Timeline states */
+.tl-row.past { opacity: 0.4; }
+.tl-row.past .tl-dot { background: var(--text-lo); border-color: var(--text-lo); }
+.tl-row.past .tl-level { text-decoration: line-through; text-decoration-color: var(--text-xs); }
+.tl-row.next .tl-dot {
+  background: var(--gold); border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(139,115,64,0.18);
+}
+.tl-badge {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 999px; margin-left: 8px;
+  display: inline-block; vertical-align: middle;
+}
+.tl-badge.done { background: var(--text-xs); color: var(--text-lo); }
+.tl-badge.next { background: var(--gold-bg); color: var(--gold); }
+
+/* ── 17. Program Label ── */
+.program-label { display: inline-flex; align-items: baseline; gap: 8px; margin-bottom: 12px; }
+.program-label .name {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+}
+.program-label .year {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 400;
+  letter-spacing: 0.1em; color: var(--text-lo);
+}
+
+/* ── 18. Footer (synced with v18) ── */
+.footer {
+  background: var(--bg-dark); color: var(--dt-md);
+  margin-top: 32px; padding: 48px clamp(16px, 4vw, 32px) 32px;
+}
+.footer__inner { max-width: 1040px; margin: 0 auto; }
+.footer__brands {
+  display: grid; grid-template-columns: 1fr; gap: 32px; margin-bottom: 32px;
+}
+.footer__brand-logo {
+  height: 24px; width: auto; margin-bottom: 12px;
+  background: #fff; padding: 8px 14px; border-radius: 8px;
+  box-sizing: content-box; object-fit: contain;
+}
+.footer__brand-name {
+  font-family: var(--font-heading); font-weight: 700; font-size: 16px;
+  color: var(--dt-hi); margin-bottom: 4px;
+}
+.footer__brand-tagline {
+  font-size: 13px; color: var(--dt-md); margin-bottom: 12px;
+}
+.footer__contact {
+  font-size: 13px; color: var(--dt-md); line-height: 1.7;
+}
+.footer__contact a { color: var(--gold); text-decoration: none; }
+.footer__bottom {
+  border-top: 1px solid var(--dt-xs); padding-top: 24px; text-align: center;
+}
+.footer__attr {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; color: var(--dt-lo); margin-bottom: 4px;
+}
+.footer__attr .gold { color: var(--gold); }
+.footer__tagline {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 400;
+  letter-spacing: 0.12em; color: var(--dt-lo); margin-top: 2px;
+}
+.footer__copyright { font-size: 12px; color: var(--dt-lo); margin-top: 8px; }
+
+/* ── 19. Responsive — Tablet (640px+) ── */
+@media (min-width: 640px) {
+  .page { padding: 70px 32px 48px; }
+  .hero-landing { padding: 32px 0 28px; }
+  .hero-bg { width: 54%; max-width: 560px; right: -2%; }
+  .nav { gap: 5px; padding: 14px 0; margin-bottom: 20px; }
+  .session { grid-template-columns: 100px 1fr; gap: 20px; padding: 14px 0; }
+  .s-time { font-size: 12px; padding-top: 2px; }
+  .level-head { grid-template-columns: auto 1fr; gap: 28px; padding-bottom: 22px; margin-bottom: 22px; }
+  .level-num { display: block; text-align: right; font-size: 52px; min-width: 64px; }
+  .level-title { font-size: clamp(22px, 3vw, 28px); }
+  .cc-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .footer { padding: 48px 32px 32px; }
+  .footer__brands { grid-template-columns: repeat(2, 1fr); }
+  .tl-row { grid-template-columns: 80px 32px 1fr; }
+  .tl-date .days { font-size: 24px; }
+}
+
+/* ── 20. Responsive — Desktop (960px+) ── */
+@media (min-width: 960px) {
+  .page { padding: 70px 48px 56px; }
+  .hero-landing { padding: 40px 0 28px; }
+  .hero-bg { width: 48%; max-width: 580px; right: 0; }
+  .nav { gap: 6px; padding: 16px 0; }
+  .nav-btn { font-size: 12px; padding: 9px 18px; }
+  .level-head { gap: 24px; }
+  .level-num { font-size: 64px; min-width: 80px; opacity: 0.18; }
+  .level-title { font-size: clamp(26px, 2.8vw, 32px); margin-bottom: 12px; }
+  .level-desc { font-size: 15px; }
+  .session { grid-template-columns: 110px 1fr; gap: 24px; }
+  .tl-row { grid-template-columns: 88px 32px 1fr; }
+  .tl-date .days { font-size: 26px; }
+  .tl-card { padding: 16px 0 16px 24px; }
+  .tl-level { font-size: 17px; }
+}
+
+/* ── 21. Mobile-only overrides ── */
+@media (max-width: 639px) {
+  /* Session: tap-only on mobile, no hover reveal */
+  .session:not(.expanded):hover .cc-grid,
+  .session:not(.expanded):hover .s-detail { max-height: 0; opacity: 0; margin-top: 0; }
+  .session:not(.is-break):hover { background: transparent !important; padding-left: 0; padding-right: 0; margin-left: 0; margin-right: 0; }
+
+  .cc-card:not(.expanded):hover .cc-sub { max-height: 0; opacity: 0; margin-top: 0; }
+  .level-num { display: none; }
+  .day-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 6px; }
+  .day-tabs::-webkit-scrollbar { display: none; }
+  .day-tab { white-space: nowrap; min-height: 36px; display: inline-flex; align-items: center; }
+  .tl-row { grid-template-columns: 60px 24px 1fr; }
+  .tl-card { padding: 12px 0 12px 12px; }
+  .tl-level { font-size: 14px; }
+  .tl-title, .tl-sub { font-size: 12px; }
+  .tl-date .days { font-size: 20px; }
+  .tl-date .month { font-size: 10px; }
+  .chip { font-size: 10px; padding: 3px 9px; }
+}
+
+@media print {
+  .nav, .navbar, .navbar__mobile-menu { display: none; }
+  .panel { display: block !important; page-break-inside: avoid; margin-bottom: 40px; }
+  body { background: #fff; }
+}
+
+/* ── 23. Accessibility ── */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.nav-btn:focus-visible, .day-tab:focus-visible {
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px rgba(139,115,64,0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* Level CTA */
+.level-cta-bar { display: flex; gap: 12px; justify-content: flex-start; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--card-border-dark); }
+.level-cta { display: inline-flex; align-items: center; gap: 6px; padding: 12px 24px; border-radius: 10px; font: 600 13px var(--font-heading); text-decoration: none; transition: all 0.25s; white-space: nowrap; }
+.level-cta--primary { background: var(--gold); color: var(--bg-dark); border: none; }
+.level-cta--primary:hover { background: var(--gold-muted); transform: translateY(-1px); }
+</style>
+</head>
+<body>
+
+<!-- ════════ NAVBAR (Dark, synced with v18) ════════ -->
+<header class="navbar" id="navbar">
+  <div class="navbar__main-bar">
+    <div class="navbar__brand-group">
+      <div class="navbar__logo-container">
+        <img src="data:image/png;base64,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" alt="IWDemy" class="navbar__logo-img">
+        <span class="navbar__logo-divider"></span>
+        <img src="data:image/jpeg;base64,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" alt="Tjitra &amp; Associates" class="navbar__logo-img">
+      </div>
+      <span class="navbar__logo-sep"></span>
+      <a href="#" class="navbar__brand">AI <span>First</span></a>
+    </div>
+
+    <ul class="navbar__links">
+      <li><a href="aifirst-homepage--v18.html">Homepage</a></li>
+    </ul>
+
+    <div class="navbar__right">
+      <a href="https://wa.me/6285959435052" class="navbar__cta" target="_blank">Konsultasi</a>
+      <button class="navbar__mobile-toggle" onclick="document.getElementById('mobileMenu').classList.add('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="navbar__mobile-menu" id="mobileMenu">
+    <button class="navbar__mobile-close" onclick="this.parentElement.classList.remove('open')" aria-label="Close">&times;</button>
+    <a href="aifirst-homepage--v18.html" onclick="this.parentElement.classList.remove('open')">Homepage</a>
+    <a href="https://wa.me/6285959435052" class="cta-primary" onclick="this.parentElement.classList.remove('open')" target="_blank">Konsultasi</a>
+  </div>
+</header>
+
+<div class="page">
+
+  <header class="hero hero-landing">
+    <div class="hero-content">
+    <h1 class="hero-headline">Program Overview</h1>
+    <div class="hero-next"><span class="dot"></span> Next: Prompt &middot; 6 &amp; 7 Mei 2026</div>
+    <div class="hero-tagline">Prompt &middot; Create &middot; Build</div>
+    </div>
+    <img class="hero-bg" src="images/int-hero-bg.jpg" alt="">
+  </header>
+
+  <div class="nav-wrap">
+  <nav class="nav" id="nav" aria-label="Program navigation">
+    <button class="nav-btn active" data-target="p-01" aria-label="Strategize"><span class="nav-num">01</span> Strategize</button>
+    <button class="nav-btn" data-target="p-02" aria-label="Prompt"><span class="nav-num">02</span> Prompt</button>
+    <button class="nav-btn" data-target="p-03" aria-label="Create"><span class="nav-num">03</span> Create</button>
+    <button class="nav-btn" data-target="p-04" aria-label="Build"><span class="nav-num">04</span> Build</button>
+    <button class="nav-btn" data-target="p-graduation" aria-label="Graduation"><span class="nav-num">&starf;</span> Graduation</button>
+    <button class="nav-btn" data-target="p-calendar" aria-label="Calendar"><span class="nav-num">&#9656;</span> Calendar</button>
+  </nav>
+  </div>
+
+
+  <!-- PANEL 01 -->
+  <section class="panel active" id="p-01">
+    <div class="level-head">
+      <div class="level-num">01</div>
+      <div class="level-meta">
+        <div class="level-eyebrow">Strategize</div>
+        <h2 class="level-title">AI &amp; Leadership Landscape</h2>
+        <div class="learning-outcome"><strong>Strategic Awareness</strong> — Membaca lanskap AI dari perspektif pemimpin. Menilai kesiapan AI organisasi dengan BI Formula dan APT Model.</div>
+        <div class="level-meta-line">
+          <div class="schedule-tag"><span class="dot"></span>Sabtu, 11 April · 08.00 – 11.00 · Selesai</div>
+          <div class="takeaway"><span class="takeaway-label">BAWA PULANG</span> <span class="takeaway-text">AI Readiness Scorecard</span> — hasil assessment posisi AI Anda dan organisasi menggunakan BI Formula.</div>
+        </div>
+      </div>
+    </div>
+    <div class="session"><div class="s-time">08:00 &ndash; 08:15</div><div class="s-body"><div class="s-title">Opening</div></div></div>
+    <div class="session"><div class="s-time">08:15 &ndash; 09:45</div><div class="s-body"><div class="s-title"><span class="gold">AI First Mindset</span><span class="s-expand">detail →</span></div><div class="s-detail">Kalibrasi cara pandang AI &mdash; dari memakai AI ke AI First for Leaders</div>
+      <div class="cc-grid">
+        <div class="cc-card">
+          <div class="cc-name">Trends &amp; Best Practices</div>
+          <div class="cc-sub">Top 7 Emerging Trends of GenAI in 2026<br>GenAI @Work: Best Practices &amp; Use Cases<br>Our Timeline AI</div>
+        </div>
+        <div class="cc-card">
+          <div class="cc-name">Decade of Agentic</div>
+          <div class="cc-sub">BI Formula &mdash; AI Readiness Audit<br>APT Model &amp; Questionnaire<br>Beyond Prompting &mdash; CIS Framework</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="session"><div class="s-time">09:45 &ndash; 10:30</div><div class="s-body"><div class="s-title">Gallery Walk &mdash; Experiencing Technology</div>      <div class="cc-grid">
+        <div class="cc-card">
+          <div class="cc-name">Private Cloud AI</div>
+          <div class="cc-sub">Local AI &amp; Emerging Trends <span class="chip">Strategize</span></div>
+        </div>
+        <div class="cc-card">
+          <div class="cc-name">Digital Employee Assistant</div>
+          <div class="cc-sub">Chatbot with Prompt 2.0 <span class="chip">Prompt</span></div>
+        </div>
+        <div class="cc-card">
+          <div class="cc-name">Content Creative</div>
+          <div class="cc-sub">Multimodal AI <span class="chip">Create</span></div>
+        </div>
+        <div class="cc-card">
+          <div class="cc-name">IWDemy Digital Lab</div>
+          <div class="cc-sub">No Code / Low Code AI Factory <span class="chip">Build</span></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="session"><div class="s-time">10:30 &ndash; 11:00</div><div class="s-body"><div class="s-title"><span class="gold">AI First Program 2026</span><span class="s-expand">detail →</span></div>
+      <div class="cc-grid">
+        <div class="cc-card">
+          <div class="cc-name">10x AI Impacts</div>
+          <div class="cc-sub">AI impacts on your business &mdash; apa yang berubah dan bagaimana memimpinnya.</div>
+        </div>
+        <div class="cc-card">
+          <div class="cc-name">10 Weeks TrainShop</div>
+          <div class="cc-sub">Program intensif AI First &mdash; dari Strategize hingga Build.</div>
+        </div>
+        <div class="cc-card">
+          <div class="cc-name">GenAI 7 Capabilities</div>
+          <div class="cc-sub">Tujuh kemampuan GenAI yang perlu dikuasai setiap leader.</div>
+        </div>
+      </div>
+    </div>
+    <div class="level-cta-bar">
+      <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20tertarik%20dengan%20AI%20First%20Program.%20Bisa%20info%20lebih%20lanjut%3F" class="level-cta level-cta--primary" target="_blank">Konsultasi Program →</a>
+    </div>
+</div>
+  </section>
+
+  <!-- PANEL 02 -->
+  <section class="panel" id="p-02">
+    <div class="level-head">
+      <div class="level-num">02</div>
+      <div class="level-meta">
+        <div class="level-eyebrow">Prompt</div>
+        <h2 class="level-title">Thinking &amp; Productivity</h2>
+        <div class="learning-outcome"><strong>AI menjadi partner berpikir Anda.</strong> Berpikir, riset, dan menulis — dengan AI sebagai perpanjangan tangan strategis Anda. Menguasai chatting, reading, dan writing sebagai tiga pilar produktivitas.</div>
+        <div class="level-meta-line">
+          <div class="schedule-tag"><span class="dot"></span>In-Person · Sabtu, 6 &amp; 7 Mei · 08.00 – 16.30</div>
+          <div class="takeaway"><span class="takeaway-label">BAWA PULANG</span> <span class="takeaway-text">Personal Prompt Template</span> — template prompt untuk tiga pilar kerja harian: analisis data (chatting), ekstraksi insight (reading), dan drafting komunikasi bisnis (writing).</div>
+        </div>
+      </div>
+    </div>
+    <div class="day-summary">
+      <div class="day-summary-card">
+        <div class="day-summary-label">Day 1 &middot; 6 Mei</div>
+        <div class="day-summary-text">AI sebagai partner berpikir — chatting, reading, deep research</div>
+      </div>
+      <div class="day-summary-card">
+        <div class="day-summary-label">Day 2 &middot; 7 Mei</div>
+        <div class="day-summary-text">Writing, multimodal AI, dan personal knowledge management</div>
+      </div>
+    </div>
+    <div class="day-tabs">
+      <button class="day-tab prework active" data-day="d02-pw">Pre-work <span class="ls-badge">Self-Learning</span></button>
+      <button class="day-tab" data-day="d02-1">Day 1 &middot; 6 Mei <span class="ls-badge">Detail</span></button>
+      <button class="day-tab" data-day="d02-2">Day 2 &middot; 7 Mei <span class="ls-badge">Detail</span></button>
+    </div>
+    <div class="day-panel active" id="d02-pw">
+      <p class="prework-desc">Materi self-learning online yang perlu diselesaikan sebelum sesi in-person dimulai.</p>
+    </div>
+    <div class="day-panel" id="d02-1">
+      <div class="session is-break"><div class="s-time">08:00 &ndash; 08:30</div><div class="s-body"><div class="s-title">Opening, Agenda, Rules of the Game</div></div></div>
+      <div class="session"><div class="s-time">08:30 &ndash; 12:00</div><div class="s-body"><div class="s-title"><span class="gold">Morning Session</span><span class="s-expand">detail →</span></div>
+        <div class="cc-grid">
+          <div class="cc-card">
+            <div class="cc-name">AI First in 2026</div>
+            <div class="cc-sub">Trends, Potentials &amp; Dangers<br><em>Andrew Ng + Andrej Karpathy + Jeff Su</em></div>
+          </div>
+          <div class="cc-card">
+            <div class="cc-name">Group Work</div>
+            <div class="cc-sub">Diskusi kelompok &amp; refleksi bersama</div>
+          </div>
+        </div>
+      </div></div>
+      <div class="session is-break"><div class="s-time">12:00 &ndash; 13:00</div><div class="s-body"><div class="s-title">Lunch Break</div></div></div>
+      <div class="session"><div class="s-time">13:00 &ndash; 16:00</div><div class="s-body"><div class="s-title"><span class="gold">Afternoon Session</span><span class="s-expand">detail →</span></div>
+        <div class="cc-grid">
+          <div class="cc-card">
+            <div class="cc-name">Chatting &mdash; Ngobrol dengan AI</div>
+            <div class="cc-sub">Prompt engineering &middot; Deep research<div class="tools"><span class="chip">Gemini</span><span class="chip">ChatGPT</span></div></div>
+          </div>
+          <div class="cc-card">
+            <div class="cc-name">Reading &mdash; Research &amp; Learning</div>
+            <div class="cc-sub">5 Learning Modes by Tjitra &amp; associates<br>Infographics, Slide Deck, Audio Podcast, Data Table<div class="tools"><span class="chip">NotebookLM</span></div></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="session is-break"><div class="s-time">16:00 &ndash; 16:30</div><div class="s-body"><div class="s-title">Wrap Up &amp; Homework</div></div></div>
+      <div class="livestream"><span class="pulse"></span> Live Streaming Learning &mdash; How far have we walked?</div>
+    </div>
+    <div class="day-panel" id="d02-2">
+      <div class="session is-break"><div class="s-time">08:00 &ndash; 08:30</div><div class="s-body"><div class="s-title">Opening, Agenda, Rules of the Game</div></div></div>
+      <div class="session"><div class="s-time">08:30 &ndash; 11:45</div><div class="s-body"><div class="s-title"><span class="gold">Morning Session</span><span class="s-expand">detail →</span></div>
+        <div class="cc-grid">
+          <div class="cc-card">
+            <div class="cc-name">AI for Writing</div>
+            <div class="cc-sub">Translation, Style, Report<div class="tools"><span class="chip">Claude</span><span class="chip">Gemini Canvas</span></div></div>
+          </div>
+          <div class="cc-card">
+            <div class="cc-name">Multimodal AI</div>
+            <div class="cc-sub">Graphics, Photos, Video, Audio, Website<br>Deepfake awareness<br><em>6 tools termasuk Sora, Veo, Canva AI</em></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="session is-break"><div class="s-time">12:00 &ndash; 13:00</div><div class="s-body"><div class="s-title">Lunch Break</div></div></div>
+      <div class="session"><div class="s-time">13:00 &ndash; 16:00</div><div class="s-body"><div class="s-title"><span class="gold">Afternoon Session</span><span class="s-expand">detail →</span></div>
+        <div class="cc-grid">
+          <div class="cc-card">
+            <div class="cc-name">Personal Knowledge Management</div>
+            <div class="cc-sub">Second Brain, Note taking<br>PARA Method (Data management)<br><em>6 tools termasuk NotebookLM, Notion AI, Claude</em></div>
+          </div>
+          <div class="cc-card">
+            <div class="cc-name">What&rsquo;s Possible with AI?</div>
+            <div class="cc-sub">Personalized AI, AI wrapper<br>QnA on participants AI experiences &amp; implementation<br>From Prompting to Building</div>
+          </div>
+        </div>
+      </div></div>
+      <div class="session is-break"><div class="s-time">16:00 &ndash; 16:30</div><div class="s-body"><div class="s-title">Wrap Up &amp; Closing</div></div></div>
+    </div><!-- /day-panel d02-2 -->
+
+    <div class="level-cta-bar">
+      <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20tertarik%20dengan%20AI%20First%20Program.%20Bisa%20info%20lebih%20lanjut%3F" class="level-cta level-cta--primary" target="_blank">Konsultasi Program →</a>
+    </div>
+  </section>
+
+  <!-- PANEL 03 -->
+  <section class="panel" id="p-03">
+    <div class="level-head">
+      <div class="level-num">03</div>
+      <div class="level-meta">
+        <div class="level-eyebrow">Create</div>
+        <h2 class="level-title">Autonomy &amp; Output</h2>
+        <div class="learning-outcome"><strong>Anda mengarahkan. AI memproduksi.</strong> Presentasi, video, konten — dari brief Anda langsung jadi output siap pakai. Merancang workflow AI dari problem definition hingga output multimodal.</div>
+        <div class="level-meta-line">
+          <div class="schedule-tag"><span class="dot"></span>In-Person · Sabtu, 16 &amp; 23 Mei · 08.00 – 16.30</div>
+          <div class="takeaway"><span class="takeaway-label">BAWA PULANG</span> <span class="takeaway-text">Multimodal Output Portfolio</span> — presentasi eksekutif, interactive report, atau video yang Anda buat sendiri dari problem definition sampai output final.</div>
+        </div>
+      </div>
+    </div>
+    <div class="day-summary">
+      <div class="day-summary-card">
+        <div class="day-summary-label">Day 1 &middot; 16 Mei</div>
+        <div class="day-summary-text">Advanced prompting, workflow AI, dan personalized report writing</div>
+      </div>
+      <div class="day-summary-card">
+        <div class="day-summary-label">Day 2 &middot; 23 Mei</div>
+        <div class="day-summary-text">Multimodal output, emerging trends, dan responsible AI</div>
+      </div>
+    </div>
+    <div class="day-tabs">
+      <button class="day-tab prework active" data-day="d03-pw">Pre-work <span class="ls-badge">Self-Learning</span></button>
+      <button class="day-tab" data-day="d03-1">Day 1 &middot; 16 Mei <span class="ls-badge">Detail</span></button>
+      <button class="day-tab" data-day="d03-2">Day 2 &middot; 23 Mei <span class="ls-badge">Detail</span></button>
+    </div>
+    <div class="day-panel active" id="d03-pw">
+      <p class="prework-desc">Materi self-learning online yang perlu diselesaikan sebelum sesi in-person dimulai.</p>
+    </div>
+    <div class="day-panel" id="d03-1">
+      <div class="session is-break"><div class="s-time">08:00 &ndash; 08:30</div><div class="s-body"><div class="s-title">Opening, Agenda, Rules of the Game</div></div></div>
+      <div class="session"><div class="s-time">08:30 &ndash; 12:00</div><div class="s-body"><div class="s-title"><span class="gold">Morning Session</span><span class="s-expand">detail →</span></div>
+        <div class="cc-grid">
+          <div class="cc-card">
+            <div class="cc-name">Advanced Prompting</div>
+            <div class="cc-sub">With Design Thinking approach<br>Group Work: Problem definition<div class="tools"><span class="chip">Gemini</span><span class="chip">ChatGPT</span></div></div>
+          </div>
+          <div class="cc-card">
+            <div class="cc-name">Personalized &amp; Customized AI</div>
+            <div class="cc-sub">Context engineering<div class="tools"><span class="chip">Gemini Gem</span><span class="chip">GPT-S</span></div></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="session is-break"><div class="s-time">12:00 &ndash; 13:00</div><div class="s-body"><div class="s-title">Lunch Break</div></div></div>
+      <div class="session"><div class="s-time">13:00 &ndash; 16:00</div><div class="s-body"><div class="s-title"><span class="gold">Afternoon Session</span><span class="s-expand">detail →</span></div>
+        <div class="cc-grid">
+          <div class="cc-card">
+            <div class="cc-name">AI Workflow</div>
+            <div class="cc-sub">Tools integration &ndash; result optimization<br><em>4 tools termasuk Gemini, ChatGPT, Perplexity</em></div>
+          </div>
+          <div class="cc-card">
+            <div class="cc-name">Personalized AI for Report Writing</div>
+            <div class="cc-sub">Style, Structure, Format<div class="tools"><span class="chip">Claude</span><span class="chip">Gemini Canvas</span></div></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="session is-break"><div class="s-time">16:00 &ndash; 16:30</div><div class="s-body"><div class="s-title">Wrap Up &amp; Homework</div></div></div>
+      <div class="livestream"><span class="pulse"></span> Live Streaming Learning</div>
+    </div>
+    <div class="day-panel" id="d03-2">
+      <div class="session is-break"><div class="s-time">08:00 &ndash; 08:30</div><div class="s-body"><div class="s-title">Opening, Agenda, Rules of the Game</div></div></div>
+      <div class="session"><div class="s-time">08:30 &ndash; 11:45</div><div class="s-body"><div class="s-title"><span class="gold">Morning Session</span><span class="s-expand">detail →</span></div>
+        <div class="cc-grid">
+          <div class="cc-card">
+            <div class="cc-name">Advance Multimodal AI</div>
+            <div class="cc-sub">Website, Interactive Report<br>Foundation of computational logic<div class="tools"><span class="chip">Gemini</span><span class="chip">ChatGPT</span><span class="chip">Claude Artefact</span></div></div>
+          </div>
+          <div class="cc-card">
+            <div class="cc-name">Personalized Multimodal AI</div>
+            <div class="cc-sub">Complex Graphics, Photos &amp; Videos<div class="tools"><span class="chip">Gemini Gems</span><span class="chip">GPT-S</span></div></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="session is-break"><div class="s-time">12:00 &ndash; 13:00</div><div class="s-body"><div class="s-title">Lunch Break</div></div></div>
+      <div class="session"><div class="s-time">13:00 &ndash; 16:00</div><div class="s-body"><div class="s-title"><span class="gold">Afternoon Session</span><span class="s-expand">detail →</span></div>
+        <div class="cc-grid">
+          <div class="cc-card">
+            <div class="cc-name">Emerging Trends in AI</div>
+            <div class="cc-sub">Knowledge management &amp; Personal Assistant<br>MCP &amp; Agentic AI (basic)<div class="tools"><span class="chip">Notion AI</span><span class="chip">Opal</span><span class="chip">OpenClaw</span></div></div>
+          </div>
+          <div class="cc-card">
+            <div class="cc-name">Responsible &amp; Trustworthy AI</div>
+            <div class="cc-sub">Evaluation, Guardrails, Ethical</div>
+          </div>
+        </div>
+      </div></div>
+      <div class="session is-break"><div class="s-time">16:00 &ndash; 16:30</div><div class="s-body"><div class="s-title">Wrap Up &amp; Closing</div></div></div>
+    </div><!-- /day-panel d03-2 -->
+
+    <div class="level-cta-bar">
+      <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20tertarik%20dengan%20AI%20First%20Program.%20Bisa%20info%20lebih%20lanjut%3F" class="level-cta level-cta--primary" target="_blank">Konsultasi Program →</a>
+    </div>
+  </section>
+
+  <!-- PANEL 04 -->
+  <section class="panel" id="p-04">
+    <div class="level-head">
+      <div class="level-num">04</div>
+      <div class="level-meta">
+        <div class="level-eyebrow">Build</div>
+        <h2 class="level-title">Impact &amp; Scale</h2>
+        <div class="learning-outcome"><strong>Dari memakai AI ke merancang sistem.</strong> Memimpin tim yang berisi manusia dan AI — membangun micro AI app dari proyek kerja nyata dengan action learning dan vibe coding.</div>
+        <div class="level-meta-line">
+          <div class="schedule-tag"><span class="dot"></span>In-Person · Sabtu, 6 &amp; 20 Juni · Project Based</div>
+          <div class="takeaway"><span class="takeaway-label">BAWA PULANG</span> <span class="takeaway-text">Working Micro AI App</span> — aplikasi AI dari proyek kerja nyata Anda, siap didemonstrasikan dan diadopsi tim.</div>
+        </div>
+      </div>
+    </div>
+    <div class="cc-grid">
+      <div class="cc-card">
+        <div class="cc-name">Action Learning Project</div>
+        <div class="cc-sub">Defining projects<br>Problem definition &amp; group setup</div>
+      </div>
+      <div class="cc-card">
+        <div class="cc-name">Complex Problem Solving</div>
+        <div class="cc-sub">In professional team setting</div>
+      </div>
+      <div class="cc-card">
+        <div class="cc-name">Frontier Model &amp; Local AI</div>
+        <div class="cc-sub">Membandingkan dan mengintegrasikan model AI terdepan dengan solusi lokal</div>
+      </div>
+      <div class="cc-card">
+        <div class="cc-name">Agentic AI</div>
+        <div class="cc-sub">Membangun AI agent yang bekerja secara otonom</div>
+      </div>
+      <div class="cc-card">
+        <div class="cc-name">Vibe Coding</div>
+        <div class="cc-sub">No-code approach &mdash; membangun aplikasi tanpa programming</div>
+      </div>
+    </div><!-- /cc-grid -->
+
+    <div class="level-cta-bar">
+      <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20tertarik%20dengan%20AI%20First%20Program.%20Bisa%20info%20lebih%20lanjut%3F" class="level-cta level-cta--primary" target="_blank">Konsultasi Program →</a>
+    </div>
+  </section>
+
+  <!-- PANEL GRADUATION -->
+  <section class="panel" id="p-graduation">
+    <div class="level-head">
+      <div class="level-num" style="opacity:0.3; color: var(--gold);">&starf;</div>
+      <div class="level-meta">
+        <div class="level-eyebrow" style="color: var(--gold);">Graduation</div>
+        <h2 class="level-title">Showcase &amp; Sertifikasi</h2>
+        <p class="level-desc">Tunjukkan hasil belajar Anda dan raih sertifikat resmi dari IWDemy.</p>
+        <div class="level-meta-line">
+          <div class="schedule-tag"><span class="dot"></span>Sabtu, 4 Juli · Graduation Day</div>
+        </div>
+      </div>
+    </div>
+    <ul class="bullet-list">
+      <li><strong>Create:</strong> Pengumpulan hasil personalized AI dalam bentuk infografis dan link akses</li>
+      <li><strong>Build:</strong> Pengumpulan micro apps dalam bentuk link akses</li>
+      <li>Kriteria penilaian akan dikomunikasikan selama program berlangsung</li>
+      <li>Sertifikat diberikan oleh IWDemy bagi partisipan yang memenuhi kriteria</li>
+    </ul>
+  </section>
+
+  <!-- PANEL CALENDAR -->
+  <section class="panel" id="p-calendar">
+    <div class="level-head">
+      <div class="level-num" style="opacity:0.3; color: var(--gold);">&#9673;</div>
+      <div class="level-meta">
+        <div class="level-eyebrow" style="color: var(--gold);">Program Calendar</div>
+        <h2 class="level-title">Timeline 2026</h2>
+        <p class="level-desc">3 bulan &middot; 7&times; tatap muka &middot; 4 level<br>Dari strategic awareness hingga membangun AI app Anda sendiri.</p>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="tl-row past"><div class="tl-date"><div class="month">April</div><div class="days">11</div></div><div class="tl-track"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-card"><div class="tl-level">01 &mdash; Strategize <span class="tl-badge done">done</span></div><div class="tl-title">AI &amp; Leadership Landscape</div><div class="tl-sub">Tren, potensi, dan batasan AI untuk leaders</div><div class="tl-format">Sabtu &middot; 08.00 &ndash; 11.00 &middot; 1 sesi</div></div></div>
+      <div class="tl-row next"><div class="tl-date"><div class="month">Mei</div><div class="days">6 &amp; 7</div></div><div class="tl-track"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-card"><div class="tl-level">02 &mdash; Prompt <span class="tl-badge next">next</span></div><div class="tl-title">Thinking &amp; Productivity</div><div class="tl-sub">Kuasai AI untuk chatting, reading, writing</div><div class="tl-format">In-Person Sabtu &middot; 08.00 &ndash; 16.30 &middot; 2 hari + Live Streaming Rabu</div></div></div>
+      <div class="tl-row"><div class="tl-date"><div class="month">Mei</div><div class="days">16 &amp; 23</div></div><div class="tl-track"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-card"><div class="tl-level">03 &mdash; Create</div><div class="tl-title">Autonomy &amp; Output</div><div class="tl-sub">Dari prompt ke produk &mdash; workflow dan personalized AI</div><div class="tl-format">In-Person Sabtu &middot; 08.00 &ndash; 16.30 &middot; 2 hari + Live Streaming Rabu</div></div></div>
+      <div class="tl-row"><div class="tl-date"><div class="month">Juni</div><div class="days">6 &amp; 20</div></div><div class="tl-track"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-card"><div class="tl-level">04 &mdash; Build</div><div class="tl-title">Impact &amp; Scale</div><div class="tl-sub">Bangun micro AI app untuk masalah bisnis nyata</div><div class="tl-format">In-Person &middot; Project Based &middot; 2 hari</div></div></div>
+      <div class="tl-row graduation"><div class="tl-date"><div class="month">Juli</div><div class="days">4</div></div><div class="tl-track"><div class="tl-dot"></div></div><div class="tl-card"><div class="tl-level">Graduation</div><div class="tl-sub">Showcase hasil karya &amp; sertifikasi dari IWDemy</div></div></div>
+    </div>
+  </section>
+
+
+</div>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brands">
+      <div>
+        <img src="data:image/png;base64,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" alt="IWDemy" class="footer__brand-logo">
+        <div class="footer__brand-name">Insight Web Academy</div>
+        <div class="footer__brand-tagline" style="font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Technology &amp; Delivery Partner</div>
+        <div class="footer__brand-tagline">Aspiring Growth, Experiencing Technology</div>
+        <div class="footer__contact">
+          Program kepemimpinan untuk pemimpin yang memimpin organisasi di era AI — bukan hanya mengadopsinya.
+        </div>
+      </div>
+      <div>
+        <img src="data:image/jpeg;base64,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" alt="Tjitra &amp; Associates" class="footer__brand-logo">
+        <div class="footer__brand-name">Tjitra &amp; Associates</div>
+        <div class="footer__brand-tagline" style="font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Knowledge Partner</div>
+        <div class="footer__brand-tagline">Excellence through Culture, Talent and Change</div>
+        <div class="footer__contact">
+          Email: <a href="mailto:halo@iwdemy.com">halo@iwdemy.com</a><br>
+          Web: <a href="https://iwdemy.com" target="_blank">iwdemy.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__attr">Designed by <span class="gold">Tjitra</span> · Powered by <span class="gold">IWDemy</span></div>
+      <div class="footer__attr" style="font-size:10px;margin-top:2px;font-weight:400">Aspiring Growth, Experiencing Technology</div>
+      <div class="footer__copyright" style="margin-top:8px">© 2026 Tjitra &amp; Associates — IWDemy · Insight Web Academy. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+
+  // Sticky nav shadow on scroll
+  const navWrap = document.querySelector('.nav-wrap');
+  if (navWrap) {
+    const sentinel = document.createElement('div');
+    sentinel.style.height = '1px';
+    navWrap.parentNode.insertBefore(sentinel, navWrap);
+    const obs = new IntersectionObserver(([e]) => {
+      navWrap.classList.toggle('stuck', !e.isIntersecting);
+    }, { threshold: 0, rootMargin: '-73px 0px 0px 0px' });
+    obs.observe(sentinel);
+  }
+
+  // Helper: switch panel (used by mobile menu and nav pills)
+  function switchPanel(id) {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    const target = document.querySelector('[data-target="' + id + '"]');
+    if (target) target.classList.add('active');
+    document.getElementById(id).classList.add('active');
+    collapseAllCards();
+    const navEl = document.getElementById('nav');
+    const navTop = navEl.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: navTop - 8, behavior: 'smooth' });
+  }
+
+  // Helper: collapse all expanded cards
+  function collapseAllCards() {
+    document.querySelectorAll('.cc-card.expanded')
+      .forEach(c => c.classList.remove('expanded'));
+  }
+
+  // Nav panel switching — resets expanded states & scrolls to nav
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      switchPanel(btn.dataset.target);
+    });
+  });
+
+  // Day tab switching within a panel
+  document.querySelectorAll('.day-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const parent = tab.closest('.panel');
+      parent.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+      parent.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      parent.querySelector('#' + tab.dataset.day).classList.add('active');
+    });
+  });
+
+
+
+  // Tap toggle for session cards (expand/collapse cc-grid)
+  document.querySelectorAll('.session:not(.is-break)').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+  });
+  // Tap toggle for cc-cards (independent toggle)
+  document.querySelectorAll('.cc-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+  });
+</script>
+</body>
+</html>
