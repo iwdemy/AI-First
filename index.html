@@ -54,6 +54,9 @@
   --section-px: clamp(20px, 6vw, 80px);
   --content-max: 920px; }
 
+/* Mobile-only break: hidden on desktop, shown on mobile */
+.mbr { display: none; }
+
 /* ── 2. Reset & Base ── */
 
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
@@ -1353,7 +1356,7 @@ body { font-family: var(--font-body);
   /* Mobile hero: full-screen symbol splash */
   .hero__content { grid-template-columns: 1fr; text-align: center; gap: 24px; }
   .hero__visual { order: -1; display: flex; justify-content: center; }
-  .shift__symbol-wrap { width: clamp(180px, 50vw, 240px); height: clamp(180px, 50vw, 240px); }
+  .shift__symbol-wrap { width: clamp(240px, 55dvh, 360px); height: clamp(240px, 55dvh, 360px); }
   .hero__tools { display: none; }
   .hero__levels { justify-content: center; flex-wrap: wrap; }
   .hero__byline { align-items: center; }
@@ -1372,42 +1375,53 @@ body { font-family: var(--font-body);
 
   /* ── Mobile cards: front stays visible, back slides below ── */
 
+  /* Mobile-only line break */
+  .mbr { display: block; }
+  .mbr-inline { display: inline; }
+
   /* Formula cards: stack vertically */
   .formula__flip-row { flex-direction: column; gap: 10px; max-width: 100%; }
-  .formula__flip-card { min-height: auto; flex: none; overflow: visible; }
+  .formula__flip-card { min-height: auto !important; flex: none; overflow: visible !important; }
   .formula__flip-inner { height: auto; }
   .formula__flip-front { padding: 16px; justify-content: flex-start; }
-  .formula__flip-back { position: relative; inset: auto; opacity: 0; max-height: 0; overflow: hidden;
-    transform: none; padding: 0 16px; background: rgba(30,28,24,0.96); border-radius: 0 0 14px 14px;
+  .formula__flip-back { position: relative !important; inset: auto !important; opacity: 0; max-height: 0; overflow: hidden;
+    transform: none !important; padding: 0 16px; background: rgba(30,28,24,0.96); border-radius: 0 0 14px 14px;
     transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease; }
-  .formula__flip-card.expanded .formula__flip-front { opacity: 1; transform: none; }
+  .formula__flip-card.expanded .formula__flip-front { opacity: 1 !important; transform: none !important; }
   .formula__flip-card.expanded .formula__flip-back { opacity: 1; max-height: 300px; padding: 14px 16px; }
   .formula__flip-desc { font-size: 13px; }
 
   /* Why cards: slide-down reveal */
-  .why__card { min-height: auto; overflow: visible; }
-  .why__card-back { position: relative; inset: auto; opacity: 0; max-height: 0; overflow: hidden;
-    transform: none; padding: 0 24px; background: transparent; border-radius: 0;
+  .why__card { min-height: auto !important; overflow: visible !important; }
+  .why__card-back { position: relative !important; inset: auto !important; opacity: 0; max-height: 0; overflow: hidden;
+    transform: none !important; padding: 0; background: transparent !important; border-radius: 0;
     transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease; }
-  .why__card.expanded .why__card-front { opacity: 1; transform: none; }
-  .why__card.expanded .why__card-back { opacity: 1; max-height: 300px; padding: 8px 0 0; }
+  .why__card.expanded .why__card-front { opacity: 1 !important; transform: none !important; }
+  .why__card.expanded .why__card-back { opacity: 1; max-height: 400px; padding: 8px 0 0; }
   .why__card-body { font-size: 13px; }
 
   /* Outcome cards: slide-down reveal */
-  .outcome__card { overflow: visible; }
-  .outcome__card-back { position: relative; inset: auto; opacity: 0; max-height: 0; overflow: hidden;
-    transform: none; transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
-    padding: 0; }
-  .outcome__card.expanded .outcome__card-front { opacity: 1; transform: none; }
-  .outcome__card.expanded .outcome__card-back { opacity: 1; max-height: 300px; padding-top: 8px; }
+  .outcome__card { overflow: visible !important; }
+  .outcome__card-back { position: relative !important; inset: auto !important; opacity: 0; max-height: 0; overflow: hidden;
+    transform: none !important; background: transparent !important; border-radius: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease; padding: 0; }
+  .outcome__card.expanded .outcome__card-front { opacity: 1 !important; transform: none !important; }
+  .outcome__card.expanded .outcome__card-back { opacity: 1; max-height: 400px; padding-top: 8px; }
 
   /* Prog level cards: slide-down reveal */
-  .prog__level { min-height: auto; overflow: visible; }
-  .prog__level-back { position: relative; inset: auto; opacity: 0; max-height: 0; overflow: hidden;
-    transform: none; padding: 0; background: transparent; border-radius: 0;
+  .prog__level { min-height: auto !important; overflow: visible !important; }
+  .prog__level-back { position: relative !important; inset: auto !important; opacity: 0; max-height: 0; overflow: hidden;
+    transform: none !important; padding: 0; background: transparent !important; border-radius: 0;
     transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease; }
-  .prog__level.active .prog__level-front { opacity: 1; transform: none; }
+  .prog__level.active .prog__level-front { opacity: 1 !important; transform: none !important; }
   .prog__level.active .prog__level-back { opacity: 1; max-height: 400px; padding: 8px 14px 0; }
+
+  /* Collapse 17+ AI Tools strip */
+  .prog__tools-strip { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s ease; }
+  .prog__tools.m-open .prog__tools-strip { max-height: 500px; opacity: 1; }
+  .prog__tools-label { cursor: pointer; }
+  .prog__tools-label::after { content: ' ▾'; font-size: 9px; color: var(--gold); display: inline-block; transition: transform 0.3s; }
+  .prog__tools.m-open .prog__tools-label::after { transform: rotate(180deg); }
   .footer { padding: 28px 16px 20px; }
 
   /* Mobile: disable hover transforms on tap */
@@ -1719,7 +1733,7 @@ body { font-family: var(--font-body);
 
       <h1 class="h1 hero__headline">Standar kepemimpinan<br>di industri Anda<br>sudah berubah.</h1>
 
-      <p class="body-text hero__body">Yang Anda bangun bertahun-tahun — pengalaman, intuisi, jaringan — sekarang bersaing dengan pemimpin yang sudah memperluas semua itu dengan AI.</p>
+      <p class="body-text hero__body">Yang Anda bangun bertahun-tahun —<br class="mbr"> pengalaman, intuisi, jaringan —<br class="mbr"> sekarang bersaing dengan pemimpin<br class="mbr"> yang sudah memperluas semua itu dengan AI.</p>
 
       <div class="hero__levels">
         <span class="hero__level-pill">P R O M P T</span>
@@ -1776,12 +1790,12 @@ body { font-family: var(--font-body);
     </div>
 
     <div>
-        <h2 class="h2 shift__headline">Pemimpin era AI tidak harus ahli teknologi<br>— tapi yang sudah memperluas jangkauan kepemimpinannya dengan AI.</h2>
+        <h2 class="h2 shift__headline">Pemimpin era AI<br class="mbr"> tidak harus ahli teknologi —<br> tapi yang sudah memperluas<br class="mbr"> jangkauan kepemimpinannya dengan AI.</h2>
 
         <div class="shift__body">
-          <p class="body-text">Mereka menjadikan AI sebagai perpanjangan tangan<br>dari <strong style="color:var(--text-hi)">cara berpikir, memutuskan, dan menggerakkan organisasi.</strong></p>
+          <p class="body-text">Mereka menjadikan AI<br class="mbr"> sebagai perpanjangan tangan<br> dari <strong style="color:var(--text-hi)">cara berpikir, memutuskan,<br class="mbr"> dan menggerakkan organisasi.</strong></p>
           <p class="body-text" style="font-size:14px;color:var(--text-lo);font-style:normal;margin-top:12px;">AI First menerjemahkan bahasa AI ke bahasa leader.</p>
-          <p class="body-text" style="color:var(--gold);font-weight:600;font-size:clamp(15px,1.7vw,18px)">Kualitas dialog Anda dengan AI<br>adalah cermin dari kualitas berpikir Anda sebagai pemimpin.</p>
+          <p class="body-text" style="color:var(--gold);font-weight:600;font-size:clamp(15px,1.7vw,18px)">Kualitas dialog Anda dengan AI<br> adalah cermin dari kualitas berpikir Anda<br class="mbr"> sebagai pemimpin.</p>
         </div>
       </div>
   </div>
@@ -1861,8 +1875,8 @@ body { font-family: var(--font-body);
   <div class="section__inner">
     <div class="eyebrow eyebrow--dark">LEADERSHIP, TRANSFORMATION &amp; LEARNING</div>
 
-    <h2 class="h2 cred__headline">24 tahun merancang program untuk para pemimpin — lintas tiga benua.</h2>
-    <p class="cred__subtitle">Dipercaya organisasi terkemuka Indonesia.<br>Menjembatani teori, teknologi, dan kearifan lokal dalam desain pembelajaran nyata.</p>
+    <h2 class="h2 cred__headline">24 tahun merancang program<br class="mbr"> untuk para pemimpin —<br class="mbr"> lintas tiga benua.</h2>
+    <p class="cred__subtitle">Dipercaya organisasi terkemuka Indonesia.<br> Menjembatani teori, teknologi,<br class="mbr"> dan kearifan lokal<br class="mbr"> dalam desain pembelajaran nyata.</p>
 
     <div class="cred__people">
       <div class="cred__person">
@@ -1982,7 +1996,7 @@ body { font-family: var(--font-body);
     <!-- Why Us (merged) -->
     <div style="margin-top:56px;">
       <div class="eyebrow eyebrow--dark">MENGAPA PROGRAM INI BERBEDA</div>
-      <h2 class="h2" style="margin-bottom:24px;">Bukan training AI.<br>Ini training <span class="gold-muted">kepemimpinan</span>, menggunakan AI.</h2>
+      <h2 class="h2" style="margin-bottom:24px;">Bukan training AI.<br> Ini training <span class="gold-muted">kepemimpinan</span>,<br class="mbr"> menggunakan AI.</h2>
       <div class="why__cards">
       <div class="why__card">
         <div class="why__card-num">01</div>
@@ -2139,7 +2153,7 @@ body { font-family: var(--font-body);
 
     <div class="prog__top">
       <h2 class="h2">4 level. Implementasi nyata.<br>AI hadir sebagai instrumen, <span class="gold-muted">bukan materi.</span></h2>
-      <p class="sub-text prog__sub">Di sini, peserta belajar dan langsung menggunakan AI untuk menghasilkan dampak bisnis hingga 10x lebih besar.</p>
+      <p class="sub-text prog__sub">Di sini, peserta belajar<br class="mbr"> dan langsung menggunakan AI<br class="mbr"> untuk menghasilkan dampak bisnis<br class="mbr"> hingga 10x lebih besar.</p>
     </div>
 
     <!-- AHA Methodology — Cara Kami Mengajar -->
@@ -2547,6 +2561,16 @@ if (window.matchMedia('(max-width: 639px)').matches) {
     if (name && contact) {
       name.addEventListener('click', () => {
         contact.classList.toggle('m-open');
+      });
+    }
+  });
+
+  // Mobile: collapse 17+ AI tools strip
+  document.querySelectorAll('.prog__tools').forEach(tools => {
+    const label = tools.querySelector('.prog__tools-label');
+    if (label) {
+      label.addEventListener('click', () => {
+        tools.classList.toggle('m-open');
       });
     }
   });
