@@ -368,17 +368,21 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 }
 .hub__card--special .hub__card-num { font-size: 20px; opacity: 0.35; }
 
-/* Back button (shown inside panels) */
+/* Back button (shown inside panels) — dominant, sticky */
 .panel__back {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--gold); background: none; border: 1px solid rgba(212,168,75,0.22);
-  padding: 8px 16px; border-radius: 999px; cursor: pointer;
-  margin-bottom: 16px; transition: all 0.3s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--bg-dark); background: var(--gold);
+  border: none; padding: 14px 24px; border-radius: 10px; cursor: pointer;
+  margin-bottom: 20px; transition: all 0.3s;
+  box-shadow: 0 2px 12px rgba(212,168,75,0.25);
+  position: sticky; top: 72px; z-index: 50;
 }
 .panel__back:hover {
-  background: rgba(212,168,75,0.08); border-color: rgba(212,168,75,0.40);
+  background: #e8c860;
+  box-shadow: 0 4px 20px rgba(212,168,75,0.35);
 }
 
 /* ── 7b. Panels ── */
@@ -866,8 +870,8 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
         <span class="navbar__logo-divider"></span>
         <img src="images/int-logo-tjitra.png" alt="Tjitra &amp; Associates" class="navbar__logo-img">
       </div>
-      <span class="navbar__logo-sep"></span>
-      <a href="#" class="navbar__brand">AI <span>First</span></a>
+      <!-- AI First brand text removed for cleaner nav -->
+
     </div>
 
     <ul class="navbar__links">
