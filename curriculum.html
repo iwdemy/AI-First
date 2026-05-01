@@ -320,10 +320,82 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
   font-size: 10px; font-weight: 700; opacity: 0.5; margin-right: 4px;
 }
 
-/* ── 7. Panels ── */
+/* ── 7. Hub — big card navigation ── */
+.hub { animation: fadeIn 0.4s ease; }
+.hub.hidden { display: none; }
+.hub__grid {
+  display: grid; grid-template-columns: 1fr; gap: 14px;
+  margin-top: 8px;
+}
+.hub__card {
+  padding: 28px 24px; border-radius: 14px;
+  border: 1px solid var(--card-border-dark);
+  background: rgba(255,255,255,0.02);
+  cursor: pointer; transition: border-color 0.3s, box-shadow 0.3s, transform 0.25s;
+  display: flex; align-items: flex-start; gap: 18px;
+}
+.hub__card:hover {
+  border-color: rgba(212,168,75,0.30);
+  box-shadow: 0 4px 20px rgba(212,168,75,0.08);
+  transform: translateY(-2px);
+}
+.hub__card-num {
+  font-family: var(--font-mono); font-size: 28px; font-weight: 700;
+  color: var(--gold); opacity: 0.25; line-height: 1; min-width: 40px;
+}
+.hub__card-body { flex: 1; }
+.hub__card-eyebrow {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 4px;
+}
+.hub__card-title {
+  font-family: var(--font-heading); font-size: 18px; font-weight: 700;
+  color: var(--text-hi); margin-bottom: 6px;
+}
+.hub__card-desc {
+  font-size: 13px; line-height: 1.55; color: var(--text-lo);
+}
+.hub__card-arrow {
+  font-size: 18px; color: var(--gold); opacity: 0.4;
+  align-self: center; transition: opacity 0.3s, transform 0.3s;
+}
+.hub__card:hover .hub__card-arrow { opacity: 1; transform: translateX(4px); }
+
+.hub__card--special {
+  border-color: rgba(212,168,75,0.12);
+  background: rgba(212,168,75,0.03);
+}
+.hub__card--special .hub__card-num { font-size: 20px; opacity: 0.35; }
+
+/* Back button (shown inside panels) */
+.panel__back {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gold); background: none; border: 1px solid rgba(212,168,75,0.22);
+  padding: 8px 16px; border-radius: 999px; cursor: pointer;
+  margin-bottom: 16px; transition: all 0.3s;
+}
+.panel__back:hover {
+  background: rgba(212,168,75,0.08); border-color: rgba(212,168,75,0.40);
+}
+
+/* ── 7b. Panels ── */
 .panel { display: none; animation: fadeIn 0.4s ease; }
 .panel.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (min-width: 640px) {
+  .hub__grid { grid-template-columns: 1fr 1fr; }
+  .hub__card-title { font-size: 20px; }
+}
+@media (min-width: 960px) {
+  .hub__grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .hub__card { padding: 32px 28px; }
+  .hub__card-title { font-size: 22px; }
+  .hub__card-num { font-size: 36px; }
+}
 
 /* ── 8. Level Head ── */
 .level-head {
@@ -828,7 +900,68 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
     <img class="hero-bg" src="images/int-hero-bg.jpg" alt="">
   </header>
 
-  <div class="nav-wrap">
+  <!-- Hub: big card navigation -->
+  <div class="hub" id="hub">
+    <div class="hub__grid">
+      <div class="hub__card" data-panel="p-01">
+        <div class="hub__card-num">01</div>
+        <div class="hub__card-body">
+          <div class="hub__card-eyebrow">Strategize</div>
+          <div class="hub__card-title">AI &amp; Leadership Landscape</div>
+          <div class="hub__card-desc">Membaca lanskap AI dari perspektif pemimpin. Menilai kesiapan AI organisasi.</div>
+        </div>
+        <div class="hub__card-arrow">→</div>
+      </div>
+      <div class="hub__card" data-panel="p-02">
+        <div class="hub__card-num">02</div>
+        <div class="hub__card-body">
+          <div class="hub__card-eyebrow">Prompt</div>
+          <div class="hub__card-title">Thinking &amp; Productivity</div>
+          <div class="hub__card-desc">Komunikasi strategis dengan AI. Prompt 2.0 untuk riset, analisis, dan keputusan.</div>
+        </div>
+        <div class="hub__card-arrow">→</div>
+      </div>
+      <div class="hub__card" data-panel="p-03">
+        <div class="hub__card-num">03</div>
+        <div class="hub__card-body">
+          <div class="hub__card-eyebrow">Create</div>
+          <div class="hub__card-title">Autonomy &amp; Output</div>
+          <div class="hub__card-desc">Dari konsumen AI menjadi kreator. Bangun konten, sistem, dan workflow sendiri.</div>
+        </div>
+        <div class="hub__card-arrow">→</div>
+      </div>
+      <div class="hub__card" data-panel="p-04">
+        <div class="hub__card-num">04</div>
+        <div class="hub__card-body">
+          <div class="hub__card-eyebrow">Build</div>
+          <div class="hub__card-title">Impact &amp; Scale</div>
+          <div class="hub__card-desc">Bangun micro AI app untuk masalah bisnis nyata — siap deploy dan terukur dampaknya.</div>
+        </div>
+        <div class="hub__card-arrow">→</div>
+      </div>
+      <div class="hub__card hub__card--special" data-panel="p-graduation">
+        <div class="hub__card-num">★</div>
+        <div class="hub__card-body">
+          <div class="hub__card-eyebrow">Graduation</div>
+          <div class="hub__card-title">Showcase &amp; Sertifikasi</div>
+          <div class="hub__card-desc">Tunjukkan hasil belajar dan raih sertifikat resmi dari IWDemy.</div>
+        </div>
+        <div class="hub__card-arrow">→</div>
+      </div>
+      <div class="hub__card hub__card--special" data-panel="p-calendar">
+        <div class="hub__card-num">▸</div>
+        <div class="hub__card-body">
+          <div class="hub__card-eyebrow">Program Calendar</div>
+          <div class="hub__card-title">Timeline 2026</div>
+          <div class="hub__card-desc">3 bulan · 7× tatap muka · 4 level — dari strategic awareness hingga AI app.</div>
+        </div>
+        <div class="hub__card-arrow">→</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Old nav pills (hidden, kept for print/fallback) -->
+  <div class="nav-wrap" style="display:none">
   <nav class="nav" id="nav" aria-label="Program navigation">
     <button class="nav-btn active" data-target="p-01" aria-label="Strategize"><span class="nav-num">01</span> Strategize</button>
     <button class="nav-btn" data-target="p-02" aria-label="Prompt"><span class="nav-num">02</span> Prompt</button>
@@ -841,7 +974,8 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 
 
   <!-- PANEL 01 -->
-  <section class="panel active" id="p-01">
+  <section class="panel" id="p-01">
+    <button class="panel__back" onclick="showHub()">← Semua Level</button>
     <div class="level-head">
       <div class="level-num">01</div>
       <div class="level-meta">
@@ -910,6 +1044,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 
   <!-- PANEL 02 -->
   <section class="panel" id="p-02">
+    <button class="panel__back" onclick="showHub()">← Semua Level</button>
     <div class="level-head">
       <div class="level-num">02</div>
       <div class="level-meta">
@@ -1007,6 +1142,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 
   <!-- PANEL 03 -->
   <section class="panel" id="p-03">
+    <button class="panel__back" onclick="showHub()">← Semua Level</button>
     <div class="level-head">
       <div class="level-num">03</div>
       <div class="level-meta">
@@ -1104,6 +1240,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 
   <!-- PANEL 04 -->
   <section class="panel" id="p-04">
+    <button class="panel__back" onclick="showHub()">← Semua Level</button>
     <div class="level-head">
       <div class="level-num">04</div>
       <div class="level-meta">
@@ -1146,6 +1283,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 
   <!-- PANEL GRADUATION -->
   <section class="panel" id="p-graduation">
+    <button class="panel__back" onclick="showHub()">← Semua Level</button>
     <div class="level-head">
       <div class="level-num" style="opacity:0.3; color: var(--gold);">&starf;</div>
       <div class="level-meta">
@@ -1167,6 +1305,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 
   <!-- PANEL CALENDAR -->
   <section class="panel" id="p-calendar">
+    <button class="panel__back" onclick="showHub()">← Semua Level</button>
     <div class="level-head">
       <div class="level-num" style="opacity:0.3; color: var(--gold);">&#9673;</div>
       <div class="level-meta">
@@ -1224,29 +1363,41 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
   });
 
 
-  // Sticky nav shadow on scroll
-  const navWrap = document.querySelector('.nav-wrap');
-  if (navWrap) {
-    const sentinel = document.createElement('div');
-    sentinel.style.height = '1px';
-    navWrap.parentNode.insertBefore(sentinel, navWrap);
-    const obs = new IntersectionObserver(([e]) => {
-      navWrap.classList.toggle('stuck', !e.isIntersecting);
-    }, { threshold: 0, rootMargin: '-73px 0px 0px 0px' });
-    obs.observe(sentinel);
+  // ── Hub-and-Spoke Navigation ──
+  const hub = document.getElementById('hub');
+
+  // Show a specific panel (hide hub)
+  function showPanel(id) {
+    hub.classList.add('hidden');
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    const panel = document.getElementById(id);
+    if (panel) panel.classList.add('active');
+    collapseAllCards();
+    // Scroll to top of panel area
+    const pageEl = document.querySelector('.page');
+    const pageTop = pageEl.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: pageTop + 60, behavior: 'smooth' });
   }
 
-  // Helper: switch panel (used by mobile menu and nav pills)
-  function switchPanel(id) {
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  // Return to hub (hide all panels)
+  function showHub() {
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    const target = document.querySelector('[data-target="' + id + '"]');
-    if (target) target.classList.add('active');
-    document.getElementById(id).classList.add('active');
+    hub.classList.remove('hidden');
     collapseAllCards();
-    const navEl = document.getElementById('nav');
-    const navTop = navEl.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({ top: navTop - 8, behavior: 'smooth' });
+    const hubTop = hub.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: hubTop - 80, behavior: 'smooth' });
+  }
+
+  // Hub card click → open panel
+  document.querySelectorAll('.hub__card').forEach(card => {
+    card.addEventListener('click', () => {
+      showPanel(card.dataset.panel);
+    });
+  });
+
+  // Legacy: switchPanel for mobile menu links
+  function switchPanel(id) {
+    showPanel(id);
   }
 
   // Helper: collapse all expanded cards
@@ -1254,13 +1405,6 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
     document.querySelectorAll('.cc-card.expanded')
       .forEach(c => c.classList.remove('expanded'));
   }
-
-  // Nav panel switching — resets expanded states & scrolls to nav
-  document.querySelectorAll('.nav-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      switchPanel(btn.dataset.target);
-    });
-  });
 
   // Day tab switching within a panel
   document.querySelectorAll('.day-tab').forEach(tab => {
