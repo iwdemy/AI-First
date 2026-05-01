@@ -1344,8 +1344,8 @@ body { font-family: var(--font-body);
   .cred__person-tags { gap: 4px; }
   .cred__person-tag { font-size: 10px; padding: 3px 8px; }
   .prog__decision-helper { margin-top: 20px; padding: 16px; }
-  .why__cards { grid-template-columns: 1fr; }
-  .outcome__cards { grid-template-columns: 1fr; }
+  .why__cards { grid-template-columns: 1fr !important; }
+  .outcome__cards { grid-template-columns: 1fr !important; gap: 12px !important; }
   .why__card { min-height: 100px; }
 
   .check__chips { gap: 6px; }
@@ -1356,7 +1356,7 @@ body { font-family: var(--font-body);
   /* Mobile hero: full-screen symbol splash */
   .hero__content { grid-template-columns: 1fr; text-align: center; gap: 24px; }
   .hero__visual { order: -1; display: flex; justify-content: center; }
-  .shift__symbol-wrap { width: clamp(240px, 55dvh, 360px); height: clamp(240px, 55dvh, 360px); }
+  .shift__symbol-wrap { width: clamp(204px, 47dvh, 306px); height: clamp(204px, 47dvh, 306px); margin: 0 auto; }
   .hero__tools { display: none; }
   .hero__levels { justify-content: center; flex-wrap: wrap; }
   .hero__byline { align-items: center; }
@@ -1380,7 +1380,7 @@ body { font-family: var(--font-body);
   .mbr-inline { display: inline; }
 
   /* Formula cards: stack vertically */
-  .formula__flip-row { flex-direction: column; gap: 10px; max-width: 100%; }
+  .formula__flip-row { flex-direction: column !important; gap: 10px !important; max-width: 100% !important; }
   .formula__flip-card { min-height: auto !important; flex: none; overflow: visible !important; }
   .formula__flip-inner { height: auto; }
   .formula__flip-front { padding: 16px; justify-content: flex-start; }
