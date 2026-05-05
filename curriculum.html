@@ -431,6 +431,12 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 .schedule-tag .dot { display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); margin-right: 6px; vertical-align: middle; }
 .learning-outcome { font-size: 14px; font-weight: 500; color: var(--text-md); line-height: 1.7; max-width: 540px; }
 .learning-outcome strong { font-weight: 700; color: var(--text-hi); letter-spacing: -0.2px; }
+/* ── 8c. Level Outcomes ── */
+.level-outcomes { margin: 0 0 24px; }
+.level-outcomes-label { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: var(--text-lo); text-transform: uppercase; margin-bottom: 10px; }
+.level-outcomes ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.level-outcomes li { font-size: 13px; font-weight: 500; color: var(--text-md); line-height: 1.6; padding-left: 18px; position: relative; }
+.level-outcomes li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 11px; top: 2px; }
 .ls-badge { font-size: 10px; font-weight: 400; letter-spacing: 0.3px; color: var(--text-lo); opacity: 0.8; }
 .prework-desc { font-size: 14px; font-weight: 500; color: var(--text-md); line-height: 1.65; padding: 12px 0 20px; border-bottom: 1px solid var(--card-border-dark); }
 /* ── 8b. Day Summary Cards ── */
@@ -992,6 +998,14 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
         </div>
       </div>
     </div>
+    <div class="level-outcomes">
+      <div class="level-outcomes-label">Learning Outcomes</div>
+      <ul>
+        <li>Menilai potensi AI tools untuk menyelesaikan tantangan organisasi yang spesifik dan menghasilkan dampak bisnis yang terukur</li>
+        <li>Menyusun business case yang jelas untuk adopsi AI agar mendapat dukungan dari stakeholders dan tim</li>
+        <li>Menemukan use case awal yang berisiko rendah dalam operasi harian — di mana AI bisa langsung memberi nilai nyata dan quick wins</li>
+      </ul>
+    </div>
     <div class="session"><div class="s-time">08:00 &ndash; 08:15</div><div class="s-body"><div class="s-title">Opening</div></div></div>
     <div class="session"><div class="s-time">08:15 &ndash; 09:45</div><div class="s-body"><div class="s-title"><span class="gold">AI First Mindset</span><span class="s-expand">detail →</span></div><div class="s-detail">Kalibrasi cara pandang AI &mdash; dari memakai AI ke AI First for Leaders</div>
       <div class="cc-grid">
@@ -1060,6 +1074,14 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
           <div class="takeaway"><span class="takeaway-label">BAWA PULANG</span> <span class="takeaway-text">Personal Prompt Template</span> — template prompt untuk tiga pilar kerja harian: analisis data (chatting), ekstraksi insight (reading), dan drafting komunikasi bisnis (writing).</div>
         </div>
       </div>
+    </div>
+    <div class="level-outcomes">
+      <div class="level-outcomes-label">Learning Outcomes</div>
+      <ul>
+        <li>Menggunakan thinking framework yang tepat untuk membuat prompt yang presisi — agar AI bisa membantu menyelesaikan masalah yang kompleks</li>
+        <li>Memanfaatkan AI sebagai sounding board untuk mempercepat analisis, brainstorming, dan memperluas kapasitas berpikir</li>
+        <li>Menganalisis dan menyempurnakan output AI secara kritis agar hasilnya sesuai dengan tujuan dan intent yang dimaksud</li>
+      </ul>
     </div>
     <div class="day-summary">
       <div class="day-summary-card">
@@ -1159,6 +1181,14 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
         </div>
       </div>
     </div>
+    <div class="level-outcomes">
+      <div class="level-outcomes-label">Learning Outcomes</div>
+      <ul>
+        <li>Memasukkan domain expertise secara mendalam ke dalam interaksi AI untuk menghindari output yang generik dan dangkal</li>
+        <li>Menggabungkan kemampuan AI dan pengetahuan industri untuk menyusun laporan, proposal, dan dokumen operasional secara cepat dan profesional</li>
+        <li>Membangun review protocol yang ketat agar semua deliverable berbasis AI memenuhi standar dan kebutuhan spesifik sektor bisnis</li>
+      </ul>
+    </div>
     <div class="day-summary">
       <div class="day-summary-card">
         <div class="day-summary-label">Day 1 &middot; 16 Mei</div>
@@ -1256,6 +1286,14 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
           <div class="takeaway"><span class="takeaway-label">BAWA PULANG</span> <span class="takeaway-text">Working Micro AI App</span> — aplikasi AI dari proyek kerja nyata Anda, siap didemonstrasikan dan diadopsi tim.</div>
         </div>
       </div>
+    </div>
+    <div class="level-outcomes">
+      <div class="level-outcomes-label">Learning Outcomes</div>
+      <ul>
+        <li>Merancang dan menerapkan sistem AI no-code yang otomatis — mengintegrasikan keahlian manusia ke dalam proses organisasi yang scalable dan berulang</li>
+        <li>Menggabungkan structural thinking dan kemampuan AI untuk beralih dari output manual ke tools yang terus melipatgandakan produktivitas tim</li>
+        <li>Terus mengaudit dan menyempurnakan AI tools yang dibangun agar tetap relevan dengan kebutuhan bisnis dan memberikan AI Business Impact yang maksimal</li>
+      </ul>
     </div>
     <div class="cc-grid">
       <div class="cc-card">
