@@ -29,6 +29,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+em, i { font-style: normal; font-weight: 600; }
 
 html, body {
   width: 100%; height: 100%;
@@ -169,7 +170,7 @@ html, body {
   font-weight: 500;
   color: var(--text-soft);
   line-height: 1.5;
-  font-style: italic;
+  font-style: normal;
 }
 .copyright strong { color: var(--text-md); font-weight: 600; font-style: normal; }
 
@@ -362,7 +363,7 @@ html, body {
   font-size: 12.5px;
   line-height: 1.5;
   color: var(--text-md);
-  font-style: italic;
+  font-style: normal;
 }
 
 /* === FLIP CARDS (Slide 2) === */
@@ -654,7 +655,7 @@ html, body {
   font-size: 10.5px;
   font-weight: 700;
   color: var(--text-strong);
-  font-style: italic;
+  font-style: normal;
   line-height: 1.3;
 }
 .ladder-eg {
@@ -681,7 +682,7 @@ html, body {
   color: var(--text);
   line-height: 1.5;
   margin-bottom: 14px;
-  font-style: italic;
+  font-style: normal;
 }
 .ladder-arrow strong { color: var(--gold-deep); font-weight: 700; font-style: normal; }
 
@@ -757,7 +758,7 @@ html, body {
   font-size: 12px;
   font-weight: 500;
   color: var(--text-md);
-  font-style: italic;
+  font-style: normal;
   margin-bottom: 11px;
   line-height: 1.45;
 }
@@ -984,7 +985,7 @@ html, body {
   font-weight: 500;
   color: var(--text-md);
   line-height: 1.4;
-  font-style: italic;
+  font-style: normal;
   margin-bottom: 10px;
 }
 .cat-tools {
@@ -1175,98 +1176,124 @@ html, body {
 }
 .wf-desc strong { color: var(--text-strong); font-weight: 700; }
 
+.wf-eg-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 4px 0 6px;
+}
+.wf-eg {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(212, 168, 75, 0.35);
+  border-radius: 4px;
+  padding: 8px 11px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text);
+  font-weight: 500;
+}
+.wf-tip {
+  font-family: 'Inter', sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--gold-deep);
+  line-height: 1.4;
+  padding-top: 2px;
+}
+
 /* === CONTOH PROMPT — 3-COL EXAMPLE (Slides 6 & 7) === */
 .contoh-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin: 12px 0 12px 0;
-  flex: 1;
-  align-content: stretch;
-}
-.contoh-col {
-  padding: 14px 14px 14px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-top: 3px solid var(--gold);
-  border-radius: 6px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin: 10px 0 8px 0;
+  flex: 1;
+}
+.contoh-col {
+  display: grid;
+  grid-template-columns: 175px 1fr;
+  grid-template-rows: 1fr auto;
+  gap: 10px 18px;
+  padding: 14px 18px 14px 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
 }
 .contoh-step {
+  grid-column: 1; grid-row: 1;
   display: flex;
-  align-items: baseline;
-  gap: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border-soft);
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding-right: 14px;
+  border-right: 1px solid var(--border-soft);
 }
 .contoh-step-num {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9.5px;
+  font-size: 10.5px;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold-deep);
 }
 .contoh-step-name {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 14.5px;
+  font-size: 17px;
   font-weight: 800;
   color: var(--text-strong);
   letter-spacing: -0.012em;
-  line-height: 1.18;
+  line-height: 1.2;
 }
 .contoh-prompt {
+  grid-column: 2; grid-row: 1;
   background: var(--bg-soft);
   border: 1px dashed var(--border);
-  border-radius: 4px;
-  padding: 9px 11px;
+  border-radius: 5px;
+  padding: 12px 16px;
   font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  line-height: 1.5;
+  font-size: 13.5px;
+  line-height: 1.55;
   color: var(--text-md);
   font-weight: 500;
-  font-style: italic;
-  flex: 1;
 }
 .contoh-prompt::before {
   content: '› Prompt';
   display: block;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 8.5px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-soft);
-  margin-bottom: 5px;
-  font-style: normal;
-}
-.contoh-frame {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  background: var(--gold-tint);
-  border: 1px solid var(--gold);
-  border-radius: 6px;
-  margin-top: auto;
-}
-.contoh-frame-label {
-  font-family: 'JetBrains Mono', monospace;
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 6px;
+}
+.contoh-frame {
+  grid-column: 1 / -1; grid-row: 2;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  background: var(--gold-tint);
+  border: 1px solid var(--gold);
+  border-radius: 5px;
+}
+.contoh-frame-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold-deep);
   flex-shrink: 0;
 }
 .contoh-frame-text {
   font-family: 'Inter', sans-serif;
-  font-size: 11.5px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text);
-  line-height: 1.45;
+  line-height: 1.5;
 }
 .contoh-frame-text strong { color: var(--text-strong); font-weight: 700; }
 
@@ -1359,7 +1386,7 @@ html, body {
 }
 .closing-tag {
   font-size: 12px;
-  font-style: italic;
+  font-style: normal;
   color: var(--text-md);
   line-height: 1.5;
   max-width: 560px;
@@ -1974,8 +2001,12 @@ html, body {
                   <div class="wf-arrow">→ Memahami</div>
                 </div>
                 <div class="wf-face wf-back">
-                  <div class="wf-back-label">Detail</div>
-                  <div class="wf-desc">AI sebagai <strong>teman diskusi</strong> — bukan mesin jawaban. Pahami topik dulu sebelum prompt panjang. Tujuannya bukan dapat solusi, tapi <strong>tahu apa yang belum Anda tahu</strong>.</div>
+                  <div class="wf-back-label">Contoh Prompt</div>
+                  <div class="wf-eg-list">
+                    <div class="wf-eg">"Bisa bantu saya pahami AI for Writing?"</div>
+                    <div class="wf-eg">"Gambarkan big picture AI for Writing."</div>
+                  </div>
+                  <div class="wf-tip">AI sebagai teman diskusi — tahu apa yang belum Anda tahu.</div>
                 </div>
               </div>
             </div>
@@ -1987,8 +2018,12 @@ html, body {
                   <div class="wf-arrow">→ Mengumpulkan</div>
                 </div>
                 <div class="wf-face wf-back">
-                  <div class="wf-back-label">Detail</div>
-                  <div class="wf-desc">Kumpulkan <strong>informasi spesifik</strong> tentang topik yang dibutuhkan. Prompt sudah lebih terarah — karena Anda punya framing dari Step 01.</div>
+                  <div class="wf-back-label">Contoh Prompt</div>
+                  <div class="wf-eg-list">
+                    <div class="wf-eg">"Carikan studi kasus AI for Writing di pekerjaan harian."</div>
+                    <div class="wf-eg">"Bandingkan tiga tools AI writing populer 2026."</div>
+                  </div>
+                  <div class="wf-tip">Prompt lebih terarah — Anda sudah punya framing.</div>
                 </div>
               </div>
             </div>
@@ -2000,15 +2035,19 @@ html, body {
                   <div class="wf-arrow">→ Membuat</div>
                 </div>
                 <div class="wf-face wf-back">
-                  <div class="wf-back-label">Detail</div>
-                  <div class="wf-desc">Baru membuat solusi <strong>setelah konteks cukup matang</strong>. Output jadi tajam karena pemahaman dan riset sudah membentuknya — bukan tebakan generik.</div>
+                  <div class="wf-back-label">Contoh Prompt</div>
+                  <div class="wf-eg-list">
+                    <div class="wf-eg">"Susun rencana 4 minggu adopsi AI for Writing di tim saya."</div>
+                    <div class="wf-eg">"Pilih satu workflow harian untuk dilatih A.C.T. minggu ini."</div>
+                  </div>
+                  <div class="wf-tip">Konteks sudah matang — output jadi tajam, bukan generik.</div>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="ladder-arrow">
-            <strong>Disiplin yang dibangun:</strong> AI bukan oracle yang dipuasi prompt sekali — AI partner yang berkembang bersama Anda. Setiap langkah memperkaya yang berikutnya.
+            <strong>Disiplin yang dibangun:</strong> AI bukan mesin jawaban yang dipuasi prompt sekali — AI adalah partner yang berkembang bersama Anda. Setiap langkah memperkaya yang berikutnya.
           </div>
         </div>
       </section>
