@@ -182,14 +182,14 @@ html, body {
 }
 .slides-track {
   display: flex;
-  width: 1100%;
+  width: 1400%;
   height: 100%;
   transform: translateX(0);
   transition: transform 0.55s var(--ease);
   will-change: transform;
 }
 .slide {
-  flex: 0 0 9.0909%;
+  flex: 0 0 7.1429%;
   height: 100%;
   overflow: hidden;
   padding: clamp(28px, 4vh, 44px) clamp(36px, 4vw, 56px);
@@ -1088,6 +1088,188 @@ html, body {
   line-height: 1.4;
 }
 
+/* === SLIDE WORKFLOW · 3-LANGKAH (Slide 4) === */
+.workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 14px 0;
+  perspective: 1200px;
+}
+.wf-card {
+  position: relative;
+  height: 220px;
+  cursor: pointer;
+}
+.wf-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s var(--ease);
+}
+.wf-card:hover .wf-inner,
+.wf-card:focus-within .wf-inner { transform: rotateY(180deg); }
+.wf-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 24px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--gold);
+  border-radius: 7px;
+  box-shadow: 0 1px 3px rgba(10, 10, 10, 0.04);
+}
+.wf-front { justify-content: center; align-items: flex-start; }
+.wf-back {
+  transform: rotateY(180deg);
+  background: var(--gold-tint);
+  border-color: var(--gold);
+  padding: 22px 22px;
+  justify-content: center;
+  gap: 10px;
+}
+.wf-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 12px;
+}
+.wf-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-strong);
+  letter-spacing: -0.018em;
+  line-height: 1.18;
+}
+.wf-arrow {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-top: auto;
+  letter-spacing: -0.01em;
+}
+.wf-back-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+.wf-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.55;
+}
+.wf-desc strong { color: var(--text-strong); font-weight: 700; }
+
+/* === CONTOH PROMPT — 3-COL EXAMPLE (Slides 6 & 7) === */
+.contoh-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 12px 0 12px 0;
+  flex: 1;
+  align-content: stretch;
+}
+.contoh-col {
+  padding: 14px 14px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--gold);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.contoh-step {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.contoh-step-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+.contoh-step-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--text-strong);
+  letter-spacing: -0.012em;
+  line-height: 1.18;
+}
+.contoh-prompt {
+  background: var(--bg-soft);
+  border: 1px dashed var(--border);
+  border-radius: 4px;
+  padding: 9px 11px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-md);
+  font-weight: 500;
+  font-style: italic;
+  flex: 1;
+}
+.contoh-prompt::before {
+  content: '› Prompt';
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 5px;
+  font-style: normal;
+}
+.contoh-frame {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--gold-tint);
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  margin-top: auto;
+}
+.contoh-frame-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  flex-shrink: 0;
+}
+.contoh-frame-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.45;
+}
+.contoh-frame-text strong { color: var(--text-strong); font-weight: 700; }
+
 /* === SLIDE 5: PENUTUP === */
 .s5-title { font-size: clamp(28px, 3.6vw, 40px); margin-bottom: 8px; }
 .s5-lead { font-size: clamp(13px, 1.05vw, 15px); margin-bottom: 16px; }
@@ -1402,14 +1584,17 @@ html, body {
       <li class="nav-item active" data-idx="0"><span class="nav-num">01</span>Pengantar</li>
       <li class="nav-item" data-idx="1"><span class="nav-num">02</span>Konteks</li>
       <li class="nav-item" data-idx="2"><span class="nav-num">03</span>Naik Tangga: 7 Tingkat</li>
-      <li class="nav-item" data-idx="3"><span class="nav-num">04</span>Framework</li>
-      <li class="nav-item" data-idx="4"><span class="nav-num">05</span>Writing Lite (A.C.T.)</li>
-      <li class="nav-item" data-idx="5"><span class="nav-num">06</span>Writing Pro (A.C.T.I.O.N.S.)</li>
-      <li class="nav-item" data-idx="6"><span class="nav-num">07</span>AI for Slide: Tangga</li>
-      <li class="nav-item" data-idx="7"><span class="nav-num">08</span>AI for Slide: Tools</li>
-      <li class="nav-item" data-idx="8"><span class="nav-num">09</span>Slide Lite (A.C.T.)</li>
-      <li class="nav-item" data-idx="9"><span class="nav-num">10</span>Slide Pro (A.C.T.I.O.N.S.)</li>
-      <li class="nav-item" data-idx="10"><span class="nav-num">11</span>Penutup</li>
+      <li class="nav-item" data-idx="3"><span class="nav-num">04</span>Tiga Langkah Workflow</li>
+      <li class="nav-item" data-idx="4"><span class="nav-num">05</span>Framework</li>
+      <li class="nav-item" data-idx="5"><span class="nav-num">06</span>Contoh Personal (A.C.T.)</li>
+      <li class="nav-item" data-idx="6"><span class="nav-num">07</span>Contoh Pekerjaan (A.C.T.I.O.N.S.)</li>
+      <li class="nav-item" data-idx="7"><span class="nav-num">08</span>Writing Lite (A.C.T.)</li>
+      <li class="nav-item" data-idx="8"><span class="nav-num">09</span>Writing Pro (A.C.T.I.O.N.S.)</li>
+      <li class="nav-item" data-idx="9"><span class="nav-num">10</span>AI for Slide: Tangga</li>
+      <li class="nav-item" data-idx="10"><span class="nav-num">11</span>AI for Slide: Tools</li>
+      <li class="nav-item" data-idx="11"><span class="nav-num">12</span>Slide Lite (A.C.T.)</li>
+      <li class="nav-item" data-idx="12"><span class="nav-num">13</span>Slide Pro (A.C.T.I.O.N.S.)</li>
+      <li class="nav-item" data-idx="13"><span class="nav-num">14</span>Penutup</li>
     </ul>
 
     <div class="sidebar-footer">
@@ -1773,7 +1958,62 @@ html, body {
         </div>
       </section>
 
-      <!-- ===== SLIDE 4: FRAMEWORK ===== -->
+      <!-- ===== SLIDE 4 (NEW): TIGA LANGKAH WORKFLOW ===== -->
+      <section class="slide" id="s-workflow">
+        <div class="slide-inner">
+          <span class="slide-eyebrow">Workflow · Tiga Langkah Sebelum Eksekusi</span>
+          <h2 class="slide-title s2-title">Pahami Dulu, Riset, Baru Solusi</h2>
+          <p class="slide-lead s2-lead">Sebelum mengetik prompt panjang, AI bisa berperan sebagai teman diskusi. Tiga langkah ini membangun konteks — supaya eksekusi nantinya tajam, bukan generic. Sorotkan pada setiap kartu untuk melihat detailnya.</p>
+
+          <div class="workflow-grid">
+            <div class="wf-card" tabindex="0">
+              <div class="wf-inner">
+                <div class="wf-face wf-front">
+                  <div class="wf-num">Step 01</div>
+                  <div class="wf-name">Brainstorming &amp; Pemahaman</div>
+                  <div class="wf-arrow">→ Memahami</div>
+                </div>
+                <div class="wf-face wf-back">
+                  <div class="wf-back-label">Detail</div>
+                  <div class="wf-desc">AI sebagai <strong>teman diskusi</strong> — bukan mesin jawaban. Pahami topik dulu sebelum prompt panjang. Tujuannya bukan dapat solusi, tapi <strong>tahu apa yang belum Anda tahu</strong>.</div>
+                </div>
+              </div>
+            </div>
+            <div class="wf-card" tabindex="0">
+              <div class="wf-inner">
+                <div class="wf-face wf-front">
+                  <div class="wf-num">Step 02</div>
+                  <div class="wf-name">Deep Research</div>
+                  <div class="wf-arrow">→ Mengumpulkan</div>
+                </div>
+                <div class="wf-face wf-back">
+                  <div class="wf-back-label">Detail</div>
+                  <div class="wf-desc">Kumpulkan <strong>informasi spesifik</strong> tentang topik yang dibutuhkan. Prompt sudah lebih terarah — karena Anda punya framing dari Step 01.</div>
+                </div>
+              </div>
+            </div>
+            <div class="wf-card" tabindex="0">
+              <div class="wf-inner">
+                <div class="wf-face wf-front">
+                  <div class="wf-num">Step 03</div>
+                  <div class="wf-name">Problem Solving &amp; Ideation</div>
+                  <div class="wf-arrow">→ Membuat</div>
+                </div>
+                <div class="wf-face wf-back">
+                  <div class="wf-back-label">Detail</div>
+                  <div class="wf-desc">Baru membuat solusi <strong>setelah konteks cukup matang</strong>. Output jadi tajam karena pemahaman dan riset sudah membentuknya — bukan tebakan generik.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ladder-arrow">
+            <strong>Disiplin yang dibangun:</strong> AI bukan oracle yang dipuasi prompt sekali — AI partner yang berkembang bersama Anda. Setiap langkah memperkaya yang berikutnya.
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SLIDE 5: FRAMEWORK ===== -->
       <section class="slide" id="s2">
         <div class="slide-inner">
           <span class="slide-eyebrow">Framework · Eskalasi, Bukan Kompetisi</span>
@@ -1899,7 +2139,101 @@ html, body {
         </div>
       </section>
 
-      <!-- ===== SLIDE 5: AI FOR WRITING · PRAKTIK LITE (A.C.T.) ===== -->
+      <!-- ===== SLIDE 6 (NEW): CONTOH PERSONAL · LIBURAN JEPANG (A.C.T.) ===== -->
+      <section class="slide" id="s-contoh-personal">
+        <div class="slide-inner">
+          <span class="slide-eyebrow">Contoh Personal · Kerangka A.C.T.</span>
+          <h2 class="slide-title s3-title">Liburan Keluarga ke Jepang — Tiga Prompt, Tiga Fase</h2>
+          <p class="slide-lead s3-lead">Konteks ringan, taruhan rendah. Tiga elemen A.C.T. (<strong>Actor</strong>, <strong>Context</strong>, <strong>Target</strong>) cukup untuk membangun pemahaman, riset, sampai itinerary.</p>
+
+          <div class="contoh-grid">
+            <div class="contoh-col">
+              <div class="contoh-step">
+                <span class="contoh-step-num">Step 01</span>
+                <span class="contoh-step-name">Brainstorming &amp; Pemahaman</span>
+              </div>
+              <div class="contoh-prompt">"Saya berencana mengajak keluarga ke Jepang untuk pertama kali — suami/istri dan dua anak usia 8 dan 12 tahun. Sebelum saya mulai riset apapun, bantu saya memahami: apa yang perlu saya pertimbangkan? Apa yang biasanya dilewatkan keluarga yang baru pertama kali ke Jepang? Jangan beri saya itinerary dulu — saya ingin paham gambaran besarnya dulu."</div>
+              <div class="contoh-frame">
+                <div class="contoh-frame-label">A.C.T.</div>
+                <div class="contoh-frame-text"><strong>A:</strong> orang tua untuk diri sendiri · <strong>C:</strong> keluarga 4 orang, pertama ke Jepang · <strong>T:</strong> paham gambaran besar, bukan itinerary</div>
+              </div>
+            </div>
+
+            <div class="contoh-col">
+              <div class="contoh-step">
+                <span class="contoh-step-num">Step 02</span>
+                <span class="contoh-step-name">Deep Research</span>
+              </div>
+              <div class="contoh-prompt">"Dari diskusi tadi, saya ingin fokus ke dua hal: pertama, kota mana yang paling cocok untuk anak usia 8 dan 12 tahun yang satu suka sejarah, satunya suka anime. Kedua, gambaran budget realistis untuk keluarga 4 orang selama 10 hari. Berikan informasi spesifik dengan contoh nyata."</div>
+              <div class="contoh-frame">
+                <div class="contoh-frame-label">A.C.T.</div>
+                <div class="contoh-frame-text"><strong>A:</strong> meneruskan diskusi · <strong>C:</strong> dua minat anak, durasi 10 hari · <strong>T:</strong> info kota + budget dengan contoh nyata</div>
+              </div>
+            </div>
+
+            <div class="contoh-col">
+              <div class="contoh-step">
+                <span class="contoh-step-num">Step 03</span>
+                <span class="contoh-step-name">Problem Solving &amp; Ideation</span>
+              </div>
+              <div class="contoh-prompt">"Sekarang bantu saya susun itinerary 10 hari. Konteks: berangkat April, budget sekitar Rp 80 juta all-in, anak besar suka sejarah samurai, anak kecil suka anime dan makanan unik, kami tidak suka jadwal padat. Berikan dua opsi: satu santai, satu semi-padat — dengan alasan trade-off masing-masing."</div>
+              <div class="contoh-frame">
+                <div class="contoh-frame-label">A.C.T.</div>
+                <div class="contoh-frame-text"><strong>A:</strong> partner perencana · <strong>C:</strong> April, Rp 80 juta, minat anak, jadwal santai · <strong>T:</strong> 2 opsi itinerary + trade-off</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SLIDE 7 (NEW): CONTOH PEKERJAAN · PROPOSAL AI (A.C.T.I.O.N.S.) ===== -->
+      <section class="slide" id="s-contoh-kerja">
+        <div class="slide-inner">
+          <span class="slide-eyebrow">Contoh Pekerjaan · Kerangka A.C.T.I.O.N.S.</span>
+          <h2 class="slide-title s3-title">Proposal Program AI untuk Tim — Tujuh Elemen, Tiga Fase</h2>
+          <p class="slide-lead s3-lead">Taruhan tinggi, audiens skeptis. Tujuh elemen A.C.T.I.O.N.S. menambah <strong>Intention</strong>, <strong>Output</strong>, <strong>Negatives</strong>, dan <strong>Steps</strong> — supaya hasil siap dipresentasikan.</p>
+
+          <div class="contoh-grid">
+            <div class="contoh-col">
+              <div class="contoh-step">
+                <span class="contoh-step-num">Step 01</span>
+                <span class="contoh-step-name">Brainstorming &amp; Pemahaman</span>
+              </div>
+              <div class="contoh-prompt">"Saya direktur yang ingin mengusulkan program pengembangan AI untuk tim saya — 25 orang, latar belakang non-teknis, usia campuran 28–50 tahun. Sebelum saya buat proposalnya, bantu saya memahami: apa tantangan umum yang muncul saat tim non-teknis mulai adopsi AI? Apa yang biasanya menjadi hambatan terbesar? Saya ingin paham konteksnya dulu, belum butuh solusi."</div>
+              <div class="contoh-frame">
+                <div class="contoh-frame-label">A.C.T.I.O.N.S.</div>
+                <div class="contoh-frame-text"><strong>A·C·T:</strong> direktur · tim 25 non-teknis · paham hambatan adopsi · <strong>+N:</strong> jangan beri solusi dulu</div>
+              </div>
+            </div>
+
+            <div class="contoh-col">
+              <div class="contoh-step">
+                <span class="contoh-step-num">Step 02</span>
+                <span class="contoh-step-name">Deep Research</span>
+              </div>
+              <div class="contoh-prompt">"Dari diskusi tadi, saya perlu informasi lebih dalam tentang dua hal: pertama, pendekatan training AI yang terbukti efektif untuk tim non-teknis di lingkungan korporat. Kedua, bagaimana organisasi biasanya mengukur hasil program AI literacy di level tim. Kalau ada studi kasus atau angka konkret, itu yang saya butuhkan."</div>
+              <div class="contoh-frame">
+                <div class="contoh-frame-label">A.C.T.I.O.N.S.</div>
+                <div class="contoh-frame-text"><strong>A·C·T:</strong> peneliti praktisi · pendekatan + measurement · <strong>+O:</strong> studi kasus + angka konkret</div>
+              </div>
+            </div>
+
+            <div class="contoh-col">
+              <div class="contoh-step">
+                <span class="contoh-step-num">Step 03</span>
+                <span class="contoh-step-name">Problem Solving &amp; Ideation</span>
+              </div>
+              <div class="contoh-prompt">"Sekarang bantu saya susun kerangka proposal. Konteks: tim 25 orang non-teknis, budget terbatas, manajemen senior masih skeptis soal ROI. Target: dalam 3 bulan tim bisa menggunakan AI di minimal 2 workflow rutin mereka. Format: ringkas, maksimal 2 halaman, untuk dipresentasikan ke sesama direktur bulan depan."</div>
+              <div class="contoh-frame">
+                <div class="contoh-frame-label">A.C.T.I.O.N.S.</div>
+                <div class="contoh-frame-text"><strong>A·C·T:</strong> mitra penulis · budget + skeptis ROI · proposal kerangka · <strong>+I:</strong> yakinkan board · <strong>+O:</strong> ringkas 2 halaman · <strong>+S:</strong> 3 bulan, 2 workflow</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SLIDE 8: AI FOR WRITING · PRAKTIK LITE (A.C.T.) ===== -->
       <section class="slide" id="s3">
         <div class="slide-inner">
           <span class="slide-eyebrow">AI for Writing · Praktik Lite (A.C.T.)</span>
@@ -2282,7 +2616,7 @@ const navItems = document.querySelectorAll('.nav-item');
 const dotsEl = document.getElementById('dots');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
-const total = 11;
+const total = 14;
 let current = 0;
 const slideStep = 100 / total;
 
