@@ -723,6 +723,14 @@ body { font-family: var(--font-body);
 
 .shift__body p { margin-bottom: 16px; }
 
+.shift__mirrors { display: flex; flex-direction: column; gap: 20px; max-width: 680px; margin-bottom: 40px; }
+.shift__mirror-item { display: flex; align-items: flex-start; gap: 20px; padding: 20px 24px; border: 1px solid rgba(212,168,75,0.12); border-radius: 12px; background: rgba(212,168,75,0.03); transition: border-color 0.3s; }
+.shift__mirror-item:hover { border-color: rgba(212,168,75,0.28); }
+.shift__mirror-num { font-family: var(--font-heading); font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--gold); opacity: 0.6; flex-shrink: 0; padding-top: 3px; min-width: 22px; }
+.shift__mirror-q { font-family: var(--font-body); font-size: clamp(14px,1.5vw,16px); line-height: 1.6; color: var(--text-md); margin: 0; }
+.shift__mirror-q strong { color: var(--text-hi); font-weight: 600; }
+.shift__kicker { font-family: var(--font-body); font-size: clamp(15px,1.7vw,18px); font-weight: 600; color: var(--gold); line-height: 1.5; max-width: 620px; }
+
 /* ── 7. Section 3: Formula (Light) ── */
 
 .formula__top { text-align: center;
@@ -956,6 +964,8 @@ body { font-family: var(--font-body);
   .formula__flip-card { position: relative; cursor: pointer; perspective: none; min-height: 180px; overflow: hidden; }
   .cred__people { max-width: 860px; }
   .shift__body { max-width: 720px; }
+  .shift__mirrors { max-width: 100%; }
+  .shift__mirror-item { padding: 14px 16px; gap: 14px; }
   .closing__body { max-width: 680px; }
   .h1 { font-size: clamp(32px, 4vw, 48px); }
 }
@@ -1811,11 +1821,24 @@ body { font-family: var(--font-body);
     </div>
 
     <div>
-        <h2 class="h2 shift__headline">Pemimpin era AI<br class="mbr"> tidak harus ahli teknologi —<br> tapi yang sudah memperluas<br class="mbr"> jangkauan kepemimpinannya dengan AI.</h2>
+        <h2 class="h2 shift__headline">Pertanyaan yang jarang ditanya.</h2>
 
-        <div class="shift__body">
-          <p class="body-text" style="color:var(--gold);font-weight:600;font-size:clamp(15px,1.7vw,18px)">Kualitas dialog Anda dengan AI<br> adalah cermin dari kualitas berpikir Anda<br class="mbr"> sebagai pemimpin.</p>
+        <div class="shift__mirrors">
+          <div class="shift__mirror-item">
+            <span class="shift__mirror-num">01</span>
+            <p class="shift__mirror-q">Tim Anda sudah pakai AI. <strong>Siapa yang meng-guide cara mereka menggunakannya?</strong></p>
+          </div>
+          <div class="shift__mirror-item">
+            <span class="shift__mirror-num">02</span>
+            <p class="shift__mirror-q">Anda pengambil keputusan terbaik di ruangan itu. <strong>Sudah berapa konteks yang AI bisa tambahkan sebelum Anda memutuskan?</strong></p>
+          </div>
+          <div class="shift__mirror-item">
+            <span class="shift__mirror-num">03</span>
+            <p class="shift__mirror-q">Pemimpin terkuat di industri Anda sedang menetapkan standar baru. <strong>Anda sedang di posisi mana?</strong></p>
+          </div>
         </div>
+
+        <p class="shift__kicker">Pemimpin era AI bukan yang menguasai tools —<br>tapi yang pertama memperluas jangkauan kepemimpinannya.</p>
       </div>
   </div>
 </section>
