@@ -1678,6 +1678,35 @@ body { font-family: var(--font-body);
 
 .why__card-body { font-size: 13px; line-height: 1.65; color: var(--text-md); }
 
+/* Before/After per card — Mengapa Berbeda */
+.why__ba { margin-bottom: 10px; }
+.why__ba:last-child { margin-bottom: 0; }
+.why__ba-label { display: inline-block; font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; margin-bottom: 4px; }
+.why__ba-label--before { background: rgba(255,255,255,0.06); color: var(--text-lo); }
+.why__ba-label--after { background: rgba(212,168,75,0.15); color: var(--gold); }
+.why__ba-text { font-size: 12px; line-height: 1.5; margin: 0; color: var(--text-md); }
+.why__ba--after .why__ba-text { color: var(--text-hi); font-weight: 500; }
+
+/* Investasi qualifier */
+.invest__qualifier { font-size: 12px; color: var(--text-lo); line-height: 1.5; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(212,168,75,0.08); }
+.invest__qualifier strong { display: block; font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); opacity: 0.7; margin-bottom: 3px; }
+
+/* APT 3-component breakdown */
+.formula__apt-comps { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+.formula__apt-comp { display: flex; align-items: flex-start; gap: 10px; }
+.formula__apt-comp-letter { font-family: var(--font-heading); font-size: 18px; font-weight: 800; color: var(--gold); min-width: 18px; line-height: 1.2; flex-shrink: 0; }
+.formula__apt-comp-info { font-size: 11px; line-height: 1.4; color: var(--text-md); }
+.formula__apt-comp-name { font-weight: 700; color: var(--text-hi); display: block; font-size: 11px; margin-bottom: 1px; }
+
+/* Testimonial before/after mikro */
+.cred__testi-ba { margin-bottom: 10px; display: flex; flex-direction: column; gap: 6px; }
+.cred__testi-ba-row { display: flex; align-items: flex-start; gap: 8px; }
+.cred__testi-ba-tag { font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 7px; border-radius: 999px; flex-shrink: 0; margin-top: 2px; white-space: nowrap; }
+.cred__testi-ba-tag--before { background: rgba(255,255,255,0.05); color: var(--text-lo); }
+.cred__testi-ba-tag--after { background: rgba(212,168,75,0.12); color: var(--gold); }
+.cred__testi-ba-txt { font-size: 13px; line-height: 1.5; color: var(--text-md); }
+.cred__testi-ba-txt--after { color: var(--text-hi); font-style: italic; }
+
 /* ── Outcome Cards ── */
 
 .outcome__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
@@ -1899,9 +1928,21 @@ body { font-family: var(--font-body);
             
           </div>
           <div class="formula__flip-back">
-            <div class="formula__flip-back-title">AI Performance Triangle</div>
-            <div class="formula__flip-desc">AI Skills &times; Domain Expertise &times; Thinking Framework — yang program ini bangun bagi Anda dan tim.</div>
-          </div>
+            <div class="formula__flip-back-title">APT · Multiplier</div>
+            <div class="formula__apt-comps">
+              <div class="formula__apt-comp">
+                <span class="formula__apt-comp-letter">A</span>
+                <div class="formula__apt-comp-info"><span class="formula__apt-comp-name">Actor</span>Siapa yang menggunakan AI — skill, konteks, dan cara berpikir pemimpin.</div>
+              </div>
+              <div class="formula__apt-comp">
+                <span class="formula__apt-comp-letter">P</span>
+                <div class="formula__apt-comp-info"><span class="formula__apt-comp-name">Prompt</span>Kualitas dialog yang menggerakkan AI ke output strategis.</div>
+              </div>
+              <div class="formula__apt-comp">
+                <span class="formula__apt-comp-letter">T</span>
+                <div class="formula__apt-comp-info"><span class="formula__apt-comp-name">Tool</span>Platform AI yang dikonfigurasi untuk kebutuhan spesifik organisasi.</div>
+              </div>
+            </div></div>
         </div>
       </div>
     </div>
@@ -1966,35 +2007,80 @@ body { font-family: var(--font-body);
         <div class="cred__testimonial-slide active">
           <div class="cred__testimonial">
             <span class="cred__testimonial-role-tag">VP · SALES FMCG</span>
-            <p class="cred__testimonial-text">"Sudah pakai banyak tools AI — tapi baru sebatas common knowledge. Belum sampai decision making yang strategis."</p>
+            <div class="cred__testi-ba">
+              <div class="cred__testi-ba-row">
+                <span class="cred__testi-ba-tag cred__testi-ba-tag--before">Sebelum</span>
+                <p class="cred__testi-ba-txt">Sudah pakai banyak tools AI setiap hari, tapi hasilnya tidak terasa berbeda.</p>
+              </div>
+              <div class="cred__testi-ba-row">
+                <span class="cred__testi-ba-tag cred__testi-ba-tag--after">Insight</span>
+                <p class="cred__testi-ba-txt cred__testi-ba-txt--after">Baru sebatas common knowledge. Belum sampai decision making yang strategis.</p>
+              </div>
+            </div>
             <p class="cred__testimonial-attr">— Alumni AI First</p>
           </div>
         </div>
         <div class="cred__testimonial-slide">
           <div class="cred__testimonial">
             <span class="cred__testimonial-role-tag">VP · HC ENERGY</span>
-            <p class="cred__testimonial-text">"Ternyata kita belum pernah belajar komunikasi agar bisa dimengerti mesin. Pantas hasilnya selalu biasa saja."</p>
+            <div class="cred__testi-ba">
+              <div class="cred__testi-ba-row">
+                <span class="cred__testi-ba-tag cred__testi-ba-tag--before">Sebelum</span>
+                <p class="cred__testi-ba-txt">Hasil AI selalu biasa saja — dikira masalahnya ada di tools-nya.</p>
+              </div>
+              <div class="cred__testi-ba-row">
+                <span class="cred__testi-ba-tag cred__testi-ba-tag--after">Insight</span>
+                <p class="cred__testi-ba-txt cred__testi-ba-txt--after">Kita belum pernah belajar komunikasi agar bisa dimengerti mesin.</p>
+              </div>
+            </div>
             <p class="cred__testimonial-attr">— Alumni AI First</p>
           </div>
         </div>
         <div class="cred__testimonial-slide">
           <div class="cred__testimonial">
             <span class="cred__testimonial-role-tag">MANAGER · L&amp;D RETAIL</span>
-            <p class="cred__testimonial-text">"AI bisa bantu buat kerangka modul lebih cepat — tidak perlu selalu bergantung pada SME."</p>
+            <div class="cred__testi-ba">
+              <div class="cred__testi-ba-row">
+                <span class="cred__testi-ba-tag cred__testi-ba-tag--before">Sebelum</span>
+                <p class="cred__testi-ba-txt">Setiap konten baru menunggu SME — proses lambat, tidak skalabel.</p>
+              </div>
+              <div class="cred__testi-ba-row">
+                <span class="cred__testi-ba-tag cred__testi-ba-tag--after">Insight</span>
+                <p class="cred__testi-ba-txt cred__testi-ba-txt--after">AI bisa bantu buat kerangka modul lebih cepat — tidak perlu selalu bergantung pada SME.</p>
+              </div>
+            </div>
             <p class="cred__testimonial-attr">— Alumni AI First</p>
           </div>
         </div>
         <div class="cred__testimonial-slide">
           <div class="cred__testimonial">
             <span class="cred__testimonial-role-tag">VP · DISTRIBUSI</span>
-            <p class="cred__testimonial-text">"AI kadang menyenangkan kita. Kita yang harus challenge: ini salah, kamu tidak benar."</p>
+            <div class="cred__testi-ba">
+              <div class="cred__testi-ba-row">
+                <span class="cred__testi-ba-tag cred__testi-ba-tag--before">Sebelum</span>
+                <p class="cred__testi-ba-txt">AI selalu setuju — outputnya terasa aman tapi tidak tajam.</p>
+              </div>
+              <div class="cred__testi-ba-row">
+                <span class="cred__testi-ba-tag cred__testi-ba-tag--after">Insight</span>
+                <p class="cred__testi-ba-txt cred__testi-ba-txt--after">Kita yang harus challenge: ini salah, kamu tidak benar.</p>
+              </div>
+            </div>
             <p class="cred__testimonial-attr">— Alumni AI First</p>
           </div>
         </div>
         <div class="cred__testimonial-slide">
           <div class="cred__testimonial">
             <span class="cred__testimonial-role-tag">BUSINESS OWNER · MANUFAKTUR</span>
-            <p class="cred__testimonial-text">"Kami sudah punya ERP, tapi masih banyak proses manual. Dengan AI, kecepatan naik, standar lebih tinggi, cost lebih rendah."</p>
+            <div class="cred__testi-ba">
+              <div class="cred__testi-ba-row">
+                <span class="cred__testi-ba-tag cred__testi-ba-tag--before">Sebelum</span>
+                <p class="cred__testi-ba-txt">Sudah punya ERP, tapi masih banyak proses manual yang tidak efisien.</p>
+              </div>
+              <div class="cred__testi-ba-row">
+                <span class="cred__testi-ba-tag cred__testi-ba-tag--after">Sesudah</span>
+                <p class="cred__testi-ba-txt cred__testi-ba-txt--after">Kecepatan naik, standar lebih tinggi, cost lebih rendah.</p>
+              </div>
+            </div>
             <p class="cred__testimonial-attr">— Alumni AI First</p>
           </div>
         </div>
@@ -2087,22 +2173,58 @@ body { font-family: var(--font-body);
       <div class="why__card">
         <div class="why__card-num">01</div>
         <div class="why__card-front"><h3 class="why__card-title">Bicara Bahasa Direksi</h3></div>
-        <div class="why__card-back"><p class="why__card-body">Sejak 1996 merancang program kepemimpinan di tiga benua. Psikolog organisasi yang mengerti bagaimana pemimpin senior belajar — yang Anda dapat mengubah cara kerja, bukan sekadar menambah wawasan.</p></div>
+        <div class="why__card-back">
+          <div class="why__ba">
+            <span class="why__ba-label why__ba-label--before">Biasanya</span>
+            <p class="why__ba-text">Training AI: slides, demo tools, studi kasus teknologi.</p>
+          </div>
+          <div class="why__ba why__ba--after">
+            <span class="why__ba-label why__ba-label--after">Di sini</span>
+            <p class="why__ba-text">Dialog strategi, keputusan, dan dampak bisnis — bahasa yang Anda sudah kuasai.</p>
+          </div>
+        </div>
       </div>
       <div class="why__card">
         <div class="why__card-num">02</div>
         <div class="why__card-front"><h3 class="why__card-title">AI Sebagai Instrumen</h3></div>
-        <div class="why__card-back"><p class="why__card-body">Anda tidak hanya belajar tentang AI. Anda menggunakan AI untuk hal yang sudah Anda lakukan setiap hari — berpikir, memutuskan, menggerakkan.</p></div>
+        <div class="why__card-back">
+          <div class="why__ba">
+            <span class="why__ba-label why__ba-label--before">Biasanya</span>
+            <p class="why__ba-text">Belajar AI sebagai topik tersendiri, terpisah dari kerja nyata.</p>
+          </div>
+          <div class="why__ba why__ba--after">
+            <span class="why__ba-label why__ba-label--after">Di sini</span>
+            <p class="why__ba-text">AI masuk ke rutinitas yang sudah ada — berpikir, memutuskan, menggerakkan.</p>
+          </div>
+        </div>
       </div>
       <div class="why__card">
         <div class="why__card-num">03</div>
         <div class="why__card-front"><h3 class="why__card-title">Setiap Level, Ada yang Berubah</h3></div>
-        <div class="why__card-back"><p class="why__card-body">Cara berpikir strategis (Strategize), cara bekerja (Prompt), cara memproduksi (Create), cara merancang tim (Build). Bukan tutorial — perubahan kapabilitas nyata.</p></div>
+        <div class="why__card-back">
+          <div class="why__ba">
+            <span class="why__ba-label why__ba-label--before">Biasanya</span>
+            <p class="why__ba-text">Dapat insight baru, tapi cara kerja sama setelah pelatihan selesai.</p>
+          </div>
+          <div class="why__ba why__ba--after">
+            <span class="why__ba-label why__ba-label--after">Di sini</span>
+            <p class="why__ba-text">Setiap level mengubah satu kapabilitas nyata: Strategize, Prompt, Create, Build.</p>
+          </div>
+        </div>
       </div>
       <div class="why__card">
         <div class="why__card-num">04</div>
         <div class="why__card-front"><h3 class="why__card-title">Dari Pengguna ke Pemimpin Sistem</h3></div>
-        <div class="why__card-back"><p class="why__card-body">Dari memakai AI ke merancang sistem. Memimpin tim hybrid — manusia dan AI — dengan satu arahan strategis.</p></div>
+        <div class="why__card-back">
+          <div class="why__ba">
+            <span class="why__ba-label why__ba-label--before">Biasanya</span>
+            <p class="why__ba-text">Pakai AI sendiri untuk tugas individual — tim tidak ikut bergerak.</p>
+          </div>
+          <div class="why__ba why__ba--after">
+            <span class="why__ba-label why__ba-label--after">Di sini</span>
+            <p class="why__ba-text">Rancang sistem AI untuk seluruh tim — dari satu arahan strategis.</p>
+          </div>
+        </div>
       </div>
     
     <div style="text-align:center;margin-top:24px;">
@@ -2374,6 +2496,7 @@ body { font-family: var(--font-body);
       <div class="invest__track">
         <h3 class="invest__track-name">Professional</h3>
         <p class="invest__track-audience">Profesional &amp; emerging leaders</p>
+        <p class="invest__qualifier"><strong>Cocok jika</strong>Anda profesional atau emerging leader yang ingin menguasai AI dan membangun kapabilitas secara mandiri.</p>
       </div>
 
       <!-- Leader -->
@@ -2381,12 +2504,14 @@ body { font-family: var(--font-body);
         <span class="invest__track-badge">PALING DIMINATI</span>
         <h3 class="invest__track-name">Leader</h3>
         <p class="invest__track-audience">C-level · Eksekutif</p>
+        <p class="invest__qualifier"><strong>Cocok jika</strong>Anda eksekutif atau C-level yang ingin memimpin transformasi AI organisasi dengan pendampingan intensif satu-satu.</p>
       </div>
 
       <!-- Corporate -->
       <div class="invest__track">
         <h3 class="invest__track-name">Corporate</h3>
         <p class="invest__track-audience">Organisasi · Tim</p>
+        <p class="invest__qualifier"><strong>Cocok jika</strong>Anda memimpin tim atau divisi yang ingin bergerak bersama dalam adopsi AI secara sistematis dan terukur.</p>
       </div>
     </div>
 
