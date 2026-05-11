@@ -960,10 +960,12 @@ body { font-family: var(--font-body);
   .h1 { font-size: clamp(32px, 4vw, 48px); }
 }
 
-.prog__level-desc { font-size: 12px;
-  color: var(--dark-body);
-  line-height: 1.55;
-  margin-top: 6px; }
+.prog__level-desc { font-size: 14px;
+  color: var(--gold);
+  line-height: 1.5;
+  margin-top: 8px;
+  font-weight: 600;
+  letter-spacing: 0.01em; }
 
 /* Desktop 4-col: hover-reveal descriptions */
 
@@ -1323,6 +1325,15 @@ body { font-family: var(--font-body);
 
 .cred__ref-name:hover { border-color: rgba(212,168,75,0.35);
   background: rgba(212,168,75,0.06); }
+
+/* Learning resource logo pill */
+.learn-logo-pill { display: inline-flex; align-items: center; gap: 7px;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(212,168,75,0.18);
+  background: #fff; color: #1a1a1a; font-family: var(--font-body);
+  font-size: 13px; font-weight: 600; letter-spacing: 0.01em;
+  transition: border-color 0.3s, box-shadow 0.3s; cursor: default; vertical-align: middle; }
+.learn-logo-pill:hover { border-color: rgba(212,168,75,0.5); box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+.learn-logo-pill svg, .learn-logo-pill img { display: block; flex-shrink: 0; }
 
 /* Program level highlight (replaces italic) */
 
@@ -1787,15 +1798,13 @@ body { font-family: var(--font-body);
 
     <div class="shift__quote">
       <p class="shift__quote-text">"Hambatan terbesar keberhasilan AI bukan teknologi. Bukan budget.<br>Tapi <span class="gold">kepemimpinan, team, dan cara kerja.</span>"</p>
-      <p class="shift__quote-attr">— Paul McDonagh-Smith, MIT Sloan, 2026</p>
+      <p class="shift__quote-attr">— Paul McDonagh-Smith, MIT Sloan</p>
     </div>
 
     <div>
         <h2 class="h2 shift__headline">Pemimpin era AI<br class="mbr"> tidak harus ahli teknologi —<br> tapi yang sudah memperluas<br class="mbr"> jangkauan kepemimpinannya dengan AI.</h2>
 
         <div class="shift__body">
-          <p class="body-text">Mereka menjadikan AI<br class="mbr"> sebagai perpanjangan tangan<br> dari <strong style="color:var(--text-hi)">cara berpikir, memutuskan,<br class="mbr"> dan menggerakkan organisasi.</strong></p>
-          <p class="body-text" style="font-size:14px;color:var(--text-lo);font-style:normal;margin-top:12px;">AI First menerjemahkan bahasa AI ke bahasa leader.</p>
           <p class="body-text" style="color:var(--gold);font-weight:600;font-size:clamp(15px,1.7vw,18px)">Kualitas dialog Anda dengan AI<br> adalah cermin dari kualitas berpikir Anda<br class="mbr"> sebagai pemimpin.</p>
         </div>
       </div>
@@ -1876,7 +1885,7 @@ body { font-family: var(--font-body);
   <div class="section__inner">
     <div class="eyebrow eyebrow--dark">LEADERSHIP, TRANSFORMATION &amp; LEARNING</div>
 
-    <h2 class="h2 cred__headline">24 tahun merancang program<br class="mbr"> untuk para pemimpin —<br class="mbr"> lintas tiga benua.</h2>
+    <h2 class="h2 cred__headline">Merancang program untuk para pemimpin<br class="mbr"> sejak 1996 —<br class="mbr"> lintas tiga benua.</h2>
     <p class="cred__subtitle">Dipercaya organisasi terkemuka Indonesia.<br> Menjembatani teori, teknologi,<br class="mbr"> dan kearifan lokal<br class="mbr"> dalam desain pembelajaran nyata.</p>
 
     <div class="cred__people">
@@ -1977,10 +1986,14 @@ body { font-family: var(--font-body);
         <span class="cred__ref-name">Danone Aqua</span>
         <span class="cred__ref-name">GEA</span>
         <span class="cred__ref-name">Telkom Metra</span>
-        <span class="cred__ref-name">Hugo Boss</span>
         <span class="cred__ref-name">KCG</span>
-        <span class="cred__ref-name">Citadel</span>
         <span class="cred__ref-name">Telkom Indonesia</span>
+        <span class="cred__ref-name">Ciputra</span>
+        <span class="cred__ref-name">Karl Meyer</span>
+        <span class="cred__ref-name">Siemens</span>
+        <span class="cred__ref-name">Volkswagen</span>
+        <span class="cred__ref-name">BCA</span>
+        <span class="cred__ref-name">3M</span>
       </div>
     </div>
 
@@ -1988,9 +2001,48 @@ body { font-family: var(--font-body);
       <div class="cred__refs-label">LEARNING RESOURCES</div>
       <p class="cred__refs-context">Materi dari platform terbaik dunia — dikurasi dan diintegrasikan ke dalam kurikulum AI First, bukan sekadar ditonton mandiri.</p>
       <div class="cred__ref-names">
-        <span class="cred__ref-name">Coursera</span>
-        <span class="cred__ref-name">Google Certificates</span>
-        <span class="cred__ref-name">Anthropic Academy</span>
+        <!-- YouTube -->
+        <span class="learn-logo-pill">
+          <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
+            <rect width="22" height="16" rx="4" fill="#FF0000"/>
+            <path d="M9 4.5L15.5 8L9 11.5V4.5Z" fill="white"/>
+          </svg>
+          YouTube
+        </span>
+        <!-- Udemy -->
+        <span class="learn-logo-pill">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <circle cx="9" cy="9" r="9" fill="#A435F0"/>
+            <path d="M6 5.5v5.3a3 3 0 006 0V5.5h-1.8v5.3a1.2 1.2 0 01-2.4 0V5.5H6z" fill="white"/>
+          </svg>
+          Udemy
+        </span>
+        <!-- Coursera -->
+        <span class="learn-logo-pill">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <circle cx="9" cy="9" r="9" fill="#0056D2"/>
+            <path d="M13.2 6.5C12 5.2 10.6 4.5 9 4.5C6.5 4.5 4.5 6.5 4.5 9C4.5 11.5 6.5 13.5 9 13.5C10.6 13.5 12 12.8 13.2 11.5" stroke="white" stroke-width="2.3" stroke-linecap="round" fill="none"/>
+          </svg>
+          Coursera
+        </span>
+        <!-- Google Certificates -->
+        <span class="learn-logo-pill">
+          <svg width="18" height="18" viewBox="0 0 18 18">
+            <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
+            <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.909-2.258c-.806.54-1.837.86-3.047.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z"/>
+            <path fill="#FBBC05" d="M3.964 10.707A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.707V4.961H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.039l3.007-2.332z"/>
+            <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.961L3.964 7.293C4.672 5.163 6.656 3.58 9 3.58z"/>
+          </svg>
+          Google Certificates
+        </span>
+        <!-- Anthropic -->
+        <span class="learn-logo-pill">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <rect width="18" height="18" rx="4" fill="#CC785C"/>
+            <path fill-rule="evenodd" fill="white" d="M9 3L15.5 15H12L11 11.5H7L6 15H2.5L9 3ZM9 7L10.2 10.5H7.8L9 7Z"/>
+          </svg>
+          Anthropic
+        </span>
       </div>
     </div>
   
@@ -2002,7 +2054,7 @@ body { font-family: var(--font-body);
       <div class="why__card">
         <div class="why__card-num">01</div>
         <div class="why__card-front"><h3 class="why__card-title">Bicara Bahasa Direksi</h3></div>
-        <div class="why__card-back"><p class="why__card-body">24 tahun merancang program kepemimpinan di tiga benua. Psikolog organisasi yang mengerti bagaimana pemimpin senior belajar — yang Anda dapat mengubah cara kerja, bukan sekadar menambah wawasan.</p></div>
+        <div class="why__card-back"><p class="why__card-body">Sejak 1996 merancang program kepemimpinan di tiga benua. Psikolog organisasi yang mengerti bagaimana pemimpin senior belajar — yang Anda dapat mengubah cara kerja, bukan sekadar menambah wawasan.</p></div>
       </div>
       <div class="why__card">
         <div class="why__card-num">02</div>
@@ -2184,7 +2236,6 @@ body { font-family: var(--font-body);
               <div class="prog__level-sub">Awareness Session</div>
               <p class="prog__level-desc">Entry point program AI First.</p>
               <div class="prog__level-outcome">→ Keputusan adopsi AI</div>
-              <a href="curriculum.html#p-01" style="margin-top:8px;font:600 10px var(--font-mono);color:var(--gold);letter-spacing:1px;text-decoration:none;display:inline-block;">Lihat kurikulum Strategize →</a>
             </div>
           </div>
 <div class="prog__level">
@@ -2199,7 +2250,6 @@ body { font-family: var(--font-body);
               <div class="prog__level-sub">Chat Mastery</div>
               <p class="prog__level-desc">AI Skills × Thinking Framework.</p>
               <div class="prog__level-outcome">→ Teks &amp; pengetahuan via AI</div>
-              <a href="curriculum.html#p-02" style="margin-top:8px;font:600 10px var(--font-mono);color:var(--gold);letter-spacing:1px;text-decoration:none;display:inline-block;">Lihat kurikulum Prompt →</a>
             </div>
           </div>
 <div class="prog__level">
@@ -2214,7 +2264,6 @@ body { font-family: var(--font-body);
               <div class="prog__level-sub">Output Creation</div>
               <p class="prog__level-desc">AI Skills × Domain Expertise.</p>
               <div class="prog__level-outcome">→ Docs, reports, artifacts &amp; files</div>
-              <a href="curriculum.html#p-03" style="margin-top:8px;font:600 10px var(--font-mono);color:var(--gold);letter-spacing:1px;text-decoration:none;display:inline-block;">Lihat kurikulum Create →</a>
             </div>
           </div>
 <div class="prog__level">
@@ -2229,7 +2278,6 @@ body { font-family: var(--font-body);
               <div class="prog__level-sub">NoCode AI Build</div>
               <p class="prog__level-desc">AI Skills × Expertise × Thinking.</p>
               <div class="prog__level-outcome">→ Workflows, tools &amp; system</div>
-              <a href="curriculum.html#p-04" style="margin-top:8px;font:600 10px var(--font-mono);color:var(--gold);letter-spacing:1px;text-decoration:none;display:inline-block;">Lihat kurikulum Build →</a>
             </div>
           </div>
 </div>
@@ -2281,24 +2329,21 @@ body { font-family: var(--font-body);
 
     <div class="invest__tracks">
       <!-- Professional -->
-      <div class="invest__track invest__track--featured">
-        <span class="invest__track-badge">PALING DIMINATI</span>
+      <div class="invest__track">
         <h3 class="invest__track-name">Professional</h3>
-        <div class="invest__track-format">WEEKDAY · 4 Level</div>
         <p class="invest__track-audience">Profesional &amp; emerging leaders</p>
       </div>
 
       <!-- Leader -->
-      <div class="invest__track">
+      <div class="invest__track invest__track--featured">
+        <span class="invest__track-badge">PALING DIMINATI</span>
         <h3 class="invest__track-name">Leader</h3>
-        <div class="invest__track-format">WEEKEND · 4 Level</div>
         <p class="invest__track-audience">C-level · Eksekutif</p>
       </div>
 
       <!-- Corporate -->
       <div class="invest__track">
         <h3 class="invest__track-name">Corporate</h3>
-        <div class="invest__track-format">IN-HOUSE · Custom</div>
         <p class="invest__track-audience">Organisasi · Tim</p>
       </div>
     </div>

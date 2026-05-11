@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Tjitra & Associates">
-<title>AI First Program — Full Curriculum</title>
+<title>AI First Program — Learning Design</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
@@ -433,12 +433,40 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 .learning-outcome strong { font-weight: 700; color: var(--text-hi); letter-spacing: -0.2px; }
 /* ── 8c. Level Outcomes ── */
 .level-outcomes { margin: 0 0 24px; }
-.level-outcomes-label { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: var(--text-lo); text-transform: uppercase; margin-bottom: 10px; }
-.level-outcomes ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.level-outcomes-label {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; color: var(--text-lo); text-transform: uppercase;
+  margin-bottom: 0; cursor: pointer; user-select: none;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 0; border-bottom: 1px solid var(--text-xs);
+  transition: color 0.2s;
+}
+.level-outcomes-label:hover { color: var(--gold); }
+.level-outcomes-label::after {
+  content: '▾'; font-size: 9px; opacity: 0.6;
+  transition: transform 0.3s ease; display: inline-block;
+}
+.level-outcomes.expanded .level-outcomes-label::after { transform: rotate(180deg); }
+.level-outcomes ul {
+  margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px;
+  max-height: 0; overflow: hidden; opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, margin 0.3s ease;
+}
+.level-outcomes.expanded ul { max-height: 500px; opacity: 1; margin-top: 12px; }
 .level-outcomes li { font-size: 13px; font-weight: 500; color: var(--text-md); line-height: 1.6; padding-left: 18px; position: relative; }
 .level-outcomes li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 11px; top: 2px; }
 .ls-badge { font-size: 10px; font-weight: 400; letter-spacing: 0.3px; color: var(--text-lo); opacity: 0.8; }
-.prework-desc { font-size: 14px; font-weight: 500; color: var(--text-md); line-height: 1.65; padding: 12px 0 20px; border-bottom: 1px solid var(--card-border-dark); }
+.prework-desc {
+  display: flex; align-items: center; gap: 8px;
+  padding: 14px 0; margin-bottom: 4px;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-lo);
+  border-bottom: 1px solid var(--text-xs);
+}
+.prework-dot {
+  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+  border: 1.5px solid var(--gold); opacity: 0.55;
+}
 /* ── 8b. Day Summary Cards ── */
 .day-summary {
   display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
@@ -716,6 +744,130 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 .footer__copyright { font-size: 12px; color: var(--dt-lo); margin-top: 8px; }
 
 /* ── 19. Responsive — Tablet (640px+) ── */
+/* ── Split Layout — Learning Design (Layout C) ── */
+.split-layout {
+  display: grid;
+  grid-template-columns: 196px 1fr;
+  gap: 0;
+  align-items: start;
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+.split-nav {
+  position: sticky;
+  top: 72px;
+  height: calc(100vh - 72px);
+  overflow-y: auto;
+  border-right: 1px solid rgba(212,168,75,0.12);
+  padding: 28px 0 40px;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: none;
+}
+.split-nav::-webkit-scrollbar { display: none; }
+.split-nav__title {
+  font-size: 9px;
+  font-family: var(--font-mono);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 0 20px 14px;
+  border-bottom: 1px solid rgba(212,168,75,0.10);
+  margin-bottom: 8px;
+}
+.split-nav__btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 20px;
+  background: transparent;
+  border: none;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: background 0.2s;
+}
+.split-nav__btn:hover { background: rgba(212,168,75,0.05); }
+.split-nav__btn.active { background: rgba(212,168,75,0.08); border-left-color: var(--gold); }
+.split-nav__num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold-muted);
+  min-width: 20px;
+}
+.split-nav__btn.active .split-nav__num { color: var(--gold); }
+.split-nav__label { font-size: 13px; font-weight: 500; color: var(--text-lo); }
+.split-nav__btn.active .split-nav__label { color: var(--text-hi); }
+.split-nav__divider { height: 1px; background: rgba(212,168,75,0.10); margin: 8px 20px; }
+.split-content { padding: 40px clamp(20px, 4vw, 56px) 80px; }
+.split-content .panel { display: none; }
+.split-content .panel.active { display: block; }
+.split-content .panel__back { display: none; }
+.split-content .day-tabs { display: none; }
+.day-split-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-top: 20px;
+}
+.day-col-header {
+  font-size: 9px;
+  font-family: var(--font-mono);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(212,168,75,0.15);
+}
+.split-content .day-split-wrapper .day-panel { display: block !important; }
+
+/* Session counter per day panel */
+
+/* Strategize: cc-grids + s-detail always visible, no session-level toggle */
+#p-01 .session .cc-grid,
+#p-01 .session .s-detail {
+  max-height: 800px; opacity: 1; margin-top: 10px; transition: none;
+}
+#p-01 .session:not(.is-break) { cursor: default; }
+#p-01 .session .s-expand { display: none; }
+#p-01 .session:not(.is-break):hover {
+  background: transparent; padding-left: 0; margin-left: 0; margin-right: 0; border-radius: 0;
+}
+/* Counter for p-01 cards */
+#p-01 { counter-reset: card-counter; }
+#p-01 .cc-card { counter-increment: card-counter; padding-left: 34px; position: relative; }
+#p-01 .cc-card::before {
+  content: counter(card-counter);
+  position: absolute; left: 14px; top: 15px;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+  color: var(--gold); opacity: 0.45;
+}
+.day-split-wrapper .day-panel { counter-reset: card-counter; }
+.day-split-wrapper .cc-card { counter-increment: card-counter; padding-left: 34px; position: relative; }
+.day-split-wrapper .cc-card::before {
+  content: counter(card-counter);
+  position: absolute; left: 14px; top: 15px;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+  color: var(--gold); opacity: 0.45;
+}
+
+/* Spacing: cc-grid to next break row */
+.day-split-wrapper .cc-grid { margin-top: 12px; margin-bottom: 4px; }
+
+/* Mobile: tip text under day header */
+.day-col-header .tip {
+  display: none;
+  font-size: 10px; font-weight: 400; letter-spacing: 0;
+  text-transform: none; color: var(--text-lo);
+  margin-top: 2px; opacity: 0.7;
+}
+@media (max-width: 639px) {
+  .day-col-header .tip { display: block; }
+}
+
 @media (min-width: 640px) {
   .page { padding: 70px 32px 48px; }
   .hero-landing { padding: 32px 0 28px; }
@@ -903,88 +1055,47 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 
   <header class="hero hero-landing">
     <div class="hero-content">
-    <h1 class="hero-headline">Program Overview</h1>
-    <div class="hero-next"><span class="dot"></span> Next: Strategize &middot; 20 Mei 2026</div>
+    <h1 class="hero-headline">Learning Design</h1>
     <div class="hero-tagline">Strategize &middot; Prompt &middot; Create &middot; Build</div>
     </div>
     <img class="hero-bg" src="images/int-hero-bg.jpg" alt="">
   </header>
 
-  <!-- Hub: big card navigation -->
-  <div class="hub" id="hub">
-    <div class="hub__grid">
-      <div class="hub__card" data-panel="p-01">
-        <div class="hub__card-num">01</div>
-        <div class="hub__card-body">
-          <div class="hub__card-eyebrow">Awareness Session</div>
-          <div class="hub__card-title">Strategize</div>
-          <div class="hub__card-desc">Entry point program.<br>Output: keputusan adopsi AI.</div>
-        </div>
-        <div class="hub__card-arrow">→</div>
-      </div>
-      <div class="hub__card" data-panel="p-02">
-        <div class="hub__card-num">02</div>
-        <div class="hub__card-body">
-          <div class="hub__card-eyebrow">Chat Mastery</div>
-          <div class="hub__card-title">Prompt</div>
-          <div class="hub__card-desc">AI Skills × Thinking Framework.<br>Output: teks &amp; pengetahuan dalam chat.</div>
-        </div>
-        <div class="hub__card-arrow">→</div>
-      </div>
-      <div class="hub__card" data-panel="p-03">
-        <div class="hub__card-num">03</div>
-        <div class="hub__card-body">
-          <div class="hub__card-eyebrow">Output Creation</div>
-          <div class="hub__card-title">Create</div>
-          <div class="hub__card-desc">AI Skills × Domain Expertise.<br>Output: docs, reports, artifacts, files.</div>
-        </div>
-        <div class="hub__card-arrow">→</div>
-      </div>
-      <div class="hub__card" data-panel="p-04">
-        <div class="hub__card-num">04</div>
-        <div class="hub__card-body">
-          <div class="hub__card-eyebrow">NoCode AI Build</div>
-          <div class="hub__card-title">Build</div>
-          <div class="hub__card-desc">AI Skills × Domain Expertise × Thinking Framework.<br>Output: workflows, tools &amp; system.</div>
-        </div>
-        <div class="hub__card-arrow">→</div>
-      </div>
-      <div class="hub__card hub__card--special" data-panel="p-graduation">
-        <div class="hub__card-num">★</div>
-        <div class="hub__card-body">
-          <div class="hub__card-eyebrow">Showcase &amp; Sertifikasi</div>
-          <div class="hub__card-title">Graduation</div>
-          <div class="hub__card-desc">Tunjukkan hasil belajar dan raih sertifikat resmi dari IWDemy.</div>
-        </div>
-        <div class="hub__card-arrow">→</div>
-      </div>
-      <div class="hub__card hub__card--special" data-panel="p-calendar">
-        <div class="hub__card-num">▸</div>
-        <div class="hub__card-body">
-          <div class="hub__card-eyebrow">Timeline 2026</div>
-          <div class="hub__card-title">Calendar</div>
-          <div class="hub__card-desc">3 bulan · 7× tatap muka · 4 level — dari Strategize hingga Build.</div>
-        </div>
-        <div class="hub__card-arrow">→</div>
-      </div>
-    </div>
-  </div>
+  <div class="split-layout">
+    <nav class="split-nav" id="split-nav">
+      <div class="split-nav__title">Learning Design</div>
+      <button class="split-nav__btn active" data-target="p-01">
+        <span class="split-nav__num">01</span>
+        <span class="split-nav__label">Strategize</span>
+      </button>
+      <button class="split-nav__btn" data-target="p-02">
+        <span class="split-nav__num">02</span>
+        <span class="split-nav__label">Prompt</span>
+      </button>
+      <button class="split-nav__btn" data-target="p-03">
+        <span class="split-nav__num">03</span>
+        <span class="split-nav__label">Create</span>
+      </button>
+      <button class="split-nav__btn" data-target="p-04">
+        <span class="split-nav__num">04</span>
+        <span class="split-nav__label">Build</span>
+      </button>
+      <div class="split-nav__divider"></div>
+      <button class="split-nav__btn" data-target="p-graduation">
+        <span class="split-nav__num">★</span>
+        <span class="split-nav__label">Graduation</span>
+      </button>
+      <button class="split-nav__btn" data-target="p-aha">
+        <span class="split-nav__num">✦</span>
+        <span class="split-nav__label">Metodologi</span>
+      </button>
+    </nav>
+    <div class="split-content" id="split-content">
 
-  <!-- Old nav pills (hidden, kept for print/fallback) -->
-  <div class="nav-wrap" style="display:none">
-  <nav class="nav" id="nav" aria-label="Program navigation">
-    <button class="nav-btn active" data-target="p-01" aria-label="Strategize"><span class="nav-num">01</span> Strategize</button>
-    <button class="nav-btn" data-target="p-02" aria-label="Prompt"><span class="nav-num">02</span> Prompt</button>
-    <button class="nav-btn" data-target="p-03" aria-label="Create"><span class="nav-num">03</span> Create</button>
-    <button class="nav-btn" data-target="p-04" aria-label="Build"><span class="nav-num">04</span> Build</button>
-    <button class="nav-btn" data-target="p-graduation" aria-label="Graduation"><span class="nav-num">&starf;</span> Graduation</button>
-    <button class="nav-btn" data-target="p-calendar" aria-label="Calendar"><span class="nav-num">&#9656;</span> Calendar</button>
-  </nav>
-  </div>
 
 
   <!-- PANEL 01 -->
-  <section class="panel" id="p-01">
+  <section class="panel active" id="p-01">
     <button class="panel__back" onclick="showHub()">← Semua Level</button>
     <div class="level-head">
       <div class="level-num">01</div>
@@ -993,7 +1104,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
         <h2 class="level-title">Strategize</h2>
         <div class="learning-outcome"><strong>Entry point program AI First.</strong> Memahami lanskap AI dan mengevaluasi kesiapan organisasi untuk mengadopsi.<br>Output: keputusan strategis adopsi AI.</div>
         <div class="level-meta-line">
-          <div class="schedule-tag"><span class="dot"></span>Sabtu, 11 April · 08.00 – 11.00 · Selesai</div>
+          <div class="schedule-tag"><span class="dot"></span>08.00 – 11.00 · Selesai</div>
           <div class="takeaway"><span class="takeaway-label">BAWA PULANG</span> <span class="takeaway-text">AI Readiness Scorecard</span> — hasil assessment posisi AI Anda dan organisasi menggunakan BI Formula.</div>
         </div>
       </div>
@@ -1010,12 +1121,10 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
     <div class="session"><div class="s-time">08:15 &ndash; 09:45</div><div class="s-body"><div class="s-title"><span class="gold">AI First Mindset</span><span class="s-expand">detail →</span></div><div class="s-detail">Kalibrasi cara pandang AI &mdash; dari memakai AI ke AI First for Leaders</div>
       <div class="cc-grid">
         <div class="cc-card">
-          <div class="cc-name">Trends &amp; Best Practices</div>
-          <div class="cc-sub">Top 7 Emerging Trends of GenAI in 2026<br>GenAI @Work: Best Practices &amp; Use Cases<br>Our Timeline AI</div>
+          <div class="cc-name">Top 7 Emerging Trends of GenAI</div>
         </div>
         <div class="cc-card">
-          <div class="cc-name">Decade of Agentic</div>
-          <div class="cc-sub">BI Formula &mdash; AI Readiness Audit<br>APT Model &amp; Questionnaire<br>Beyond Prompting &mdash; CIS Framework</div>
+          <div class="cc-name">BI Formula — AI Readiness Audit</div>
         </div>
       </div>
     </div></div>
@@ -1038,7 +1147,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
         </div>
       </div>
     </div></div>
-    <div class="session"><div class="s-time">10:30 &ndash; 11:00</div><div class="s-body"><div class="s-title"><span class="gold">AI First Program 2026</span><span class="s-expand">detail →</span></div>
+    <div class="session"><div class="s-time">10:30 &ndash; 11:00</div><div class="s-body"><div class="s-title"><span class="gold">AI First Program</span><span class="s-expand">detail →</span></div>
       <div class="cc-grid">
         <div class="cc-card">
           <div class="cc-name">10x AI Impacts</div>
@@ -1070,7 +1179,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
         <h2 class="level-title">Prompt</h2>
         <div class="learning-outcome"><strong>AI Skills × Thinking Framework.</strong> Menerapkan thinking framework yang tepat agar prompting lebih efektif. Mendapatkan hasil terbaik dari AI melalui prompting berbasis teks.<br>Output: teks &amp; pengetahuan yang dihasilkan lewat chat.</div>
         <div class="level-meta-line">
-          <div class="schedule-tag"><span class="dot"></span>In-Person · Sabtu, 6 &amp; 7 Mei · 08.00 – 16.30</div>
+          <div class="schedule-tag"><span class="dot"></span>In-Person · 08.00 – 16.30</div>
           <div class="takeaway"><span class="takeaway-label">BAWA PULANG</span> <span class="takeaway-text">Personal Prompt Template</span> — template prompt untuk tiga pilar kerja harian: analisis data (chatting), ekstraksi insight (reading), dan drafting komunikasi bisnis (writing).</div>
         </div>
       </div>
@@ -1083,83 +1192,70 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
         <li>Menganalisis dan menyempurnakan output AI secara kritis agar hasilnya sesuai dengan tujuan dan intent yang dimaksud</li>
       </ul>
     </div>
-    <div class="day-summary">
-      <div class="day-summary-card">
-        <div class="day-summary-label">Day 1 &middot; 6 Mei</div>
-        <div class="day-summary-text">AI sebagai partner berpikir — chatting, reading, deep research</div>
-      </div>
-      <div class="day-summary-card">
-        <div class="day-summary-label">Day 2 &middot; 7 Mei</div>
-        <div class="day-summary-text">Personal knowledge management, writing, dan multimodal AI</div>
-      </div>
-    </div>
+
     <div class="day-tabs">
       <button class="day-tab prework active" data-day="d02-pw">Pre-work <span class="ls-badge">Self-Learning</span></button>
-      <button class="day-tab" data-day="d02-1">Day 1 &middot; 6 Mei <span class="ls-badge">Detail</span></button>
-      <button class="day-tab" data-day="d02-2">Day 2 &middot; 7 Mei <span class="ls-badge">Detail</span></button>
+      <button class="day-tab" data-day="d02-1">Day 1 <span class="ls-badge">Detail</span></button>
+      <button class="day-tab" data-day="d02-2">Day 2 <span class="ls-badge">Detail</span></button>
     </div>
     <div class="day-panel active" id="d02-pw">
-      <p class="prework-desc">Materi self-learning online yang perlu diselesaikan sebelum sesi in-person dimulai.</p>
+      <div class="prework-desc"><span class="prework-dot"></span> Self-learning &middot; selesaikan sebelum sesi in-person dimulai</div>
     </div>
+    <div class="day-split-wrapper">
     <div class="day-panel" id="d02-1">
+      <div class="day-col-header">Day 1<span class="tip">Tap materi untuk lihat topik</span></div>
       <div class="session is-break"><div class="s-time">08:00 &ndash; 08:30</div><div class="s-body"><div class="s-title">Opening, Agenda, Rules of the Game</div></div></div>
-      <div class="session"><div class="s-time">08:30 &ndash; 12:00</div><div class="s-body"><div class="s-title"><span class="gold">Morning Session</span><span class="s-expand">detail →</span></div>
-        <div class="cc-grid">
+      <div class="cc-grid">
           <div class="cc-card">
-            <div class="cc-name">AI First in 2026</div>
-            <div class="cc-sub">Trends, Potentials &amp; Dangers<br><em>Andrew Ng + Andrej Karpathy + Jeff Su</em></div>
+            <div class="cc-name">Apa yang Berubah di 2026 — AI di Dunia Kerja Hari Ini</div>
+            <div class="cc-sub">Trends, Potentials &amp; Dangers</div>
           </div>
           <div class="cc-card">
-            <div class="cc-name">Group Work</div>
+            <div class="cc-name">Prompt Engineering: Bicara, Tanya, Riset dengan AI</div>
+            <div class="cc-sub">Prompt engineering &middot; Deep research</div>
+          </div>
+      </div>
+      <div class="session is-break"><div class="s-time">12:00 &ndash; 13:00</div><div class="s-body"><div class="s-title">Lunch Break</div></div></div>
+      <div class="cc-grid">
+          <div class="cc-card">
+            <div class="cc-name">5 Mode Belajar dengan AI — Ringkasan, Visual &amp; Audio</div>
+            <div class="cc-sub">5 Learning Modes &middot; Infographics, Slide Deck, Audio Podcast</div>
+          </div>
+          <div class="cc-card">
+            <div class="cc-name">Dari Teori ke Praktik — AI dalam Proses Kerja Nyata</div>
             <div class="cc-sub">Diskusi kelompok &amp; refleksi bersama</div>
           </div>
-        </div>
-      </div></div>
-      <div class="session is-break"><div class="s-time">12:00 &ndash; 13:00</div><div class="s-body"><div class="s-title">Lunch Break</div></div></div>
-      <div class="session"><div class="s-time">13:00 &ndash; 16:00</div><div class="s-body"><div class="s-title"><span class="gold">Afternoon Session</span><span class="s-expand">detail →</span></div>
-        <div class="cc-grid">
-          <div class="cc-card">
-            <div class="cc-name">Chatting &mdash; Ngobrol dengan AI</div>
-            <div class="cc-sub">Prompt engineering &middot; Deep research<div class="tools"><span class="chip">Gemini</span><span class="chip">ChatGPT</span></div></div>
-          </div>
-          <div class="cc-card">
-            <div class="cc-name">Reading &mdash; Research &amp; Learning</div>
-            <div class="cc-sub">5 Learning Modes by Tjitra &amp; associates<br>Infographics, Slide Deck, Audio Podcast, Data Table<div class="tools"><span class="chip">NotebookLM</span></div></div>
-          </div>
-        </div>
-      </div></div>
+      </div>
       <div class="session is-break"><div class="s-time">16:00 &ndash; 16:30</div><div class="s-body"><div class="s-title">Wrap Up &amp; Homework</div></div></div>
       <div class="livestream"><span class="pulse"></span> Live Streaming Learning &mdash; How far have we walked?</div>
     </div>
-    <div class="day-panel" id="d02-2">
+    <div class="day-panel" id="d02-2" style="margin-top:32px; padding-top:20px; border-top: 1px solid rgba(212,168,75,0.12);">
+      <div class="day-col-header">Day 2<span class="tip">Tap materi untuk lihat topik</span></div>
+      <div class="prework-desc"><span class="prework-dot"></span> Self-learning &middot; selesaikan sebelum Day 2 dimulai</div>
       <div class="session is-break"><div class="s-time">08:00 &ndash; 08:30</div><div class="s-body"><div class="s-title">Opening, Agenda, Rules of the Game</div></div></div>
-      <div class="session"><div class="s-time">08:30 &ndash; 11:45</div><div class="s-body"><div class="s-title"><span class="gold">Morning Session</span><span class="s-expand">detail →</span></div>
-        <div class="cc-grid">
+      <div class="cc-grid">
           <div class="cc-card">
-            <div class="cc-name">AI for Writing</div>
-            <div class="cc-sub">Translation, Style, Report<div class="tools"><span class="chip">Claude</span><span class="chip">Gemini Canvas</span></div></div>
+            <div class="cc-name">Second Brain dengan AI — PKM &amp; PARA Method</div>
+            <div class="cc-sub">Second Brain, Note taking<br>PARA Method (Data management)</div>
           </div>
           <div class="cc-card">
-            <div class="cc-name">Multimodal AI</div>
-            <div class="cc-sub">Graphics, Photos, Video, Audio, Website<br>Deepfake awareness<br><em>6 tools termasuk Sora, Veo, Canva AI</em></div>
+            <div class="cc-name">AI for Writing: Dari Kalimat Pertama ke Slide Siap Kirim</div>
+            <div class="cc-sub">Text &amp; Slides</div>
           </div>
-        </div>
-      </div></div>
+      </div>
       <div class="session is-break"><div class="s-time">12:00 &ndash; 13:00</div><div class="s-body"><div class="s-title">Lunch Break</div></div></div>
-      <div class="session"><div class="s-time">13:00 &ndash; 16:00</div><div class="s-body"><div class="s-title"><span class="gold">Afternoon Session</span><span class="s-expand">detail →</span></div>
-        <div class="cc-grid">
+      <div class="cc-grid">
           <div class="cc-card">
-            <div class="cc-name">Personal Knowledge Management</div>
-            <div class="cc-sub">Second Brain, Note taking<br>PARA Method (Data management)<br><em>6 tools termasuk NotebookLM, Notion AI, Claude</em></div>
+            <div class="cc-name">Multimodal AI: Buat Grafis &amp; Edit Foto Tanpa Desainer</div>
+            <div class="cc-sub">Graphic &amp; Photos</div>
           </div>
           <div class="cc-card">
-            <div class="cc-name">What&rsquo;s Possible with AI?</div>
-            <div class="cc-sub">Personalized AI, AI wrapper<br>QnA on participants AI experiences &amp; implementation<br>From Prompting to Building</div>
+            <div class="cc-name">AI yang Mengenal Anda — CIS Framework &amp; Personalisasi</div>
           </div>
-        </div>
-      </div></div>
+      </div>
       <div class="session is-break"><div class="s-time">16:00 &ndash; 16:30</div><div class="s-body"><div class="s-title">Wrap Up &amp; Closing</div></div></div>
     </div><!-- /day-panel d02-2 -->
+    </div><!-- /day-split-wrapper -->
 
     <div class="level-cta-bar">
       <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20tertarik%20dengan%20AI%20First%20Program.%20Bisa%20info%20lebih%20lanjut%3F" class="level-cta level-cta--primary" target="_blank">Konsultasi Program →</a>
@@ -1176,7 +1272,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
         <h2 class="level-title">Create</h2>
         <div class="learning-outcome"><strong>AI Skills × Domain Expertise.</strong> Hasilkan dokumen, laporan, dan artefak berkualitas tinggi dengan AI sebagai co-creator.<br>Output: docs, reports, artifacts, files siap pakai.</div>
         <div class="level-meta-line">
-          <div class="schedule-tag"><span class="dot"></span>In-Person · Sabtu, 16 &amp; 23 Mei · 08.00 – 16.30</div>
+          <div class="schedule-tag"><span class="dot"></span>In-Person · 08.00 – 16.30</div>
           <div class="takeaway"><span class="takeaway-label">BAWA PULANG</span> <span class="takeaway-text">Multimodal Output Portfolio</span> — presentasi eksekutif, interactive report, atau video yang Anda buat sendiri dari problem definition sampai output final.</div>
         </div>
       </div>
@@ -1189,83 +1285,71 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
         <li>Membangun review protocol yang ketat agar semua deliverable berbasis AI memenuhi standar dan kebutuhan spesifik sektor bisnis</li>
       </ul>
     </div>
-    <div class="day-summary">
-      <div class="day-summary-card">
-        <div class="day-summary-label">Day 1 &middot; 16 Mei</div>
-        <div class="day-summary-text">Advanced prompting, workflow AI, dan personalized report writing</div>
-      </div>
-      <div class="day-summary-card">
-        <div class="day-summary-label">Day 2 &middot; 23 Mei</div>
-        <div class="day-summary-text">Multimodal output, emerging trends, dan responsible AI</div>
-      </div>
-    </div>
+
     <div class="day-tabs">
       <button class="day-tab prework active" data-day="d03-pw">Pre-work <span class="ls-badge">Self-Learning</span></button>
-      <button class="day-tab" data-day="d03-1">Day 1 &middot; 16 Mei <span class="ls-badge">Detail</span></button>
-      <button class="day-tab" data-day="d03-2">Day 2 &middot; 23 Mei <span class="ls-badge">Detail</span></button>
+      <button class="day-tab" data-day="d03-1">Day 1 <span class="ls-badge">Detail</span></button>
+      <button class="day-tab" data-day="d03-2">Day 2 <span class="ls-badge">Detail</span></button>
     </div>
     <div class="day-panel active" id="d03-pw">
-      <p class="prework-desc">Materi self-learning online yang perlu diselesaikan sebelum sesi in-person dimulai.</p>
+      <div class="prework-desc"><span class="prework-dot"></span> Self-learning &middot; selesaikan sebelum sesi in-person dimulai</div>
     </div>
+    <div class="day-split-wrapper">
     <div class="day-panel" id="d03-1">
+      <div class="day-col-header">Day 1<span class="tip">Tap materi untuk lihat topik</span></div>
       <div class="session is-break"><div class="s-time">08:00 &ndash; 08:30</div><div class="s-body"><div class="s-title">Opening, Agenda, Rules of the Game</div></div></div>
-      <div class="session"><div class="s-time">08:30 &ndash; 12:00</div><div class="s-body"><div class="s-title"><span class="gold">Morning Session</span><span class="s-expand">detail →</span></div>
-        <div class="cc-grid">
+      <div class="cc-grid">
           <div class="cc-card">
-            <div class="cc-name">Advanced Prompting</div>
-            <div class="cc-sub">With Design Thinking approach<br>Group Work: Problem definition<div class="tools"><span class="chip">Gemini</span><span class="chip">ChatGPT</span></div></div>
+            <div class="cc-name">CIS in Action — Design Thinking &amp; Format Mastery</div>
+            <div class="cc-sub">ACTIONS ke CIS &middot; Design Thinking &middot; File format types</div>
           </div>
           <div class="cc-card">
-            <div class="cc-name">Personalized &amp; Customized AI</div>
-            <div class="cc-sub">Context engineering<div class="tools"><span class="chip">Gemini Gem</span><span class="chip">GPT-S</span></div></div>
+            <div class="cc-name">Micro Apps untuk Profesional — Story Telling &amp; Use Cases</div>
+            <div class="cc-sub">Gems &amp; GPT Custom &middot; Story Telling &middot; Use Cases</div>
           </div>
-        </div>
-      </div></div>
+      </div>
       <div class="session is-break"><div class="s-time">12:00 &ndash; 13:00</div><div class="s-body"><div class="s-title">Lunch Break</div></div></div>
-      <div class="session"><div class="s-time">13:00 &ndash; 16:00</div><div class="s-body"><div class="s-title"><span class="gold">Afternoon Session</span><span class="s-expand">detail →</span></div>
-        <div class="cc-grid">
+      <div class="cc-grid">
           <div class="cc-card">
-            <div class="cc-name">AI Workflow</div>
-            <div class="cc-sub">Tools integration &ndash; result optimization<br><em>4 tools termasuk Gemini, ChatGPT, Perplexity</em></div>
+            <div class="cc-name">AI Workflow: Dari PARA ke MCP — Semua Terhubung</div>
+            <div class="cc-sub">PKM&ndash;PARA &middot; DeepResearch &middot; Integrating Apps &middot; Perplexity + Gemini &middot; MCP</div>
           </div>
           <div class="cc-card">
-            <div class="cc-name">Personalized AI for Report Writing</div>
-            <div class="cc-sub">Style, Structure, Format<div class="tools"><span class="chip">Claude</span><span class="chip">Gemini Canvas</span></div></div>
+            <div class="cc-name">CIS Writing: Dokumen, Slides &amp; Interactive Artifacts</div>
+            <div class="cc-sub">.md files &middot; Brand voice &middot; Slides &middot; Interactive website</div>
           </div>
-        </div>
-      </div></div>
+      </div>
       <div class="session is-break"><div class="s-time">16:00 &ndash; 16:30</div><div class="s-body"><div class="s-title">Wrap Up &amp; Homework</div></div></div>
       <div class="livestream"><span class="pulse"></span> Live Streaming Learning</div>
     </div>
-    <div class="day-panel" id="d03-2">
+    <div class="day-panel" id="d03-2" style="margin-top:32px; padding-top:20px; border-top: 1px solid rgba(212,168,75,0.12);">
+      <div class="day-col-header">Day 2<span class="tip">Tap materi untuk lihat topik</span></div>
+      <div class="prework-desc"><span class="prework-dot"></span> Self-learning &middot; selesaikan sebelum Day 2 dimulai</div>
       <div class="session is-break"><div class="s-time">08:00 &ndash; 08:30</div><div class="s-body"><div class="s-title">Opening, Agenda, Rules of the Game</div></div></div>
-      <div class="session"><div class="s-time">08:30 &ndash; 11:45</div><div class="s-body"><div class="s-title"><span class="gold">Morning Session</span><span class="s-expand">detail →</span></div>
-        <div class="cc-grid">
+      <div class="cc-grid">
           <div class="cc-card">
-            <div class="cc-name">Advance Multimodal AI</div>
-            <div class="cc-sub">Website, Interactive Report<br>Foundation of computational logic<div class="tools"><span class="chip">Gemini</span><span class="chip">ChatGPT</span><span class="chip">Claude Artefact</span></div></div>
+            <div class="cc-name">Think Deeper dengan AI — APT Framework &amp; CIS PKM</div>
+            <div class="cc-sub">APT Thinking Framework &middot; CIS PKM &middot; CIS NotebookLM</div>
           </div>
           <div class="cc-card">
-            <div class="cc-name">Personalized Multimodal AI</div>
-            <div class="cc-sub">Complex Graphics, Photos &amp; Videos<div class="tools"><span class="chip">Gemini Gems</span><span class="chip">GPT-S</span></div></div>
+            <div class="cc-name">Gems sebagai Creative Partner — Untuk Semua Format</div>
+            <div class="cc-sub">Gems for Multimodal &middot; Content TBD (Juli)</div>
           </div>
-        </div>
-      </div></div>
+      </div>
       <div class="session is-break"><div class="s-time">12:00 &ndash; 13:00</div><div class="s-body"><div class="s-title">Lunch Break</div></div></div>
-      <div class="session"><div class="s-time">13:00 &ndash; 16:00</div><div class="s-body"><div class="s-title"><span class="gold">Afternoon Session</span><span class="s-expand">detail →</span></div>
-        <div class="cc-grid">
+      <div class="cc-grid">
           <div class="cc-card">
-            <div class="cc-name">Emerging Trends in AI</div>
-            <div class="cc-sub">Knowledge management &amp; Personal Assistant<br>MCP &amp; Agentic AI (basic)<div class="tools"><span class="chip">Notion AI</span><span class="chip">Opal</span><span class="chip">OpenClaw</span></div></div>
+            <div class="cc-name">Personalized Productivity — AI yang Ingat &amp; Mengatur Segalanya</div>
+            <div class="cc-sub">Managing Files: GDrive &middot; Personalization &middot; Multiple data &middot; Memory</div>
           </div>
           <div class="cc-card">
-            <div class="cc-name">Responsible &amp; Trustworthy AI</div>
-            <div class="cc-sub">Evaluation, Guardrails, Ethical</div>
+            <div class="cc-name">Emerging Trends &amp; Ethical AI — 5 Ilusi AI &amp; Guardrail</div>
+            <div class="cc-sub">Diverse LLM types &amp; cost &middot; Select right LLM &middot; 5 Illusions of AI &middot; Eval &amp; Guardrail &middot; Ethical AI</div>
           </div>
-        </div>
-      </div></div>
+      </div>
       <div class="session is-break"><div class="s-time">16:00 &ndash; 16:30</div><div class="s-body"><div class="s-title">Wrap Up &amp; Closing</div></div></div>
     </div><!-- /day-panel d03-2 -->
+    </div><!-- /day-split-wrapper -->
 
     <div class="level-cta-bar">
       <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20tertarik%20dengan%20AI%20First%20Program.%20Bisa%20info%20lebih%20lanjut%3F" class="level-cta level-cta--primary" target="_blank">Konsultasi Program →</a>
@@ -1282,7 +1366,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
         <h2 class="level-title">Build</h2>
         <div class="learning-outcome"><strong>AI Skills × Domain Expertise × Thinking Framework.</strong> Membangun workflow dan sistem AI tanpa coding.<br>Output: workflows, tools &amp; system yang berjalan mandiri.</div>
         <div class="level-meta-line">
-          <div class="schedule-tag"><span class="dot"></span>In-Person · Sabtu, 6 &amp; 20 Juni · Project Based</div>
+          <div class="schedule-tag"><span class="dot"></span>In-Person · Project Based</div>
           <div class="takeaway"><span class="takeaway-label">BAWA PULANG</span> <span class="takeaway-text">Working Micro AI App</span> — aplikasi AI dari proyek kerja nyata Anda, siap didemonstrasikan dan diadopsi tim.</div>
         </div>
       </div>
@@ -1333,7 +1417,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
         <h2 class="level-title">Graduation</h2>
         <p class="level-desc">Tunjukkan hasil belajar Anda dan raih sertifikat resmi dari IWDemy.</p>
         <div class="level-meta-line">
-          <div class="schedule-tag"><span class="dot"></span>Sabtu, 4 Juli · Graduation Day</div>
+          <div class="schedule-tag"><span class="dot"></span>Graduation Day</div>
         </div>
       </div>
     </div>
@@ -1345,26 +1429,69 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
     </ul>
   </section>
 
-  <!-- PANEL CALENDAR -->
-  <section class="panel" id="p-calendar">
+  <!-- PANEL AHA METHODOLOGY -->
+  <section class="panel" id="p-aha">
     <button class="panel__back" onclick="showHub()">← Semua Level</button>
     <div class="level-head">
-      <div class="level-num" style="opacity:0.3; color: var(--gold);">&#9673;</div>
+      <div class="level-num" style="opacity:0.4; color: var(--gold);">★</div>
       <div class="level-meta">
-        <div class="level-eyebrow" style="color: var(--gold);">Timeline 2026</div>
-        <h2 class="level-title">Calendar</h2>
-        <p class="level-desc">3 bulan &middot; 7&times; tatap muka &middot; 4 level<br>Dari Strategize hingga Build.</p>
+        <div class="level-eyebrow" style="color: var(--gold);">AHA Methodology</div>
+        <h2 class="level-title">Metodologi</h2>
+        <p class="level-desc">Dirancang untuk pemimpin yang tidak punya waktu untuk trial and error.</p>
       </div>
     </div>
-    <div class="timeline">
-      <div class="tl-row past"><div class="tl-date"><div class="month">April</div><div class="days">11</div></div><div class="tl-track"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-card"><div class="tl-level">01 &mdash; Strategize <span class="tl-badge done">done</span></div><div class="tl-title">Awareness Session</div><div class="tl-sub">Tren, potensi, dan batasan AI untuk leaders</div><div class="tl-format">Sabtu &middot; 08.00 &ndash; 11.00 &middot; 1 sesi</div></div></div>
-      <div class="tl-row next"><div class="tl-date"><div class="month">Mei</div><div class="days">6 &amp; 7</div></div><div class="tl-track"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-card"><div class="tl-level">02 &mdash; Prompt <span class="tl-badge next">next</span></div><div class="tl-title">Chat Mastery</div><div class="tl-sub">Kuasai AI untuk chatting, reading, writing</div><div class="tl-format">In-Person Sabtu &middot; 08.00 &ndash; 16.30 &middot; 2 hari + Live Streaming Rabu</div></div></div>
-      <div class="tl-row"><div class="tl-date"><div class="month">Mei</div><div class="days">16 &amp; 23</div></div><div class="tl-track"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-card"><div class="tl-level">03 &mdash; Create</div><div class="tl-title">Output Creation</div><div class="tl-sub">Dari prompt ke produk &mdash; docs, artifacts, files</div><div class="tl-format">In-Person Sabtu &middot; 08.00 &ndash; 16.30 &middot; 2 hari + Live Streaming Rabu</div></div></div>
-      <div class="tl-row"><div class="tl-date"><div class="month">Juni</div><div class="days">6 &amp; 20</div></div><div class="tl-track"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-card"><div class="tl-level">04 &mdash; Build</div><div class="tl-title">NoCode AI Build</div><div class="tl-sub">Bangun workflows, tools &amp; system berbasis AI</div><div class="tl-format">In-Person &middot; Project Based &middot; 2 hari</div></div></div>
-      <div class="tl-row graduation"><div class="tl-date"><div class="month">Juli</div><div class="days">4</div></div><div class="tl-track"><div class="tl-dot"></div></div><div class="tl-card"><div class="tl-level">Graduation</div><div class="tl-sub">Showcase hasil karya &amp; sertifikasi dari IWDemy</div></div></div>
+
+    <p style="color:var(--text-lo);font-size:14px;margin-bottom:28px;line-height:1.6;">Fleksibel. Terstruktur. Anda yang kendalikan.</p>
+
+    <!-- AHA Grid -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:40px;">
+      <div style="background:rgba(212,168,75,0.06);border:1px solid rgba(212,168,75,0.15);border-radius:14px;padding:20px 14px;text-align:center;">
+        <div style="font-size:32px;font-weight:800;color:var(--gold);font-family:var(--font-display);line-height:1;margin-bottom:6px;">A</div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-family:var(--font-mono);margin-bottom:10px;">Adaptif</div>
+        <p style="font-size:13px;color:var(--text-md);line-height:1.55;">Tatap muka, video, hybrid — memaksimalkan cara dan waktu belajar Anda.</p>
+      </div>
+      <div style="background:rgba(212,168,75,0.06);border:1px solid rgba(212,168,75,0.15);border-radius:14px;padding:20px 14px;text-align:center;">
+        <div style="font-size:32px;font-weight:800;color:var(--gold);font-family:var(--font-display);line-height:1;margin-bottom:6px;">H</div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-family:var(--font-mono);margin-bottom:10px;">Holistik</div>
+        <p style="font-size:13px;color:var(--text-md);line-height:1.55;">Briefing, workshop, peer coaching, action project — satu rangkaian utuh yang memperbesar dampak.</p>
+      </div>
+      <div style="background:rgba(212,168,75,0.06);border:1px solid rgba(212,168,75,0.15);border-radius:14px;padding:20px 14px;text-align:center;">
+        <div style="font-size:32px;font-weight:800;color:var(--gold);font-family:var(--font-display);line-height:1;margin-bottom:6px;">A</div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-family:var(--font-mono);margin-bottom:10px;">Aktif</div>
+        <p style="font-size:13px;color:var(--text-md);line-height:1.55;">Peserta di driver seat — semakin Anda terlibat, semakin besar hasilnya.</p>
+      </div>
+    </div>
+
+    <!-- IWDemy Learning Lab -->
+    <div style="margin-top:8px;">
+      <div style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-family:var(--font-mono);margin-bottom:16px;">IWDemy Learning Lab</div>
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:8px;">
+        <div style="grid-row:1/3;border-radius:12px;overflow:hidden;">
+          <img src="images/iwdemy-learning-lab---executive-training-01.jpg" alt="IWDemy Executive Training" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div style="border-radius:12px;overflow:hidden;">
+          <img src="images/iwdemy-learning-lab---dual-screen-workshop-01.jpg" alt="IWDemy Dual Screen Workshop" style="width:100%;height:160px;object-fit:cover;display:block;">
+        </div>
+        <div style="border-radius:12px;overflow:hidden;">
+          <img src="images/iwdemy-learning-lab---presentasi-ai-01.jpg" alt="IWDemy Presentasi AI" style="width:100%;height:160px;object-fit:cover;display:block;">
+        </div>
+        <div style="border-radius:12px;overflow:hidden;">
+          <img src="images/iwdemy-learning-lab---studio-premium-01.jpg" alt="IWDemy Studio Premium" style="width:100%;height:160px;object-fit:cover;display:block;">
+        </div>
+        <div style="border-radius:12px;overflow:hidden;">
+          <img src="images/iwdemy-learning-lab---berkarya-berkembang-berdampak-01.jpg" alt="IWDemy Berkarya Berkembang Berdampak" style="width:100%;height:160px;object-fit:cover;display:block;">
+        </div>
+      </div>
+    </div>
+
+    <div class="level-cta-bar" style="margin-top:40px;">
+      <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20tertarik%20dengan%20AI%20First%20Program.%20Bisa%20info%20lebih%20lanjut%3F" class="level-cta level-cta--primary" target="_blank">Konsultasi Program →</a>
     </div>
   </section>
 
+
+    </div><!-- /split-content -->
+  </div><!-- /split-layout -->
 
 </div>
 
@@ -1405,42 +1532,25 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
   });
 
 
-  // ── Hub-and-Spoke Navigation ──
-  const hub = document.getElementById('hub');
-
-  // Show a specific panel (hide hub)
+  // ── Split Navigation ──
   function showPanel(id) {
-    hub.classList.add('hidden');
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.split-content .panel').forEach(p => p.classList.remove('active'));
     const panel = document.getElementById(id);
     if (panel) panel.classList.add('active');
     collapseAllCards();
-    // Scroll to top of panel area
-    const pageEl = document.querySelector('.page');
-    const pageTop = pageEl.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({ top: pageTop + 60, behavior: 'smooth' });
-  }
-
-  // Return to hub (hide all panels)
-  function showHub() {
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    hub.classList.remove('hidden');
-    collapseAllCards();
-    const hubTop = hub.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({ top: hubTop - 80, behavior: 'smooth' });
-  }
-
-  // Hub card click → open panel
-  document.querySelectorAll('.hub__card').forEach(card => {
-    card.addEventListener('click', () => {
-      showPanel(card.dataset.panel);
+    document.querySelectorAll('.split-nav__btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.target === id);
     });
-  });
-
-  // Legacy: switchPanel for mobile menu links
-  function switchPanel(id) {
-    showPanel(id);
+    if (window.innerWidth < 768) {
+      const sc = document.getElementById('split-content');
+      if (sc) window.scrollTo({ top: sc.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
+    }
   }
+  document.querySelectorAll('.split-nav__btn').forEach(btn => {
+    btn.addEventListener('click', () => showPanel(btn.dataset.target));
+  });
+  function showHub() { showPanel('p-01'); }
+  function switchPanel(id) { showPanel(id); }
 
   // Helper: collapse all expanded cards
   function collapseAllCards() {
@@ -1475,6 +1585,15 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
   });
 
   // ── Mobile collapse patterns ──
+  // Learning Outcomes — collapsible (all screen sizes)
+  document.querySelectorAll('.level-outcomes').forEach(block => {
+    const label = block.querySelector('.level-outcomes-label');
+    if (!label) return;
+    label.addEventListener('click', () => {
+      block.classList.toggle('expanded');
+    });
+  });
+
   if (window.matchMedia('(max-width: 639px)').matches) {
 
     // 1. Collapse learning-outcome + level-meta-line (takeaway/schedule)
