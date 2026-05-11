@@ -730,6 +730,26 @@ body { font-family: var(--font-body);
 .shift__mirror-q { font-family: var(--font-body); font-size: clamp(14px,1.5vw,16px); line-height: 1.6; color: var(--text-md); margin: 0; }
 .shift__mirror-q strong { color: var(--text-hi); font-weight: 600; }
 .shift__kicker { font-family: var(--font-body); font-size: clamp(15px,1.7vw,18px); font-weight: 600; color: var(--gold); line-height: 1.5; max-width: 620px; }
+.shift__statement { font-family: var(--font-body); font-size: clamp(16px,1.9vw,20px); font-weight: 600; color: var(--text-hi); line-height: 1.55; max-width: 660px; margin-bottom: 28px; }
+.shift__bridge { font-family: var(--font-body); font-size: clamp(13px,1.4vw,15px); font-weight: 500; color: var(--text-lo); letter-spacing: 0.02em; margin-bottom: 24px; }
+
+/* APT Modal */
+.apt-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.72); z-index: 9000; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+.apt-modal-overlay.open { opacity: 1; pointer-events: all; }
+.apt-modal { background: var(--bg-dark); border: 1px solid rgba(212,168,75,0.25); border-radius: 20px; padding: 40px 36px; max-width: 520px; width: 100%; position: relative; transform: translateY(16px); transition: transform 0.3s ease; }
+.apt-modal-overlay.open .apt-modal { transform: translateY(0); }
+.apt-modal-close { position: absolute; top: 16px; right: 18px; background: none; border: none; cursor: pointer; color: var(--text-lo); font-size: 22px; line-height: 1; padding: 4px; }
+.apt-modal-close:hover { color: var(--text-hi); }
+.apt-modal-eyebrow { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.apt-modal-title { font-family: var(--font-heading); font-size: 22px; font-weight: 700; color: var(--text-hi); margin-bottom: 24px; }
+.apt-modal-comps { display: flex; flex-direction: column; gap: 18px; }
+.apt-modal-comp { display: flex; align-items: flex-start; gap: 16px; padding: 16px 18px; border: 1px solid rgba(212,168,75,0.10); border-radius: 12px; background: rgba(212,168,75,0.03); }
+.apt-modal-letter { font-family: var(--font-heading); font-size: 28px; font-weight: 800; color: var(--gold); min-width: 28px; line-height: 1; flex-shrink: 0; }
+.apt-modal-info { }
+.apt-modal-comp-name { font-family: var(--font-heading); font-size: 14px; font-weight: 700; color: var(--text-hi); margin-bottom: 3px; }
+.apt-modal-comp-desc { font-size: 13px; line-height: 1.55; color: var(--text-md); }
+.apt-modal-hint { font-family: var(--font-mono); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); opacity: 0.55; margin-top: 8px; display: block; text-align: center; cursor: pointer; transition: opacity 0.2s; }
+.apt-modal-hint:hover { opacity: 1; }
 
 /* ── 7. Section 3: Formula (Light) ── */
 
@@ -1850,7 +1870,9 @@ body { font-family: var(--font-body);
     </div>
 
     <div>
-        <h2 class="h2 shift__headline">Pertanyaan yang jarang ditanya.</h2>
+        <p class="shift__statement">Jadi, pemimpin era AI bukan hanya menguasai tools —<br>tapi mampu memperluas jangkauan kepemimpinannya.</p>
+
+        <p class="shift__bridge">Pertanyaannya,</p>
 
         <div class="shift__mirrors">
           <div class="shift__mirror-item">
@@ -1866,8 +1888,6 @@ body { font-family: var(--font-body);
             <p class="shift__mirror-q">Pemimpin terkuat di industri Anda sedang menetapkan standar baru. <strong>Anda sedang di posisi mana?</strong></p>
           </div>
         </div>
-
-        <p class="shift__kicker">Pemimpin era AI bukan yang menguasai tools —<br>tapi yang pertama memperluas jangkauan kepemimpinannya.</p>
       </div>
   </div>
 </section>
@@ -1927,22 +1947,11 @@ body { font-family: var(--font-body);
             <div class="formula__flip-label formula__flip-label--accent">Multiplier</div>
             
           </div>
-          <div class="formula__flip-back">
-            <div class="formula__flip-back-title">APT · Multiplier</div>
-            <div class="formula__apt-comps">
-              <div class="formula__apt-comp">
-                <span class="formula__apt-comp-letter">A</span>
-                <div class="formula__apt-comp-info"><span class="formula__apt-comp-name">Actor</span>Siapa yang menggunakan AI — skill, konteks, dan cara berpikir pemimpin.</div>
-              </div>
-              <div class="formula__apt-comp">
-                <span class="formula__apt-comp-letter">P</span>
-                <div class="formula__apt-comp-info"><span class="formula__apt-comp-name">Prompt</span>Kualitas dialog yang menggerakkan AI ke output strategis.</div>
-              </div>
-              <div class="formula__apt-comp">
-                <span class="formula__apt-comp-letter">T</span>
-                <div class="formula__apt-comp-info"><span class="formula__apt-comp-name">Tool</span>Platform AI yang dikonfigurasi untuk kebutuhan spesifik organisasi.</div>
-              </div>
-            </div></div>
+          <div class="formula__flip-back" onclick="openAptModal()" style="cursor:pointer;">
+            <div class="formula__flip-back-title">AI Performance Triangle</div>
+            <div class="formula__flip-desc">AI Skills &times; Domain Expertise &times; Thinking Framework — yang program ini bangun bagi Anda dan tim.</div>
+            <span class="apt-modal-hint">klik untuk detail ↗</span>
+          </div>
         </div>
       </div>
     </div>
@@ -2561,6 +2570,38 @@ body { font-family: var(--font-body);
   </div>
 </section>
 
+<!-- APT Modal -->
+<div class="apt-modal-overlay" id="aptModal" onclick="closeAptModalOutside(event)">
+  <div class="apt-modal">
+    <button class="apt-modal-close" onclick="closeAptModal()">✕</button>
+    <div class="apt-modal-eyebrow">AI Performance Triangle</div>
+    <div class="apt-modal-title">APT — Multiplier kepemimpinan</div>
+    <div class="apt-modal-comps">
+      <div class="apt-modal-comp">
+        <span class="apt-modal-letter">A</span>
+        <div class="apt-modal-info">
+          <div class="apt-modal-comp-name">Actor</div>
+          <p class="apt-modal-comp-desc">Siapa yang menggunakan AI — skill, konteks bisnis, dan kualitas berpikir pemimpin yang menentukan kualitas output.</p>
+        </div>
+      </div>
+      <div class="apt-modal-comp">
+        <span class="apt-modal-letter">P</span>
+        <div class="apt-modal-info">
+          <div class="apt-modal-comp-name">Prompt</div>
+          <p class="apt-modal-comp-desc">Kualitas instruksi dan dialog yang menggerakkan AI — dari perintah biasa ke percakapan strategis yang menghasilkan keputusan.</p>
+        </div>
+      </div>
+      <div class="apt-modal-comp">
+        <span class="apt-modal-letter">T</span>
+        <div class="apt-modal-info">
+          <div class="apt-modal-comp-name">Tool</div>
+          <p class="apt-modal-comp-desc">Platform AI yang dipilih dan dikonfigurasi sesuai konteks spesifik — bukan sekadar dipakai, tapi diintegrasikan ke sistem kerja.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ════════ FOOTER ════════ -->
 <footer class="footer">
   <div class="footer__inner">
@@ -2595,6 +2636,20 @@ body { font-family: var(--font-body);
 
 <!-- ════════ SCRIPTS ════════ -->
 <script>
+// APT Modal
+function openAptModal() {
+  document.getElementById('aptModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeAptModal() {
+  document.getElementById('aptModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeAptModalOutside(e) {
+  if (e.target === document.getElementById('aptModal')) closeAptModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAptModal(); });
+
 // Navbar scroll effect
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
