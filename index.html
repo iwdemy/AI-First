@@ -735,22 +735,11 @@ body { font-family: var(--font-body);
 .shift__gold { color: var(--gold); font-weight: 700; }
 
 /* APT Modal */
-.apt-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.72); z-index: 9000; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
-.apt-modal-overlay.open { opacity: 1; pointer-events: all; }
-.apt-modal { background: var(--bg-dark); border: 1px solid rgba(212,168,75,0.25); border-radius: 20px; padding: 40px 36px; max-width: 520px; width: 100%; position: relative; transform: translateY(16px); transition: transform 0.3s ease; }
-.apt-modal-overlay.open .apt-modal { transform: translateY(0); }
-.apt-modal-close { position: absolute; top: 16px; right: 18px; background: none; border: none; cursor: pointer; color: var(--text-lo); font-size: 22px; line-height: 1; padding: 4px; }
-.apt-modal-close:hover { color: var(--text-hi); }
-.apt-modal-eyebrow { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-.apt-modal-title { font-family: var(--font-heading); font-size: 22px; font-weight: 700; color: var(--text-hi); margin-bottom: 24px; }
-.apt-modal-comps { display: flex; flex-direction: column; gap: 18px; }
-.apt-modal-comp { display: flex; align-items: flex-start; gap: 16px; padding: 16px 18px; border: 1px solid rgba(212,168,75,0.10); border-radius: 12px; background: rgba(212,168,75,0.03); }
-.apt-modal-letter { font-family: var(--font-heading); font-size: 28px; font-weight: 800; color: var(--gold); min-width: 28px; line-height: 1; flex-shrink: 0; }
-.apt-modal-info { }
-.apt-modal-comp-name { font-family: var(--font-heading); font-size: 14px; font-weight: 700; color: var(--text-hi); margin-bottom: 3px; }
-.apt-modal-comp-desc { font-size: 13px; line-height: 1.55; color: var(--text-md); }
-.apt-modal-hint { font-family: var(--font-mono); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); opacity: 0.55; margin-top: 8px; display: block; text-align: center; cursor: pointer; transition: opacity 0.2s; }
-.apt-modal-hint:hover { opacity: 1; }
+/* APT card gold */
+.formula__flip-card--apt { border-color: rgba(212,168,75,0.55); }
+.formula__flip-card--apt .formula__flip-front { background: var(--gold); border-radius: inherit; }
+.formula__flip-card--apt .formula__flip-symbol--apt { color: #fff; }
+.formula__flip-card--apt .formula__flip-label--accent { color: rgba(255,255,255,0.88); }
 
 /* ── 7. Section 3: Formula (Light) ── */
 
@@ -1301,15 +1290,7 @@ body { font-family: var(--font-body);
 .check__meter-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--gold-muted), var(--gold)); transition: width 0.8s ease; }
 .check__result-desc { font: 400 14px/1.6 var(--font-body); color: var(--dark-body); margin-bottom: 28px; }
 .check__result-divider { width: 40px; height: 1.5px; background: var(--gold); margin: 0 auto 24px; }
-.check__result-level { display: inline-flex; align-items: center; gap: 10px; background: rgba(212,168,75,0.08); border: 1.5px solid rgba(212,168,75,0.25); border-radius: 8px; padding: 10px 18px; margin-bottom: 20px; }
-.check__result-level-label { font: 600 10px/1 var(--font-heading); letter-spacing: 1.5px; color: var(--gold); text-transform: uppercase; }
-.check__result-level-name { font: 600 13px/1.3 var(--font-body); color: var(--dark-text); }
-.check__cta-btn { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: #fff; border: none; border-radius: 10px; padding: 14px 24px; font: 600 14px var(--font-heading); cursor: pointer; transition: all 0.25s; margin-bottom: 20px; width: 100%; justify-content: center; box-sizing: border-box; }
-.check__cta-btn:hover { background: #1ebe5a; transform: translateY(-1px); }
-.check__cta-btn svg { flex-shrink: 0; }
-.check__form-divider { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
-.check__form-divider::before, .check__form-divider::after { content: ''; flex: 1; height: 1px; background: rgba(212,168,75,0.15); }
-.check__form-divider span { font: 400 11px/1 var(--font-body); color: var(--dark-sub); opacity: 0.6; white-space: nowrap; }
+
 
 /* Form fields */
 .check__form { max-width: 420px; margin: 0 auto; }
@@ -1691,7 +1672,7 @@ body { font-family: var(--font-body);
 .why__card-back { position: absolute; inset: 0; padding: 28px 24px; padding-top: 48px;
   opacity: 0; transform: translateY(8px);
   transition: opacity 0.35s ease, transform 0.35s ease;
-  background: rgba(30,28,24,0.98); border-radius: 14px; }
+  background: rgba(30,28,24,0.98); border-radius: 14px; overflow: hidden; }
 
 .why__card:hover .why__card-front { opacity: 0; transform: translateY(-6px); }
 
@@ -1941,14 +1922,14 @@ body { font-family: var(--font-body);
         </div>
       </div>
 
-      <div class="formula__flip-card">
+      <div class="formula__flip-card formula__flip-card--apt">
         <div class="formula__flip-inner">
           <div class="formula__flip-front">
             <div class="formula__flip-symbol formula__flip-symbol--apt">APT</div>
             <div class="formula__flip-label formula__flip-label--accent">Multiplier</div>
             
           </div>
-          <div class="formula__flip-back" onclick="openAptModal()" style="cursor:pointer;">
+          <div class="formula__flip-back">
             <div class="formula__flip-back-title">AI Performance Triangle</div>
             <div class="formula__flip-desc">AI Skills &times; Domain Expertise &times; Thinking Framework — yang program ini bangun bagi Anda dan tim.</div>
             <span class="apt-modal-hint">klik untuk detail ↗</span>
@@ -2348,18 +2329,9 @@ body { font-family: var(--font-body);
       <div class="check__result-title" id="resultTitle">—</div>
       <div class="check__meter"><div class="check__meter-fill" id="resultMeter" style="width:0%"></div></div>
       <p class="check__result-desc" id="resultDesc">—</p>
-      <div class="check__result-level" id="resultLevel">
-        <span class="check__result-level-label">Rekomendasi</span>
-        <span class="check__result-level-name" id="resultLevelName">—</span>
-      </div>
       <div class="check__result-divider"></div>
-      <button class="check__cta-btn" onclick="submitReadiness()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Konsultasi Gratis via WhatsApp
-      </button>
-      <div class="check__form-divider"><span>atau isi untuk panduan per email</span></div>
       <div class="check__form">
-        <p class="check__form-title">Dapatkan panduan AI First</p>
+        <p class="check__form-title">Mulai perjalanan AI First Anda</p>
         <input type="text" class="check__field" id="checkName" placeholder="Nama lengkap">
         <input type="tel" class="check__field" id="checkWA" placeholder="Nomor WhatsApp (08xxx)">
         <div class="check__field-row">
@@ -2506,7 +2478,6 @@ body { font-family: var(--font-body);
       <div class="invest__track">
         <h3 class="invest__track-name">Professional</h3>
         <p class="invest__track-audience">Profesional &amp; emerging leaders</p>
-        <p class="invest__qualifier"><strong>Cocok jika</strong>Anda profesional atau emerging leader yang ingin menguasai AI dan membangun kapabilitas secara mandiri.</p>
       </div>
 
       <!-- Leader -->
@@ -2514,14 +2485,12 @@ body { font-family: var(--font-body);
         <span class="invest__track-badge">PALING DIMINATI</span>
         <h3 class="invest__track-name">Leader</h3>
         <p class="invest__track-audience">C-level · Eksekutif</p>
-        <p class="invest__qualifier"><strong>Cocok jika</strong>Anda eksekutif atau C-level yang ingin memimpin transformasi AI organisasi dengan pendampingan intensif satu-satu.</p>
       </div>
 
       <!-- Corporate -->
       <div class="invest__track">
         <h3 class="invest__track-name">Corporate</h3>
         <p class="invest__track-audience">Organisasi · Tim</p>
-        <p class="invest__qualifier"><strong>Cocok jika</strong>Anda memimpin tim atau divisi yang ingin bergerak bersama dalam adopsi AI secara sistematis dan terukur.</p>
       </div>
     </div>
 
@@ -2571,38 +2540,6 @@ body { font-family: var(--font-body);
   </div>
 </section>
 
-<!-- APT Modal -->
-<div class="apt-modal-overlay" id="aptModal" onclick="closeAptModalOutside(event)">
-  <div class="apt-modal">
-    <button class="apt-modal-close" onclick="closeAptModal()">✕</button>
-    <div class="apt-modal-eyebrow">AI Performance Triangle</div>
-    <div class="apt-modal-title">APT — Multiplier kepemimpinan</div>
-    <div class="apt-modal-comps">
-      <div class="apt-modal-comp">
-        <span class="apt-modal-letter">A</span>
-        <div class="apt-modal-info">
-          <div class="apt-modal-comp-name">Actor</div>
-          <p class="apt-modal-comp-desc">Siapa yang menggunakan AI — skill, konteks bisnis, dan kualitas berpikir pemimpin yang menentukan kualitas output.</p>
-        </div>
-      </div>
-      <div class="apt-modal-comp">
-        <span class="apt-modal-letter">P</span>
-        <div class="apt-modal-info">
-          <div class="apt-modal-comp-name">Prompt</div>
-          <p class="apt-modal-comp-desc">Kualitas instruksi dan dialog yang menggerakkan AI — dari perintah biasa ke percakapan strategis yang menghasilkan keputusan.</p>
-        </div>
-      </div>
-      <div class="apt-modal-comp">
-        <span class="apt-modal-letter">T</span>
-        <div class="apt-modal-info">
-          <div class="apt-modal-comp-name">Tool</div>
-          <p class="apt-modal-comp-desc">Platform AI yang dipilih dan dikonfigurasi sesuai konteks spesifik — bukan sekadar dipakai, tapi diintegrasikan ke sistem kerja.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- ════════ FOOTER ════════ -->
 <footer class="footer">
   <div class="footer__inner">
@@ -2637,20 +2574,6 @@ body { font-family: var(--font-body);
 
 <!-- ════════ SCRIPTS ════════ -->
 <script>
-// APT Modal
-function openAptModal() {
-  document.getElementById('aptModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeAptModal() {
-  document.getElementById('aptModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function closeAptModalOutside(e) {
-  if (e.target === document.getElementById('aptModal')) closeAptModal();
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAptModal(); });
-
 // Navbar scroll effect
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
@@ -2701,9 +2624,9 @@ setInterval(() => {
 (function(){
   const answers = {};
   const profiles = {
-    low:  { title: 'Early Explorer', pct: 25, level: 'Level 1 – Explore: Fondasi & Orientasi', desc: 'Organisasi Anda baru memulai perjalanan AI. Ini justru momen terbaik — Anda bisa membangun fondasi yang benar dari awal, tanpa harus membongkar kebiasaan lama.' },
-    mid:  { title: 'Active Adopter', pct: 55, level: 'Level 2 – Implement: Dari Coba ke Sistem', desc: 'Tim Anda sudah mulai pakai AI, tapi belum ada arah strategis yang menyatukan semuanya. AI First Program akan membantu Anda memetakan prioritas dan membangun roadmap yang actionable.' },
-    high: { title: 'Strategic Accelerator', pct: 80, level: 'Level 3 – Lead: Strategi & Akselerasi', desc: 'Organisasi Anda sudah di jalur yang baik. AI First Program akan mengkalibrasi ulang strategi Anda dengan framework BI dan memastikan akselerasi berjalan pada track yang tepat.' }
+    low:  { title: 'Early Explorer', pct: 25, desc: 'Organisasi Anda baru memulai perjalanan AI. Ini justru momen terbaik — Anda bisa membangun fondasi yang benar dari awal, tanpa harus membongkar kebiasaan lama.' },
+    mid:  { title: 'Active Adopter', pct: 55, desc: 'Tim Anda sudah mulai pakai AI, tapi belum ada arah strategis yang menyatukan semuanya. AI First Program akan membantu Anda memetakan prioritas dan membangun roadmap yang actionable.' },
+    high: { title: 'Strategic Accelerator', pct: 80, desc: 'Organisasi Anda sudah di jalur yang baik. AI First Program akan mengkalibrasi ulang strategi Anda dengan framework BI dan memastikan akselerasi berjalan pada track yang tepat.' }
   };
 
   document.querySelectorAll('.check__chip').forEach(chip => {
@@ -2744,7 +2667,6 @@ setInterval(() => {
     result.classList.add('active');
     document.getElementById('resultTitle').textContent = profile.title;
     document.getElementById('resultDesc').textContent = profile.desc;
-    document.getElementById('resultLevelName').textContent = profile.level;
     setTimeout(() => {
       document.getElementById('resultMeter').style.width = profile.pct + '%';
     }, 200);
@@ -2767,7 +2689,6 @@ setInterval(() => {
     const email = document.getElementById('checkEmail').value.trim();
     const role = document.getElementById('checkRole').value.trim();
     const profile = document.getElementById('resultTitle').textContent;
-    const level = document.getElementById('resultLevelName').textContent;
     const pct = document.getElementById('resultMeter').style.width;
 
     const q1Text = document.querySelector('[data-q="1"] .selected')?.textContent || '-';
@@ -2783,7 +2704,6 @@ Email: ${email}
 Perusahaan/Jabatan: ${role}
 
 *AI Readiness Snapshot: ${profile} (${pct})*
-Rekomendasi: ${level}
 - Tim pakai AI: ${q1Text}
 - Roadmap AI: ${q2Text}
 - Hambatan utama: ${q3Text}
