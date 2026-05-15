@@ -723,10 +723,10 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
   color: var(--dt-hi); margin-bottom: 4px;
 }
 .footer__brand-tagline {
-  font-size: 13px; font-family: var(--font-body); color: var(--dt-md); margin-bottom: 12px;
+  font-size: 13px; color: var(--dt-md); margin-bottom: 12px;
 }
 .footer__contact {
-  font-size: 13px; font-family: var(--font-body); color: var(--dt-md); line-height: 1.7;
+  font-size: 13px; color: var(--dt-md); line-height: 1.7;
 }
 .footer__contact a { color: var(--gold); text-decoration: none; }
 .footer__bottom {
@@ -873,7 +873,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
   .hero-landing { padding: 32px 0 28px; }
   .hero-bg { width: 54%; max-width: 560px; right: -2%; }
   .nav { gap: 5px; padding: 14px 0; margin-bottom: 20px; }
-  .session { grid-template-columns: 100px 1fr; gap: 20px; padding: 14px 0; }
+  .session { grid-template-columns: 1fr; gap: 6px; padding: 14px 0; }
   .s-time { font-size: 12px; padding-top: 2px; }
   .level-head { grid-template-columns: auto 1fr; gap: 28px; padding-bottom: 22px; margin-bottom: 22px; }
   .level-num { display: block; text-align: right; font-size: 52px; min-width: 64px; }
@@ -896,7 +896,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
   .level-num { font-size: 64px; min-width: 80px; opacity: 0.18; }
   .level-title { font-size: clamp(26px, 2.8vw, 32px); margin-bottom: 12px; }
   .level-desc { font-size: 15px; }
-  .session { grid-template-columns: 110px 1fr; gap: 24px; }
+  .session { grid-template-columns: 1fr; gap: 6px; }
   .tl-row { grid-template-columns: 88px 32px 1fr; }
   .tl-date .days { font-size: 26px; }
   .tl-card { padding: 16px 0 16px 24px; }
@@ -1015,6 +1015,46 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
 .level-cta { display: inline-flex; align-items: center; gap: 6px; padding: 12px 24px; border-radius: 10px; font: 600 13px var(--font-heading); text-decoration: none; transition: all 0.25s; white-space: nowrap; }
 .level-cta--primary { background: var(--gold); color: var(--bg-dark); border: none; }
 .level-cta--primary:hover { background: var(--gold-muted); transform: translateY(-1px); }
+
+/* ─── AHA Metodologi ─── */
+.aha-hero { position: relative; border-radius: 16px; overflow: hidden; margin-bottom: 28px; min-height: 200px; }
+.aha-hero__img { width: 100%; height: 240px; object-fit: cover; object-position: center 30%; display: block; }
+.aha-hero__overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.38) 60%, rgba(0,0,0,0.55) 100%); }
+.aha-hero__content { position: absolute; bottom: 24px; left: 24px; right: 24px; }
+.aha-hero__eyebrow { font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.aha-hero__title { font-family: var(--font-display); font-size: clamp(20px, 5vw, 28px); font-weight: 800; color: #fff; line-height: 1.15; margin: 0; }
+.aha-hero__sub { color: var(--gold); font-style: italic; font-weight: 400; }
+
+/* Delivery mode chips */
+.aha-modes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 28px; }
+.aha-mode { background: rgba(212,168,75,0.06); border: 1px solid rgba(212,168,75,0.18); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+.aha-mode__icon { font-size: 16px; color: var(--gold); line-height: 1; margin-bottom: 2px; }
+.aha-mode__name { font-family: var(--font-heading); font-size: 12px; font-weight: 700; color: var(--text-hi); }
+.aha-mode__desc { font-family: var(--font-mono); font-size: 10px; color: var(--text-lo); letter-spacing: 0.5px; }
+
+/* AHA rows */
+.aha-rows { display: flex; flex-direction: column; gap: 0; margin-bottom: 28px; border: 1px solid rgba(212,168,75,0.14); border-radius: 14px; overflow: hidden; }
+.aha-row { display: flex; align-items: flex-start; gap: 16px; padding: 20px 18px; border-bottom: 1px solid rgba(212,168,75,0.1); }
+.aha-row:last-child { border-bottom: none; }
+.aha-row__letter { flex-shrink: 0; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 24px; font-weight: 900; color: var(--gold); background: rgba(212,168,75,0.1); border-radius: 10px; }
+.aha-row__body { flex: 1; }
+.aha-row__label { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.aha-row__text { font-size: 13px; color: var(--text-md); line-height: 1.6; margin: 0; }
+
+/* Capability tags */
+.aha-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.aha-tag { font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--gold); background: rgba(212,168,75,0.08); border: 1px solid rgba(212,168,75,0.25); border-radius: 20px; padding: 5px 12px; }
+
+/* Photo strip */
+.aha-photos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 8px; }
+.aha-photo { border-radius: 10px; overflow: hidden; aspect-ratio: 4/3; }
+.aha-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+.aha-photo:hover img { transform: scale(1.04); }
+
+@media (min-width: 640px) {
+  .aha-hero__img { height: 280px; }
+  .aha-modes { grid-template-columns: repeat(4, 1fr); }
+}
 </style>
 </head>
 <body>
@@ -1102,9 +1142,9 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
       <div class="level-meta">
         <div class="level-eyebrow">Awareness Session</div>
         <h2 class="level-title">Strategize</h2>
-        <div class="learning-outcome"><strong>Entry point program AI First.</strong><br>Memahami lanskap AI dan mengevaluasi kesiapan organisasi untuk mengadopsi.<br><br>Output: keputusan strategis adopsi AI.</div>
+        <div class="learning-outcome"><strong>Entry point program AI First.</strong> Memahami lanskap AI dan mengevaluasi kesiapan organisasi untuk mengadopsi.<br>Output: keputusan strategis adopsi AI.</div>
         <div class="level-meta-line">
-          <div class="schedule-tag"><span class="dot"></span>08.00 – 11.00 · Selesai</div>
+          <div class="schedule-tag"><span class="dot"></span>In-Person · Awareness Session</div>
           <div class="takeaway"><span class="takeaway-label">BAWA PULANG</span> <span class="takeaway-text">AI Readiness Scorecard</span> — hasil assessment posisi AI Anda dan organisasi menggunakan BI Formula.</div>
         </div>
       </div>
@@ -1117,56 +1157,27 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
         <li>Menemukan use case awal yang berisiko rendah dalam operasi harian — di mana AI bisa langsung memberi nilai nyata dan quick wins</li>
       </ul>
     </div>
-    <div class="session"><div class="s-time">08:00 &ndash; 08:15</div><div class="s-body"><div class="s-title">Opening</div></div></div>
-    <div class="session"><div class="s-time">08:15 &ndash; 09:45</div><div class="s-body"><div class="s-title"><span class="gold">AI First Mindset</span><span class="s-expand">detail →</span></div><div class="s-detail">Kalibrasi cara pandang AI &mdash; dari memakai AI ke AI First for Leaders</div>
-      <div class="cc-grid">
-        <div class="cc-card">
-          <div class="cc-name">Top 7 Emerging Trends of GenAI</div>
-        </div>
-        <div class="cc-card">
-          <div class="cc-name">BI Formula — AI Readiness Audit</div>
-        </div>
+    <div class="cc-grid">
+      <div class="cc-card">
+        <div class="cc-name">Trends GenAI 2026</div>
+        <div class="cc-sub">Lanskap GenAI terkini &middot; potensi &amp; bahaya &middot; konteks 2026</div>
       </div>
-    </div></div>
-    <div class="session"><div class="s-time">09:45 &ndash; 10:30</div><div class="s-body"><div class="s-title">Gallery Walk &mdash; Experiencing Technology</div>      <div class="cc-grid">
-        <div class="cc-card">
-          <div class="cc-name">Private Cloud AI</div>
-          <div class="cc-sub">Local AI &amp; Emerging Trends <span class="chip">Strategize</span></div>
-        </div>
-        <div class="cc-card">
-          <div class="cc-name">Digital Employee Assistant</div>
-          <div class="cc-sub">Chatbot with Prompt 2.0 <span class="chip">Prompt</span></div>
-        </div>
-        <div class="cc-card">
-          <div class="cc-name">Content Creative</div>
-          <div class="cc-sub">Multimodal AI <span class="chip">Create</span></div>
-        </div>
-        <div class="cc-card">
-          <div class="cc-name">IWDemy Digital Lab</div>
-          <div class="cc-sub">No Code / Low Code AI Factory <span class="chip">Build</span></div>
-        </div>
+      <div class="cc-card">
+        <div class="cc-name">BI Formula &mdash; AI Readiness Audit</div>
+        <div class="cc-sub">BI = D_X &times; (C_AI)^APT &middot; audit posisi AI organisasi Anda</div>
       </div>
-    </div></div>
-    <div class="session"><div class="s-time">10:30 &ndash; 11:00</div><div class="s-body"><div class="s-title"><span class="gold">AI First Program</span><span class="s-expand">detail →</span></div>
-      <div class="cc-grid">
-        <div class="cc-card">
-          <div class="cc-name">10x AI Impacts</div>
-          <div class="cc-sub">AI impacts on your business &mdash; apa yang berubah dan bagaimana memimpinnya.</div>
-        </div>
-        <div class="cc-card">
-          <div class="cc-name">10 Weeks TrainShop</div>
-          <div class="cc-sub">Program intensif AI First &mdash; dari Strategize hingga Build.</div>
-        </div>
-        <div class="cc-card">
-          <div class="cc-name">GenAI 7 Capabilities</div>
-          <div class="cc-sub">Tujuh kemampuan GenAI yang perlu dikuasai setiap leader.</div>
-        </div>
+      <div class="cc-card">
+        <div class="cc-name">Gallery Walk</div>
+        <div class="cc-sub">Demo 4 stream: Strategize &middot; Prompt &middot; Create &middot; Build</div>
+      </div>
+      <div class="cc-card">
+        <div class="cc-name">AI First Mindset</div>
+        <div class="cc-sub">Paradigma AI First &middot; skema program &middot; thinking framework</div>
       </div>
     </div>
     <div class="level-cta-bar">
       <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20tertarik%20dengan%20AI%20First%20Program.%20Bisa%20info%20lebih%20lanjut%3F" class="level-cta level-cta--primary" target="_blank">Konsultasi Program →</a>
     </div>
-</div>
   </section>
 
   <!-- PANEL 02 -->
@@ -1177,9 +1188,9 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
       <div class="level-meta">
         <div class="level-eyebrow">Chat Mastery</div>
         <h2 class="level-title">Prompt</h2>
-        <div class="learning-outcome"><strong>AI Skills × Thinking Framework.</strong><br>Menerapkan thinking framework yang tepat agar prompting lebih efektif. Mendapatkan hasil terbaik dari AI melalui prompting berbasis teks.<br><br>Output: teks &amp; pengetahuan yang dihasilkan lewat chat.</div>
+        <div class="learning-outcome"><strong>AI Skills × Thinking Framework.</strong> Menerapkan thinking framework yang tepat agar prompting lebih efektif. Mendapatkan hasil terbaik dari AI melalui prompting berbasis teks.<br>Output: teks &amp; pengetahuan yang dihasilkan lewat chat.</div>
         <div class="level-meta-line">
-          <div class="schedule-tag"><span class="dot"></span>In-Person · 08.00 – 16.30</div>
+          <div class="schedule-tag"><span class="dot"></span>In-Person · 2 Hari</div>
           <div class="takeaway"><span class="takeaway-label">BAWA PULANG</span> <span class="takeaway-text">Personal Prompt Template</span> — template prompt untuk tiga pilar kerja harian: analisis data (chatting), ekstraksi insight (reading), dan drafting komunikasi bisnis (writing).</div>
         </div>
       </div>
@@ -1204,56 +1215,48 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
     <div class="day-split-wrapper">
     <div class="day-panel" id="d02-1">
       <div class="day-col-header">Day 1<span class="tip">Tap materi untuk lihat topik</span></div>
-      <div class="session is-break"><div class="s-time">08:00 &ndash; 08:30</div><div class="s-body"><div class="s-title">Opening, Agenda, Rules of the Game</div></div></div>
       <div class="cc-grid">
           <div class="cc-card">
-            <div class="cc-name">Apa yang Berubah di 2026 — AI di Dunia Kerja Hari Ini</div>
+            <div class="cc-name">Dari Hype ke Kenyataan — AI dalam Operasi Bisnis 2026</div>
             <div class="cc-sub">Trends, Potentials &amp; Dangers</div>
           </div>
           <div class="cc-card">
-            <div class="cc-name">Prompt Engineering: Bicara, Tanya, Riset dengan AI</div>
+            <div class="cc-name">AI sebagai Partner Berpikir — Dialog yang Menghasilkan</div>
             <div class="cc-sub">Prompt engineering &middot; Deep research</div>
           </div>
-      </div>
-      <div class="session is-break"><div class="s-time">12:00 &ndash; 13:00</div><div class="s-body"><div class="s-title">Lunch Break</div></div></div>
-      <div class="cc-grid">
           <div class="cc-card">
-            <div class="cc-name">5 Mode Belajar dengan AI — Ringkasan, Visual &amp; Audio</div>
-            <div class="cc-sub">5 Learning Modes &middot; Infographics, Slide Deck, Audio Podcast</div>
+            <div class="cc-name">Business Process &times; AI &mdash; Temukan Quick Win di Operasi Anda</div>
+            <div class="cc-sub">Proses bisnis &middot; AI usages &middot; Quick wins</div>
           </div>
           <div class="cc-card">
-            <div class="cc-name">Dari Teori ke Praktik — AI dalam Proses Kerja Nyata</div>
-            <div class="cc-sub">Diskusi kelompok &amp; refleksi bersama</div>
+            <div class="cc-name">Research Cerdas — Dari Sumber ke Insight dengan AI</div>
+            <div class="cc-sub">NotebookLM &middot; Chat LLM &middot; Deep research</div>
           </div>
       </div>
-      <div class="session is-break"><div class="s-time">16:00 &ndash; 16:30</div><div class="s-body"><div class="s-title">Wrap Up &amp; Homework</div></div></div>
       <div class="livestream"><span class="pulse"></span> Live Streaming Learning &mdash; How far have we walked?</div>
     </div>
-    <div class="day-panel" id="d02-2" style="margin-top:32px; padding-top:20px; border-top: 1px solid rgba(212,168,75,0.12);">
+    <div class="day-panel" id="d02-2">
       <div class="day-col-header">Day 2<span class="tip">Tap materi untuk lihat topik</span></div>
       <div class="prework-desc"><span class="prework-dot"></span> Self-learning &middot; selesaikan sebelum Day 2 dimulai</div>
-      <div class="session is-break"><div class="s-time">08:00 &ndash; 08:30</div><div class="s-body"><div class="s-title">Opening, Agenda, Rules of the Game</div></div></div>
       <div class="cc-grid">
           <div class="cc-card">
-            <div class="cc-name">Second Brain dengan AI — PKM &amp; PARA Method</div>
+            <div class="cc-name">Second Brain — Kelola Pengetahuan Anda dengan AI</div>
             <div class="cc-sub">Second Brain, Note taking<br>PARA Method (Data management)</div>
           </div>
           <div class="cc-card">
-            <div class="cc-name">AI for Writing: Dari Kalimat Pertama ke Slide Siap Kirim</div>
+            <div class="cc-name">Writing Companion — Dari Kalimat Pertama ke Presentasi Final</div>
             <div class="cc-sub">Text &amp; Slides</div>
           </div>
       </div>
-      <div class="session is-break"><div class="s-time">12:00 &ndash; 13:00</div><div class="s-body"><div class="s-title">Lunch Break</div></div></div>
       <div class="cc-grid">
           <div class="cc-card">
-            <div class="cc-name">Multimodal AI: Buat Grafis &amp; Edit Foto Tanpa Desainer</div>
+            <div class="cc-name">Visual Mandiri — Grafis &amp; Foto dengan AI, Tanpa Desainer</div>
             <div class="cc-sub">Graphic &amp; Photos</div>
           </div>
           <div class="cc-card">
-            <div class="cc-name">AI yang Mengenal Anda — CIS Framework &amp; Personalisasi</div>
+            <div class="cc-name">Dari Tool Umum ke Asisten Pribadi — Personalisasi AI</div>
           </div>
       </div>
-      <div class="session is-break"><div class="s-time">16:00 &ndash; 16:30</div><div class="s-body"><div class="s-title">Wrap Up &amp; Closing</div></div></div>
     </div><!-- /day-panel d02-2 -->
     </div><!-- /day-split-wrapper -->
 
@@ -1270,9 +1273,9 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
       <div class="level-meta">
         <div class="level-eyebrow">Output Creation</div>
         <h2 class="level-title">Create</h2>
-        <div class="learning-outcome"><strong>AI Skills × Domain Expertise.</strong><br>Hasilkan dokumen, laporan, dan artefak berkualitas tinggi dengan AI sebagai co-creator.<br><br>Output: docs, reports, artifacts, files siap pakai.</div>
+        <div class="learning-outcome"><strong>AI Skills × Domain Expertise.</strong> Hasilkan dokumen, laporan, dan artefak berkualitas tinggi dengan AI sebagai co-creator.<br>Output: docs, reports, artifacts, files siap pakai.</div>
         <div class="level-meta-line">
-          <div class="schedule-tag"><span class="dot"></span>In-Person · 08.00 – 16.30</div>
+          <div class="schedule-tag"><span class="dot"></span>In-Person · 2 Hari</div>
           <div class="takeaway"><span class="takeaway-label">BAWA PULANG</span> <span class="takeaway-text">Multimodal Output Portfolio</span> — presentasi eksekutif, interactive report, atau video yang Anda buat sendiri dari problem definition sampai output final.</div>
         </div>
       </div>
@@ -1297,57 +1300,51 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
     <div class="day-split-wrapper">
     <div class="day-panel" id="d03-1">
       <div class="day-col-header">Day 1<span class="tip">Tap materi untuk lihat topik</span></div>
-      <div class="session is-break"><div class="s-time">08:00 &ndash; 08:30</div><div class="s-body"><div class="s-title">Opening, Agenda, Rules of the Game</div></div></div>
       <div class="cc-grid">
           <div class="cc-card">
-            <div class="cc-name">CIS in Action — Design Thinking &amp; Format Mastery</div>
+            <div class="cc-name">Level Up Prompting — Dari ACTIONS ke CIS</div>
             <div class="cc-sub">ACTIONS ke CIS &middot; Design Thinking &middot; File format types</div>
           </div>
           <div class="cc-card">
-            <div class="cc-name">Micro Apps untuk Profesional — Story Telling &amp; Use Cases</div>
+            <div class="cc-name">Mini App, Dampak Besar — Otomasi Task Berulang dengan AI</div>
             <div class="cc-sub">Gems &amp; GPT Custom &middot; Story Telling &middot; Use Cases</div>
           </div>
       </div>
-      <div class="session is-break"><div class="s-time">12:00 &ndash; 13:00</div><div class="s-body"><div class="s-title">Lunch Break</div></div></div>
       <div class="cc-grid">
           <div class="cc-card">
-            <div class="cc-name">AI Workflow: Dari PARA ke MCP — Semua Terhubung</div>
+            <div class="cc-name">Workflow AI End-to-End — Dari Research ke Eksekusi</div>
             <div class="cc-sub">PKM&ndash;PARA &middot; DeepResearch &middot; Integrating Apps &middot; Perplexity + Gemini &middot; MCP</div>
           </div>
           <div class="cc-card">
-            <div class="cc-name">CIS Writing: Dokumen, Slides &amp; Interactive Artifacts</div>
+            <div class="cc-name">Dari Memo ke Presentasi — Produksi Dokumen dengan Brand Voice</div>
             <div class="cc-sub">.md files &middot; Brand voice &middot; Slides &middot; Interactive website</div>
           </div>
       </div>
-      <div class="session is-break"><div class="s-time">16:00 &ndash; 16:30</div><div class="s-body"><div class="s-title">Wrap Up &amp; Homework</div></div></div>
       <div class="livestream"><span class="pulse"></span> Live Streaming Learning</div>
     </div>
-    <div class="day-panel" id="d03-2" style="margin-top:32px; padding-top:20px; border-top: 1px solid rgba(212,168,75,0.12);">
+    <div class="day-panel" id="d03-2">
       <div class="day-col-header">Day 2<span class="tip">Tap materi untuk lihat topik</span></div>
       <div class="prework-desc"><span class="prework-dot"></span> Self-learning &middot; selesaikan sebelum Day 2 dimulai</div>
-      <div class="session is-break"><div class="s-time">08:00 &ndash; 08:30</div><div class="s-body"><div class="s-title">Opening, Agenda, Rules of the Game</div></div></div>
       <div class="cc-grid">
           <div class="cc-card">
-            <div class="cc-name">Think Deeper dengan AI — APT Framework &amp; CIS PKM</div>
+            <div class="cc-name">Berpikir Lebih Tajam — APT Framework dalam Keputusan Strategis</div>
             <div class="cc-sub">APT Thinking Framework &middot; CIS PKM &middot; CIS NotebookLM</div>
           </div>
           <div class="cc-card">
-            <div class="cc-name">Gems sebagai Creative Partner — Untuk Semua Format</div>
+            <div class="cc-name">AI Creative Partner — Produksi Multi-Format Lebih Cepat</div>
             <div class="cc-sub">Gems for Multimodal &middot; Content TBD (Juli)</div>
           </div>
       </div>
-      <div class="session is-break"><div class="s-time">12:00 &ndash; 13:00</div><div class="s-body"><div class="s-title">Lunch Break</div></div></div>
       <div class="cc-grid">
           <div class="cc-card">
-            <div class="cc-name">Personalized Productivity — AI yang Ingat &amp; Mengatur Segalanya</div>
+            <div class="cc-name">AI yang Bekerja untuk Anda — Produktivitas Terintegrasi</div>
             <div class="cc-sub">Managing Files: GDrive &middot; Personalization &middot; Multiple data &middot; Memory</div>
           </div>
           <div class="cc-card">
-            <div class="cc-name">Emerging Trends &amp; Ethical AI — 5 Ilusi AI &amp; Guardrail</div>
+            <div class="cc-name">Pemimpin AI yang Bijak — Trend, Risiko &amp; Governance</div>
             <div class="cc-sub">Diverse LLM types &amp; cost &middot; Select right LLM &middot; 5 Illusions of AI &middot; Eval &amp; Guardrail &middot; Ethical AI</div>
           </div>
       </div>
-      <div class="session is-break"><div class="s-time">16:00 &ndash; 16:30</div><div class="s-body"><div class="s-title">Wrap Up &amp; Closing</div></div></div>
     </div><!-- /day-panel d03-2 -->
     </div><!-- /day-split-wrapper -->
 
@@ -1364,7 +1361,7 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
       <div class="level-meta">
         <div class="level-eyebrow">NoCode AI Build</div>
         <h2 class="level-title">Build</h2>
-        <div class="learning-outcome"><strong>AI Skills × Domain Expertise × Thinking Framework.</strong><br>Membangun workflow dan sistem AI tanpa coding.<br><br>Output: workflows, tools &amp; system yang berjalan mandiri.</div>
+        <div class="learning-outcome"><strong>AI Skills × Domain Expertise × Thinking Framework.</strong> Membangun workflow dan sistem AI tanpa coding.<br>Output: workflows, tools &amp; system yang berjalan mandiri.</div>
         <div class="level-meta-line">
           <div class="schedule-tag"><span class="dot"></span>In-Person · Project Based</div>
           <div class="takeaway"><span class="takeaway-label">BAWA PULANG</span> <span class="takeaway-text">Working Micro AI App</span> — aplikasi AI dari proyek kerja nyata Anda, siap didemonstrasikan dan diadopsi tim.</div>
@@ -1381,25 +1378,16 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
     </div>
     <div class="cc-grid">
       <div class="cc-card">
-        <div class="cc-name">Action Learning Project</div>
+        <div class="cc-name">Project Framing — Dari Problem ke Blueprint</div>
         <div class="cc-sub">Defining projects<br>Problem definition &amp; group setup</div>
       </div>
       <div class="cc-card">
-        <div class="cc-name">Complex Problem Solving</div>
+        <div class="cc-name">Pilih Jalur Anda — Code, Multimodal, Writing, Thinking, Chatbot</div>
         <div class="cc-sub">In professional team setting</div>
       </div>
-      <div class="cc-card">
-        <div class="cc-name">Frontier Model &amp; Local AI</div>
-        <div class="cc-sub">Membandingkan dan mengintegrasikan model AI terdepan dengan solusi lokal</div>
-      </div>
-      <div class="cc-card">
-        <div class="cc-name">Agentic AI</div>
-        <div class="cc-sub">Membangun AI agent yang bekerja secara otonom</div>
-      </div>
-      <div class="cc-card">
-        <div class="cc-name">Vibe Coding</div>
-        <div class="cc-sub">No-code approach &mdash; membangun aplikasi tanpa programming</div>
-      </div>
+
+
+
     </div><!-- /cc-grid -->
 
     <div class="level-cta-bar">
@@ -1432,59 +1420,84 @@ body { font-family: var(--font-body); background: var(--bg-dark); color: var(--t
   <!-- PANEL AHA METHODOLOGY -->
   <section class="panel" id="p-aha">
     <button class="panel__back" onclick="showHub()">← Semua Level</button>
-    <div class="level-head">
-      <div class="level-num" style="opacity:0.4; color: var(--gold);">★</div>
-      <div class="level-meta">
-        <div class="level-eyebrow" style="color: var(--gold);">AHA Methodology</div>
-        <h2 class="level-title">Metodologi</h2>
-        <p class="level-desc">Dirancang untuk pemimpin yang tidak punya waktu untuk trial and error.</p>
+
+    <!-- Hero photo block -->
+    <div class="aha-hero">
+      <img src="images/iwdemy-learning-lab---executive-training-01.jpg" alt="IWDemy Learning Lab" class="aha-hero__img">
+      <div class="aha-hero__overlay"></div>
+      <div class="aha-hero__content">
+        <div class="aha-hero__eyebrow">ADOPTION · THE LEARNER</div>
+        <h2 class="aha-hero__title">HyFlex AHA — <span class="aha-hero__sub">execution efficiency</span></h2>
       </div>
     </div>
 
-    <p style="color:var(--text-lo);font-size:14px;margin-bottom:28px;line-height:1.6;">Fleksibel. Terstruktur. Anda yang kendalikan.</p>
-
-    <!-- AHA Grid -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:40px;">
-      <div style="background:rgba(212,168,75,0.06);border:1px solid rgba(212,168,75,0.15);border-radius:14px;padding:20px 14px;text-align:center;">
-        <div style="font-size:32px;font-weight:800;color:var(--gold);font-family:var(--font-display);line-height:1;margin-bottom:6px;">A</div>
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-family:var(--font-mono);margin-bottom:10px;">Adaptif</div>
-        <p style="font-size:13px;color:var(--text-md);line-height:1.55;">Tatap muka, video, hybrid — memaksimalkan cara dan waktu belajar Anda.</p>
+    <!-- Delivery mode chips -->
+    <div class="aha-modes">
+      <div class="aha-mode">
+        <div class="aha-mode__icon">◎</div>
+        <div class="aha-mode__name">Online Self-Learning</div>
+        <div class="aha-mode__desc">Kapan saja, di mana saja</div>
       </div>
-      <div style="background:rgba(212,168,75,0.06);border:1px solid rgba(212,168,75,0.15);border-radius:14px;padding:20px 14px;text-align:center;">
-        <div style="font-size:32px;font-weight:800;color:var(--gold);font-family:var(--font-display);line-height:1;margin-bottom:6px;">H</div>
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-family:var(--font-mono);margin-bottom:10px;">Holistik</div>
-        <p style="font-size:13px;color:var(--text-md);line-height:1.55;">Briefing, workshop, peer coaching, action project — satu rangkaian utuh yang memperbesar dampak.</p>
+      <div class="aha-mode">
+        <div class="aha-mode__icon">▶</div>
+        <div class="aha-mode__name">Live Stream</div>
+        <div class="aha-mode__desc">Jarak jauh, real time</div>
       </div>
-      <div style="background:rgba(212,168,75,0.06);border:1px solid rgba(212,168,75,0.15);border-radius:14px;padding:20px 14px;text-align:center;">
-        <div style="font-size:32px;font-weight:800;color:var(--gold);font-family:var(--font-display);line-height:1;margin-bottom:6px;">A</div>
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-family:var(--font-mono);margin-bottom:10px;">Aktif</div>
-        <p style="font-size:13px;color:var(--text-md);line-height:1.55;">Peserta di driver seat — semakin Anda terlibat, semakin besar hasilnya.</p>
+      <div class="aha-mode">
+        <div class="aha-mode__icon">◈</div>
+        <div class="aha-mode__name">In-Person</div>
+        <div class="aha-mode__desc">Interaksi mendalam</div>
       </div>
-    </div>
-
-    <!-- IWDemy Learning Lab -->
-    <div style="margin-top:8px;">
-      <div style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-family:var(--font-mono);margin-bottom:16px;">IWDemy Learning Lab</div>
-      <div style="display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:8px;">
-        <div style="grid-row:1/3;border-radius:12px;overflow:hidden;">
-          <img src="images/iwdemy-learning-lab---executive-training-01.jpg" alt="IWDemy Executive Training" style="width:100%;height:100%;object-fit:cover;display:block;">
-        </div>
-        <div style="border-radius:12px;overflow:hidden;">
-          <img src="images/iwdemy-learning-lab---dual-screen-workshop-01.jpg" alt="IWDemy Dual Screen Workshop" style="width:100%;height:160px;object-fit:cover;display:block;">
-        </div>
-        <div style="border-radius:12px;overflow:hidden;">
-          <img src="images/iwdemy-learning-lab---presentasi-ai-01.jpg" alt="IWDemy Presentasi AI" style="width:100%;height:160px;object-fit:cover;display:block;">
-        </div>
-        <div style="border-radius:12px;overflow:hidden;">
-          <img src="images/iwdemy-learning-lab---studio-premium-01.jpg" alt="IWDemy Studio Premium" style="width:100%;height:160px;object-fit:cover;display:block;">
-        </div>
-        <div style="border-radius:12px;overflow:hidden;">
-          <img src="images/iwdemy-learning-lab---berkarya-berkembang-berdampak-01.jpg" alt="IWDemy Berkarya Berkembang Berdampak" style="width:100%;height:160px;object-fit:cover;display:block;">
-        </div>
+      <div class="aha-mode">
+        <div class="aha-mode__icon">⬡</div>
+        <div class="aha-mode__name">Hybrid</div>
+        <div class="aha-mode__desc">Fleksibilitas terpadu</div>
       </div>
     </div>
 
-    <div class="level-cta-bar" style="margin-top:40px;">
+    <!-- AHA rows -->
+    <div class="aha-rows">
+      <div class="aha-row">
+        <div class="aha-row__letter">A</div>
+        <div class="aha-row__body">
+          <div class="aha-row__label">Adaptif</div>
+          <p class="aha-row__text">Belajar tatap muka, live stream, atau mandiri — format menyesuaikan jadwal dan konteks Anda, bukan sebaliknya. HyFlex memastikan tidak ada yang tertinggal.</p>
+        </div>
+      </div>
+      <div class="aha-row">
+        <div class="aha-row__letter">H</div>
+        <div class="aha-row__body">
+          <div class="aha-row__label">Holistik</div>
+          <p class="aha-row__text">Briefing strategis, workshop praktikal, peer coaching, dan action project dirancang sebagai satu rangkaian — bukan modul terpisah. Transfer belajar terjadi karena konteks utuh.</p>
+        </div>
+      </div>
+      <div class="aha-row">
+        <div class="aha-row__letter">A</div>
+        <div class="aha-row__body">
+          <div class="aha-row__label">Aktif</div>
+          <p class="aha-row__text">Peserta di driver seat. Setiap sesi meminta keputusan nyata, bukan sekadar mendengar. Semakin dalam keterlibatan, semakin besar dampak yang dihasilkan.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom capability tags -->
+    <div class="aha-tags">
+      <span class="aha-tag">COST EFFECTIVE</span>
+      <span class="aha-tag">TIME FLEXIBLE</span>
+      <span class="aha-tag">PLACE ADAPTABLE</span>
+      <span class="aha-tag">LEARNING TRANSFER</span>
+      <span class="aha-tag">FUTURE READY</span>
+    </div>
+
+    <!-- Secondary photo strip -->
+    <div class="aha-photos">
+      <div class="aha-photo"><img src="images/iwdemy-learning-lab---dual-screen-workshop-01.jpg" alt="Workshop"></div>
+      <div class="aha-photo"><img src="images/iwdemy-learning-lab---presentasi-ai-01.jpg" alt="Presentasi AI"></div>
+      <div class="aha-photo"><img src="images/iwdemy-learning-lab---studio-premium-01.jpg" alt="Studio Premium"></div>
+      <div class="aha-photo"><img src="images/iwdemy-learning-lab---berkarya-berkembang-berdampak-01.jpg" alt="Berkembang Berdampak"></div>
+    </div>
+
+    <div class="level-cta-bar" style="margin-top:36px;">
       <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20tertarik%20dengan%20AI%20First%20Program.%20Bisa%20info%20lebih%20lanjut%3F" class="level-cta level-cta--primary" target="_blank">Konsultasi Program →</a>
     </div>
   </section>
