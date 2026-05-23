@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Distill — Productivity Partner Gem · AI First Program</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#D4A84B;--gold-lt:#E8C97A;
+  --gold-dim:rgba(212,168,75,0.10);--gold-mid:rgba(212,168,75,0.18);
+  --gold-bdr:rgba(212,168,75,0.28);
+  --dark:#0E0E0E;--dark2:#161614;--dark3:#1E1D1A;--dark4:#252320;
+  --cream:#F8F6F2;
+  /* ── CONTRAST BOOST ── */
+  --t-hi:rgba(248,246,242,0.95);
+  --t-md:rgba(248,246,242,0.74);
+  --t-lo:rgba(248,246,242,0.48);
+  --t-body:rgba(255,255,255,0.78);
+  --bdr:rgba(255,255,255,0.08);--bdr-s:rgba(255,255,255,0.12);--bdr-gold:rgba(212,168,75,0.25);
+  --green:rgba(100,220,160,0.90);--green-dim:rgba(100,220,160,0.08);--green-bdr:rgba(100,220,160,0.22);
+  --red:rgba(248,120,120,0.80);--red-dim:rgba(248,120,120,0.07);--red-bdr:rgba(248,120,120,0.20);
+  --fd:"Plus Jakarta Sans",sans-serif;
+  --fb:"Inter",sans-serif;
+  --fm:"JetBrains Mono",monospace;
+  --r:12px;--r-lg:16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;background:var(--dark);font-family:var(--fb);-webkit-font-smoothing:antialiased;color:var(--t-body)}
+button{font:inherit;cursor:pointer;background:none;border:none;color:inherit;text-align:left}
+.canvas{width:1080px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+
+/* ─── HEADER ─── */
+.header{display:flex;align-items:center;justify-content:space-between;padding:28px 56px;border-bottom:1px solid var(--bdr)}
+.aif-pill{display:inline-flex;align-items:center;padding:6px 16px;border:1px solid var(--gold-bdr);border-radius:100px;background:var(--gold-dim);font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:0.06em;color:var(--gold);text-transform:uppercase}
+/* logo pills */
+.logo-row{display:flex;align-items:center;gap:6px}
+.logo-pill{display:inline-flex;align-items:center;gap:7px;padding:5px 12px 5px 7px;border:1px solid var(--bdr-s);border-radius:100px;background:rgba(255,255,255,0.03);font-size:11px;font-weight:600;color:var(--t-md);white-space:nowrap}
+.logo-pill svg{flex-shrink:0}
+.logo-sep{width:1px;height:16px;background:rgba(255,255,255,0.12);flex-shrink:0;margin:0 2px}
+
+/* ─── HERO ─── */
+.hero{padding:52px 56px 44px;position:relative;overflow:hidden;border-bottom:1px solid var(--bdr)}
+.hero-bg{position:absolute;right:-30px;top:50%;transform:translateY(-50%);opacity:0.035;pointer-events:none}
+.hero-label{font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(212,168,75,0.55);margin-bottom:12px}
+.hero-name{font-family:var(--fd);font-size:72px;font-weight:900;color:var(--gold);line-height:0.9;letter-spacing:-0.04em;margin-bottom:12px}
+.hero-sub{font-family:var(--fd);font-size:20px;font-weight:700;color:var(--t-hi);line-height:1.35;margin-bottom:8px;max-width:560px}
+.hero-desc{font-size:14px;color:var(--t-md);line-height:1.55;max-width:580px;font-weight:500;margin-bottom:24px}
+
+/* CODE flow */
+.code-flow{display:flex;align-items:center;gap:0;margin-bottom:28px}
+.cf-node{display:flex;align-items:center;gap:6px;padding:8px 16px;background:var(--dark3);border:1px solid var(--bdr);border-radius:var(--r);font-size:12.5px;font-weight:600;color:var(--t-lo);font-family:var(--fd)}
+.cf-node.active{background:var(--gold-dim);border-color:var(--gold-bdr);color:var(--gold)}
+.cf-node svg{flex-shrink:0}
+.cf-arrow{width:24px;display:flex;align-items:center;justify-content:center;color:var(--t-lo);flex-shrink:0}
+
+/* before/after strip */
+.ba-strip{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:780px}
+.ba-card{padding:16px 18px;border-radius:var(--r);display:flex;flex-direction:column;gap:6px}
+.ba-card.before{background:var(--red-dim);border:1px solid var(--red-bdr)}
+.ba-card.after{background:var(--green-dim);border:1px solid var(--green-bdr)}
+.ba-label{font-family:var(--fm);font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:3px}
+.ba-card.before .ba-label{color:var(--red)}
+.ba-card.after .ba-label{color:var(--green)}
+.ba-items{list-style:none;display:flex;flex-direction:column;gap:5px}
+.ba-items li{font-size:12px;line-height:1.45;display:flex;align-items:center;gap:7px;font-weight:500}
+.ba-card.before li{color:var(--t-md)}
+.ba-card.after li{color:var(--t-hi)}
+.ba-ic{flex-shrink:0}
+
+/* ─── SECTION CARD (accordion wrapper) ─── */
+.section-card{border-bottom:1px solid var(--bdr);background:transparent}
+.sc-header{display:flex;align-items:center;justify-content:space-between;width:100%;padding:32px 56px;cursor:pointer;transition:background 0.2s}
+.sc-header:hover{background:rgba(255,255,255,0.015)}
+.sc-header-left{display:flex;flex-direction:column;gap:4px}
+.sc-label{font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);opacity:0.75}
+.sc-title{font-family:var(--fd);font-size:20px;font-weight:800;color:var(--t-hi);letter-spacing:-0.01em}
+.sc-chevron{width:22px;height:22px;color:var(--t-lo);transition:transform 0.3s;flex-shrink:0}
+.section-card.open .sc-chevron{transform:rotate(180deg)}
+.sc-body{max-height:0;overflow:hidden;transition:max-height 0.45s ease}
+.section-card.open .sc-body{max-height:2000px}
+.sc-content{padding:0 56px 44px}
+
+/* ─── FLOW TRACK (Section 1) ─── */
+.flow-track{display:flex;gap:8px;align-items:stretch}
+.flow-step{flex:1;display:flex;flex-direction:column;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--bdr-s);background:var(--dark3);position:relative}
+.flow-step.final{border-color:var(--gold-bdr);background:var(--gold-dim)}
+.fs-head{padding:16px 18px 12px;display:flex;align-items:center;gap:10px}
+.fs-num{width:30px;height:30px;border-radius:50%;background:rgba(212,168,75,0.12);border:1px solid rgba(212,168,75,0.25);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:14px;font-weight:900;color:var(--gold);flex-shrink:0}
+.flow-step.final .fs-num{background:var(--gold);color:var(--dark);border-color:var(--gold)}
+.fs-title{font-size:14.5px;font-weight:700;color:var(--t-hi);font-family:var(--fd)}
+.fs-body{padding:0 18px 16px;flex:1}
+.fs-desc{font-size:12.5px;color:var(--t-md);line-height:1.5;margin-bottom:10px;font-weight:500}
+.fs-hint{font-family:var(--fm);font-size:10px;color:rgba(212,168,75,0.55);font-style:italic;line-height:1.45}
+.flow-step.final .fs-hint{color:rgba(212,168,75,0.75)}
+
+/* output mini grid */
+.out-mini{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.om-item{display:flex;align-items:center;gap:7px;padding:7px 9px;background:rgba(212,168,75,0.08);border:1px solid rgba(212,168,75,0.15);border-radius:8px}
+.om-item svg{flex-shrink:0;color:var(--gold)}
+.om-item span{font-size:11px;font-weight:600;color:var(--t-hi);font-family:var(--fd)}
+.om-item.wide{grid-column:1/-1}
+
+/* flow arrows */
+.flow-arrow-v{width:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--t-lo)}
+
+/* ─── INTENT SIMULATOR (Section 2) ─── */
+.sim-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sim-input{background:var(--dark3);border:1px solid var(--bdr-s);border-radius:var(--r-lg);padding:20px;display:flex;flex-direction:column;gap:12px}
+.sim-output{background:var(--gold-dim);border:1px solid var(--gold-bdr);border-radius:var(--r-lg);padding:20px;display:flex;flex-direction:column;gap:10px}
+.sim-label{font-family:var(--fm);font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:2px}
+.sim-input .sim-label{color:var(--t-lo)}
+.sim-output .sim-label{color:var(--gold)}
+.sim-raw{font-size:12px;color:var(--t-md);line-height:1.55;padding:12px 14px;background:rgba(255,255,255,0.03);border:1px solid var(--bdr);border-radius:8px;font-style:italic;font-weight:500}
+.sim-question{font-size:13px;color:var(--t-hi);font-weight:600;margin-top:4px;font-family:var(--fd)}
+
+/* intent buttons */
+.intent-btns{display:flex;gap:6px;flex-wrap:wrap}
+.intent-btn{padding:7px 14px;border:1px solid var(--bdr-s);border-radius:100px;background:transparent;font-family:var(--fd);font-size:11.5px;font-weight:600;color:var(--t-md);cursor:pointer;transition:all 0.2s}
+.intent-btn:hover,.intent-btn.active{background:var(--gold-dim);border-color:var(--gold-bdr);color:var(--gold)}
+
+/* output result */
+.sim-result{display:none;flex-direction:column;gap:8px}
+.sim-result.active{display:flex}
+.sr-block{padding:10px 12px;border-radius:8px;border-left:2px solid var(--gold);background:rgba(212,168,75,0.06)}
+.sr-key{font-family:var(--fm);font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);opacity:0.75;margin-bottom:4px}
+.sr-val{font-size:12px;color:var(--t-hi);line-height:1.5;font-weight:500}
+.sr-val .muted{color:var(--t-md)}
+
+/* ─── SETUP INTERVIEW (Section 3) ─── */
+.interview-list{display:flex;flex-direction:column;gap:8px}
+.iq-item{border:1px solid var(--bdr-s);border-radius:var(--r);overflow:hidden;background:var(--dark3);transition:border-color 0.2s}
+.iq-item.open{border-color:var(--gold-bdr)}
+.iq-header{display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer;user-select:none;width:100%}
+.iq-header:hover{background:rgba(255,255,255,0.02)}
+.iq-num{width:26px;height:26px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--gold-bdr);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:11px;font-weight:800;color:var(--gold);flex-shrink:0}
+.iq-q{font-size:14px;font-weight:700;color:var(--t-hi);font-family:var(--fd);flex:1}
+.iq-chevron{width:18px;height:18px;color:var(--t-lo);transition:transform 0.3s;flex-shrink:0}
+.iq-item.open .iq-chevron{transform:rotate(180deg)}
+.iq-body{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.iq-item.open .iq-body{max-height:300px}
+.iq-content{padding:0 20px 18px 60px;display:flex;flex-direction:column;gap:10px}
+.iq-why{font-size:12.5px;color:var(--t-md);line-height:1.5;font-weight:500}
+.iq-example{padding:12px 16px;background:var(--gold-dim);border-radius:8px;border-left:2px solid var(--gold);display:flex;flex-direction:column;gap:5px}
+.iq-ex-label{font-family:var(--fm);font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);opacity:0.65}
+.iq-ex-text{font-size:12.5px;color:var(--t-hi);line-height:1.5;font-style:italic;font-weight:500}
+
+/* ─── PRO TIPS + SYSTEM PROMPT (Section 4) ─── */
+.tips-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:10px}
+.tip-hero{padding:24px 22px;background:var(--gold-dim);border:1px solid var(--gold-bdr);border-radius:var(--r-lg);display:flex;flex-direction:column;gap:12px}
+.tip-hero .tip-icon{width:42px;height:42px;border-radius:12px;background:var(--gold-mid);border:1px solid var(--gold-bdr);display:flex;align-items:center;justify-content:center;color:var(--gold)}
+.tip-hero .tip-t{font-size:16px;font-weight:800;color:var(--t-hi);font-family:var(--fd)}
+.tip-hero .tip-d{font-size:13.5px;color:var(--t-hi);line-height:1.55;font-weight:500}
+.tip-stack{display:flex;flex-direction:column;gap:10px}
+.tip-sm{padding:16px 18px;background:var(--dark3);border:1px solid var(--bdr-s);border-radius:var(--r);display:flex;align-items:flex-start;gap:12px}
+.tip-sm .tip-ic{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid var(--bdr-s);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--t-md)}
+.tip-sm .tip-t{font-size:13.5px;font-weight:700;color:var(--t-hi);font-family:var(--fd);margin-bottom:3px}
+.tip-sm .tip-d{font-size:11.5px;color:var(--t-md);line-height:1.45;font-weight:500}
+
+/* system prompt tabs */
+.prompt-section{margin-top:32px;padding-top:28px;border-top:1px solid var(--bdr)}
+.prompt-section .sc-label{margin-bottom:4px}
+.prompt-section .sc-title{margin-bottom:16px;font-size:18px}
+.prompt-tabs{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
+.pt-btn{padding:7px 14px;border:1px solid var(--bdr-s);border-radius:100px;background:transparent;font-family:var(--fm);font-size:10.5px;font-weight:600;color:var(--t-md);cursor:pointer;transition:all 0.2s;letter-spacing:0.04em}
+.pt-btn:hover,.pt-btn.active{background:var(--gold-dim);border-color:var(--gold-bdr);color:var(--gold)}
+.pt-panel{display:none;padding:20px;background:var(--dark3);border:1px solid var(--bdr-s);border-radius:var(--r-lg)}
+.pt-panel.active{display:block}
+.pt-content{font-family:var(--fm);font-size:11.5px;color:var(--t-md);line-height:1.7;white-space:pre-wrap;word-break:break-word;font-weight:500}
+.pt-content .hl{color:var(--gold);font-weight:600}
+.pt-content .em{color:var(--t-hi);font-weight:600}
+
+/* ─── FOOTER ─── */
+.footer{padding:24px 56px;border-top:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between}
+.footer-attr{font-family:var(--fm);font-size:10px;color:rgba(248,246,242,0.25);letter-spacing:0.07em;font-weight:500}
+.footer-program{font-family:var(--fd);font-size:11px;font-weight:700;color:var(--gold);opacity:0.5;letter-spacing:0.04em}
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="header">
+    <div class="aif-pill">AI First Program · Level 3 · Day 2</div>
+    <div class="logo-row">
+      <div class="logo-pill">
+        <svg viewBox="0 0 18 18" fill="none" width="16" height="16" aria-hidden="true">
+          <rect x="1.5" y="1.5" width="15" height="15" rx="4" fill="rgba(212,168,75,0.12)" stroke="rgba(212,168,75,0.35)" stroke-width="0.8"/>
+          <text x="9" y="12.5" font-family="'Plus Jakarta Sans',sans-serif" font-weight="800" font-size="7.5" fill="#D4A84B" text-anchor="middle">IW</text>
+        </svg>
+        <span>IWDemy</span>
+      </div>
+      <div class="logo-sep"></div>
+      <div class="logo-pill">
+        <svg viewBox="0 0 18 18" fill="none" width="16" height="16" aria-hidden="true">
+          <rect x="1.5" y="1.5" width="15" height="15" rx="4" fill="rgba(212,168,75,0.12)" stroke="rgba(212,168,75,0.35)" stroke-width="0.8"/>
+          <text x="9" y="12.5" font-family="'Libre Bodoni','Georgia',serif" font-weight="700" font-size="9" fill="#D4A84B" text-anchor="middle">T</text>
+        </svg>
+        <span>Tjitra</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <svg class="hero-bg" width="280" height="280" viewBox="0 0 280 280" fill="none" aria-hidden="true">
+      <path d="M140 16 L255 107 L215 248 L65 248 L25 107 Z" stroke="#D4A84B" stroke-width="1.2"/>
+      <path d="M140 16 L255 107 L140 140 L25 107 Z" stroke="#D4A84B" stroke-width="0.8"/>
+      <path d="M25 107 L140 140 L215 248" stroke="#D4A84B" stroke-width="0.5" stroke-opacity="0.4"/>
+      <path d="M255 107 L140 140 L65 248" stroke="#D4A84B" stroke-width="0.5" stroke-opacity="0.4"/>
+    </svg>
+    <div class="hero-label">Shared Gem · Productivity Partner</div>
+    <h1 class="hero-name">Distill</h1>
+    <p class="hero-sub">Raw input masuk. Keputusan dan aksi keluar.</p>
+    <p class="hero-desc">AI Chief of Staff yang menerima apapun yang Anda paste — meeting notes, email thread, laporan — dan mengeluarkan output terstruktur yang langsung bisa dieksekusi.</p>
+
+    <div class="code-flow">
+      <div class="cf-node"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 3h8v8H3z" stroke="currentColor" stroke-width="1"/></svg>Capture</div>
+      <div class="cf-arrow"><svg width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 5h12M10 1.5l3 3.5-3 3.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="cf-node"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="2" y="3" width="10" height="8" rx="1.5" stroke="currentColor" stroke-width="1"/></svg>Organize</div>
+      <div class="cf-arrow"><svg width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 5h12M10 1.5l3 3.5-3 3.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="cf-node active"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2v5M5 4.5L7 7l2-2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 10h8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>Distill</div>
+      <div class="cf-arrow"><svg width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 5h12M10 1.5l3 3.5-3 3.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="cf-node"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 10l3-6 3 6" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>Express</div>
+    </div>
+
+    <!-- Before/After strip -->
+    <div class="ba-strip">
+      <div class="ba-card before">
+        <div class="ba-label">Tanpa Distill</div>
+        <ul class="ba-items">
+          <li><svg class="ba-ic" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 3l6 6M9 3l-6 6" stroke="rgba(248,120,120,0.7)" stroke-width="1.3" stroke-linecap="round"/></svg>Notes menumpuk, tidak diolah</li>
+          <li><svg class="ba-ic" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 3l6 6M9 3l-6 6" stroke="rgba(248,120,120,0.7)" stroke-width="1.3" stroke-linecap="round"/></svg>Action items terlewat</li>
+          <li><svg class="ba-ic" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 3l6 6M9 3l-6 6" stroke="rgba(248,120,120,0.7)" stroke-width="1.3" stroke-linecap="round"/></svg>Follow-up hanya di kepala</li>
+        </ul>
+      </div>
+      <div class="ba-card after">
+        <div class="ba-label">Dengan Distill</div>
+        <ul class="ba-items">
+          <li><svg class="ba-ic" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 6.5l2 2 4-4.5" stroke="rgba(100,220,160,0.85)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Paste — 5 output dalam 2 menit</li>
+          <li><svg class="ba-ic" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 6.5l2 2 4-4.5" stroke="rgba(100,220,160,0.85)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Setiap aksi ada owner + deadline</li>
+          <li><svg class="ba-ic" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 6.5l2 2 4-4.5" stroke="rgba(100,220,160,0.85)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>PARA routing + GCal otomatis</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 1: CARA KERJA + OUTPUT ═══ -->
+  <div class="section-card open" id="sec1">
+    <button class="sc-header" aria-expanded="true" aria-controls="sec1-body" onclick="toggleSection('sec1',this)">
+      <div class="sc-header-left">
+        <div class="sc-label">Cara Kerja</div>
+        <div class="sc-title">Paste — Jawab — Eksekusi</div>
+      </div>
+      <svg class="sc-chevron" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M6 8.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="sc-body" id="sec1-body">
+      <div class="sc-content">
+        <div class="flow-track">
+          <div class="flow-step">
+            <div class="fs-head"><div class="fs-num">1</div><div class="fs-title">Paste raw input</div></div>
+            <div class="fs-body">
+              <div class="fs-desc">Apapun bentuknya. Tidak perlu format khusus — langsung paste seperti apa adanya.</div>
+              <div class="fs-hint">Meeting notes, email thread, laporan, brain dump, brief tim</div>
+            </div>
+          </div>
+          <div class="flow-arrow-v"><svg width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M2 5h10M9 2l3 3-3 3" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="flow-step">
+            <div class="fs-head"><div class="fs-num">2</div><div class="fs-title">Jawab 1 pertanyaan</div></div>
+            <div class="fs-body">
+              <div class="fs-desc">Distill menginfer konteks dari konten. Hanya intention yang dikonfirmasi.</div>
+              <div class="fs-hint">"Output ini untuk siapa — diri sendiri, tim, atau atasan?"</div>
+            </div>
+          </div>
+          <div class="flow-arrow-v"><svg width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M2 5h10M9 2l3 3-3 3" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="flow-step final">
+            <div class="fs-head"><div class="fs-num">3</div><div class="fs-title">5 output siap eksekusi</div></div>
+            <div class="fs-body">
+              <div class="out-mini">
+                <div class="om-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="2" y="2" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1"/><path d="M5 5h4M5 7.5h3" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/></svg><span>Key Points</span></div>
+                <div class="om-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2v4M5.5 4L7 6l1.5-2" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 9h8" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/></svg><span>Actions + Owner</span></div>
+                <div class="om-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="2" y="4" width="10" height="8" rx="1.5" stroke="currentColor" stroke-width="1"/><path d="M5 2h4l1.5 2h-7z" stroke="currentColor" stroke-width="0.8"/></svg><span>PARA Routing</span></div>
+                <div class="om-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="2" y="2" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1"/><path d="M2 5.5h10M5.5 2v10" stroke="currentColor" stroke-width="0.7"/></svg><span>GCal Suggest</span></div>
+                <div class="om-item wide"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="5.5" cy="5.5" r="3" stroke="currentColor" stroke-width="1"/><circle cx="9.5" cy="5.5" r="2" stroke="currentColor" stroke-width="1" opacity="0.5"/><path d="M3 12c0-1.5 1-3 2.5-3s2.5 1.5 2.5 3" stroke="currentColor" stroke-width="1"/></svg><span>Who Needs to Know</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 2: INTENT SIMULATOR ═══ -->
+  <div class="section-card" id="sec2">
+    <button class="sc-header" aria-expanded="false" aria-controls="sec2-body" onclick="toggleSection('sec2',this)">
+      <div class="sc-header-left">
+        <div class="sc-label">Intent-Based Output</div>
+        <div class="sc-title">Satu pertanyaan, output berubah</div>
+      </div>
+      <svg class="sc-chevron" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M6 8.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="sc-body" id="sec2-body">
+      <div class="sc-content">
+        <div class="sim-wrap">
+          <div class="sim-input">
+            <div class="sim-label">Raw Input (contoh)</div>
+            <div class="sim-raw">Rapat product tadi: timeline launch mundur 2 minggu karena bug payment. Budget QA perlu tambah Rp 50jt. Rina handle fix, Budi koordinasi vendor backup. Pak Andi perlu tahu progress minggu depan.</div>
+            <div class="sim-question">Distill bertanya: "Output ini untuk siapa?"</div>
+            <div class="intent-btns" role="tablist" aria-label="Pilih intent output">
+              <button class="intent-btn active" role="tab" aria-selected="true" aria-controls="r-self" onclick="switchIntent('r-self',this)">Diri Sendiri</button>
+              <button class="intent-btn" role="tab" aria-selected="false" aria-controls="r-boss" onclick="switchIntent('r-boss',this)">Atasan</button>
+              <button class="intent-btn" role="tab" aria-selected="false" aria-controls="r-team" onclick="switchIntent('r-team',this)">Delegasi Tim</button>
+              <button class="intent-btn" role="tab" aria-selected="false" aria-controls="r-fyi" onclick="switchIntent('r-fyi',this)">Cukup Tahu</button>
+            </div>
+          </div>
+          <div class="sim-output">
+            <div class="sim-label">Output Distill</div>
+            <div class="sim-result active" id="r-self" role="tabpanel">
+              <div class="sr-block"><div class="sr-key">Action Items</div><div class="sr-val">- Review fix payment — Saya · Kamis<br>- Approve budget QA Rp 50jt — Saya · Rabu</div></div>
+              <div class="sr-block"><div class="sr-key">GCal</div><div class="sr-val">"Review payment fix" · 45 min · Kamis 10:00</div></div>
+              <div class="sr-block"><div class="sr-key">PARA</div><div class="sr-val">1-PROJECTS / Product Launch Q3</div></div>
+            </div>
+            <div class="sim-result" id="r-boss" role="tabpanel">
+              <div class="sr-block"><div class="sr-key">Pembuka</div><div class="sr-val">"Pak Andi, berikut update rapat product hari ini."</div></div>
+              <div class="sr-block"><div class="sr-key">Key Points</div><div class="sr-val">1. Timeline launch mundur 2 minggu<br>2. Budget tambahan Rp 50jt untuk QA<br>3. Fix sudah di-assign ke Rina</div></div>
+              <div class="sr-block"><div class="sr-key">Who Needs to Know</div><div class="sr-val">Pak Andi — via Email · "Update: launch mundur 2 minggu, fix sedang jalan"</div></div>
+            </div>
+            <div class="sim-result" id="r-team" role="tabpanel">
+              <div class="sr-block"><div class="sr-key">Brief Delegasi</div><div class="sr-val">"Tim, dari rapat tadi ada 2 aksi:"</div></div>
+              <div class="sr-block"><div class="sr-key">Actions (detail)</div><div class="sr-val">1. Rina: Fix bug payment gateway, target Selasa. Eskalasi ke saya kalau butuh resource tambahan.<br>2. Budi: Koordinasi vendor backup, konfirmasi availability Rabu pagi.</div></div>
+              <div class="sr-block"><div class="sr-key">GCal</div><div class="sr-val">"Check-in tim: payment fix" · 30 min · Selasa 14:00</div></div>
+            </div>
+            <div class="sim-result" id="r-fyi" role="tabpanel">
+              <div class="sr-block"><div class="sr-key">Key Points</div><div class="sr-val">1. Launch mundur 2 minggu — bug payment<br>2. Budget QA +Rp 50jt<br><span class="muted">Tidak ada aksi yang perlu diambil saat ini.</span></div></div>
+              <div class="sr-block"><div class="sr-key">PARA</div><div class="sr-val">3-RESOURCES / Product Updates</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 3: SETUP INTERVIEW ═══ -->
+  <div class="section-card" id="sec3">
+    <button class="sc-header" aria-expanded="false" aria-controls="sec3-body" onclick="toggleSection('sec3',this)">
+      <div class="sc-header-left">
+        <div class="sc-label">Setup Sekali · 5 Menit</div>
+        <div class="sc-title">Klik pertanyaan untuk lihat contoh jawaban</div>
+      </div>
+      <svg class="sc-chevron" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M6 8.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="sc-body" id="sec3-body">
+      <div class="sc-content">
+        <div class="interview-list">
+          <div class="iq-item" id="iq1">
+            <button class="iq-header" aria-expanded="false" aria-controls="iq1-body" onclick="toggleIQ('iq1',this)">
+              <div class="iq-num">1</div>
+              <div class="iq-q">Apa role dan tanggung jawab utama Anda?</div>
+              <svg class="iq-chevron" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4.5 6.5l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="iq-body" id="iq1-body" role="region">
+              <div class="iq-content">
+                <div class="iq-why">Distill menyesuaikan level detail dan framing output berdasarkan posisi Anda.</div>
+                <div class="iq-example">
+                  <div class="iq-ex-label">Contoh jawaban</div>
+                  <div class="iq-ex-text">"VP Product di perusahaan fintech. Handle 3 squad, report ke CEO langsung."</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="iq-item" id="iq2">
+            <button class="iq-header" aria-expanded="false" aria-controls="iq2-body" onclick="toggleIQ('iq2',this)">
+              <div class="iq-num">2</div>
+              <div class="iq-q">Apa projects aktif yang sedang berjalan?</div>
+              <svg class="iq-chevron" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4.5 6.5l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="iq-body" id="iq2-body" role="region">
+              <div class="iq-content">
+                <div class="iq-why">Supaya Distill bisa routing ke folder PARA yang tepat dan menghubungkan konteks antar input.</div>
+                <div class="iq-example">
+                  <div class="iq-ex-label">Contoh jawaban</div>
+                  <div class="iq-ex-text">"Launch fitur payment Q3, reorg tim engineering, fundraising Series B."</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="iq-item" id="iq3">
+            <button class="iq-header" aria-expanded="false" aria-controls="iq3-body" onclick="toggleIQ('iq3',this)">
+              <div class="iq-num">3</div>
+              <div class="iq-q">Siapa yang sering perlu diinformasikan?</div>
+              <svg class="iq-chevron" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4.5 6.5l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="iq-body" id="iq3-body" role="region">
+              <div class="iq-content">
+                <div class="iq-why">Distill akan otomatis suggest siapa yang perlu tahu dari setiap input — tanpa Anda harus ingat.</div>
+                <div class="iq-example">
+                  <div class="iq-ex-label">Contoh jawaban</div>
+                  <div class="iq-ex-text">"CEO (Pak Andi), CTO (Rina), Head of Finance (Budi), Board via email bulanan."</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="iq-item" id="iq4">
+            <button class="iq-header" aria-expanded="false" aria-controls="iq4-body" onclick="toggleIQ('iq4',this)">
+              <div class="iq-num">4</div>
+              <div class="iq-q">Format output apa yang paling sering dibutuhkan?</div>
+              <svg class="iq-chevron" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M4.5 6.5l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="iq-body" id="iq4-body" role="region">
+              <div class="iq-content">
+                <div class="iq-why">Distill menyesuaikan default format — action-heavy, brief-heavy, atau balanced.</div>
+                <div class="iq-example">
+                  <div class="iq-ex-label">Contoh jawaban</div>
+                  <div class="iq-ex-text">"Kebanyakan untuk eksekusi sendiri dan delegasi ke tim. Jarang perlu brief ke atasan."</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 4: PRO TIPS + SYSTEM PROMPT ═══ -->
+  <div class="section-card" id="sec4">
+    <button class="sc-header" aria-expanded="false" aria-controls="sec4-body" onclick="toggleSection('sec4',this)">
+      <div class="sc-header-left">
+        <div class="sc-label">Manfaat Maksimal</div>
+        <div class="sc-title">Setup ini, dan Distill bekerja 2x lebih baik</div>
+      </div>
+      <svg class="sc-chevron" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M6 8.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="sc-body" id="sec4-body">
+      <div class="sc-content">
+        <div class="tips-layout">
+          <div class="tip-hero">
+            <div class="tip-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3C7 3 4.5 5.5 4.5 8.5c0 1.8 1 3.4 2.2 4.5V15h6.6v-2c1.2-1.1 2.2-2.7 2.2-4.5C15.5 5.5 13 3 10 3z" stroke="currentColor" stroke-width="1.3" fill="rgba(212,168,75,0.15)"/><path d="M8 16.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="tip-t">Nyalakan Google Workspace</div>
+            <div class="tip-d">Gemini — Settings — Extensions — aktifkan Google Workspace. Distill langsung akses Gmail, Calendar, Drive. PARA routing jadi otomatis, GCal suggestion bisa langsung dieksekusi, draft email bisa langsung dikirim.</div>
+          </div>
+          <div class="tip-stack">
+            <div class="tip-sm">
+              <div class="tip-ic"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x="2" y="4" width="10" height="8" rx="1.5" stroke="currentColor" stroke-width="1"/><path d="M5 2h4l1.5 2h-7z" stroke="currentColor" stroke-width="0.8"/></svg></div>
+              <div><div class="tip-t">Siapkan folder PARA di Drive</div><div class="tip-d">Buat: 0-INBOX, 1-PROJECTS, 2-AREAS, 3-RESOURCES, 4-ARCHIVES</div></div>
+            </div>
+            <div class="tip-sm">
+              <div class="tip-ic"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2v4M4 4h6" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><rect x="2" y="7" width="10" height="5" rx="1" stroke="currentColor" stroke-width="1"/></svg></div>
+              <div><div class="tip-t">Paste mentah, jangan edit dulu</div><div class="tip-d">Distill dirancang untuk teks berantakan — biarkan AI yang merapikan.</div></div>
+            </div>
+            <div class="tip-sm">
+              <div class="tip-ic"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M4 7l2.5 2.5L10 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1"/></svg></div>
+              <div><div class="tip-t">Minta draf tindak lanjut</div><div class="tip-d">Setelah output, minta: "Buatkan draf email untuk Pak Andi" — langsung siap kirim.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Prompt -->
+        <div class="prompt-section">
+          <div class="sc-label">Di Balik Layar</div>
+          <div class="sc-title">System Prompt — klik per bagian</div>
+          <div class="prompt-tabs" role="tablist" aria-label="Bagian system prompt">
+            <button class="pt-btn active" role="tab" aria-selected="true" aria-controls="sp-a" onclick="switchPrompt('sp-a',this)">A · Actor</button>
+            <button class="pt-btn" role="tab" aria-selected="false" aria-controls="sp-c" onclick="switchPrompt('sp-c',this)">C · Context</button>
+            <button class="pt-btn" role="tab" aria-selected="false" aria-controls="sp-t" onclick="switchPrompt('sp-t',this)">T · Target</button>
+            <button class="pt-btn" role="tab" aria-selected="false" aria-controls="sp-o" onclick="switchPrompt('sp-o',this)">O · Output</button>
+            <button class="pt-btn" role="tab" aria-selected="false" aria-controls="sp-n" onclick="switchPrompt('sp-n',this)">N · Negatives</button>
+            <button class="pt-btn" role="tab" aria-selected="false" aria-controls="sp-s" onclick="switchPrompt('sp-s',this)">S · Steps</button>
+          </div>
+          <div class="pt-panel active" id="sp-a" role="tabpanel">
+            <div class="pt-content"><span class="hl">Persona AI:</span> Productivity Partner / Chief of Staff AI.
+Tugas: Terima input, olah, dan routing ke sistem.
+Karakter: Ringkas, presisi, berorientasi next action.
+
+<span class="hl">Audience:</span> Senior Leader / Decision-maker yang sibuk.
+Mereka tidak butuh edukasi — mereka butuh eksekusi dan delegasi yang jelas.</div>
+          </div>
+          <div class="pt-panel" id="sp-c" role="tabpanel">
+            <div class="pt-content"><span class="hl">Kerangka Kerja:</span>
+CODE: Capture — Organize — <span class="em">Distill</span> — Express
+PARA (Google Drive): Projects · Areas · Resources · Archives · Inbox
+
+<span class="hl">Tools:</span> Google Workspace (Gmail, Calendar, Drive, Docs)
+<span class="hl">Input:</span> Meeting notes, transkrip, email thread, laporan, artikel, brain dump, brief tim.</div>
+          </div>
+          <div class="pt-panel" id="sp-t" role="tabpanel">
+            <div class="pt-content">Olah raw input — output terstruktur siap eksekusi.
+Kurang dari satu layar.
+Lengkap dengan <span class="hl">PARA routing</span> dan langkah taktis berikutnya.
+Layout dan desain profesional premium.</div>
+          </div>
+          <div class="pt-panel" id="sp-o" role="tabpanel">
+            <div class="pt-content"><span class="em">Format standar setiap respons:</span>
+Key Points · Action Items + Owner · PARA Routing · GCal Suggestion · Who Needs to Know
+
+<span class="hl">Variasi berdasarkan intent:</span>
+  <span class="em">Diri Sendiri</span> — Action Items + GCal dominan
+  <span class="em">Atasan</span> — Key Points sebagai Executive Brief
+  <span class="em">Delegasi Tim</span> — Action Items detail + draf brief
+  <span class="em">Cukup Tahu</span> — Key Points + PARA Routing saja</div>
+          </div>
+          <div class="pt-panel" id="sp-n" role="tabpanel">
+            <div class="pt-content">Jangan tulis summary panjang yang mengulang input
+Jangan bullet bersarang lebih dari 2 level
+Jangan kalimat motivasi atau pujian
+Jangan ubah bahasa (Indo tetap Indo, Eng tetap Eng)
+Jangan menambahkan yang tidak ada di dokumen asli
+
+Maks 1 pertanyaan klarifikasi sebelum output
+PARA Routing wajib di setiap respons
+Action items: <span class="hl">kata kerja aktif + objek + owner</span></div>
+          </div>
+          <div class="pt-panel" id="sp-s" role="tabpanel">
+            <div class="pt-content"><span class="em">1. Scan Input</span> — jenis dokumen, konteks, urgensi
+<span class="em">2. Klarifikasi</span> — maks 1 pertanyaan jika intent belum jelas
+<span class="em">3. Distill</span> — ambil keputusan utama, aksi, lokasi PARA
+<span class="em">4. Output</span> — format standar
+<span class="em">5. Next Step</span> — tawarkan draf tindak lanjut (opsional)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="footer-attr">Designed by Tjitra &nbsp;|&nbsp; Powered by IWDemy</div>
+    <div class="footer-program">AI First Program · L3 · AI for Productivity</div>
+  </footer>
+
+</div>
+
+<script>
+function toggleSection(id, btn) {
+  var el = document.getElementById(id);
+  var wasOpen = el.classList.contains('open');
+  if (wasOpen) {
+    el.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+  } else {
+    el.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
+  }
+}
+function switchIntent(id, btn) {
+  document.querySelectorAll('.sim-result').forEach(function(p){p.classList.remove('active')});
+  document.querySelectorAll('.intent-btn').forEach(function(t){t.classList.remove('active');t.setAttribute('aria-selected','false')});
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected','true');
+}
+function toggleIQ(id, btn) {
+  var el = document.getElementById(id);
+  var wasOpen = el.classList.contains('open');
+  document.querySelectorAll('.iq-item').forEach(function(item){
+    item.classList.remove('open');
+    item.querySelector('.iq-header').setAttribute('aria-expanded','false');
+  });
+  if (!wasOpen) {
+    el.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
+  }
+}
+function switchPrompt(id, btn) {
+  document.querySelectorAll('.pt-panel').forEach(function(p){p.classList.remove('active')});
+  document.querySelectorAll('.pt-btn').forEach(function(t){t.classList.remove('active');t.setAttribute('aria-selected','false')});
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected','true');
+}
+</script>
+</body>
+</html>
