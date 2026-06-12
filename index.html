@@ -372,6 +372,26 @@ body {
   box-shadow: 0 4px 24px rgba(212,168,75,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
   background-position: 100% 0;
 }
+.navbar__cta-secondary {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  padding: 10px 22px;
+  border-radius: 6px;
+  border: 1px solid rgba(212,168,75,0.45);
+  color: var(--gold);
+  text-decoration: none;
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+}
+.navbar__cta-secondary:hover {
+  border-color: var(--gold);
+  background: rgba(212,168,75,0.08);
+}
 .navbar__mobile-toggle {
   display: flex;
   flex-direction: column;
@@ -1880,7 +1900,8 @@ body {
     </ul>
 
     <div class="navbar__right">
-      <a href="https://wa.me/6285959435052" class="navbar__cta" target="_blank">Enquire</a>
+      <a href="aifirst-curriculum--v22.html" class="navbar__cta-secondary">Curriculum</a>
+      <a href="https://wa.me/6285959435052" class="navbar__cta" target="_blank">Contact Us</a>
       <button class="navbar__mobile-toggle" onclick="document.getElementById('mobileMenu').classList.add('open')" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -1903,6 +1924,7 @@ body {
   <a href="#credibility" onclick="this.parentElement.classList.remove('open')">Facilitators</a>
   <a href="#program" onclick="this.parentElement.classList.remove('open')">Program</a>
   <a href="#invest" onclick="this.parentElement.classList.remove('open')">Tracks</a>
+  <a href="aifirst-curriculum--v22.html" onclick="this.parentElement.classList.remove('open')">Curriculum</a>
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSckYF5f9kQtHtCcSUivfNCIIWtr43dJlKhjoiV3-_tpprsG_g/viewform?usp=header" class="cta-primary" target="_blank" style="margin-top:12px">Join the Programme →</a>
 </div>
 
