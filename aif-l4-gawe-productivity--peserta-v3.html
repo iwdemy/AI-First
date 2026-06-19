@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L4 Day 2 — Gawe &amp; Produktivitas Kepemimpinan</title>
+<style>
+:root {
+  --gold:#C8963C; --gold-lt:#E8B86D; --gold-pale:#F9EDD8; --gold-glow:rgba(200,150,60,.12);
+  --dark:#0F0F0F; --dark2:#1A1A1A; --mid:#4A4A4A; --soft:#8A8A8A; --softer:#B8B8B8;
+  --bg:#F4F2EE; --bg2:#EDE9E3; --card:#FEFDFB; --border:#DDD8CF; --border-lt:#EBE7DF;
+  --radius:14px; --radius-sm:9px; --radius-xs:6px;
+  --green:#1E6E2B; --green-bg:#EEF9EE; --green-bd:#8DC99A;
+  --orange:#C84D00; --orange-bg:#FEF4EF;
+  --blue:#0F52A0; --blue-bg:#EDF2FB;
+  --purple:#5A1588; --purple-bg:#F2EBF8;
+  --sh1:0 1px 3px rgba(0,0,0,.07),0 3px 10px rgba(0,0,0,.04);
+  --sh2:0 2px 8px rgba(0,0,0,.09),0 8px 24px rgba(0,0,0,.05);
+  --sh3:0 4px 16px rgba(0,0,0,.11),0 16px 48px rgba(0,0,0,.07);
+  --ease:cubic-bezier(.4,0,.2,1);
+  --fd:'Plus Jakarta Sans',system-ui,sans-serif;
+  --fm:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--fd);background:var(--bg);color:var(--dark);font-size:15px;line-height:1.65;}
+
+/* ─── TOPBAR ─── */
+.topbar{background:var(--dark);padding:0 22px;height:40px;display:flex;gap:12px;align-items:center;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,.06);}
+.topbar .badge{background:var(--gold);color:#000;font-size:9.5px;font-weight:800;padding:2px 9px;border-radius:4px;letter-spacing:.1em;}
+.topbar h1{font-size:12.5px;font-weight:500;color:rgba(255,255,255,.7);flex:1;letter-spacing:.01em;}
+.topbar .day{font-size:10.5px;color:rgba(255,255,255,.28);font-weight:600;letter-spacing:.06em;}
+
+/* ─── SECTION NAV ─── */
+.secnav{background:var(--card);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;position:sticky;top:40px;z-index:90;box-shadow:var(--sh1);}
+.secnav::-webkit-scrollbar{display:none;}
+.secnav a{padding:10px 14px;font-size:10.5px;font-weight:700;color:var(--soft);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;letter-spacing:.03em;transition:color .2s var(--ease),border-color .2s var(--ease);}
+.secnav a:hover{color:var(--gold);border-bottom-color:var(--gold-lt);}
+
+/* ─── LAYOUT ─── */
+.wrap{max-width:880px;margin:0 auto;padding:0 22px;}
+
+/* ─── SECTIONS ─── */
+.sec{padding:26px 0 20px;border-bottom:1px solid var(--border-lt);}
+.sec:last-child{border-bottom:none;}
+.sec-label{font-size:9.5px;font-weight:800;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:5px;}
+.sec-title{font-size:19px;font-weight:800;line-height:1.22;margin-bottom:5px;letter-spacing:-.01em;}
+.sec-lead{font-size:13px;color:var(--mid);margin-bottom:18px;line-height:1.7;}
+p+p{margin-top:.5em;}
+
+/* ─── HERO ─── */
+.hero{padding:20px 0 20px;border-bottom:1px solid var(--border-lt);}
+.hero-content{background:var(--dark);border-radius:var(--radius);padding:22px 24px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;box-shadow:var(--sh3);}
+@media(max-width:560px){.hero-content{grid-template-columns:1fr;}}
+.hero-left .module{font-size:9.5px;font-weight:700;letter-spacing:.16em;color:rgba(255,255,255,.32);margin-bottom:7px;}
+.hero-left h2{font-size:21px;font-weight:800;color:#fff;line-height:1.22;margin-bottom:7px;letter-spacing:-.01em;}
+.hero-left p{font-size:13px;color:rgba(255,255,255,.48);line-height:1.6;}
+.hero-pills{display:flex;flex-direction:column;gap:5px;align-items:flex-end;}
+@media(max-width:560px){.hero-pills{flex-direction:row;flex-wrap:wrap;align-items:flex-start;margin-top:12px;}}
+.hero-pill{font-size:10.5px;font-weight:600;padding:4px 11px;border-radius:20px;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.42);white-space:nowrap;letter-spacing:.01em;}
+
+/* ─── CARD BASE ─── */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--sh1);border:1px solid var(--border-lt);}
+.card-hover{transition:box-shadow .25s var(--ease),transform .2s var(--ease),border-color .2s var(--ease);}
+.card-hover:hover{box-shadow:var(--sh2);transform:translateY(-1px);border-color:var(--border);}
+
+/* ─── CLUSTER GRID ─── */
+.cluster-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+@media(max-width:640px){.cluster-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:380px){.cluster-grid{grid-template-columns:1fr;}}
+.cluster-card{background:var(--card);border:1px solid var(--border-lt);border-radius:var(--radius);overflow:hidden;cursor:pointer;box-shadow:var(--sh1);transition:box-shadow .25s var(--ease),border-color .2s var(--ease),transform .2s var(--ease);}
+.cluster-card:hover{box-shadow:var(--sh2);transform:translateY(-1px);}
+.cluster-head{padding:13px;display:flex;align-items:flex-start;gap:9px;}
+.cluster-icon{font-size:19px;flex-shrink:0;margin-top:1px;}
+.cluster-name{font-size:12px;font-weight:700;line-height:1.3;}
+.cluster-stat{font-size:11px;font-weight:700;color:var(--gold);margin-top:2px;}
+.cluster-body{display:none;padding:0 13px 13px;}
+.cluster-body p{font-size:12px;color:var(--mid);line-height:1.6;padding-top:9px;border-top:1px solid var(--border-lt);}
+.cluster-card.open{border-color:var(--gold-lt);box-shadow:0 0 0 3px var(--gold-glow),var(--sh1);}
+.cluster-card.open .cluster-body{display:block;}
+
+/* ─── USE TYPE CHIPS ─── */
+.use-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px;}
+.use-chip{padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);background:var(--card);font-size:12px;font-weight:600;cursor:pointer;color:var(--mid);transition:all .2s var(--ease);white-space:nowrap;box-shadow:var(--sh1);}
+.use-chip:hover{border-color:var(--border);background:var(--bg2);}
+.use-chip.active{background:var(--dark);border-color:var(--dark);color:#fff;box-shadow:var(--sh2);}
+.use-chip.focus{border-color:var(--gold-lt);color:var(--gold);}
+.use-chip.active.focus{background:var(--gold);border-color:var(--gold);color:#000;}
+.use-panel{background:var(--card);border:1px solid var(--border-lt);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--sh1);}
+.use-panel h4{font-size:14px;font-weight:800;margin-bottom:5px;letter-spacing:-.01em;}
+.use-panel p{font-size:13px;color:var(--mid);line-height:1.65;}
+.use-panel .ex{font-size:12px;color:var(--soft);margin-top:7px;}
+.use-highlight{display:inline-block;background:var(--gold-pale);color:var(--gold);font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:4px;margin-bottom:7px;letter-spacing:.02em;}
+
+/* ─── LHF LEVELS ─── */
+.levels-stack{border:1px solid var(--border-lt);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;box-shadow:var(--sh1);}
+.level-row{padding:14px 18px;border-bottom:1px solid var(--border-lt);background:var(--card);display:flex;gap:14px;align-items:flex-start;}
+.level-row:last-child{border-bottom:none;}
+.level-num{width:32px;height:32px;border-radius:9px;background:var(--dark);color:var(--gold);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.level-content h4{font-size:13px;font-weight:700;margin-bottom:3px;}
+.level-content p{font-size:12.5px;color:var(--mid);line-height:1.6;}
+.level-content .stat{color:var(--gold);font-weight:700;}
+.adv-list{display:flex;flex-direction:column;gap:6px;}
+.adv-item{background:var(--card);border:1px solid var(--border-lt);border-radius:var(--radius-sm);padding:12px 15px;display:flex;gap:11px;align-items:flex-start;cursor:pointer;box-shadow:var(--sh1);transition:all .22s var(--ease);}
+.adv-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.adv-text h4{font-size:13px;font-weight:700;margin-bottom:2px;}
+.adv-text p{font-size:12.5px;color:var(--mid);line-height:1.55;display:none;margin-top:5px;}
+.adv-item.open .adv-text p{display:block;}
+.adv-item.open{border-color:var(--gold-lt);background:var(--gold-pale);box-shadow:0 0 0 3px var(--gold-glow);}
+.adv-item:hover:not(.open){box-shadow:var(--sh2);transform:translateY(-1px);}
+
+/* ─── OMAH GAWE ─── */
+.og-history{background:var(--card);border:1px solid var(--border-lt);border-radius:var(--radius);padding:15px 18px;margin-bottom:14px;box-shadow:var(--sh1);}
+.og-history p{font-size:13px;line-height:1.75;}
+.og-wrap{background:#0C0C0C;border-radius:var(--radius);overflow:hidden;box-shadow:var(--sh3);}
+.og-svg{width:100%;display:block;}
+
+/* ─── LIMA DIMENSI ─── */
+.leaders-intro{font-size:13px;line-height:1.75;margin-bottom:16px;padding:13px 16px;background:var(--gold-pale);border-left:3px solid var(--gold);border-radius:0 var(--radius-sm) var(--radius-sm) 0;}
+.dim-grid-v3{display:grid;grid-template-columns:1fr;gap:7px;}
+@media(min-width:700px){.dim-grid-v3{grid-template-columns:1fr 1fr;}}
+.dim-v3{background:var(--card);border:1px solid var(--border-lt);border-radius:var(--radius);overflow:hidden;cursor:pointer;box-shadow:var(--sh1);transition:box-shadow .25s var(--ease),border-color .2s var(--ease),transform .2s var(--ease);}
+.dim-v3:hover{box-shadow:var(--sh2);transform:translateY(-1px);}
+.dim-v3.open{border-color:var(--gold-lt);box-shadow:0 0 0 3px var(--gold-glow),var(--sh1);}
+.dim-v3-head{padding:13px 16px;display:flex;align-items:center;gap:11px;}
+.dim-num-v3{width:28px;height:28px;border-radius:8px;background:var(--dark);color:var(--gold);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.dim-name-v3{font-size:13px;font-weight:800;flex:1;line-height:1.2;}
+.dim-chevron{font-size:9px;color:var(--softer);transition:transform .25s var(--ease);}
+.dim-v3.open .dim-chevron{transform:rotate(180deg);}
+.dim-v3-body{padding:0 16px 14px;display:none;grid-template-columns:1fr 1fr;gap:8px;border-top:1px solid var(--border-lt);}
+@media(max-width:480px){.dim-v3-body{grid-template-columns:1fr;}}
+.dim-v3.open .dim-v3-body{display:grid;}
+.dim-q-block{background:var(--bg2);border-radius:var(--radius-sm);padding:10px 11px;margin-top:8px;}
+.dim-q-label{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-bottom:4px;}
+.dim-q-text{font-size:12.5px;color:var(--dark);line-height:1.5;}
+
+/* ─── BENANG MERAH ─── */
+.bm-trigger{display:flex;align-items:center;gap:9px;padding:12px 16px;background:var(--card);border:1px solid var(--border-lt);border-radius:var(--radius);cursor:pointer;margin-top:14px;box-shadow:var(--sh1);transition:box-shadow .2s var(--ease);}
+.bm-trigger:hover{box-shadow:var(--sh2);}
+.bm-trigger h4{font-size:13px;font-weight:700;flex:1;}
+.bm-trigger .chevron{font-size:10px;color:var(--softer);transition:transform .25s var(--ease);}
+.bm-trigger.open .chevron{transform:rotate(180deg);}
+.bm-body{display:none;border:1px solid var(--border-lt);border-top:none;border-radius:0 0 var(--radius) var(--radius);background:var(--card);box-shadow:0 4px 12px rgba(0,0,0,.06);}
+.bm-body.show{display:block;}
+.bm-item{display:flex;gap:11px;align-items:flex-start;padding:10px 16px;border-bottom:1px solid var(--border-lt);}
+.bm-item:last-child{border-bottom:none;}
+.bm-dot{width:8px;height:8px;border-radius:50%;background:var(--border);border:2px solid var(--border-lt);flex-shrink:0;margin-top:5px;}
+.bm-item.current .bm-dot{background:var(--gold);border-color:var(--gold-lt);}
+.bm-level{font-size:9.5px;font-weight:700;color:var(--soft);letter-spacing:.04em;width:90px;flex-shrink:0;}
+.bm-item.current .bm-level{color:var(--gold);}
+.bm-content h4{font-size:13px;font-weight:700;margin-bottom:2px;}
+.bm-content p{font-size:11px;color:var(--mid);}
+.bm-arrow{font-size:11px;color:var(--gold);font-weight:600;margin-top:2px;}
+
+/* ─── SELF ASSESSMENT ─── */
+.assess-grid{display:grid;grid-template-columns:1fr;gap:6px;}
+@media(min-width:640px){.assess-grid{grid-template-columns:1fr 1fr;}}
+.assess-card{background:var(--card);border:1.5px solid var(--border-lt);border-radius:var(--radius);padding:12px 14px;cursor:pointer;user-select:none;box-shadow:var(--sh1);transition:all .22s var(--ease);}
+.assess-card.kuat{border-color:#5CB870;background:var(--green-bg);box-shadow:0 0 0 3px rgba(94,184,112,.12);}
+.assess-card.rapuh{border-color:#F0A060;background:var(--orange-bg);}
+.assess-card.belum{border-color:var(--border);background:var(--bg2);}
+.assess-inner{display:flex;align-items:center;gap:9px;}
+.assess-num{width:25px;height:25px;border-radius:7px;background:var(--gold);color:#000;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.assess-name{font-size:13px;font-weight:700;flex:1;}
+.assess-status{font-size:10.5px;font-weight:700;padding:2px 10px;border-radius:20px;border:1.5px solid var(--border);color:var(--soft);background:var(--bg);}
+.assess-card.kuat .assess-status{color:var(--green);border-color:#5CB870;background:var(--green-bg);}
+.assess-card.rapuh .assess-status{color:var(--orange);border-color:#F0A060;background:var(--orange-bg);}
+.assess-hint{font-size:11px;color:var(--soft);margin-top:5px;padding-left:34px;}
+.tap-note{font-size:11px;color:var(--soft);text-align:center;margin-bottom:9px;}
+
+/* ─── AI MAPPING ─── */
+.map-table{background:var(--card);border:1px solid var(--border-lt);border-radius:var(--radius);overflow:hidden;box-shadow:var(--sh1);}
+.map-row{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--border-lt);transition:background .15s;}
+.map-row:hover{background:var(--bg2);}
+.map-row:last-child{border-bottom:none;}
+.map-what{flex:1.4;font-size:13px;}
+.map-what small{display:block;font-size:11px;color:var(--soft);margin-top:1px;}
+.map-arr{color:var(--softer);font-size:11px;flex-shrink:0;}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;}
+.pill-d1{background:#FFF0D6;color:#8C4A00;}
+.pill-d2{background:#FEF0DB;color:#7A4500;}
+.pill-d3{background:var(--blue-bg);color:var(--blue);}
+.pill-d4{background:var(--purple-bg);color:var(--purple);}
+.pill-d5{background:var(--green-bg);color:var(--green);}
+
+/* ─── GEMINI SETUP ─── */
+.setup-steps{display:flex;flex-direction:column;gap:7px;}
+.setup-step{background:var(--card);border:1px solid var(--border-lt);border-radius:var(--radius);overflow:hidden;box-shadow:var(--sh1);transition:box-shadow .2s var(--ease);}
+.setup-step:hover{box-shadow:var(--sh2);}
+.setup-step-head{padding:12px 16px;display:flex;gap:11px;align-items:center;cursor:pointer;}
+.step-badge{width:26px;height:26px;border-radius:7px;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--bg2);color:var(--soft);border:1.5px solid var(--border-lt);}
+.setup-step.priority .step-badge{background:var(--gold);color:#000;border-color:var(--gold);}
+.step-label{font-size:13px;font-weight:700;flex:1;}
+.step-tag{font-size:9.5px;font-weight:700;padding:2px 9px;border-radius:4px;background:var(--gold-pale);color:var(--gold);letter-spacing:.03em;}
+.step-chevron{font-size:9px;color:var(--softer);transition:transform .25s var(--ease);}
+.setup-step.open .step-chevron{transform:rotate(180deg);}
+.setup-step-body{display:none;padding:0 16px 14px;border-top:1px solid var(--border-lt);}
+.setup-step.open .setup-step-body{display:block;}
+.setup-step-body p{font-size:13px;color:var(--mid);margin:9px 0 7px;line-height:1.65;}
+.check-item{display:flex;gap:9px;align-items:center;padding:5px 0;font-size:13px;cursor:pointer;transition:color .15s;}
+.check-item.done .check-box{background:var(--green);border-color:var(--green);color:#fff;}
+.check-item.done span{color:var(--soft);text-decoration:line-through;}
+.check-box{width:18px;height:18px;border-radius:5px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;transition:all .15s;}
+
+/* ─── PROMPT BOX ─── */
+.prompt-box{background:#131313;border-radius:var(--radius);padding:13px 16px;margin:8px 0;border:1px solid rgba(255,255,255,.06);}
+.prompt-box pre{font-family:var(--fm);font-size:12px;color:#E0D0B0;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+.prompt-box pre .br{color:var(--gold);font-weight:700;}
+.p-label{font-size:9.5px;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.28);margin-bottom:7px;display:flex;justify-content:space-between;align-items:center;}
+.copy-btn{padding:3px 10px;border-radius:5px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:rgba(255,255,255,.55);font-size:9.5px;font-weight:600;cursor:pointer;font-family:var(--fd);transition:background .15s;}
+.copy-btn:hover{background:rgba(255,255,255,.12);}
+
+/* ─── EXERCISES ─── */
+.ex-list{display:flex;flex-direction:column;gap:7px;}
+.ex-card{background:var(--card);border:1px solid var(--border-lt);border-radius:var(--radius);overflow:hidden;box-shadow:var(--sh1);transition:box-shadow .2s var(--ease);}
+.ex-card:hover{box-shadow:var(--sh2);}
+.ex-head{padding:12px 16px;display:flex;align-items:center;gap:11px;cursor:pointer;}
+.ex-num{width:26px;height:26px;border-radius:8px;background:var(--gold);color:#000;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ex-title{font-size:13px;font-weight:700;flex:1;}
+.ex-chevron{font-size:9px;color:var(--softer);transition:transform .25s var(--ease);}
+.ex-card.open .ex-chevron{transform:rotate(180deg);}
+.ex-body{display:none;padding:0 16px 14px;border-top:1px solid var(--border-lt);}
+.ex-card.open .ex-body{display:block;}
+.ex-body p{font-size:13px;color:var(--mid);margin:9px 0 6px;line-height:1.65;}
+
+/* ─── FORMAT PRESENTASI ─── */
+.format-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:14px;}
+@media(max-width:640px){.format-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:400px){.format-grid{grid-template-columns:1fr;}}
+.format-card{background:var(--card);border:1px solid var(--border-lt);border-radius:var(--radius);padding:14px 15px;cursor:pointer;box-shadow:var(--sh1);transition:box-shadow .25s var(--ease),border-color .2s var(--ease),transform .2s var(--ease);}
+.format-card:hover{box-shadow:var(--sh2);transform:translateY(-1px);}
+.format-card.open{border-color:var(--gold-lt);box-shadow:0 0 0 3px var(--gold-glow),var(--sh1);transform:none;}
+.format-icon{font-size:22px;margin-bottom:8px;}
+.format-title{font-size:13px;font-weight:800;margin-bottom:2px;letter-spacing:-.01em;}
+.format-tagline{font-size:11px;color:var(--soft);margin-bottom:0;}
+.format-detail{display:none;margin-top:11px;padding-top:11px;border-top:1px solid var(--border-lt);}
+.format-card.open .format-detail{display:block;}
+.format-use{font-size:12.5px;color:var(--mid);line-height:1.55;margin-bottom:6px;}
+.format-cocok{font-size:11px;color:var(--soft);line-height:1.45;}
+.format-framing{background:var(--gold-pale);border-left:3px solid var(--gold);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:13px 15px;font-size:13px;line-height:1.7;margin-bottom:13px;}
+.time-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+.time-table th{text-align:left;padding:9px 13px;background:var(--dark);color:rgba(255,255,255,.6);font-size:10.5px;font-weight:700;letter-spacing:.04em;}
+.time-table td{padding:10px 13px;border-bottom:1px solid var(--border-lt);background:var(--card);}
+.time-table tr:hover td{background:var(--bg2);}
+.time-table tr:last-child td{border-bottom:none;}
+.save-pct{font-weight:700;color:var(--green);}
+.table-wrap{background:var(--card);border:1px solid var(--border-lt);border-radius:var(--radius);overflow:hidden;box-shadow:var(--sh1);}
+
+/* ─── INFOBOX ─── */
+.infobox{background:var(--gold-pale);border-left:3px solid var(--gold);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 14px;font-size:13px;line-height:1.7;margin:9px 0;}
+
+/* ─── KOMITMEN ─── */
+.jalur-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-top:14px;}
+@media(max-width:560px){.jalur-grid{grid-template-columns:1fr;}}
+.jalur-card{background:var(--card);border:1px solid var(--border-lt);border-radius:var(--radius);padding:16px;cursor:pointer;text-align:left;font-family:var(--fd);box-shadow:var(--sh1);transition:all .25s var(--ease);}
+.jalur-card:hover{box-shadow:var(--sh2);transform:translateY(-1px);}
+.jalur-card.sel{border-color:var(--gold-lt);background:var(--gold-pale);box-shadow:0 0 0 3px var(--gold-glow),var(--sh1);transform:none;}
+.jalur-letter{font-size:9.5px;font-weight:800;color:var(--softer);letter-spacing:.16em;margin-bottom:7px;text-transform:uppercase;}
+.jalur-card.sel .jalur-letter{color:var(--gold);}
+.jalur-title{font-size:14px;font-weight:800;margin-bottom:5px;letter-spacing:-.01em;}
+.jalur-desc{font-size:12.5px;color:var(--mid);line-height:1.55;}
+
+/* ─── SOURCES ─── */
+.sources-sec{padding:18px 0 24px;border-top:1px solid var(--border-lt);}
+.sources-title{font-size:9.5px;font-weight:800;letter-spacing:.18em;color:var(--softer);text-transform:uppercase;margin-bottom:12px;}
+.sources-list{display:grid;grid-template-columns:1fr 1fr;gap:5px 20px;}
+@media(max-width:560px){.sources-list{grid-template-columns:1fr;}}
+.source-item{font-size:11px;color:var(--soft);line-height:1.55;padding:3px 0;}
+.source-item sup{font-size:9px;font-weight:700;color:var(--gold);margin-right:4px;}
+sup.ref{font-size:8.5px;font-weight:700;color:var(--gold);vertical-align:super;line-height:0;}
+.tap-hint{font-size:11px;color:var(--soft);margin-bottom:9px;}
+
+/* ─── CLOSING ─── */
+.closing{padding:18px 0 32px;text-align:center;color:var(--softer);font-size:10.5px;letter-spacing:.06em;}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span class="badge">L4</span>
+  <h1>Gawe &amp; Produktivitas Kepemimpinan — Panduan Peserta</h1>
+  <span class="day">Day 2</span>
+</div>
+
+<!-- SECTION NAV -->
+<nav class="secnav">
+  <a href="#s1">🌐 AI &amp; Pekerjaan</a>
+  <a href="#s2">⚙️ Jenis AI</a>
+  <a href="#s3">💡 Kenapa Produktivitas</a>
+  <a href="#ogawe">🏠 Omah Gawe</a>
+  <a href="#leaders">👑 Lima Dimensi</a>
+  <a href="#assess">✅ Audit Diri</a>
+  <a href="#map">🗺 Peta AI</a>
+  <a href="#setup">🔌 Setup Gemini</a>
+  <a href="#exercises">🧪 Latihan</a>
+  <a href="#presentasi">📊 Presentasi</a>
+  <a href="#commit">🎯 Komitmen</a>
+</nav>
+
+<div class="wrap">
+
+<!-- ─── HERO ─── -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="module">AI FIRST PROGRAM · L4 · DAY 2</div>
+      <h2>Gawe — Kepemimpinan yang Tidak Bergantung pada Tempat</h2>
+      <p>Hari ini kita bahas bagaimana AI mengubah cara pemimpin bekerja, memutuskan, dan menyebarkan keputusan.</p>
+    </div>
+    <div class="hero-pills">
+      <span class="hero-pill">Konteks AI Global</span>
+      <span class="hero-pill">Framework Gawe</span>
+      <span class="hero-pill">Lima Dimensi Leaders</span>
+      <span class="hero-pill">Setup &amp; Latihan</span>
+      <span class="hero-pill">Format Presentasi</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!-- S1: AI DAN DUNIA KERJA -->
+<!-- ══════════════════════════════════ -->
+<section class="sec" id="s1">
+  <div class="sec-label">Bagian 1</div>
+  <div class="sec-title">AI dan Dunia Kerja — Sudah Sampai Mana?</div>
+  <div class="sec-lead">Dari riset MIT, ILO, dan survei korporasi global — tujuh bidang yang paling banyak menggunakan AI saat ini.<br><span style="color:var(--soft)">Tap kartu untuk lihat data dan contoh.</span></div>
+
+  <div class="cluster-grid">
+    <div class="cluster-card" onclick="toggleCluster(this)">
+      <div class="cluster-head"><div class="cluster-icon">📄</div><div><div class="cluster-name">Administrasi &amp; Dokumen</div><div class="cluster-stat">12% pekerjaan bisa dikerjakan AI</div></div></div>
+      <div class="cluster-body"><p>Data entry, pengolahan dokumen, akuntansi dasar, tugas clerical — yang paling mudah diotomatisasi. AI mengambil alih pekerjaan yang berulang dan tidak butuh kreativitas tinggi.<sup class="ref">¹</sup></p></div>
+    </div>
+    <div class="cluster-card" onclick="toggleCluster(this)">
+      <div class="cluster-head"><div class="cluster-icon">📣</div><div><div class="cluster-name">Marketing, Sales &amp; Layanan Pelanggan</div><div class="cluster-stat">44% responden — area terbanyak</div></div></div>
+      <div class="cluster-body"><p>44% perusahaan memakai AI untuk marketing dan sales (segmentasi, personalisasi konten). 40% untuk layanan pelanggan (chatbot, routing tiket otomatis).<sup class="ref">²</sup></p></div>
+    </div>
+    <div class="cluster-card" onclick="toggleCluster(this)">
+      <div class="cluster-head"><div class="cluster-icon">📊</div><div><div class="cluster-name">Analisis Data &amp; Keuangan</div><div class="cluster-stat">32% untuk data &amp; reporting</div></div></div>
+      <div class="cluster-body"><p>Dashboard otomatis, analisis data dengan bahasa natural, deteksi fraud, pengelolaan arus kas. AI membuat analitik yang dulu membutuhkan spesialis kini bisa diakses manajer mana pun.</p></div>
+    </div>
+    <div class="cluster-card" onclick="toggleCluster(this)">
+      <div class="cluster-head"><div class="cluster-icon">⚙️</div><div><div class="cluster-name">Operasional &amp; Proses</div><div class="cluster-stat">37% efisiensi operasional</div></div></div>
+      <div class="cluster-body"><p>Logistik, penjadwalan, optimasi kapasitas, kontrol kualitas di manufaktur. AI membantu organisasi menemukan bottleneck yang tidak terlihat secara manual.</p></div>
+    </div>
+    <div class="cluster-card" onclick="toggleCluster(this)">
+      <div class="cluster-head"><div class="cluster-icon">👥</div><div><div class="cluster-name">HR &amp; Pengembangan Talent</div><div class="cluster-stat">27% di fungsi HR</div></div></div>
+      <div class="cluster-body"><p>Screening kandidat, analitik kinerja, rekomendasi pelatihan yang disesuaikan per karyawan. Studi di Indonesia menunjukkan AI meningkatkan produktivitas individu dan kualitas kerja secara bersamaan.</p></div>
+    </div>
+    <div class="cluster-card" onclick="toggleCluster(this)">
+      <div class="cluster-head"><div class="cluster-icon">🎓</div><div><div class="cluster-name">Pendidikan, Konten &amp; Media</div><div class="cluster-stat">23% untuk riset &amp; produksi konten</div></div></div>
+      <div class="cluster-body"><p>Pembuatan konten, ringkasan dokumen, riset cepat, pencarian informasi. Sektor pendidikan dan media adalah pengguna AI paling aktif untuk mempercepat produksi.</p></div>
+    </div>
+    <div class="cluster-card" onclick="toggleCluster(this)">
+      <div class="cluster-head"><div class="cluster-icon">💻</div><div><div class="cluster-name">Teknologi &amp; Pengembangan Produk</div><div class="cluster-stat">37% untuk pengembangan produk baru</div></div></div>
+      <div class="cluster-body"><p>R&amp;D, ideasi fitur, prototyping cepat, penulisan kode. 37% percakapan dengan AI di platform umum menyangkut komputer dan rekayasa perangkat lunak.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- S2: JENIS PEMANFAATAN AI -->
+<!-- ══════════════════════════════════ -->
+<section class="sec" id="s2">
+  <div class="sec-label">Bagian 2</div>
+  <div class="sec-title">AI Dipakai untuk Apa?</div>
+  <div class="sec-lead">Ada tujuh cara perusahaan memanfaatkan AI.<br><span style="color:var(--soft)">Pilih untuk lihat penjelasan masing-masing.</span></div>
+
+  <div class="use-chips">
+    <div class="use-chip focus active" onclick="selectUse(this,'u-prod')">🚀 Produktivitas</div>
+    <div class="use-chip" onclick="selectUse(this,'u-auto')">🤖 Automasi</div>
+    <div class="use-chip" onclick="selectUse(this,'u-analy')">📈 Analitik</div>
+    <div class="use-chip" onclick="selectUse(this,'u-dec')">🎯 Keputusan</div>
+    <div class="use-chip" onclick="selectUse(this,'u-cust')">💬 Layanan Pelanggan</div>
+    <div class="use-chip" onclick="selectUse(this,'u-hr')">🧑‍🤝‍🧑 Talent &amp; HR</div>
+    <div class="use-chip" onclick="selectUse(this,'u-create')">✨ Kreasi</div>
+  </div>
+
+  <div id="u-prod" class="use-panel">
+    <div class="use-highlight">⭐ Fokus hari ini</div>
+    <h4>AI untuk Produktivitas — Kerja Lebih Cerdas Setiap Hari</h4>
+    <p>AI membantu knowledge worker menyelesaikan pekerjaan lebih cepat dan dengan kualitas lebih baik: menulis, meringkas, menganalisis, mengatur jadwal, dan koordinasi tim.</p>
+    <p class="ex">Contoh: notulen otomatis, ringkasan dokumen, draft email, prioritas harian, analisis kalender.</p>
+  </div>
+  <div id="u-auto" class="use-panel" style="display:none">
+    <h4>AI untuk Automasi — Proses Berulang Berjalan Sendiri</h4>
+    <p>Menggantikan atau mengotomatisasi proses bisnis yang berulang tanpa perlu keputusan manusia di setiap langkah. Paling efektif untuk proses yang sudah terdefinisi dengan jelas.</p>
+    <p class="ex">Contoh: otomasi back-office, pemrosesan klaim, workflow lintas sistem, laporan rutin.</p>
+  </div>
+  <div id="u-analy" class="use-panel" style="display:none">
+    <h4>AI untuk Analitik &amp; Insight — Data Jadi Keputusan</h4>
+    <p>Mengolah data menjadi insight dan prediksi untuk keputusan yang lebih cepat dan akurat — tanpa harus jadi data scientist.</p>
+    <p class="ex">Contoh: analisis data dengan bahasa natural, deteksi anomali, proyeksi permintaan, penilaian risiko.</p>
+  </div>
+  <div id="u-dec" class="use-panel" style="display:none">
+    <h4>AI untuk Pengambilan Keputusan — Pilihan Terbaik dari Data</h4>
+    <p>Rekomendasi keputusan optimal untuk harga, jadwal, rute, dan alokasi sumber daya. Paling berdampak ketika ada data historis yang cukup banyak.</p>
+    <p class="ex">Contoh: penetapan harga dinamis, optimasi rantai pasok, alokasi sumber daya.</p>
+  </div>
+  <div id="u-cust" class="use-panel" style="display:none">
+    <h4>AI untuk Layanan Pelanggan — Respons yang Lebih Cepat dan Personal</h4>
+    <p>Interaksi langsung dengan pelanggan yang dipersonalisasi — tanpa harus menunggu agen manusia untuk setiap pertanyaan rutin.</p>
+    <p class="ex">Contoh: chatbot layanan pelanggan, rekomendasi produk personal, self-service portal cerdas.</p>
+  </div>
+  <div id="u-hr" class="use-panel" style="display:none">
+    <h4>AI untuk Talent &amp; HR — Dari Rekrutmen ke Pengembangan</h4>
+    <p>Seluruh siklus talent management diperkuat AI: dari seleksi yang lebih akurat hingga jalur pengembangan yang disesuaikan per individu.</p>
+    <p class="ex">Contoh: seleksi CV, analitik keterlibatan karyawan, pasar talent internal, rekomendasi pelatihan.</p>
+  </div>
+  <div id="u-create" class="use-panel" style="display:none">
+    <h4>AI untuk Kreasi &amp; Inovasi — Membuat Sesuatu yang Baru</h4>
+    <p>Pembuatan konten baru (teks, gambar, video) dan percepatan inovasi produk. AI berperan sebagai mitra kreatif yang mempercepat siklus ideasi hingga prototipe.</p>
+    <p class="ex">Contoh: pembuatan konten pemasaran, prototyping cepat, ideasi kampanye, desain materi pembelajaran.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- S3: KENAPA MULAI DARI PRODUKTIVITAS -->
+<!-- ══════════════════════════════════ -->
+<section class="sec" id="s3">
+  <div class="sec-label">Bagian 3</div>
+  <div class="sec-title">Kenapa Mulai dari Produktivitas?</div>
+  <div class="sec-lead">AI untuk produktivitas bukan pilihan default — ini pilihan strategis.<br><span style="color:var(--soft)">Ada tiga tingkatan dampak dan lima alasan konkret mengapa ini adalah titik masuk terbaik.</span></div>
+
+  <div class="sec-label" style="margin-bottom:6px;">Tiga Tingkatan Dampak</div>
+  <div class="levels-stack">
+    <div class="level-row">
+      <div class="level-num">1</div>
+      <div class="level-content">
+        <h4>Individu — Kerja Lebih Cerdas Setiap Hari</h4>
+        <p>AI paling banyak dipakai untuk menyusun dokumen, merangkum, menganalisis data, dan mengotomatisasi tugas berulang. <span class="stat">Rata-rata +33% produktivitas individu</span>.<sup class="ref">³</sup></p>
+      </div>
+    </div>
+    <div class="level-row">
+      <div class="level-num">2</div>
+      <div class="level-content">
+        <h4>Tim — Koordinasi yang Lebih Efisien</h4>
+        <p>Sebagian besar organisasi masih di Level 1. Yang sudah naik ke Level 2 — AI untuk alignment kerja dan koordinasi — melaporkan efektivitas koordinasi hampir <span class="stat">2× lebih tinggi</span>.<sup class="ref">³</sup></p>
+      </div>
+    </div>
+    <div class="level-row">
+      <div class="level-num">3</div>
+      <div class="level-content">
+        <h4>Organisasi — Fondasi Transformasi Digital</h4>
+        <p>Ketika literasi AI produktivitas sudah matang di level individu dan tim, organisasi siap masuk ke otomasi proses dan analitik terintegrasi — dengan ROI yang jauh lebih besar.<sup class="ref">⁵</sup></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label" style="margin-bottom:6px;">Lima Alasan Ini adalah Titik Masuk Terbaik</div>
+  <div class="adv-list">
+    <div class="adv-item" onclick="toggleAdv(this)"><div class="adv-icon">⚡</div><div class="adv-text"><h4>Dampak terlihat dalam hari, bukan kuartal</h4><p>Produktivitas bisa diukur langsung: waktu penyelesaian tugas, jumlah output, kualitas dokumen. Tidak perlu menunggu lama untuk tahu apakah AI membantu.</p></div></div>
+    <div class="adv-item" onclick="toggleAdv(this)"><div class="adv-icon">🌐</div><div class="adv-text"><h4>Relevan untuk semua fungsi</h4><p>AI produktivitas berguna untuk HR, keuangan, sales, operasi, bahkan sektor publik. Tidak ada fungsi yang tidak bisa mulai dari sini.</p></div></div>
+    <div class="adv-item" onclick="toggleAdv(this)"><div class="adv-icon">🚪</div><div class="adv-text"><h4>Bisa dimulai dari level individu</h4><p>Tidak perlu proyek transformasi besar atau investasi infrastruktur. Mulai dari email dan dokumen — sudah bisa merasakan manfaatnya hari ini.</p></div></div>
+    <div class="adv-item" onclick="toggleAdv(this)"><div class="adv-icon">📈</div><div class="adv-text"><h4>Mengangkat yang paling membutuhkan bantuan</h4><p>Pekerja dengan skill lebih rendah mendapat kenaikan kinerja paling besar dari AI. AI memperkecil kesenjangan, bukan memperbesar.<sup class="ref">⁴</sup></p></div></div>
+    <div class="adv-item" onclick="toggleAdv(this)"><div class="adv-icon">🔁</div><div class="adv-text"><h4>Organisasi belajar lebih cepat</h4><p>Siklus tugas harian cepat, artinya organisasi bisa iterasi panduan dan pelatihan AI lebih sering — membangun literasi dan budaya eksperimen secara organik.</p></div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- OMAH GAWE -->
+<!-- ══════════════════════════════════ -->
+<section class="sec" id="ogawe">
+  <div class="sec-label">Framework Kerja</div>
+  <div class="sec-title">Omah Gawe 4.3</div>
+  <div class="sec-lead">Framework yang dirancang untuk satu realitas:<br><span style="color:var(--soft)">Anda bisa bekerja dari mana saja — tapi tetap harus produktif, terfokus, dan bertanggung jawab penuh.</span></div>
+
+  <div class="og-history">
+    <p><strong>Apa itu Gawe?</strong> Gawe adalah kerangka <em>future of work</em> yang dikembangkan oleh IWDemy.</p>
+    <p>Inti konsepnya sederhana: kerja yang fleksibel bukan berarti tanpa sistem. Individu dan organisasi bisa tetap produktif dan kompetitif di tengah disrupsi — asalkan ada fondasi yang kuat.</p>
+    <p>Omah Gawe adalah arsitektur fondasi itu.</p>
+  </div>
+
+  <div class="og-wrap">
+    <svg class="og-svg" viewBox="0 0 700 440" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="roofGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#D4A840"/>
+          <stop offset="55%" stop-color="#C8963C"/>
+          <stop offset="100%" stop-color="#A87020"/>
+        </linearGradient>
+        <linearGradient id="panelHL" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="rgba(255,255,255,.05)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </linearGradient>
+      </defs>
+
+      <!-- ── BACKGROUND ── -->
+      <rect width="700" height="440" fill="#080808"/>
+      <rect x="10" y="14" width="680" height="416" fill="none" stroke="rgba(200,150,60,.12)" stroke-width="1"/>
+
+      <!-- ── FOUNDATION 2 (deepest): Lifestyle & Purpose ── -->
+      <rect x="10" y="390" width="680" height="40" fill="#0B0B0B"/>
+      <line x1="10" y1="390" x2="690" y2="390" stroke="#222" stroke-width="1"/>
+      <text x="350" y="415" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="8.5" font-weight="600" fill="rgba(255,255,255,.2)" letter-spacing="2.5">LIFESTYLE · PURPOSE</text>
+
+      <!-- ── FOUNDATION 1: Job & Function ── -->
+      <rect x="10" y="360" width="680" height="30" fill="#131313"/>
+      <line x1="10" y1="360" x2="690" y2="360" stroke="#242424" stroke-width="1"/>
+      <text x="350" y="379" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="8.5" font-weight="700" fill="rgba(200,150,60,.5)" letter-spacing="2.5">JOB · FUNCTION · INDUSTRY</text>
+
+      <!-- ── D5: Personal Knowledge Management (Left bottom) ── -->
+      <rect x="10" y="232" width="158" height="128" fill="#0C190D"/>
+      <rect x="10" y="232" width="158" height="128" fill="url(#panelHL)"/>
+      <text x="25" y="279" font-family="'JetBrains Mono',monospace" font-size="40" font-weight="800" fill="rgba(46,125,50,.07)">05</text>
+      <text x="25" y="255" font-family="'JetBrains Mono',monospace" font-size="8" font-weight="700" fill="#3D8845" letter-spacing="1.5">D5</text>
+      <text x="25" y="271" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="800" fill="rgba(255,255,255,.80)">PERSONAL</text>
+      <text x="25" y="284" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="800" fill="rgba(255,255,255,.80)">KNOWLEDGE</text>
+      <text x="25" y="297" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="800" fill="rgba(255,255,255,.80)">MANAGEMENT</text>
+      <text x="25" y="318" font-family="'Plus Jakarta Sans',sans-serif" font-size="8.5" fill="rgba(255,255,255,.32)" font-style="italic">Pikiran baru,</text>
+      <text x="25" y="330" font-family="'Plus Jakarta Sans',sans-serif" font-size="8.5" fill="rgba(255,255,255,.32)" font-style="italic">bukan sekadar</text>
+      <text x="25" y="342" font-family="'Plus Jakarta Sans',sans-serif" font-size="8.5" fill="rgba(255,255,255,.32)" font-style="italic">konsumsi informasi</text>
+
+      <!-- ── D2: Time Effectiveness (Left top) ── -->
+      <rect x="10" y="120" width="158" height="112" fill="#1A1200"/>
+      <rect x="10" y="120" width="158" height="112" fill="url(#panelHL)"/>
+      <text x="25" y="174" font-family="'JetBrains Mono',monospace" font-size="44" font-weight="800" fill="rgba(200,150,60,.07)">02</text>
+      <text x="25" y="143" font-family="'JetBrains Mono',monospace" font-size="8" font-weight="700" fill="#C8963C" letter-spacing="1.5">D2</text>
+      <text x="25" y="160" font-family="'Plus Jakarta Sans',sans-serif" font-size="10.5" font-weight="800" fill="rgba(255,255,255,.85)">TIME</text>
+      <text x="25" y="174" font-family="'Plus Jakarta Sans',sans-serif" font-size="10.5" font-weight="800" fill="rgba(255,255,255,.85)">EFFECTIVENESS</text>
+      <text x="25" y="200" font-family="'Plus Jakarta Sans',sans-serif" font-size="8.5" fill="rgba(255,255,255,.32)" font-style="italic">Waktu → dampak,</text>
+      <text x="25" y="213" font-family="'Plus Jakarta Sans',sans-serif" font-size="8.5" fill="rgba(255,255,255,.32)" font-style="italic">bukan aktivitas</text>
+
+      <!-- ── D3: Space & Environment (Right bottom) ── -->
+      <rect x="532" y="232" width="158" height="128" fill="#0B1320"/>
+      <rect x="532" y="232" width="158" height="128" fill="url(#panelHL)"/>
+      <text x="547" y="279" font-family="'JetBrains Mono',monospace" font-size="40" font-weight="800" fill="rgba(21,101,192,.07)">03</text>
+      <text x="547" y="255" font-family="'JetBrains Mono',monospace" font-size="8" font-weight="700" fill="#2E6AB8" letter-spacing="1.5">D3</text>
+      <text x="547" y="271" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="800" fill="rgba(255,255,255,.80)">SPACE &amp;</text>
+      <text x="547" y="284" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="800" fill="rgba(255,255,255,.80)">ENVIRONMENT</text>
+      <text x="547" y="318" font-family="'Plus Jakarta Sans',sans-serif" font-size="8.5" fill="rgba(255,255,255,.32)" font-style="italic">Hadir penuh</text>
+      <text x="547" y="330" font-family="'Plus Jakarta Sans',sans-serif" font-size="8.5" fill="rgba(255,255,255,.32)" font-style="italic">dari mana pun</text>
+
+      <!-- ── D4: People Connectedness (Right top) ── -->
+      <rect x="532" y="120" width="158" height="112" fill="#130C20"/>
+      <rect x="532" y="120" width="158" height="112" fill="url(#panelHL)"/>
+      <text x="547" y="174" font-family="'JetBrains Mono',monospace" font-size="44" font-weight="800" fill="rgba(106,27,154,.07)">04</text>
+      <text x="547" y="143" font-family="'JetBrains Mono',monospace" font-size="8" font-weight="700" fill="#8450C0" letter-spacing="1.5">D4</text>
+      <text x="547" y="160" font-family="'Plus Jakarta Sans',sans-serif" font-size="10.5" font-weight="800" fill="rgba(255,255,255,.85)">PEOPLE</text>
+      <text x="547" y="174" font-family="'Plus Jakarta Sans',sans-serif" font-size="10.5" font-weight="800" fill="rgba(255,255,255,.85)">CONNECTEDNESS</text>
+      <text x="547" y="200" font-family="'Plus Jakarta Sans',sans-serif" font-size="8.5" fill="rgba(255,255,255,.32)" font-style="italic">Relasi kerja</text>
+      <text x="547" y="213" font-family="'Plus Jakarta Sans',sans-serif" font-size="8.5" fill="rgba(255,255,255,.32)" font-style="italic">yang tetap hidup</text>
+
+      <!-- ── CENTER: Tech Adoption ── -->
+      <rect x="170" y="120" width="360" height="240" fill="#111111"/>
+      <rect x="170" y="120" width="360" height="240" fill="url(#panelHL)"/>
+      <rect x="170" y="120" width="360" height="240" fill="none" stroke="#C8963C" stroke-width="1" stroke-opacity=".28"/>
+
+      <!-- Center header -->
+      <text x="350" y="144" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="8.5" font-weight="700" fill="#C8963C" letter-spacing="3">TECH ADOPTION</text>
+      <line x1="198" y1="151" x2="502" y2="151" stroke="rgba(200,150,60,.18)" stroke-width="1"/>
+
+      <!-- Tool columns -->
+      <text x="218" y="170" font-family="'Plus Jakarta Sans',sans-serif" font-size="7.5" font-weight="700" fill="rgba(255,255,255,.3)" letter-spacing="1.5">KOMUNIKASI</text>
+      <text x="218" y="184" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" fill="rgba(255,255,255,.55)">Gmail · GChat · Meet</text>
+
+      <text x="350" y="170" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="7.5" font-weight="700" fill="rgba(255,255,255,.3)" letter-spacing="1.5">PRODUKTIVITAS</text>
+      <text x="350" y="184" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" fill="rgba(255,255,255,.55)">Docs · Tasks · Calendar</text>
+
+      <text x="482" y="170" text-anchor="end" font-family="'Plus Jakarta Sans',sans-serif" font-size="7.5" font-weight="700" fill="rgba(255,255,255,.3)" letter-spacing="1.5">KREASI</text>
+      <text x="482" y="184" text-anchor="end" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" fill="rgba(255,255,255,.55)">Slides · Notion · Miro</text>
+
+      <line x1="198" y1="194" x2="502" y2="194" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+
+      <!-- AI layer -->
+      <text x="350" y="214" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="7.5" font-weight="700" fill="rgba(255,255,255,.28)" letter-spacing="2">LAPISAN AI</text>
+      <text x="350" y="230" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9.5" fill="rgba(255,255,255,.52)">Gemini · NotebookLM · Claude</text>
+
+      <line x1="198" y1="241" x2="502" y2="241" stroke="rgba(200,150,60,.1)" stroke-width="1" stroke-dasharray="4 4"/>
+
+      <!-- Optimal rule -->
+      <text x="350" y="268" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13.5" font-weight="700" fill="#C8963C">≤ 4 tools per kategori</text>
+      <text x="350" y="287" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9.5" fill="rgba(255,255,255,.32)">Pilih yang tepat, bukan yang terbanyak</text>
+
+      <line x1="198" y1="300" x2="502" y2="300" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+      <text x="350" y="320" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" fill="rgba(255,255,255,.18)" font-style="italic">Decision Cockpit — konfigurasi di sini</text>
+
+      <!-- Dividers center-side -->
+      <line x1="170" y1="120" x2="170" y2="360" stroke="rgba(200,150,60,.18)" stroke-width="1"/>
+      <line x1="530" y1="120" x2="530" y2="360" stroke="rgba(200,150,60,.18)" stroke-width="1"/>
+      <!-- Dividers left mid -->
+      <line x1="10" y1="232" x2="168" y2="232" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+      <!-- Dividers right mid -->
+      <line x1="532" y1="232" x2="690" y2="232" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+
+      <!-- ── ROOF: D1 Clear Goals ── -->
+      <polygon points="10,120 350,17 690,120" fill="url(#roofGrad)"/>
+      <polygon points="10,120 350,17 690,120" fill="url(#panelHL)" opacity=".5"/>
+
+      <!-- Roof labels -->
+      <text x="350" y="57" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="7.5" font-weight="700" fill="rgba(0,0,0,.45)" letter-spacing="2">D1</text>
+      <text x="350" y="73" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="12" font-weight="800" fill="rgba(0,0,0,.72)">CLEAR GOALS</text>
+      <text x="350" y="89" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="9" fill="rgba(0,0,0,.48)">OKR · KPI · Prioritas Adaptif</text>
+
+      <!-- Roof base line -->
+      <line x1="10" y1="120" x2="690" y2="120" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+
+      <!-- Attribution -->
+      <text x="350" y="430" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="8" fill="rgba(255,255,255,.15)" letter-spacing=".5">IWDemy · Tjitra &amp; Associates · Omah Gawe 4.3</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- LIMA DIMENSI + BENANG MERAH -->
+<!-- ══════════════════════════════════ -->
+<section class="sec" id="leaders">
+  <div class="sec-label">Lima Dimensi Kepemimpinan</div>
+  <div class="sec-title">Gawe dari Sudut Pandang Pemimpin</div>
+  <div class="sec-lead">Gawe punya lima pilar.<br><span style="color:var(--soft)">Bagi pemimpin, setiap pilar bukan hanya tentang produktivitas diri sendiri — melainkan pertanyaan tentang bagaimana tim bisa bekerja sebaik mungkin.</span></div>
+
+  <div class="leaders-intro">
+    Sebagai pemimpin, Anda bukan hanya mengelola produktivitas diri sendiri.<br><br>
+    Anda mengelola <em>kondisi</em> yang memungkinkan tim Anda produktif — dari mana saja, kapan saja.
+  </div>
+
+  <p style="font-size:11px;color:var(--soft);margin-bottom:8px;">👆 Tap setiap dimensi untuk lihat pertanyaan refleksinya.</p>
+  <div class="dim-grid-v3">
+    <div class="dim-v3" onclick="toggleDim(this)">
+      <div class="dim-v3-head"><div class="dim-num-v3">1</div><div class="dim-name-v3">Clear Goals · OKR / KPI</div><span class="dim-chevron">▼</span></div>
+      <div class="dim-v3-body">
+        <div class="dim-q-block"><div class="dim-q-label">Produktivitas</div><div class="dim-q-text">Apakah saya on track?</div></div>
+        <div class="dim-q-block"><div class="dim-q-label">Kepemimpinan</div><div class="dim-q-text">Ketika saya tidak ada di ruangan, apakah tim saya tahu apa yang paling penting?</div></div>
+      </div>
+    </div>
+    <div class="dim-v3" onclick="toggleDim(this)">
+      <div class="dim-v3-head"><div class="dim-num-v3">2</div><div class="dim-name-v3">Time Effectiveness</div><span class="dim-chevron">▼</span></div>
+      <div class="dim-v3-body">
+        <div class="dim-q-block"><div class="dim-q-label">Produktivitas</div><div class="dim-q-text">Apakah saya efisien?</div></div>
+        <div class="dim-q-block"><div class="dim-q-label">Kepemimpinan</div><div class="dim-q-text">Apakah waktu saya dipakai untuk hal yang hanya bisa dikerjakan oleh saya?</div></div>
+      </div>
+    </div>
+    <div class="dim-v3" onclick="toggleDim(this)">
+      <div class="dim-v3-head"><div class="dim-num-v3">3</div><div class="dim-name-v3">Space / Environment</div><span class="dim-chevron">▼</span></div>
+      <div class="dim-v3-body">
+        <div class="dim-q-block"><div class="dim-q-label">Produktivitas</div><div class="dim-q-text">Apakah setup kerja saya mendukung fokus?</div></div>
+        <div class="dim-q-block"><div class="dim-q-label">Kepemimpinan</div><div class="dim-q-text">Bisakah saya hadir penuh — secara pikiran dan keputusan — di mana pun saya berada?</div></div>
+      </div>
+    </div>
+    <div class="dim-v3" onclick="toggleDim(this)">
+      <div class="dim-v3-head"><div class="dim-num-v3">4</div><div class="dim-name-v3">People Connectedness</div><span class="dim-chevron">▼</span></div>
+      <div class="dim-v3-body">
+        <div class="dim-q-block"><div class="dim-q-label">Produktivitas</div><div class="dim-q-text">Apakah saya terhubung dengan tim?</div></div>
+        <div class="dim-q-block"><div class="dim-q-label">Kepemimpinan</div><div class="dim-q-text">Apakah relasi kerja tetap hidup meski tanpa tatap muka rutin?</div></div>
+      </div>
+    </div>
+    <div class="dim-v3" onclick="toggleDim(this)">
+      <div class="dim-v3-head"><div class="dim-num-v3">5</div><div class="dim-name-v3">Personal Knowledge Management</div><span class="dim-chevron">▼</span></div>
+      <div class="dim-v3-body">
+        <div class="dim-q-block"><div class="dim-q-label">Produktivitas</div><div class="dim-q-text">Apakah saya terus belajar?</div></div>
+        <div class="dim-q-block"><div class="dim-q-label">Kepemimpinan</div><div class="dim-q-text">Apakah saya masih menghasilkan pikiran baru — atau hanya mengonsumsi informasi?</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BENANG MERAH -->
+  <div class="bm-trigger" onclick="toggleBM(this)" id="bmTrigger">
+    <h4>📍 Benang Merah — Perjalanan L1 sampai L4</h4>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="bm-body" id="bmBody">
+    <div class="bm-item"><div class="bm-dot"></div><div class="bm-level">L1</div><div class="bm-content"><h4>Thinking with AI</h4><p>Cara berpikir bersama AI, membangun persona</p><div class="bm-arrow">→ Clear Goals · Knowledge Management</div></div></div>
+    <div class="bm-item"><div class="bm-dot"></div><div class="bm-level">L2 · Day 1</div><div class="bm-content"><h4>Prompting &amp; Reading</h4><p>CIS framework, membaca lebih dalam dengan AI</p><div class="bm-arrow">→ People Connectedness</div></div></div>
+    <div class="bm-item"><div class="bm-dot"></div><div class="bm-level">L2 · Day 2</div><div class="bm-content"><h4>PKM &amp; Second Brain</h4><p>CODE framework, PARA, Google Drive</p><div class="bm-arrow">→ Knowledge Management</div></div></div>
+    <div class="bm-item"><div class="bm-dot"></div><div class="bm-level">L3 · Day 1</div><div class="bm-content"><h4>Personalized AI</h4><p>AI yang mengenal konteks dan cara kerja Anda</p><div class="bm-arrow">→ Clear Goals</div></div></div>
+    <div class="bm-item"><div class="bm-dot"></div><div class="bm-level">L3 · Day 2</div><div class="bm-content"><h4>AI for Productivity</h4><p>Sistem harian, 45–60 mnt/hari penghematan</p><div class="bm-arrow">→ Time Effectiveness</div></div></div>
+    <div class="bm-item current"><div class="bm-dot"></div><div class="bm-level">L4 · Day 2 · SEKARANG</div><div class="bm-content"><h4>Gawe — Arsitektur Kepemimpinan</h4><p>Rakit semua yang sudah dipelajari. Kelima dimensi, satu sistem.</p><div class="bm-arrow">→ Lima Dimensi + Format Presentasi</div></div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- SELF ASSESSMENT -->
+<!-- ══════════════════════════════════ -->
+<section class="sec" id="assess">
+  <div class="sec-label">Audit Diri</div>
+  <div class="sec-title">Sistem Saya Sekarang — Seberapa Kuat?</div>
+  <div class="sec-lead">Jujur dulu, baru bergerak.<br><span style="color:var(--soft)">Tap setiap dimensi untuk menilai kondisi Anda hari ini.</span></div>
+
+  <p class="tap-note">👆 Tap untuk ganti status: Kuat · Rapuh · Belum</p>
+  <div class="assess-grid">
+    <div class="assess-card" onclick="cycleAssess(this)" data-s="0"><div class="assess-inner"><div class="assess-num">1</div><div class="assess-name">Clear Goals · OKR / KPI</div><div class="assess-status">Tap</div></div><div class="assess-hint">Tim saya tahu yang paling penting bahkan tanpa saya di ruangan</div></div>
+    <div class="assess-card" onclick="cycleAssess(this)" data-s="0"><div class="assess-inner"><div class="assess-num">2</div><div class="assess-name">Time Effectiveness</div><div class="assess-status">Tap</div></div><div class="assess-hint">Waktu saya untuk hal yang hanya bisa saya kerjakan</div></div>
+    <div class="assess-card" onclick="cycleAssess(this)" data-s="0"><div class="assess-inner"><div class="assess-num">3</div><div class="assess-name">Space / Environment</div><div class="assess-status">Tap</div></div><div class="assess-hint">Saya bisa hadir penuh — pikiran dan keputusan — dari mana pun</div></div>
+    <div class="assess-card" onclick="cycleAssess(this)" data-s="0"><div class="assess-inner"><div class="assess-num">4</div><div class="assess-name">People Connectedness</div><div class="assess-status">Tap</div></div><div class="assess-hint">Relasi kerja tetap hidup tanpa tatap muka rutin</div></div>
+    <div class="assess-card" onclick="cycleAssess(this)" data-s="0" style="grid-column:1/-1;"><div class="assess-inner"><div class="assess-num">5</div><div class="assess-name">Personal Knowledge Management</div><div class="assess-status">Tap</div></div><div class="assess-hint">Saya masih menghasilkan pikiran baru, bukan hanya mengonsumsi informasi</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- AI → GAWE MAPPING -->
+<!-- ══════════════════════════════════ -->
+<section class="sec" id="map">
+  <div class="sec-label">Peta Pemanfaatan</div>
+  <div class="sec-title">AI Bisa Bantu Apa — dan di Dimensi Mana?</div>
+  <div class="sec-lead">Kapabilitas AI yang paling sering dipakai knowledge worker, dipetakan ke dimensi Gawe yang paling relevan.</div>
+
+  <div class="map-table">
+    <div class="map-row"><div class="map-what">Menulis dan meringkas dokumen<small>Laporan, briefing, notulen, proposal</small></div><div class="map-arr">→</div><div><span class="pill pill-d5">D5 · PKM</span></div></div>
+    <div class="map-row"><div class="map-what">Riset dan kompilasi informasi<small>Perbandingan, ringkasan, pencarian cepat</small></div><div class="map-arr">→</div><div><span class="pill pill-d5">D5 · PKM</span></div></div>
+    <div class="map-row"><div class="map-what">Prioritas dan triage kalender<small>Mana mendesak, mana bisa digeser</small></div><div class="map-arr">→</div><div><span class="pill pill-d2">D2 · Time</span></div></div>
+    <div class="map-row"><div class="map-what">Manajemen dan tracking tugas<small>Yang belum selesai, yang tertunda</small></div><div class="map-arr">→</div><div><span class="pill pill-d2">D2 · Time</span></div></div>
+    <div class="map-row"><div class="map-what">Setup digital workspace<small>Koneksi tools, akses dari mana saja</small></div><div class="map-arr">→</div><div><span class="pill pill-d3">D3 · Space</span></div></div>
+    <div class="map-row"><div class="map-what">Komunikasi tim dan delegasi<small>Draft pesan, agenda rapat, briefing tim</small></div><div class="map-arr">→</div><div><span class="pill pill-d4">D4 · People</span></div></div>
+    <div class="map-row"><div class="map-what">Review progress dan OKR<small>Cek pencapaian, identifikasi hambatan</small></div><div class="map-arr">→</div><div><span class="pill pill-d1">D1 · Goals</span></div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- SETUP GEMINI -->
+<!-- ══════════════════════════════════ -->
+<section class="sec" id="setup">
+  <div class="sec-label">Siapkan Gemini Dulu</div>
+  <div class="sec-title">Hubungkan Gemini ke Tools Kerja Anda</div>
+  <div class="sec-lead">Sebelum latihan, kita bereskan koneksi dulu.<br><span style="color:var(--soft)">Gemini yang terhubung ke kalender dan tugas Anda jauh lebih berguna dari Gemini yang berdiri sendiri.</span></div>
+
+  <div class="setup-steps">
+    <div class="setup-step priority open" onclick="toggleStep(this)">
+      <div class="setup-step-head"><div class="step-badge">1</div><div class="step-label">Buka Gemini dan Aktifkan Extensions</div><div class="step-tag">Mulai di sini</div><div class="step-chevron">▼</div></div>
+      <div class="setup-step-body">
+        <p>Ini langkah pertama yang harus diselesaikan sebelum yang lain.</p>
+        <div class="check-item" onclick="toggleCheck(event,this)"><div class="check-box"></div><span>Buka <strong>gemini.google.com</strong></span></div>
+        <div class="check-item" onclick="toggleCheck(event,this)"><div class="check-box"></div><span>Klik ikon Extensions di sidebar kiri</span></div>
+        <div class="check-item" onclick="toggleCheck(event,this)"><div class="check-box"></div><span>Aktifkan <strong>Google Workspace</strong></span></div>
+      </div>
+    </div>
+    <div class="setup-step priority" onclick="toggleStep(this)">
+      <div class="setup-step-head"><div class="step-badge">2</div><div class="step-label">Hubungkan Google Calendar</div><div class="step-tag">Paling Berdampak</div><div class="step-chevron">▼</div></div>
+      <div class="setup-step-body">
+        <p>Kalender adalah data paling jujur tentang bagaimana waktu Anda benar-benar digunakan. Sambungkan sekali, bisa dianalisis selamanya.</p>
+        <div class="check-item" onclick="toggleCheck(event,this)"><div class="check-box"></div><span>Aktifkan Calendar access di Extensions</span></div>
+        <div class="prompt-box" style="margin-top:8px;">
+          <div class="p-label"><span>COBA SEKARANG</span><button class="copy-btn" onclick="copyP(event,this,'sp1')">Salin</button></div>
+          <pre id="sp1">Lihat Google Calendar saya minggu ini.
+Berapa total jam meeting? Kapan waktu terbaik untuk deep work?</pre>
+        </div>
+      </div>
+    </div>
+    <div class="setup-step" onclick="toggleStep(this)">
+      <div class="setup-step-head"><div class="step-badge">3</div><div class="step-label">Hubungkan Google Tasks</div><div class="step-chevron">▼</div></div>
+      <div class="setup-step-body">
+        <p>Kalender + Tasks = gambaran lengkap: jadwal dan komitmen dalam satu tempat.</p>
+        <div class="check-item" onclick="toggleCheck(event,this)"><div class="check-box"></div><span>Aktifkan Tasks access di Extensions</span></div>
+        <div class="prompt-box" style="margin-top:8px;">
+          <div class="p-label"><span>COBA SEKARANG</span><button class="copy-btn" onclick="copyP(event,this,'sp2')">Salin</button></div>
+          <pre id="sp2">Lihat Google Tasks saya.
+Task mana yang paling lama belum ada progress?
+Dari semua ini, mana yang HANYA bisa saya kerjakan sendiri?</pre>
+        </div>
+      </div>
+    </div>
+    <div class="setup-step" onclick="toggleStep(this)">
+      <div class="setup-step-head"><div class="step-badge">4</div><div class="step-label">Gmail dan Drive — Opsional tapi Powerful</div><div class="step-chevron">▼</div></div>
+      <div class="setup-step-body">
+        <p>Dengan Gmail dan Drive terhubung, Gemini bisa membaca konteks email dan dokumen sehingga rekomendasinya jauh lebih relevan.</p>
+        <div class="check-item" onclick="toggleCheck(event,this)"><div class="check-box"></div><span>Aktifkan Gmail di Extensions</span></div>
+        <div class="check-item" onclick="toggleCheck(event,this)"><div class="check-box"></div><span>Aktifkan Drive di Extensions</span></div>
+        <div class="infobox">Gemini hanya membaca apa yang Anda izinkan. Data Anda tidak digunakan untuk melatih model.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- LATIHAN -->
+<!-- ══════════════════════════════════ -->
+<section class="sec" id="exercises">
+  <div class="sec-label">Latihan</div>
+  <div class="sec-title">Praktik Langsung</div>
+  <div class="sec-lead">Pilih latihan yang paling relevan untuk situasi Anda sekarang.</div>
+
+  <div class="ex-list">
+    <div class="ex-card open">
+      <div class="ex-head" onclick="toggleEx(this)"><div class="ex-num">1</div><div class="ex-title">Analisis Kalender — Minggu Ini Dipakai untuk Apa?</div><div class="ex-chevron">▼</div></div>
+      <div class="ex-body">
+        <p>Setelah Calendar terhubung, minta Gemini membaca pola minggu Anda.</p>
+        <div class="prompt-box">
+          <div class="p-label"><span>PROMPT</span><button class="copy-btn" onclick="copyP(event,this,'ex1')">Salin</button></div>
+          <pre id="ex1">Lihat Google Calendar saya untuk minggu ini.
+
+Berikan ringkasan:
+- Berapa total jam meeting vs waktu fokus?
+- Hari mana yang paling padat?
+- Kapan waktu terbaik untuk deep work?
+- Ada pola yang perlu diperhatikan?</pre>
+        </div>
+      </div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-head" onclick="toggleEx(this)"><div class="ex-num">2</div><div class="ex-title">Triage Tugas — Mana yang Hanya Bisa Dikerjakan Saya?</div><div class="ex-chevron">▼</div></div>
+      <div class="ex-body">
+        <div class="prompt-box">
+          <div class="p-label"><span>PROMPT</span><button class="copy-btn" onclick="copyP(event,this,'ex2')">Salin</button></div>
+          <pre id="ex2">Lihat Google Tasks saya.
+
+Bantu saya klasifikasikan dengan Eisenhower Matrix:
+- Q1: Mendesak + Penting → Kerjakan sekarang
+- Q2: Tidak mendesak + Penting → Jadwalkan
+- Q3: Mendesak + Tidak penting → Delegasikan
+- Q4: Tidak mendesak + Tidak penting → Hapus atau tunda
+
+Jujur — jangan semua masuk Q1.
+Identifikasi task yang masuk Q3 tapi selama ini saya tangani sendiri.</pre>
+        </div>
+      </div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-head" onclick="toggleEx(this)"><div class="ex-num">3</div><div class="ex-title">Decision Cockpit — Briefing Harian 2 Menit</div><div class="ex-chevron">▼</div></div>
+      <div class="ex-body">
+        <p>Buat Gemini Gem sekali. Gunakan setiap pagi untuk memulai hari dengan arah yang jelas.</p>
+        <div class="prompt-box" style="margin-bottom:8px;">
+          <div class="p-label"><span>LANGKAH 1 — SETUP GEM (SEKALI)</span><button class="copy-btn" onclick="copyP(event,this,'ex3a')">Salin</button></div>
+          <pre id="ex3a">Kamu adalah exec secretary saya.
+
+<span class="br">[Isi: posisi, tanggung jawab utama, tim yang dipimpin]</span>
+
+Setiap pagi saya paste agenda dan task. Jawab empat hal:
+
+🔴 APA YANG MASIH DI MEJA SAYA
+⚡ SATU HAL YANG PALING BERDAMPAK HARI INI
+🚫 APA YANG TIDAK PERLU ADA DI MEJA SAYA
+📡 SIAPA YANG MENUNGGU SAYA
+
+Format: langsung ke poin. Tanpa kalimat pembuka. 2–3 menit baca.
+Tutup dengan: "Satu hal yang kalau selesai hari ini, hari ini sudah berhasil: ___"</pre>
+        </div>
+        <div class="prompt-box">
+          <div class="p-label"><span>LANGKAH 2 — INPUT HARIAN (SETIAP PAGI)</span><button class="copy-btn" onclick="copyP(event,this,'ex3b')">Salin</button></div>
+          <pre id="ex3b">--- AGENDA HARI INI ---
+<span class="br">[paste dari Google Calendar]</span>
+
+--- TASK AKTIF ---
+<span class="br">[paste dari task list Anda]</span>
+
+--- YANG MENUNGGU RESPONS SAYA ---
+<span class="br">[tulis cepat: "WA dari X soal Y"]</span></pre>
+        </div>
+      </div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-head" onclick="toggleEx(this)"><div class="ex-num">4</div><div class="ex-title">Ringkasan Rapat — Dari Catatan ke Action Items</div><div class="ex-chevron">▼</div></div>
+      <div class="ex-body">
+        <div class="prompt-box">
+          <div class="p-label"><span>PROMPT</span><button class="copy-btn" onclick="copyP(event,this,'ex4')">Salin</button></div>
+          <pre id="ex4">Ini catatan rapat saya — masih mentah.
+
+Buat:
+1. Tiga poin utama yang diputuskan
+2. Action items: siapa mengerjakan apa, kapan selesai
+3. Pertanyaan yang belum terjawab dan perlu follow-up
+4. Draft pesan singkat untuk dikirim ke peserta rapat
+
+--- CATATAN RAPAT ---
+<span class="br">[paste catatan mentah — tidak perlu rapi]</span></pre>
+        </div>
+      </div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-head" onclick="toggleEx(this)"><div class="ex-num">5</div><div class="ex-title">Brief Delegasi — Agar Tim Bisa Langsung Jalan</div><div class="ex-chevron">▼</div></div>
+      <div class="ex-body">
+        <div class="prompt-box">
+          <div class="p-label"><span>PROMPT</span><button class="copy-btn" onclick="copyP(event,this,'ex5')">Salin</button></div>
+          <pre id="ex5">Saya ingin mendelegasikan tugas ini.
+Bantu tulis brief yang cukup jelas agar penerima bisa langsung eksekusi:
+
+- Apa tugasnya dan konteks singkatnya
+- Hasil yang diharapkan (bukan aktivitas, tapi output)
+- Deadline
+- Tingkat otonomi: perlu lapor atau langsung jalan?
+- Apa yang tidak perlu ditanyakan ke saya
+
+--- TUGAS YANG DIDELEGASIKAN ---
+<span class="br">[jelaskan tugasnya]</span>
+
+--- PENERIMA ---
+<span class="br">[siapa, level, konteks]</span></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- FORMAT PRESENTASI -->
+<!-- ══════════════════════════════════ -->
+<section class="sec" id="presentasi">
+  <div class="sec-label">Bagian Penting Terakhir</div>
+  <div class="sec-title">Cara Pemimpin Menyebarkan Keputusan</div>
+  <div class="sec-lead">Medium adalah pesan kepemimpinan Anda.<br><span style="color:var(--soft)">Sebelum tanya <em>tools apa</em> — tanya dulu: <em>apa yang perlu terjadi setelah orang ini membaca atau menonton ini?</em></span></div>
+
+  <div class="format-framing">
+    Cara Anda menyajikan sesuatu adalah cara Anda memimpin. Pilihan format bukan soal selera — tapi soal tujuan komunikasi dan apa yang ingin Anda picu dari audiens.
+  </div>
+
+  <p style="font-size:11px;color:var(--soft);margin-bottom:8px;">👆 Tap format untuk lihat detail dan kasus penggunaan.</p>
+  <div class="format-grid">
+    <div class="format-card" onclick="toggleFormat(this)">
+      <div class="format-icon">⚙️</div>
+      <div class="format-title">Artifact (Claude)</div>
+      <div class="format-tagline">Laporan interaktif via link</div>
+      <div class="format-detail">
+        <div class="format-use">Konten yang perlu dijelajahi, bukan sekadar dilihat. Audiens bisa klik, scroll, kembali ke bagian tertentu. Dibagikan lewat link — tidak butuh software di penerima.</div>
+        <div class="format-cocok">Cocok: laporan data, materi training, proposal panjang.</div>
+      </div>
+    </div>
+    <div class="format-card" onclick="toggleFormat(this)">
+      <div class="format-icon">📊</div>
+      <div class="format-title">Slide Klasik + Gemini</div>
+      <div class="format-tagline">Keputusan di ruangan, formal</div>
+      <div class="format-detail">
+        <div class="format-use">Presentasi satu arah yang terstruktur. Gemini draft layout, speaker notes, dan saran visual dari outline Anda.</div>
+        <div class="format-cocok">Cocok: board presentation, pitch klien, update manajemen formal.</div>
+      </div>
+    </div>
+    <div class="format-card" onclick="toggleFormat(this)">
+      <div class="format-icon">📱</div>
+      <div class="format-title">GKeep + GChat + GPhotos</div>
+      <div class="format-tagline">Update cepat, real-time</div>
+      <div class="format-detail">
+        <div class="format-use">Capture lapangan dan distribusikan tanpa hambatan — tidak perlu buat deck, bisa dilakukan sambil berjalan.</div>
+        <div class="format-cocok">Cocok: laporan lapangan visual, brief pagi cepat, update tim informal.</div>
+      </div>
+    </div>
+    <div class="format-card" onclick="toggleFormat(this)">
+      <div class="format-icon">📄</div>
+      <div class="format-title">Notion</div>
+      <div class="format-tagline">Dokumen hidup, bisa dikomentari</div>
+      <div class="format-detail">
+        <div class="format-use">Bukan file yang dikirim sekali lalu dilupakan — bisa diperbarui, dikomentari bersama, dan dikunjungi kapan saja.</div>
+        <div class="format-cocok">Cocok: proposal yang butuh revisi bersama, knowledge base tim, laporan berkala.</div>
+      </div>
+    </div>
+    <div class="format-card" onclick="toggleFormat(this)">
+      <div class="format-icon">✏️</div>
+      <div class="format-title">Corat-Coret (Miro / iPad)</div>
+      <div class="format-tagline">Diskusi, bukan presentasi</div>
+      <div class="format-detail">
+        <div class="format-use">Tidak ada "presenter" dan "audiens" — semua orang berkontribusi. Pakai ketika butuh alignment, bukan approval.</div>
+        <div class="format-cocok">Cocok: workshop, problem-solving bersama, kickoff tim.</div>
+      </div>
+    </div>
+    <div class="format-card" onclick="toggleFormat(this)">
+      <div class="format-icon">📡</div>
+      <div class="format-title">IQ ClassOne</div>
+      <div class="format-tagline">Pemahaman diukur, bukan diasumsikan</div>
+      <div class="format-detail">
+        <div class="format-use">Live polling, kuis otomatis, pelacakan partisipan real-time. Anda tahu siapa yang paham dan siapa yang tidak.</div>
+        <div class="format-cocok">Cocok: training korporat, cek kemampuan, sesi yang butuh keterlibatan terukur.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label" style="margin-bottom:6px;">Berapa Banyak Waktu yang Bisa Dihemat?</div>
+  <div class="table-wrap">
+    <table class="time-table">
+      <thead><tr><th>Format</th><th>Dulu</th><th>Dengan AI</th><th>Hemat</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Laporan 15 slide</strong></td><td style="color:var(--soft)">3–4 jam</td><td>20 mnt prompt + 30 mnt review</td><td class="save-pct">~75%</td></tr>
+        <tr><td><strong>Proposal klien</strong></td><td style="color:var(--soft)">5–6 jam</td><td>30 mnt draft + 1 jam penyempurnaan</td><td class="save-pct">~70%</td></tr>
+        <tr><td><strong>Notulen + action items</strong></td><td style="color:var(--soft)">30–45 mnt</td><td>Otomatis via Gemini Meet</td><td class="save-pct">~90%</td></tr>
+        <tr><td><strong>Kuis 20 soal</strong></td><td style="color:var(--soft)">2 jam</td><td>AI hasilkan dalam 2 menit</td><td class="save-pct">~95%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ -->
+<!-- KOMITMEN -->
+<!-- ══════════════════════════════════ -->
+<section class="sec" id="commit">
+  <div class="sec-label">Komitmen</div>
+  <div class="sec-title">Jalur Mana yang Anda Ambil Minggu Ini?</div>
+  <div class="sec-lead">Bukan yang paling ideal. Bukan yang paling lengkap.<br><span style="color:var(--soft)">Yang paling terasa dan paling mungkin dimulai sekarang.</span></div>
+
+  <div class="jalur-grid">
+    <div class="jalur-card" onclick="selectJalur(this)">
+      <div class="jalur-letter">JALUR A</div>
+      <div class="jalur-title">Decision Cockpit</div>
+      <div class="jalur-desc">Setup Gemini Gem dengan prompt Decision Cockpit. Coba selama lima hari kerja. Catat: apakah hari terasa berbeda?</div>
+    </div>
+    <div class="jalur-card" onclick="selectJalur(this)">
+      <div class="jalur-letter">JALUR B</div>
+      <div class="jalur-title">Audit Sistem Waktu</div>
+      <div class="jalur-desc">Ambil satu perubahan dari temuan audit kalender tadi. Satu hal saja. Jalankan minggu depan dan perhatikan hasilnya.</div>
+    </div>
+    <div class="jalur-card" onclick="selectJalur(this)">
+      <div class="jalur-letter">JALUR C</div>
+      <div class="jalur-title">Format Presentasi</div>
+      <div class="jalur-desc">Pilih satu komunikasi yang biasanya jadi slide deck — coba dalam format yang lebih sesuai tujuannya. Lihat apa yang berubah.</div>
+    </div>
+  </div>
+</section>
+
+<div class="sources-sec">
+  <div class="sources-title">Sumber Data</div>
+  <div class="sources-list">
+    <div class="source-item"><sup>1</sup> ILO, <em>World Employment and Social Outlook</em> 2024 — estimasi otomatisasi pekerjaan administratif.</div>
+    <div class="source-item"><sup>2</sup> McKinsey Global Survey on AI, 2024 — adopsi AI per fungsi bisnis (marketing, sales, operasi, data).</div>
+    <div class="source-item"><sup>3</sup> Atlassian, <em>State of Teams</em> 2024 — peningkatan produktivitas individu dengan AI.</div>
+    <div class="source-item"><sup>4</sup> Brynjolfsson, Li &amp; Raymond (Stanford–MIT), 2023 — dampak AI terbesar pada karyawan dengan skill lebih rendah.</div>
+    <div class="source-item"><sup>5</sup> IBM Institute for Business Value, <em>CEO Study</em> 2023 — kesiapan organisasi untuk AI produktivitas.</div>
+    <div class="source-item"><sup>6</sup> BCG, <em>Succeeding with AI</em> 2023 — organisasi dengan ≤4 tools utama lebih produktif.</div>
+  </div>
+</div>
+
+<div class="closing">
+  IWDemy · Tjitra &amp; Associates · AI First Program<br>
+  <span style="font-size:10px;opacity:.6;">Aspiring Growth, Experiencing Technology</span>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+// Cluster toggle
+function toggleCluster(card){card.classList.toggle('open');}
+
+// Use type chips
+const usePanels=['u-prod','u-auto','u-analy','u-dec','u-cust','u-hr','u-create'];
+function selectUse(chip,panelId){
+  document.querySelectorAll('.use-chip').forEach(c=>{c.classList.remove('active');});
+  chip.classList.add('active');
+  usePanels.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.style.display=id===panelId?'block':'none';
+  });
+}
+
+// Advantage toggle
+function toggleAdv(item){item.classList.toggle('open');}
+
+// Dimension cards
+function toggleDim(card){card.classList.toggle('open');}
+
+// Format cards
+function toggleFormat(card){card.classList.toggle('open');}
+
+// Benang Merah
+function toggleBM(trigger){
+  trigger.classList.toggle('open');
+  document.getElementById('bmBody').classList.toggle('show');
+}
+
+// Self Assessment
+const aStates=['kuat','rapuh','belum'];
+const aLabels={kuat:'✓ Kuat',rapuh:'⚠ Rapuh',belum:'— Belum'};
+function cycleAssess(card){
+  let s=parseInt(card.dataset.s);
+  card.classList.remove('kuat','rapuh','belum');
+  s=(s+1)%3;
+  card.dataset.s=s;
+  card.classList.add(aStates[s]);
+  card.querySelector('.assess-status').textContent=aLabels[aStates[s]];
+}
+
+// Setup steps
+function toggleStep(step){step.classList.toggle('open');}
+
+// Check items
+function toggleCheck(e,item){
+  e.stopPropagation();
+  item.classList.toggle('done');
+  item.querySelector('.check-box').textContent=item.classList.contains('done')?'✓':'';
+}
+
+// Exercise accordion
+function toggleEx(head){head.closest('.ex-card').classList.toggle('open');}
+
+// Jalur komitmen
+function selectJalur(card){
+  document.querySelectorAll('.jalur-card').forEach(c=>c.classList.remove('sel'));
+  card.classList.add('sel');
+}
+
+// Copy prompt
+function copyP(e,btn,id){
+  e.stopPropagation();
+  const el=document.getElementById(id);
+  const text=el?el.innerText:'';
+  navigator.clipboard.writeText(text).then(()=>{
+    const o=btn.textContent;btn.textContent='✓ Disalin';
+    setTimeout(()=>{btn.textContent=o;},1600);
+  }).catch(()=>{
+    const ta=document.createElement('textarea');
+    ta.value=text;document.body.appendChild(ta);ta.select();
+    document.execCommand('copy');document.body.removeChild(ta);
+    const o=btn.textContent;btn.textContent='✓ Disalin';
+    setTimeout(()=>{btn.textContent=o;},1600);
+  });
+}
+</script>
+</body>
+</html>
