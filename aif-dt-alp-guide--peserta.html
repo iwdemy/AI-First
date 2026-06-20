@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bagaimana Sebuah Solusi Lahir — AI First Program</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#C8963C; --gold-lt:#E8B86D; --gold-pale:#FAF0DC;
+  --dark:#0A0A0A; --mid:#484848; --soft:#808080; --softer:#ADADAD;
+  --bg:#F6F4F0; --bg2:#EFECE7; --card:#FFFFFF;
+  --border:#E4DFD7; --border-lt:#EDE9E3;
+  --radius:14px; --radius-sm:9px;
+  --sh1:0 1px 3px rgba(0,0,0,.06),0 4px 14px rgba(0,0,0,.04);
+  --sh2:0 2px 8px rgba(0,0,0,.09),0 12px 28px rgba(0,0,0,.06);
+  --ease:cubic-bezier(.4,0,.2,1);
+  --f:'Plus Jakarta Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--f);background:var(--bg);color:var(--dark);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+
+/* TOPBAR */
+.topbar{background:var(--dark);height:44px;display:flex;align-items:center;gap:14px;padding:0 28px;position:sticky;top:0;z-index:100;}
+.tb-badge{background:var(--gold);color:#000;font-size:9px;font-weight:800;padding:2px 10px;border-radius:4px;letter-spacing:.14em;}
+.tb-label{font-size:12px;font-weight:500;color:rgba(255,255,255,.38);flex:1;}
+.tb-prog{font-size:9px;font-weight:700;color:rgba(255,255,255,.14);letter-spacing:.1em;}
+
+/* WRAP */
+.wrap{max-width:720px;margin:0 auto;padding:0 24px;}
+
+/* HERO */
+.hero{padding:44px 0 36px;}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:9.5px;font-weight:800;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;}
+.kicker::before{content:'';display:block;width:20px;height:1.5px;background:var(--gold);border-radius:2px;}
+.hero h1{font-size:30px;font-weight:800;line-height:1.15;letter-spacing:-.025em;margin-bottom:12px;}
+.hero h1 em{font-style:normal;color:var(--gold);}
+.hero-lead{font-size:14px;color:var(--mid);line-height:1.78;max-width:520px;margin-bottom:20px;}
+.hero-chips{display:flex;gap:6px;flex-wrap:wrap;}
+.chip{font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;background:var(--card);border:1px solid var(--border);color:var(--soft);box-shadow:var(--sh1);}
+
+/* SECTION */
+.sec{padding:32px 0 24px;border-top:1px solid var(--border);}
+.sec-kicker{font-size:9px;font-weight:800;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:5px;}
+.sec h2{font-size:20px;font-weight:800;line-height:1.2;letter-spacing:-.015em;margin-bottom:6px;}
+.sec-sub{font-size:13px;color:var(--soft);margin-bottom:18px;}
+
+/* ── WHY — 2 CARDS ── */
+.why-row{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+@media(max-width:480px){.why-row{grid-template-columns:1fr;}}
+.why-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--sh1);}
+.why-n{font-size:10px;font-weight:800;color:var(--softer);margin-bottom:6px;}
+.why-title{font-size:13.5px;font-weight:800;margin-bottom:4px;}
+.why-body{font-size:12.5px;color:var(--mid);line-height:1.6;}
+.why-note{margin-top:12px;font-size:12.5px;color:var(--mid);line-height:1.7;padding:11px 14px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);box-shadow:var(--sh1);}
+.why-note strong{color:var(--dark);}
+
+/* ── USER STORY ── */
+.us-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--sh1);overflow:hidden;}
+.us-top{padding:18px 20px;}
+.us-meta{font-size:11px;font-weight:700;color:var(--softer);margin-bottom:10px;letter-spacing:.02em;}
+.us-statement{
+  font-size:14px;font-weight:600;line-height:1.65;color:var(--dark);
+  padding:12px 15px;
+  background:var(--gold-pale);
+  border-left:3px solid var(--gold);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  font-style:italic;
+}
+.us-toggle{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:11px 20px;border-top:1px solid var(--border);
+  cursor:pointer;user-select:none;
+  font-size:12px;font-weight:700;color:var(--soft);
+  transition:background .15s var(--ease);
+}
+.us-toggle:hover{background:var(--bg);}
+.us-chev{font-size:9px;transition:transform .25s var(--ease);}
+.us-box.open .us-chev{transform:rotate(180deg);}
+.us-detail{max-height:0;overflow:hidden;transition:max-height .35s var(--ease);}
+.us-box.open .us-detail{max-height:400px;}
+.us-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0 20px 16px;}
+@media(max-width:480px){.us-grid{grid-template-columns:1fr;}}
+.us-need{padding:12px 0;border-top:1px solid var(--border-lt);}
+.us-need:nth-child(odd){padding-right:16px;}
+.us-need-label{font-size:8.5px;font-weight:800;letter-spacing:.12em;color:var(--softer);text-transform:uppercase;margin-bottom:4px;}
+.us-need p{font-size:12px;color:var(--mid);line-height:1.6;}
+.us-need p strong{color:var(--dark);}
+
+/* ── PRODUCT TAG ── */
+.product-bar{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  background:var(--dark);border-radius:var(--radius);
+  padding:13px 18px;margin-bottom:20px;
+}
+.product-bar-label{font-size:9px;font-weight:800;letter-spacing:.14em;color:rgba(255,255,255,.28);text-transform:uppercase;white-space:nowrap;}
+.product-bar-name{font-size:13px;font-weight:800;color:#fff;flex:1;}
+.ptag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.4);}
+
+/* ── DT STAGES ── */
+.dt-list{display:flex;flex-direction:column;gap:0;}
+.dt-item{display:flex;gap:0;}
+
+.dt-spine{display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0;padding-top:3px;}
+.dt-num{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--dark);color:var(--gold);
+  font-size:12.5px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 3px var(--bg),0 0 0 4px rgba(200,150,60,.15);
+  flex-shrink:0;z-index:1;
+}
+.dt-line{flex:1;width:1.5px;background:linear-gradient(to bottom,var(--border),transparent);margin:4px 0 0;}
+.dt-item:last-child .dt-line{display:none;}
+
+.dt-body{flex:1;padding:0 0 24px 14px;}
+
+/* collapsed header */
+.dt-head{
+  cursor:pointer;user-select:none;
+  padding:2px 0 0;
+}
+.dt-stage-label{font-size:8.5px;font-weight:800;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:3px;}
+.dt-title{font-size:16px;font-weight:800;letter-spacing:-.015em;margin-bottom:6px;}
+.dt-q{font-size:13px;color:var(--mid);line-height:1.55;font-style:italic;}
+.dt-expand-row{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:9px;font-size:11px;font-weight:700;
+  color:var(--gold);cursor:pointer;
+}
+.dt-expand-row .dt-x-chev{font-size:8px;transition:transform .25s var(--ease);}
+.dt-item.open .dt-expand-row .dt-x-chev{transform:rotate(180deg);}
+
+/* detail panel */
+.dt-detail{max-height:0;overflow:hidden;transition:max-height .38s var(--ease);}
+.dt-item.open .dt-detail{max-height:500px;}
+.dt-cols{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding-top:12px;}
+@media(max-width:520px){.dt-cols{grid-template-columns:1fr;}}
+.dt-col{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;box-shadow:var(--sh1);}
+.dt-col-label{font-size:8.5px;font-weight:800;letter-spacing:.13em;color:var(--softer);text-transform:uppercase;margin-bottom:6px;}
+.dt-col p{font-size:12.5px;color:var(--mid);line-height:1.65;}
+.dt-col p strong{color:var(--dark);}
+.dt-col.tk{background:var(--gold-pale);border-color:rgba(200,150,60,.2);}
+.dt-col.tk .dt-col-label{color:rgba(160,100,0,.6);}
+.dt-col.tk p{color:#4A3000;}
+.dt-output{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:10px;font-size:11px;font-weight:700;
+  color:var(--mid);background:var(--card);
+  border:1px solid var(--border);border-radius:20px;
+  padding:3px 12px;box-shadow:var(--sh1);
+}
+.dt-output-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+
+/* ── ALP ── */
+.alp-intro-bar{
+  background:var(--dark);border-radius:var(--radius);
+  padding:14px 18px;margin-bottom:14px;
+}
+.alp-intro-bar p{font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.7;}
+.alp-intro-bar strong{color:rgba(255,255,255,.82);}
+
+.alp-list{display:flex;flex-direction:column;gap:6px;}
+.alp-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--sh1);transition:box-shadow .2s var(--ease);}
+.alp-card.open{box-shadow:var(--sh2);border-color:rgba(200,150,60,.25);}
+.alp-head{padding:12px 15px;display:flex;align-items:center;gap:11px;cursor:pointer;user-select:none;}
+.alp-num{width:27px;height:27px;border-radius:7px;background:var(--dark);color:var(--gold);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s,color .2s;}
+.alp-card.open .alp-num{background:var(--gold);color:#000;}
+.alp-name{font-size:13.5px;font-weight:800;flex:1;letter-spacing:-.01em;}
+.alp-dur{font-size:9.5px;font-weight:700;color:var(--softer);background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:2px 7px;white-space:nowrap;}
+.alp-chev{font-size:9px;color:var(--softer);transition:transform .25s var(--ease);flex-shrink:0;}
+.alp-card.open .alp-chev{transform:rotate(180deg);}
+.alp-body{max-height:0;overflow:hidden;transition:max-height .35s var(--ease);}
+.alp-card.open .alp-body{max-height:560px;}
+.alp-inner{padding:0 15px 14px;border-top:1px solid var(--border-lt);}
+.alp-desc{font-size:12.5px;color:var(--mid);line-height:1.7;margin:9px 0 8px;}
+.ex{background:var(--bg);border:1px solid var(--border-lt);border-radius:var(--radius-sm);padding:9px 12px;font-size:12px;color:var(--mid);line-height:1.65;margin-top:5px;}
+.ex+.ex{margin-top:4px;}
+.ex-label{font-size:8.5px;font-weight:800;letter-spacing:.1em;color:var(--softer);text-transform:uppercase;display:block;margin-bottom:3px;}
+
+/* ── CLOSING ── */
+.closing{padding:28px 0 48px;border-top:1px solid var(--border);}
+.closing-box{background:var(--dark);border-radius:var(--radius);padding:26px 30px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,.12);position:relative;overflow:hidden;}
+.closing-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:180px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.closing-box h3{font-size:18px;font-weight:800;color:#fff;margin-bottom:7px;letter-spacing:-.02em;}
+.closing-box p{font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;max-width:400px;margin:0 auto;}
+.closing-steps{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+.step-pill{font-size:11px;font-weight:600;padding:5px 13px;border-radius:20px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.28);}
+.step-pill.active{background:var(--gold);border-color:var(--gold);color:#000;font-weight:800;}
+
+.footer{padding:10px 0 26px;text-align:center;font-size:10px;color:var(--softer);letter-spacing:.06em;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="tb-badge">AIF</span>
+  <span class="tb-label">Panduan Peserta — Design Thinking &amp; ALP</span>
+  <span class="tb-prog">AI FIRST PROGRAM</span>
+</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="kicker">Panduan Peserta</div>
+    <h1>Bagaimana Sebuah<br><em>Solusi Lahir</em></h1>
+    <p class="hero-lead">
+      Setiap solusi yang baik dimulai dari pertanyaan — bukan dari solusi itu sendiri.
+      Halaman ini menceritakan proses nyata pembuatan materi Gawe &amp; Productivity.
+      Pelajari prosesnya, terapkan ke proyek ALP Anda.
+    </p>
+    <div class="hero-chips">
+      <span class="chip">Bagian 1 — Design Thinking: 5 Tahap</span>
+      <span class="chip">Bagian 2 — ALP Check-in: 6 Format</span>
+    </div>
+  </div>
+
+  <!-- WHY DT -->
+  <div class="sec">
+    <div class="sec-kicker">Mengapa Design Thinking?</div>
+    <h2>Dua jebakan yang paling sering terjadi</h2>
+    <div class="why-row">
+      <div class="why-card">
+        <div class="why-n">Jebakan 1</div>
+        <div class="why-title">Lompat ke solusi</div>
+        <div class="why-body">Membangun sesuatu yang kelihatan keren — tapi tidak menjawab masalah nyata user.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-n">Jebakan 2</div>
+        <div class="why-title">Tidak tahu kapan selesai</div>
+        <div class="why-body">Tidak ada ukuran keberhasilan. Proyek terus melebar tanpa titik selesai.</div>
+      </div>
+    </div>
+    <div class="why-note">
+      Design Thinking memberi struktur: pahami user-nya dulu, rumuskan masalah yang tepat, baru bangun solusi.
+      Di AI First, dua pilar bekerja bersama: <strong>domain expertise</strong> dan <strong>design thinking</strong>.
+    </div>
+  </div>
+
+  <!-- USER STORY -->
+  <div class="sec">
+    <div class="sec-kicker">User Story</div>
+    <h2>Siapa yang butuh produk ini?</h2>
+    <div class="us-box" id="usBox">
+      <div class="us-top">
+        <div class="us-meta">Manajer Senior / Eksekutif · Peserta AI First L4</div>
+        <div class="us-statement">
+          "Sebagai pemimpin yang baru mengenal AI, saya butuh cara kerja baru yang konkret —
+          bukan framework abstrak, tapi langkah nyata yang bisa saya terapkan mulai besok
+          untuk mengelola waktu, fokus, dan keputusan dengan lebih efektif."
+        </div>
+      </div>
+      <div class="us-toggle" onclick="toggleUs()">
+        <span>Lihat 4 kebutuhan spesifik</span>
+        <span class="us-chev">▼</span>
+      </div>
+      <div class="us-detail">
+        <div class="us-grid">
+          <div class="us-need">
+            <div class="us-need-label">Konteks harian</div>
+            <p>Rapat padat, inbox penuh, keputusan terus datang. <strong>Tidak ada waktu untuk materi yang terlalu teoritis.</strong></p>
+          </div>
+          <div class="us-need">
+            <div class="us-need-label">Kebutuhan konten</div>
+            <p>Penjelasan <strong>Omah Gawe 4.3</strong> dan 5 dimensi kepemimpinan yang relevan dengan pekerjaan nyata.</p>
+          </div>
+          <div class="us-need">
+            <div class="us-need-label">Kebutuhan tools</div>
+            <p>Panduan setup <strong>Gemini sebagai Decision Cockpit</strong> — alat bantu keputusan harian yang langsung bisa dipakai.</p>
+          </div>
+          <div class="us-need">
+            <div class="us-need-label">Kebutuhan format</div>
+            <p>Materi yang bisa <strong>dibuka via link</strong>, tampil baik di laptop kerja, tanpa perlu diinstall atau didownload.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DT 5 TAHAP -->
+  <div class="sec">
+    <div class="sec-kicker">Design Thinking dalam Praktik</div>
+    <h2>5 Tahap — dari pertanyaan ke solusi</h2>
+    <p class="sec-sub">Klik setiap tahap untuk melihat kisah nyata + cara menerapkannya ke proyek ALP Anda.</p>
+
+    <div class="product-bar">
+      <span class="product-bar-label">Produk</span>
+      <span class="product-bar-name">Panduan Gawe &amp; Productivity — L4 Day 2</span>
+      <span class="ptag">Omah Gawe 4.3</span>
+      <span class="ptag">Gemini</span>
+      <span class="ptag">3 iterasi</span>
+    </div>
+
+    <div class="dt-list">
+
+      <!-- 1 EMPATHY -->
+      <div class="dt-item" onclick="toggleDt(this)">
+        <div class="dt-spine"><div class="dt-num">1</div><div class="dt-line"></div></div>
+        <div class="dt-body">
+          <div class="dt-head">
+            <div class="dt-stage-label">Empathy</div>
+            <div class="dt-title">Pahami User-nya</div>
+            <div class="dt-q">"Siapa yang akan membaca materi ini? Apa yang mereka butuhkan?"</div>
+            <div class="dt-expand-row">Detail <span class="dt-x-chev">▼</span></div>
+          </div>
+          <div class="dt-detail">
+            <div class="dt-cols">
+              <div class="dt-col">
+                <div class="dt-col-label">Kisah nyata</div>
+                <p>Dipetakan: peserta L4 adalah <strong>profesional aktif</strong> yang bekerja di depan laptop. Butuh panduan yang fit di layar desktop. Bukan pemula teknologi — tapi butuh konteks yang relevan dengan cara kerja nyata.</p>
+              </div>
+              <div class="dt-col tk">
+                <div class="dt-col-label">Untuk proyek ALP Anda</div>
+                <p>Buat <strong>satu persona</strong> yang tajam. Siapa user utamanya? Apa motivasi dan pain terbesar mereka setiap hari?</p>
+              </div>
+            </div>
+            <div class="dt-output"><span class="dt-output-dot"></span>Output: Persona user yang spesifik</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 DEFINE -->
+      <div class="dt-item" onclick="toggleDt(this)">
+        <div class="dt-spine"><div class="dt-num">2</div><div class="dt-line"></div></div>
+        <div class="dt-body">
+          <div class="dt-head">
+            <div class="dt-stage-label">Define</div>
+            <div class="dt-title">Rumuskan Masalahnya</div>
+            <div class="dt-q">"Apa yang harus diselesaikan — dan apa yang bukan bagian dari hari ini?"</div>
+            <div class="dt-expand-row">Detail <span class="dt-x-chev">▼</span></div>
+          </div>
+          <div class="dt-detail">
+            <div class="dt-cols">
+              <div class="dt-col">
+                <div class="dt-col-label">Kisah nyata</div>
+                <p>Lima kriteria dirumuskan: bahasa mudah, tampil baik di desktop, <strong>semua 5 dimensi kepemimpinan setara</strong>, judul section jelas, ada bagian format presentasi yang bisa langsung dipakai.</p>
+              </div>
+              <div class="dt-col tk">
+                <div class="dt-col-label">Untuk proyek ALP Anda</div>
+                <p>Tulis <strong>satu kalimat problem statement</strong>. Tentukan in-scope dan out-of-scope. Semakin sempit, semakin mudah mengukurnya.</p>
+              </div>
+            </div>
+            <div class="dt-output"><span class="dt-output-dot"></span>Output: Problem statement + batas scope</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 IDEATE -->
+      <div class="dt-item" onclick="toggleDt(this)">
+        <div class="dt-spine"><div class="dt-num">3</div><div class="dt-line"></div></div>
+        <div class="dt-body">
+          <div class="dt-head">
+            <div class="dt-stage-label">Ideate</div>
+            <div class="dt-title">Jelajahi Pilihan Solusi</div>
+            <div class="dt-q">"Ada berapa cara untuk menyelesaikan ini? Mana yang paling masuk akal?"</div>
+            <div class="dt-expand-row">Detail <span class="dt-x-chev">▼</span></div>
+          </div>
+          <div class="dt-detail">
+            <div class="dt-cols">
+              <div class="dt-col">
+                <div class="dt-col-label">Kisah nyata</div>
+                <p>Tiga opsi dipertimbangkan: dokumen Word, slide PPTX, atau <strong>HTML guide interaktif</strong>. Dipilih HTML — bisa diakses via link, tampil di desktop, dan detail konten bisa disembunyikan dulu lalu dibuka saat diklik.</p>
+              </div>
+              <div class="dt-col tk">
+                <div class="dt-col-label">Untuk proyek ALP Anda</div>
+                <p>Hasilkan <strong>2–3 opsi</strong>. Bandingkan trade-off-nya. Pilih yang paling sesuai dengan konteks user dan sumber daya yang tersedia.</p>
+              </div>
+            </div>
+            <div class="dt-output"><span class="dt-output-dot"></span>Output: 2–3 opsi + alasan memilih satu</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 PROTOTYPE -->
+      <div class="dt-item" onclick="toggleDt(this)">
+        <div class="dt-spine"><div class="dt-num">4</div><div class="dt-line"></div></div>
+        <div class="dt-body">
+          <div class="dt-head">
+            <div class="dt-stage-label">Prototype</div>
+            <div class="dt-title">Buat Sesuatu yang Bisa Diuji</div>
+            <div class="dt-q">"Apa bentuk paling sederhana dari solusi ini yang bisa dilihat dan dikritik?"</div>
+            <div class="dt-expand-row">Detail <span class="dt-x-chev">▼</span></div>
+          </div>
+          <div class="dt-detail">
+            <div class="dt-cols">
+              <div class="dt-col">
+                <div class="dt-col-label">Kisah nyata</div>
+                <p>Tiga iterasi dibangun: <strong>Versi 1</strong> (struktur dan konten dasar) → <strong>Versi 2</strong> (5 perbaikan dari feedback) → <strong>Versi 3</strong> (tampilan premium, konten final). Setiap versi lebih baik karena ada feedback konkret.</p>
+              </div>
+              <div class="dt-col tk">
+                <div class="dt-col-label">Untuk proyek ALP Anda</div>
+                <p>Prototipe bisa berupa <strong>draft deck, template dokumen, chatbot, atau halaman web</strong>. Yang penting: bisa dilihat dan diuji orang lain — bukan hanya ada di kepala.</p>
+              </div>
+            </div>
+            <div class="dt-output"><span class="dt-output-dot"></span>Output: Sesuatu yang bisa dilihat dan dikritik</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 EVALUATE -->
+      <div class="dt-item" onclick="toggleDt(this)">
+        <div class="dt-spine"><div class="dt-num">5</div><div class="dt-line"></div></div>
+        <div class="dt-body">
+          <div class="dt-head">
+            <div class="dt-stage-label">Evaluate</div>
+            <div class="dt-title">Uji dan Iterasi</div>
+            <div class="dt-q">"Apakah ini benar-benar menyelesaikan masalah yang dirumuskan di tahap Define?"</div>
+            <div class="dt-expand-row">Detail <span class="dt-x-chev">▼</span></div>
+          </div>
+          <div class="dt-detail">
+            <div class="dt-cols">
+              <div class="dt-col">
+                <div class="dt-col-label">Kisah nyata</div>
+                <p>Screenshot Versi 2 dibagikan. Tiga catatan masuk: gunakan <strong>nama dimensi</strong> (bukan "Dimensi 2"), cantumkan sumber data, dan tampilan harus premium. Feedback ini langsung diterjemahkan ke perbaikan di Versi 3.</p>
+              </div>
+              <div class="dt-col tk">
+                <div class="dt-col-label">Untuk proyek ALP Anda</div>
+                <p>Uji ke <strong>minimal 1 orang nyata</strong> — bukan diri sendiri. Dokumentasikan apa yang berjalan dan apa yang tidak. Buat satu iterasi berdasarkan temuan itu.</p>
+              </div>
+            </div>
+            <div class="dt-output"><span class="dt-output-dot"></span>Output: Temuan dari pengujian + versi berikutnya</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ALP CHECK-IN -->
+  <div class="sec">
+    <div class="sec-kicker">Struktur Presentasi ALP</div>
+    <h2>Format Check-in — 6 Bagian</h2>
+    <p class="sec-sub">DT adalah cara mengerjakan proyek. Check-in adalah cara mempresentasikannya setiap minggu. Klik untuk melihat contoh dan penjelasan masing-masing bagian.</p>
+
+    <div class="alp-intro-bar">
+      <p><strong>Apa itu ALP?</strong> Action Learning Project — proyek nyata yang dikerjakan selama program, dengan AI sebagai alat kerja utama. Check-in bukan laporan kegiatan — ini bukti bahwa sudah mulai, sudah belajar sesuatu, dan tahu langkah selanjutnya.</p>
+    </div>
+
+    <div class="alp-list">
+
+      <div class="alp-card" onclick="toggleAlp(this)">
+        <div class="alp-head">
+          <div class="alp-num">1</div>
+          <div class="alp-name">Judul Proyek + Outcome</div>
+          <span class="alp-dur">30 detik</span>
+          <span class="alp-chev">▼</span>
+        </div>
+        <div class="alp-body"><div class="alp-inner">
+          <p class="alp-desc">Nama proyek, target dampak, dan siapa user utamanya. Satu kalimat. Harus jelas dan bisa diingat.</p>
+          <div class="ex">
+            <span class="ex-label">Contoh dari proyek ini</span>
+            Proyek: Materi Peserta L4 Day 2 — Gawe &amp; Productivity.<br>
+            Target: panduan yang siap dipakai di sesi L4, bisa dibuka via link.<br>
+            User: eksekutif peserta AI First — profesional aktif yang bekerja dengan laptop.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="alp-card" onclick="toggleAlp(this)">
+        <div class="alp-head">
+          <div class="alp-num">2</div>
+          <div class="alp-name">Scope yang Tegas</div>
+          <span class="alp-dur">30 detik</span>
+          <span class="alp-chev">▼</span>
+        </div>
+        <div class="alp-body"><div class="alp-inner">
+          <p class="alp-desc">Apa yang masuk dan tidak masuk proyek ini. Scope yang jelas mencegah feedback melebar.</p>
+          <div class="ex">
+            <span class="ex-label">Contoh dari proyek ini</span>
+            <strong>In-scope:</strong> Omah Gawe 4.3, lima dimensi kepemimpinan, setup Gemini, format presentasi, komitmen 3 jalur.<br><br>
+            <strong>Out-of-scope:</strong> facilitator guide (file terpisah), slide PPTX, integrasi LMS.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="alp-card" onclick="toggleAlp(this)">
+        <div class="alp-head">
+          <div class="alp-num">3</div>
+          <div class="alp-name">TPI — Target Pencapaian Ide</div>
+          <span class="alp-dur">1 menit</span>
+          <span class="alp-chev">▼</span>
+        </div>
+        <div class="alp-body"><div class="alp-inner">
+          <p class="alp-desc">Ukuran keberhasilan solusi yang dibangun — berbeda dari KPI yang mengukur kinerja rutin. Harus konkret dan bisa diverifikasi.</p>
+          <div class="ex">
+            <span class="ex-label">Contoh dari proyek ini</span>
+            TPI-1: Materi siap dipakai di sesi L4 Day 2 tanpa revisi besar.<br>
+            TPI-2: Peserta bisa setup Decision Cockpit setelah membaca — tanpa bantuan fasilitator.<br>
+            TPI-3: Semua 5 dimensi Omah Gawe terwakili setara.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="alp-card" onclick="toggleAlp(this)">
+        <div class="alp-head">
+          <div class="alp-num">4</div>
+          <div class="alp-name">KDI — Perkembangan Diri</div>
+          <span class="alp-dur">30 detik</span>
+          <span class="alp-chev">▼</span>
+        </div>
+        <div class="alp-body"><div class="alp-inner">
+          <p class="alp-desc">Ukuran perkembangan diri sebagai pemimpin yang belajar — bukan hanya kualitas produknya. Pilih dari: kemampuan AI, keahlian domain, atau cara berpikir.</p>
+          <div class="ex">
+            <span class="ex-label">Contoh dari proyek ini</span>
+            KDI-1 (AI Skill): Bisa memperbaiki materi berdasarkan feedback dalam satu sesi kerja.<br>
+            KDI-2 (Thinking): Bisa rumuskan 5 kriteria revisi yang spesifik hanya dari melihat satu halaman.
+          </div>
+        </div></div>
+      </div>
+
+      <div class="alp-card" onclick="toggleAlp(this)">
+        <div class="alp-head">
+          <div class="alp-num">5</div>
+          <div class="alp-name">Hasil Design Thinking</div>
+          <span class="alp-dur">2–3 menit</span>
+          <span class="alp-chev">▼</span>
+        </div>
+        <div class="alp-body"><div class="alp-inner">
+          <p class="alp-desc">Ringkasan Empathy, Define, Ideate. Bukti bahwa masalah dipahami sebelum solusi dibangun.</p>
+          <div class="ex"><span class="ex-label">Empathy</span>Peserta L4: profesional aktif, bekerja di depan laptop. Pain: materi sebelumnya terlalu berat dan tidak balanced.</div>
+          <div class="ex"><span class="ex-label">Define</span>"Peserta butuh panduan Omah Gawe 4.3 lengkap — semua dimensi setara, sumber tercantum, bisa dibuka langsung via link."</div>
+          <div class="ex"><span class="ex-label">Ideate</span>Opsi: Word / PPTX / HTML interaktif. Dipilih HTML — accessible via link, tampil di desktop, detail bisa dibuka-tutup.</div>
+        </div></div>
+      </div>
+
+      <div class="alp-card" onclick="toggleAlp(this)">
+        <div class="alp-head">
+          <div class="alp-num">6</div>
+          <div class="alp-name">Progres + Rencana 7 Hari</div>
+          <span class="alp-dur">1–2 menit</span>
+          <span class="alp-chev">▼</span>
+        </div>
+        <div class="alp-body"><div class="alp-inner">
+          <p class="alp-desc">Tunjukkan bahwa sesuatu sudah kelihatan — bukan hanya rencana. Lalu tunjukkan langkah konkret minggu depan.</p>
+          <div class="ex">
+            <span class="ex-label">Progres sekarang</span>
+            Versi 1 (struktur dasar) → Versi 2 (5 perbaikan dari feedback) → Versi 3 (konten final, tampilan premium).<br>
+            Sudah bisa diakses via link — siap dipakai di sesi L4 Day 2.
+          </div>
+          <div class="ex">
+            <span class="ex-label">Rencana 7 hari ke depan</span>
+            Senin: test ke peserta batch aktif.<br>
+            Rabu: kumpulkan feedback dari sesi L4 Day 2.<br>
+            Jumat: iterasi Versi 4 jika ada temuan signifikan.
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <div class="closing-box">
+      <h3>Mulai dari pertanyaan, bukan dari solusi.</h3>
+      <p>Setiap kali tergoda untuk langsung membangun, kembali ke tahap 1 — siapa user-nya, dan apa masalah nyata mereka?</p>
+      <div class="closing-steps">
+        <span class="step-pill active">1 · Empathy</span>
+        <span class="step-pill">2 · Define</span>
+        <span class="step-pill">3 · Ideate</span>
+        <span class="step-pill">4 · Prototype</span>
+        <span class="step-pill">5 · Evaluate</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">IWDemy · Tjitra &amp; Associates · AI First Program</div>
+
+<script>
+function toggleUs(){
+  const box = document.getElementById('usBox');
+  box.classList.toggle('open');
+  const chev = box.querySelector('.us-chev');
+  const label = box.querySelector('.us-toggle span');
+  if(box.classList.contains('open')){
+    chev.style.transform='rotate(180deg)';
+    label.textContent='Sembunyikan';
+  } else {
+    chev.style.transform='';
+    label.textContent='Lihat 4 kebutuhan spesifik';
+  }
+}
+function toggleDt(item){
+  item.classList.toggle('open');
+}
+function toggleAlp(card){
+  card.classList.toggle('open');
+}
+</script>
+</body>
+</html>
