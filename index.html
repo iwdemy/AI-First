@@ -1880,6 +1880,72 @@ body {
 @media (hover: none) {
   .prog__level-desc, .prog__level-outcome { opacity: 1; max-height: 140px; pointer-events: auto; }
 }
+
+/* Why AI First (moved from curriculum) */
+.why-grid { display:grid; grid-template-columns:1fr; gap:12px; margin-top:28px }
+@media (min-width:640px){ .why-grid { grid-template-columns:repeat(3,1fr) } }
+.why-card { padding:22px 20px; border-radius:12px; border:1px solid rgba(212,168,75,.16); background:rgba(255,255,255,.03); transition:transform .35s, border-color .35s }
+.why-card:hover { transform:translateY(-4px); border-color:rgba(212,168,75,.4) }
+.why-vs { font-family:var(--font-mono); font-size:9px; color:rgba(245,240,232,.4); letter-spacing:.14em; margin-bottom:8px; text-transform:uppercase }
+.why-label { font-family:var(--font-heading); font-weight:700; font-size:16px; color:var(--text-hi); line-height:1.25 }
+.why-desc { font-size:13px; color:var(--text-md); line-height:1.65; margin-top:12px }
+
+.prog__level-take { margin-top:12px; padding-top:10px; border-top:1px solid rgba(212,168,75,.18); font-size:12px; font-weight:600; color:var(--gold-muted); line-height:1.4 }
+.prog__level-take span { display:block; font-family:var(--font-mono); font-size:8px; letter-spacing:.2em; color:rgba(30,28,24,.35); margin-bottom:3px }
+
+/* Your Path — entrance + 4 paths */
+.path-entry { display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-top:40px; padding:26px 28px; border-radius:14px; border:1px solid rgba(212,168,75,.45); background:rgba(212,168,75,.07) }
+.path-entry-left { max-width:560px }
+.path-tag { font-family:var(--font-mono); font-size:9px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:rgba(245,240,232,.4); margin-bottom:6px }
+.path-name { font-family:var(--font-heading); font-weight:800; font-size:17px; color:var(--text-hi); margin:0 0 4px }
+.path-tagline { font-size:13px; color:var(--text-md); line-height:1.6; margin:0; }
+.path-connector { text-align:center; padding:18px 0 22px }
+.path-connector-stem { width:1px; height:26px; background:linear-gradient(rgba(212,168,75,.6),rgba(212,168,75,.15)); margin:0 auto 10px }
+.path-connector-label { font-family:var(--font-mono); font-size:9px; letter-spacing:.22em; color:rgba(212,168,75,.55) }
+.path-grid { display:grid; grid-template-columns:1fr; gap:12px }
+@media (min-width:640px){ .path-grid { grid-template-columns:1fr 1fr } }
+.path-card { border:1px solid rgba(212,168,75,.16); border-radius:12px; background:rgba(255,255,255,.02); padding:20px 22px; cursor:pointer; transition:border-color .3s, background .3s }
+.path-card:hover { border-color:rgba(212,168,75,.4); background:rgba(212,168,75,.03) }
+.path-card.open { border-color:rgba(212,168,75,.5); background:rgba(212,168,75,.05) }
+.path-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px }
+.path-chevron { font-family:var(--font-mono); font-size:16px; color:var(--gold); transition:transform .3s; flex-shrink:0; line-height:1 }
+.path-card.open .path-chevron { transform:rotate(45deg) }
+.path-body { max-height:0; overflow:hidden; transition:max-height .45s ease }
+.path-card.open .path-body { max-height:320px }
+.path-desc { font-size:13px; color:var(--text-md); line-height:1.65; margin:14px 0 0 }
+.path-for { font-family:var(--font-mono); font-size:11px; color:var(--gold-muted); line-height:1.6; margin:10px 0 0; letter-spacing:.02em }
+.path-cta { display:inline-block; margin-top:14px; font-size:13px; font-weight:600; color:var(--gold); text-decoration:none }
+.path-cta:hover { opacity:.8 }
+.roi-callout { margin-top:40px; padding:24px 26px; border:1px solid rgba(212,168,75,.22); border-radius:12px; background:rgba(212,168,75,.05) }
+.roi-head { font-family:var(--font-heading); font-weight:700; font-size:17px; color:var(--text-hi); margin:0 0 8px }
+.roi-body { font-size:13px; color:var(--text-md); line-height:1.7; margin:0 }
+@media (hover:none){ .path-body { max-height:none } .path-chevron { display:none } }
+
+.hero__levels { margin-top:26px }
+.hero__level-pill { letter-spacing:.28em !important; font-size:10px !important; white-space:nowrap }
+.hero__byline { margin-top:22px }
+
+.path-take { margin-top:10px; font-size:12px; font-weight:600; color:var(--gold-muted); line-height:1.4 }
+.path-take span { display:block; font-family:var(--font-mono); font-size:8px; letter-spacing:.2em; color:rgba(245,240,232,.35); margin-bottom:2px }
+.path-levels-strip { display:grid; grid-template-columns:1fr; gap:12px }
+@media (min-width:640px){ .path-levels-strip { grid-template-columns:1fr 1fr } }
+.path-level-mini { border:1px dashed rgba(212,168,75,.3); border-radius:12px; padding:16px 20px; background:rgba(255,255,255,.015) }
+.path-mini-name { font-family:var(--font-heading); font-weight:700; font-size:14px; color:var(--text-hi); margin-top:2px }
+
+html { scroll-behavior:smooth }
+@media (prefers-reduced-motion:no-preference){
+  .rv { opacity:0; transform:translateY(14px); transition:opacity .7s ease, transform .7s ease }
+  .rv.in { opacity:1; transform:none }
+}
+
+.navbar__cta-secondary { white-space:nowrap }
+.navbar__cta { white-space:nowrap }
+
+.navbar__brand--mark { display:inline-flex; align-items:center; gap:5px }
+.navbar__brand--mark span { background:linear-gradient(135deg,#D4A84B,#F0D488); -webkit-background-clip:text; -webkit-text-fill-color:transparent }
+.nav-spark { width:11px; height:11px; opacity:.9; animation:sparkPulse 3.5s ease-in-out infinite }
+@keyframes sparkPulse { 0%,100%{transform:scale(1);opacity:.9} 50%{transform:scale(1.25);opacity:1} }
+@media (prefers-reduced-motion:reduce){ .nav-spark{animation:none} }
 </style>
 </head>
 <body>
@@ -1894,19 +1960,17 @@ body {
         <img src="data:image/jpeg;base64,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" alt="Tjitra &amp; Associates" class="navbar__logo-img">
       </div>
       <span class="navbar__logo-sep"></span>
-      <a href="#" class="navbar__brand">AI <span>First</span></a>
+      <a href="#" class="navbar__brand navbar__brand--mark">AI&nbsp;<span>First</span><svg viewBox="0 0 12 12" aria-hidden="true" class="nav-spark"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z" fill="#D4A84B"/></svg></a>
     </div>
 
     <ul class="navbar__links">
-      <li><a href="#shift">The Shift</a></li>
-      <li><a href="#formula">Formula</a></li>
       <li><a href="#credibility">Facilitators</a></li>
-      <li><a href="#program">Program</a></li>
-      <li><a href="#invest">Tracks</a></li>
+      <li><a href="#program">How We Teach</a></li>
+      <li><a href="#invest">Your Path</a></li>
     </ul>
 
     <div class="navbar__right">
-      <a href="aifirst-curriculum--v22.html" class="navbar__cta-secondary">Curriculum</a>
+      <a href="curriculum.html" class="navbar__cta-secondary">The Journey</a>
       <a href="https://wa.me/6285959435052" class="navbar__cta" target="_blank">Contact Us</a>
       <button class="navbar__mobile-toggle" onclick="document.getElementById('mobileMenu').classList.add('open')" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -1925,12 +1989,10 @@ body {
       <img src="data:image/jpeg;base64,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" alt="Tjitra & Associates">
     </div>
   </div>
-  <a href="#shift" onclick="this.parentElement.classList.remove('open')">The Shift</a>
-  <a href="#formula" onclick="this.parentElement.classList.remove('open')">Formula</a>
   <a href="#credibility" onclick="this.parentElement.classList.remove('open')">Facilitators</a>
-  <a href="#program" onclick="this.parentElement.classList.remove('open')">Program</a>
-  <a href="#invest" onclick="this.parentElement.classList.remove('open')">Tracks</a>
-  <a href="aifirst-curriculum--v22.html" onclick="this.parentElement.classList.remove('open')">Curriculum</a>
+  <a href="#program" onclick="this.parentElement.classList.remove('open')">How We Teach</a>
+  <a href="#invest" onclick="this.parentElement.classList.remove('open')">Your Path</a>
+  <a href="curriculum.html" onclick="this.parentElement.classList.remove('open')">The Journey</a>
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSckYF5f9kQtHtCcSUivfNCIIWtr43dJlKhjoiV3-_tpprsG_g/viewform?usp=header" class="cta-primary" target="_blank" style="margin-top:12px">Join the Programme →</a>
 </div>
 
@@ -1949,15 +2011,19 @@ body {
     <div class="hero__text">
       <div class="eyebrow eyebrow--flat">AI FIRST PROGRAM</div>
 
-      <h1 class="h1 hero__headline">Understanding AI<br>is not<br>the competitive edge.<br><span class="gold-muted">Leading with it is.</span></h1>
+      <h1 class="h1 hero__headline">Understanding AI<br>is not the competitive edge.<br><span class="gold-muted">Leading with it is.</span></h1>
+
+      <p class="body-text" style="margin-top:18px;max-width:460px">Four levels. Every level ends with <strong>a real deliverable</strong> &mdash; not an exercise you leave behind.</p>
 
 
-      <div class="hero__levels">
-        <span class="hero__level-pill">P R O M P T</span>
+      <div class="hero__levels" style="margin-top:26px;letter-spacing:0">
+        <span class="hero__level-pill">STRATEGIZE</span>
         <span class="hero__level-dot"></span>
-        <span class="hero__level-pill">C R E A T E</span>
+        <span class="hero__level-pill">PROMPT</span>
         <span class="hero__level-dot"></span>
-        <span class="hero__level-pill">B U I L D</span>
+        <span class="hero__level-pill">CREATE</span>
+        <span class="hero__level-dot"></span>
+        <span class="hero__level-pill">BUILD</span>
       </div>
 
       <div class="hero__byline">
@@ -1996,7 +2062,7 @@ body {
 
 
 <!-- ════════ SECTION 2: THE SHIFT (Dark) ════════ -->
-<section class="section section--dark" id="shift" style="padding-top:96px;padding-bottom:96px">
+<section class="section section--dark" id="shift" style="padding-top:96px;padding-bottom:40px">
 
   <div class="section__inner">
     <div class="eyebrow eyebrow--dark">THE SHIFT</div>
@@ -2007,9 +2073,39 @@ body {
         <h2 class="h2 shift__headline">The quality of your dialogue with AI<br><span class="gold-muted">reflects the quality of your thinking<br>as a leader.</span></h2>
 
         <div class="shift__body">
-          <p class="body-text">AI-era leaders are not necessarily better at AI. They are better at leading with it.<br><br>They extend their leadership with AI<br>— <strong style="color:var(--text-hi)">the way they think, decide,<br>and move organisations forward.</strong></p>
+          <p class="body-text" style="line-height:1.9">Months of prompting and experimenting &mdash; yet what has actually changed in how you work?<br>The tools were never the problem. What's been missing is a way of working.<br>AI-era leaders are not better at AI &mdash; <strong style="color:var(--text-hi)">they are better at leading with it.</strong></p>
         </div>
       </div>
+  </div>
+
+    </section>
+
+<!-- ════════ SECTION 2B: WHY AI FIRST (Dark) ════════ -->
+<section class="section section--dark" id="why" style="padding-top:0;padding-bottom:96px">
+  <div class="section__inner">
+
+      <div class="eyebrow eyebrow--dark">WHY AI FIRST</div>
+      <h2 class="h2" style="margin-bottom:10px">Not another AI program.</h2>
+      <p class="body-text" style="max-width:480px">Three differences that determine whether learning transfers to work &mdash; or stays in the room.</p>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-vs">Others &rarr; knowledge. AIF &rarr;</div>
+          <div class="why-label">Real Output per Level</div>
+          <div class="why-desc">A scorecard. A prompt system. A portfolio. A working app. Every level produces something you use in the flow of your work &mdash; not only a certificate.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-vs">Others &rarr; tool-based. AIF &rarr;</div>
+          <div class="why-label">APT Framework</div>
+          <div class="why-desc">Domain Expertise &times; Thinking Framework &times; AI Skill. Tools change. The triangle stays. You become tool-agnostic, not tool-dependent.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-vs">Others &rarr; one-time, one-format. AIF &rarr;</div>
+          <div class="why-label">HyFlex AHA Delivery</div>
+          <div class="why-desc">In-person, live streaming, or self-paced &mdash; learning adapts to your calendar, not the other way around.</div>
+        </div>
+      </div>
+    
   </div>
 </section>
 
@@ -2030,7 +2126,7 @@ body {
     <div class="formula__top">
       <div class="eyebrow eyebrow--light">THE FORMULA</div>
       <h2 class="h2"><span class="gold-muted">Your leadership</span><br>is the strongest AI multiplier.</h2>
-      <p class="formula__subtitle"><strong>BI = Business Impact</strong> — the real impact formula for AI in your organisation.<br>Not about technology. About the <span class="gold-muted">leadership</span> that multiplies the result.</p>
+      <p class="formula__subtitle">AI's business impact doesn't come from the tools. It comes from what only you have &mdash; <span class="gold-muted">your data, your context, your judgment</span> &mdash; multiplied by how well you and your team work with AI.</p>
     </div>
 
     <div class="formula__equation">
@@ -2172,8 +2268,8 @@ body {
 
     <div class="cred__refs">
     <div style="margin-top:40px">
-      <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:12px">ALUMNI ORGANISATIONS</div>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:6px">
+      <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:12px;text-align:center">ALUMNI ORGANISATIONS</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;justify-content:center;max-width:760px;margin-left:auto;margin-right:auto">
         <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-md);padding:7px 16px;border:1px solid rgba(255,255,255,.1);border-radius:100px">Pertamina</span>
         <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-md);padding:7px 16px;border:1px solid rgba(255,255,255,.1);border-radius:100px">Pertamina Hulu Rokan</span>
         <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-md);padding:7px 16px;border:1px solid rgba(255,255,255,.1);border-radius:100px">Pertamina Patra Niaga</span>
@@ -2186,8 +2282,8 @@ body {
     </div>
 
     <div style="margin-top:28px">
-      <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:12px">LEARNING RESOURCES</div>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:6px">
+      <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-muted);margin-bottom:12px;text-align:center">LEARNING RESOURCES</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;justify-content:center;max-width:760px;margin-left:auto;margin-right:auto">
         <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-md);padding:7px 16px;border:1px solid rgba(255,255,255,.1);border-radius:100px">Google</span>
         <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-md);padding:7px 16px;border:1px solid rgba(255,255,255,.1);border-radius:100px">Coursera</span>
         <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-md);padding:7px 16px;border:1px solid rgba(255,255,255,.1);border-radius:100px">Anthropic Academy</span>
@@ -2201,10 +2297,10 @@ body {
 <!-- ════════ SECTION 5: PROGRAM<!-- ════════ SECTION 5: PROGRAM (Light) ════════ -->
 <section class="section section--light" id="program">
   <div class="section__inner">
-    <div class="eyebrow eyebrow--light">LEARNING JOURNEY</div>
+    <div class="eyebrow eyebrow--light">HOW WE TEACH</div>
 
     <div class="prog__top">
-      <h2 class="h2">4 levels. Real implementation.<br>AI as instrument, <span class="gold-muted">not subject.</span></h2>
+      <h2 class="h2">Real implementation.<br>AI as instrument, <span class="gold-muted">not subject.</span></h2>
       
     </div>
 
@@ -2234,47 +2330,7 @@ body {
       </div>
     </div>
 
-    <!-- Timeline -->
-    <div class="prog__timeline">
-      <div class="prog__timeline-step"><div class="prog__timeline-dot"></div><div class="prog__timeline-label">L1</div><div class="prog__timeline-dur">½ day</div></div>
-      <div class="prog__timeline-line"></div>
-      <div class="prog__timeline-step"><div class="prog__timeline-dot"></div><div class="prog__timeline-label">L2</div><div class="prog__timeline-dur">2 days</div></div>
-      <div class="prog__timeline-line"></div>
-      <div class="prog__timeline-step"><div class="prog__timeline-dot"></div><div class="prog__timeline-label">L3</div><div class="prog__timeline-dur">2 days</div></div>
-      <div class="prog__timeline-line"></div>
-      <div class="prog__timeline-step"><div class="prog__timeline-dot"></div><div class="prog__timeline-label">L4</div><div class="prog__timeline-dur">2 days</div></div>
-    </div>
-    <div class="prog__timeline-total">3 months · 6 sessions · 4 levels</div>
-
-    <div class="prog__levels">
-      <div class="prog__level">
-        <div class="prog__level-num">L1</div>
-        <div class="prog__level-title">Strategize</div>
-        <div class="prog__level-sub">AI Readiness<br>Calibration</div>
-      </div>
-
-      <div class="prog__level">
-        <div class="prog__level-num">L2</div>
-        <div class="prog__level-title">Prompt</div>
-        <div class="prog__level-sub">Thinking<br>& Productivity</div>
-      </div>
-
-      <div class="prog__level">
-        <div class="prog__level-num">L3</div>
-        <div class="prog__level-title">Create</div>
-        <div class="prog__level-sub">Autonomy<br>& Output</div>
-      </div>
-
-      <div class="prog__level">
-        <div class="prog__level-num">L4</div>
-        <div class="prog__level-title">Build</div>
-        <div class="prog__level-sub">Impact<br>& Scale</div>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin:32px 0 48px">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSckYF5f9kQtHtCcSUivfNCIIWtr43dJlKhjoiV3-_tpprsG_g/viewform?usp=header" class="cta-primary" target="_blank" style="font-size:13px;letter-spacing:.06em">Start with Strategize — Register →</a>
-    </div>
+    
 
     <!-- Tools strip -->
     <div class="prog__tools">
@@ -2300,11 +2356,11 @@ body {
     </div>
 
     <div class="prog__detail-link">
-      <a href="aifirst-curriculum--v22.html" class="cta-secondary" target="_blank">View Full Curriculum →</a>
+      <a href="curriculum.html" class="cta-secondary" target="_blank">View Full Curriculum →</a>
 
     <div class="prog__decision-helper">
-      <p class="prog__decision-text">Exploring the right path for your team?</p>
-      <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20ingin%20konsultasi%20tentang%20AI%20First%20Program" class="prog__decision-cta" target="_blank">Speak to a Programme Advisor →</a>
+      <p class="prog__decision-text">Which path fits you?</p>
+      <a href="#invest" class="prog__decision-cta">See Your Path &darr;</a>
     </div>
     </div>
   </div>
@@ -2316,28 +2372,122 @@ body {
   <div class="section__inner">
     <div class="eyebrow eyebrow--dark">YOUR PATH</div>
 
-    <h2 class="h2 invest__headline">3 tracks. One transformation.</h2>
-    
+    <h2 class="h2 invest__headline">One journey.<br><span class="gold-muted">Everyone starts at Level 1.</span></h2>
+    <p class="body-text" style="margin-top:14px;max-width:540px">Four levels &mdash; Strategize, Prompt, Create, Build. Enter at Level 1, continue by role, or branch into a one-day intensive.</p>
 
-    <div class="invest__tracks" style="margin-top:48px">
-      <!-- Professional -->
-      <div class="invest__track invest__track--featured">
-        <span class="invest__track-badge">MOST POPULAR</span>
-        <h3 class="invest__track-name">Professional</h3>
-        <p class="invest__track-audience">Professionals &amp; emerging leaders</p>
+    <div class="path-entry">
+      <div class="path-entry-left">
+        <div class="path-tag" style="color:var(--gold)">LEVEL 1 &middot; STRATEGIZE &middot; OPEN REGISTRATION</div>
+        <h3 class="path-name" style="font-size:22px">AI First Connect</h3>
+        <p class="path-tagline">Before you choose a path, see the whole map &mdash; awareness, calibration, and your organisation&rsquo;s AI readiness.</p>
+        <div class="path-take"><span>TAKE HOME</span>AI Readiness Scorecard</div>
       </div>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSckYF5f9kQtHtCcSUivfNCIIWtr43dJlKhjoiV3-_tpprsG_g/viewform?usp=header" target="_blank" class="cta-primary" style="font-size:12px;letter-spacing:.06em;white-space:nowrap">Register for Connect &rarr;</a>
+    </div>
 
-      <!-- Leader -->
-      <div class="invest__track">
-        <h3 class="invest__track-name">Leader</h3>
-        <p class="invest__track-audience">C-level · Senior executives</p>
-      </div>
+    <div class="path-connector" aria-hidden="true">
+      <div class="path-connector-stem"></div>
+      <div class="path-connector-label">CONTINUE THE JOURNEY &middot; LEVEL 2 &middot; PROMPT</div>
+    </div>
 
-      <!-- Corporate -->
-      <div class="invest__track">
-        <h3 class="invest__track-name">Corporate</h3>
-        <p class="invest__track-audience">Organisations · teams · custom deployment</p>
+    <div class="path-grid">
+      <div class="path-card" onclick="togglePath(this)" tabindex="0">
+        <div class="path-head">
+          <div>
+            <div class="path-tag">LEVEL 2 &middot; FOR LEADERS &middot; BY APPLICATION</div>
+            <h3 class="path-name">AI Leaders Getaway</h3>
+            <p class="path-tagline">You can't lead an AI transformation you haven't lived.</p>
+          </div>
+          <span class="path-chevron" aria-hidden="true">+</span>
+        </div>
+        <div class="path-body">
+          <p class="path-desc">Two Saturdays for leaders who want AI actually working in their organisation &mdash; not just talked about.</p>
+          <p class="path-for">&rarr; Selection by application. Priority to alumni actively applying AI in their organisations.</p>
+          <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20program%20AI%20First" target="_blank" class="path-cta" onclick="event.stopPropagation()">Ask about the next cohort &rarr;</a>
+        </div>
       </div>
+      <div class="path-card" onclick="togglePath(this)" tabindex="0">
+        <div class="path-head">
+          <div>
+            <div class="path-tag">LEVEL 2 &middot; FOR PROFESSIONALS &middot; MOST POPULAR</div>
+            <h3 class="path-name">AI First Professional</h3>
+            <p class="path-tagline">You direct the AI. The thinking is yours.</p>
+          </div>
+          <span class="path-chevron" aria-hidden="true">+</span>
+        </div>
+        <div class="path-body">
+          <p class="path-desc">Two days to build a personal system for working with AI &mdash; using your actual work, not someone else's case study.</p>
+          <p class="path-take"><span>TAKE HOME</span>Personal Prompt System</p>
+          <p class="path-for">&rarr; For professionals ready to move from experimenting to being intentional.</p>
+          <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20program%20AI%20First" target="_blank" class="path-cta" onclick="event.stopPropagation()">Ask about the next cohort &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="path-connector" aria-hidden="true">
+      <div class="path-connector-stem"></div>
+      <div class="path-connector-label">THE JOURNEY CONTINUES</div>
+    </div>
+
+    <div class="path-levels-strip">
+      <div class="path-level-mini">
+        <div class="path-tag">LEVEL 3 &middot; CREATE</div>
+        <div class="path-mini-name">Autonomy &amp; Output</div>
+        <div class="path-take"><span>TAKE HOME</span>Multimodal Output Portfolio</div>
+      </div>
+      <div class="path-level-mini">
+        <div class="path-tag">LEVEL 4 &middot; BUILD</div>
+        <div class="path-mini-name">Impact &amp; Scale</div>
+        <div class="path-take"><span>TAKE HOME</span>Working Micro AI App</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:18px">
+      <a href="curriculum.html" class="cta-secondary" target="_blank" style="font-size:12px">View the Full 4-Level Curriculum &rarr;</a>
+    </div>
+
+    <div class="path-connector" aria-hidden="true">
+      <div class="path-connector-stem"></div>
+      <div class="path-connector-label">OR BRANCH FROM LEVEL 1 &middot; ONE-DAY INTENSIVES</div>
+    </div>
+
+    <div class="path-grid">
+      <div class="path-card" onclick="togglePath(this)" tabindex="0">
+        <div class="path-head">
+          <div>
+            <div class="path-tag">ONE-DAY INTENSIVE</div>
+            <h3 class="path-name">Thinking with Claude</h3>
+            <p class="path-tagline">Most people ask AI for answers. The few who pull ahead argue with it.</p>
+          </div>
+          <span class="path-chevron" aria-hidden="true">+</span>
+        </div>
+        <div class="path-body">
+          <p class="path-desc">One day to change how you think &mdash; and build a Claude that already knows who you are.</p>
+          <p class="path-for">&rarr; For alumni whose AI still behaves like a search engine.</p>
+          <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20program%20AI%20First" target="_blank" class="path-cta" onclick="event.stopPropagation()">Ask about the next cohort &rarr;</a>
+        </div>
+      </div>
+      <div class="path-card" onclick="togglePath(this)" tabindex="0">
+        <div class="path-head">
+          <div>
+            <div class="path-tag">ONE-DAY INTENSIVE</div>
+            <h3 class="path-name">Selling Idea with AI</h3>
+            <p class="path-tagline">Sharper proposals, decks, and pitches &mdash; built with AI, in a day.</p>
+          </div>
+          <span class="path-chevron" aria-hidden="true">+</span>
+        </div>
+        <div class="path-body">
+          <p class="path-desc">One day turning your real ideas into proposals and pitches that land &mdash; with AI as your writing partner.</p>
+          <p class="path-for">&rarr; For alumni whose work lives in proposals and pitches.</p>
+          <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20program%20AI%20First" target="_blank" class="path-cta" onclick="event.stopPropagation()">Ask about the next cohort &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="roi-callout">
+      <div class="path-tag" style="color:var(--gold);margin-bottom:12px">RETURN ON INVESTMENT</div>
+      <p class="roi-head">One in-house cohort of 20 leaders &rarr; 20 working micro apps.</p>
+      <p class="roi-body">Every AI First cohort ends with working AI apps built by your own people &mdash; each equivalent to Rp 15&ndash;50 million if built by a vendor. At a fraction of the cost, with full organisational context. Knowledge that doesn&rsquo;t leave when people do.</p>
+      <a href="https://wa.me/6285959435052?text=Hi%2C%20I%27m%20interested%20in%20the%20AI%20First%20In-House%20programme" target="_blank" class="path-cta">Talk to us about in-house delivery &rarr;</a>
     </div>
 
   </div>
@@ -2452,6 +2602,25 @@ function goToSlide(n) {
   dots[currentSlide].classList.add('active');
 }
 setInterval(() => { goToSlide((currentSlide + 1) % slides.length); }, 5000);
+</script>
+
+<script>
+function togglePath(el){
+  document.querySelectorAll('.path-card.open').forEach(function(c){ if(c!==el) c.classList.remove('open'); });
+  el.classList.toggle('open');
+}
+</script>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.why-card,.path-card,.path-entry,.path-level-mini,.roi-callout,.prog__aha-pill,.formula__flip-card,.cred__testimonial-card');
+  els.forEach(function(e){e.classList.add('rv')});
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} });
+  },{threshold:.12});
+  els.forEach(function(e){io.observe(e)});
+})();
 </script>
 </body>
 </html>
