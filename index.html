@@ -1904,6 +1904,7 @@ body {
 .path-connector-label { font-family:var(--font-mono); font-size:9px; letter-spacing:.22em; color:rgba(212,168,75,.55) }
 .path-grid { display:grid; grid-template-columns:1fr; gap:12px }
 @media (min-width:640px){ .path-grid { grid-template-columns:1fr 1fr } }
+@media (min-width:1024px){ .path-grid--3 { grid-template-columns:1fr 1fr 1fr } }
 .path-card { border:1px solid rgba(212,168,75,.16); border-radius:12px; background:rgba(255,255,255,.02); padding:20px 22px; cursor:pointer; transition:border-color .3s, background .3s }
 .path-card:hover { border-color:rgba(212,168,75,.4); background:rgba(212,168,75,.03) }
 .path-card.open { border-color:rgba(212,168,75,.5); background:rgba(212,168,75,.05) }
@@ -2451,7 +2452,7 @@ html { scroll-behavior:smooth }
     </div>
     <p style="text-align:center;max-width:520px;margin:10px auto 0;font-size:12px;color:#9a9488;line-height:1.6">Level 1 (AI First Connect) is recommended but not required &mdash; and you can take these alongside Level 2.</p>
 
-    <div class="path-grid">
+    <div class="path-grid path-grid--3">
       <div class="path-card" onclick="togglePath(this)" tabindex="0">
         <div class="path-head">
           <div>
@@ -2472,14 +2473,29 @@ html { scroll-behavior:smooth }
           <div>
             <div class="path-tag">ONE-DAY INTENSIVE</div>
             <h3 class="path-name">Selling Ideas with AI</h3>
-            <p class="path-tagline">Sharper proposals, decks, and pitches &mdash; built with AI, in a day.</p>
+            <p class="path-tagline">Most people still need an assistant to prepare their slides. Those who lead don't anymore.</p>
           </div>
           <span class="path-chevron" aria-hidden="true">+</span>
         </div>
         <div class="path-body">
-          <p class="path-desc">One day turning your real ideas into proposals and pitches that land &mdash; with AI as your writing partner.</p>
-          <p class="path-for">&rarr; For anyone whose work lives in proposals and pitches.</p>
+          <p class="path-desc">No assistant required. No communication loss. One day &mdash; straight from your head to a finished, interactive presentation.</p>
+          <p class="path-for">&rarr; For leaders whose ideas are judged in the moments that count: the board meeting, the pitch, the town hall.</p>
           <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20program%20AI%20First" target="_blank" class="path-cta" onclick="event.stopPropagation()">Ask about the next cohort &rarr;</a>
+        </div>
+      </div>
+      <div class="path-card" onclick="togglePath(this)" tabindex="0">
+        <div class="path-head">
+          <div>
+            <div class="path-tag">ONE-DAY INTENSIVE</div>
+            <h3 class="path-name">AI OS for the Future of Work</h3>
+            <p class="path-tagline">Most leaders still run their day by hand. The few who pull ahead let an AI OS run it with them.</p>
+          </div>
+          <span class="path-chevron" aria-hidden="true">+</span>
+        </div>
+        <div class="path-body">
+          <p class="path-desc">Not a productivity course. In one day, build a personal AI operating system on Claude &mdash; connected to your calendar and your work. You orchestrate. It runs.</p>
+          <p class="path-for">&rarr; For leaders whose day is run by the calendar and the inbox &mdash; not by their priorities.</p>
+          <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20AI%20OS%20for%20the%20Future%20of%20Work" target="_blank" class="path-cta" onclick="event.stopPropagation()">Ask about the next cohort &rarr;</a>
         </div>
       </div>
     </div>
