@@ -635,7 +635,14 @@ button,input,textarea,select { font-family:var(--fb) }
 .intens-grid { display:grid; grid-template-columns:1fr; gap:14px; margin-bottom:24px }
 @media (min-width:640px){ .intens-grid { grid-template-columns:1fr 1fr } }
 @media (min-width:1024px){ .intens-grid { grid-template-columns:1fr 1fr 1fr } }
-.intens-card { position:relative; border:1px solid rgba(212,168,75,.28) !important; background:linear-gradient(160deg, rgba(212,168,75,.07), rgba(255,255,255,.015)) !important; cursor:default !important }
+.intens-card { position:relative; border:1px solid rgba(212,168,75,.28) !important; background:linear-gradient(160deg, rgba(212,168,75,.07), rgba(255,255,255,.015)) !important; cursor:default !important; display:flex; flex-direction:column }
+.intens-card .cc-sub { flex:1 }
+.intens-card .intens-pills { margin-top:16px }
+.intens-card a { align-self:flex-start }
+.intens-mods { margin-top:14px; display:flex; flex-direction:column; gap:8px }
+.intens-mod { display:flex; gap:8px; align-items:baseline; font-size:12px; line-height:1.55; color:var(--t-md) }
+.intens-mod b { color:var(--t-hi); font-weight:600 }
+.intens-mod .im-num { font-family:var(--fm); font-size:9px; font-weight:700; color:var(--gold); flex-shrink:0 }
 .intens-card:hover { border-color:rgba(212,168,75,.55) !important; transform:translateY(-3px); transition:all .3s }
 .intens-icon { width:44px; height:44px; border-radius:10px; border:1px solid rgba(212,168,75,.3); background:rgba(212,168,75,.08); display:flex; align-items:center; justify-content:center; margin-bottom:14px }
 .intens-icon svg { width:22px; height:22px }
@@ -1100,6 +1107,12 @@ not an exercise you leave behind.
         <div class="lh-eyebrow" style="margin-bottom:6px">ONE DAY &middot; Thinking with Claude</div>
         <div class="cc-name" style="font-size:15px;margin-bottom:6px">Most people ask AI for answers. The few who pull ahead argue with it.</div>
         <div class="cc-sub" style="font-size:13px;line-height:1.6">You already use Claude — but the answers feel generic, and every session starts from zero. The problem isn't how you ask: Claude doesn't know you yet. One day to change how you think, and build a Claude that already knows who you are.</div>
+        <div class="intens-mods">
+          <div class="intens-mod"><span class="im-num">01</span><span><b>Calibrate</b> — Claude learns your role, your domain, and how you think.</span></div>
+          <div class="intens-mod"><span class="im-num">02</span><span><b>Structure</b> — your real work context lives inside a Claude Project.</span></div>
+          <div class="intens-mod"><span class="im-num">03</span><span><b>Connect</b> — 7 Thinking Modes, and the judgment to choose them.</span></div>
+          <div class="intens-mod"><span class="im-num">04</span><span><b>Decide</b> — one real decision from your work, finished in the room.</span></div>
+        </div>
         <div class="intens-pills">
           <span class="intens-pill">Your Custom Instructions</span>
           <span class="intens-pill">Your Claude Project</span>
@@ -1114,6 +1127,12 @@ not an exercise you leave behind.
         <div class="lh-eyebrow" style="margin-bottom:6px">ONE DAY &middot; Selling Ideas with AI</div>
         <div class="cc-name" style="font-size:15px;margin-bottom:6px">Most people still need an assistant to prepare their slides. Those who lead don't anymore.</div>
         <div class="cc-sub" style="font-size:13px;line-height:1.6">For managers and leaders whose ideas are judged in the moments that count — the board meeting, the client pitch, the town hall. No assistant required. No communication loss. One day, straight from your head to a finished presentation.</div>
+        <div class="intens-mods">
+          <div class="intens-mod"><span class="im-num">01</span><span><b>Framing</b> — AI becomes a skeptical audience before a single slide exists.</span></div>
+          <div class="intens-mod"><span class="im-num">02</span><span><b>Map &amp; Start</b> — 7 ways AI presents ideas; you start from your own idea.</span></div>
+          <div class="intens-mod"><span class="im-num">03</span><span><b>Build Artifact</b> — an interactive prototype that can change live on stage.</span></div>
+          <div class="intens-mod"><span class="im-num">04</span><span><b>Slides, Multimedia &amp; Test</b> — test it hard before a real audience.</span></div>
+        </div>
         <div class="intens-pills">
           <span class="intens-pill">1 Artifact Demo</span>
           <span class="intens-pill">Your Idea, Underway</span>
@@ -1128,6 +1147,12 @@ not an exercise you leave behind.
         <div class="lh-eyebrow" style="margin-bottom:6px">ONE DAY &middot; AI OS for the Future of Work</div>
         <div class="cc-name" style="font-size:15px;margin-bottom:6px">Most leaders still run their day by hand. The few who pull ahead let an AI OS run it with them.</div>
         <div class="cc-sub" style="font-size:13px;line-height:1.6">Not a productivity course. A second brain that doesn't just remember — it runs your day. In one day, build a personal AI operating system on Claude, connected to your calendar and your work. You orchestrate. It runs.</div>
+        <div class="intens-mods">
+          <div class="intens-mod"><span class="im-num">01</span><span><b>Framing</b> — map where AI matters most for your role.</span></div>
+          <div class="intens-mod"><span class="im-num">02</span><span><b>The Leadership Lens</b> — audit five dimensions; pick one real use case.</span></div>
+          <div class="intens-mod"><span class="im-num">03</span><span><b>Build Your AI OS</b> — connect Claude to your calendar and documents.</span></div>
+          <div class="intens-mod"><span class="im-num">04</span><span><b>Perform &amp; Sustain</b> — the 2× Rule, an automation map, a 30-day habit.</span></div>
+        </div>
         <div class="intens-pills">
           <span class="intens-pill">Your AI Map</span>
           <span class="intens-pill">Audit + Your Use Case</span>
