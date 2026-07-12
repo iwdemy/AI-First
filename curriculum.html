@@ -670,6 +670,7 @@ button,input,textarea,select { font-family:var(--fb) }
       <a href="index.html" style="font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:7px 14px;border-radius:6px;border:1px solid rgba(212,168,75,.28);color:rgba(212,168,75,.7);transition:all .2s" onmouseover="this.style.borderColor='rgba(212,168,75,.5)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='rgba(212,168,75,.28)';this.style.color='rgba(212,168,75,.7)'">← Home</a>
       <a href="#journey">The Levels</a>
       <a href="#curriculum">Curriculum</a>
+      <a href="#intensives">Intensives</a>
       <a href="#hyflex">HyFlex AHA</a>
     </nav>
     <div style="display:flex;align-items:center;gap:12px">
@@ -683,6 +684,7 @@ button,input,textarea,select { font-family:var(--fb) }
     <a href="index.html" onclick="closeMobile()">← Homepage</a>
     <a href="#journey" onclick="closeMobile()">The Levels</a>
     <a href="#curriculum" onclick="closeMobile()">Curriculum</a>
+    <a href="#intensives" onclick="closeMobile()">One-Day Intensives</a>
     <a href="#hyflex" onclick="closeMobile()">HyFlex AHA</a>
     <a href="https://wa.me/6285959435052" target="_blank" onclick="closeMobile()" style="color:var(--gold)">Consult ↗</a>
   </div>
@@ -706,7 +708,7 @@ button,input,textarea,select { font-family:var(--fb) }
           Each level ends with a real deliverable —
 not an exercise you leave behind.
         </p>
-        <p class="sub-d" style="margin-top:-16px;margin-bottom:28px;font-family:var(--fm);font-size:12px;letter-spacing:.04em;color:var(--gold)">Everyone enters at Level 1 &mdash; AI First Connect.</p>
+        <p class="sub-d" style="margin-top:-16px;margin-bottom:28px;font-family:var(--fm);font-size:12px;letter-spacing:.04em;color:var(--gold)">Everyone enters at Level 1 &mdash; AI First Connect. One-day intensives are open anytime.</p>
         <div class="btn-row">
           <a href="#curriculum" class="btn-primary">See the Curriculum ↓</a>
           <a href="index.html" class="btn-secondary">Program Overview</a>
@@ -774,6 +776,8 @@ not an exercise you leave behind.
         <span class="pyr-sub">Leaders Getaway &middot; AIF Professional</span>
         <span class="pyr-arrow">&#8594;</span>
       </div>
+
+      <a href="#intensives" style="display:flex;align-items:center;gap:8px;justify-content:center;margin:2px auto;padding:7px 16px;width:fit-content;border:1px dashed rgba(139,115,64,.5);border-radius:100px;text-decoration:none;font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-m)">&#8853; 3 One-Day Intensives &mdash; between L1 &amp; L2 &darr;</a>
 
       <div class="pyr-level pyr-l01" onclick="goToLevel('p-01')" tabindex="0">
         <span class="pyr-num">01</span>
@@ -914,14 +918,14 @@ not an exercise you leave behind.
         </div>
         <div id="v-pro" class="var-panel active">
         <div class="day-tabs">
-          <button class="day-tab active" data-day="d02-pw">Pre-work</button>
-          <button class="day-tab" data-day="d02-1">Day 1</button>
+          <button class="day-tab active" data-day="d02-1">Day 1</button>
+          <button class="day-tab" data-day="d02-pw">Pre-work</button>
           <button class="day-tab" data-day="d02-2">Day 2</button>
         </div>
-        <div class="day-panel active" id="d02-pw">
+        <div class="day-panel" id="d02-pw">
           <div class="prework-note">Self-paced · complete before the in-person session begins</div>
         </div>
-        <div class="day-panel" id="d02-1">
+        <div class="day-panel active" id="d02-1">
           <div class="cc-grid">
             <div class="cc-card"><div class="cc-name">AI for You and Me</div><div class="cc-sub">What AI can and cannot do today — potential &amp; limitation, in your own work</div><span class="cc-get">You'll get: an accurate mental model</span></div>
             <div class="cc-card"><div class="cc-name">Ngobrol Bareng AI</div><div class="cc-sub">The ACT → ACTIONS framework — prompts you can explain and repeat</div><span class="cc-get">You'll get: prompts that work, reliably</span></div>
@@ -996,14 +1000,14 @@ not an exercise you leave behind.
           <li><strong>Accuracy you can vouch for</strong> — You build a review protocol, so every AI-assisted deliverable meets your field's standards.</li>
         </ul>
         <div class="day-tabs">
-          <button class="day-tab active" data-day="d03-pw">Pre-work</button>
-          <button class="day-tab" data-day="d03-1">Day 1</button>
+          <button class="day-tab active" data-day="d03-1">Day 1</button>
+          <button class="day-tab" data-day="d03-pw">Pre-work</button>
           <button class="day-tab" data-day="d03-2">Day 2</button>
         </div>
-        <div class="day-panel active" id="d03-pw">
+        <div class="day-panel" id="d03-pw">
           <div class="prework-note">Self-paced · complete before the in-person session begins</div>
         </div>
-        <div class="day-panel" id="d03-1">
+        <div class="day-panel active" id="d03-1">
           <div class="cc-grid">
             <div class="cc-card"><div class="cc-name">CIS Prompting</div><div class="cc-sub">From good prompts to strategic ones — Context, Intention, Specification</div><span class="cc-get">You'll get: visibly better output</span></div>
             <div class="cc-card"><div class="cc-name">Mini App, Big Impact</div><div class="cc-sub">Build your own mini AI assistant (Gem / custom GPT) for a weekly task</div><span class="cc-get">You'll get: a personal assistant</span></div>
@@ -1054,14 +1058,14 @@ not an exercise you leave behind.
           <li><strong>Keep it working</strong> — You know how to maintain, grow, and govern what you built as your business needs change.</li>
         </ul>
         <div class="day-tabs">
-          <button class="day-tab active" data-day="d04-pw">Pre-work</button>
-          <button class="day-tab" data-day="d04-1">Day 1</button>
+          <button class="day-tab active" data-day="d04-1">Day 1</button>
+          <button class="day-tab" data-day="d04-pw">Pre-work</button>
           <button class="day-tab" data-day="d04-2">Day 2</button>
         </div>
-        <div class="day-panel active" id="d04-pw">
+        <div class="day-panel" id="d04-pw">
           <div class="prework-note">Self-paced · complete before the in-person session begins</div>
         </div>
-        <div class="day-panel" id="d04-1">
+        <div class="day-panel active" id="d04-1">
           <div class="cc-grid">
             <div class="cc-card"><div class="cc-name">Management w AI</div><div class="cc-sub">Proven management frameworks + AI, on one complex problem from your desk</div><span class="cc-get">You'll get: a structured problem framing</span></div>
             <div class="cc-card"><div class="cc-name">Customized AI</div><div class="cc-sub">Package your knowledge into AI — the deeper the setup, the more it works without you</div><span class="cc-get">You'll get: a ready-to-use Gem</span></div>
