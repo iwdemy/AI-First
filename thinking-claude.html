@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="Tjitra &amp; Associates">
+<meta name="description" content="Thinking with Claude — One day to build 7 thinking modes and leave with a Custom Claude Project.">
+<title>Thinking with Claude — IWDemy × Tjitra &amp; Associates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-dark:#0E0E0E;--bg-light:#F8F6F2;
+  --gold:#D4A84B;--gold-muted:#8B7340;
+  --gold-bg-dark:rgba(212,168,75,.10);--gold-border-dark:rgba(212,168,75,.30);
+  --gold-bg-light:rgba(212,168,75,.08);--gold-border-light:rgba(212,168,75,.22);
+  --text-hi:#F5F2EB;--text-md:rgba(245,242,235,.95);
+  --text-lo:rgba(240,236,228,.75);
+  --dark-text:#0A0A0A;--dark-body:rgba(10,10,10,.92);
+  --dark-sub:rgba(16,14,10,.78);
+  --font-heading:'Plus Jakarta Sans','Arial',sans-serif;
+  --font-body:'Inter','Arial',sans-serif;
+  --font-mono:'JetBrains Mono','Consolas',monospace;
+  --py:clamp(56px,9vh,88px);--px:clamp(20px,6vw,72px);
+  --max:900px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1.6;background:var(--bg-dark);color:var(--text-hi);overflow-x:hidden}
+/* Typography */
+.h1{font-family:var(--font-heading);font-weight:800;font-size:clamp(28px,5vw,50px);line-height:1.08;letter-spacing:-.03em}
+.h2{font-family:var(--font-heading);font-weight:700;font-size:clamp(22px,3.8vw,36px);line-height:1.12;letter-spacing:-.02em}
+.h3{font-family:var(--font-heading);font-weight:700;font-size:clamp(16px,2.2vw,20px);line-height:1.2}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:clamp(10px,1.1vw,11px);font-weight:600;text-transform:uppercase;letter-spacing:.22em;padding:6px 16px;border-radius:999px;margin-bottom:20px;width:fit-content}
+.eyebrow--dark{background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);color:var(--gold)}
+.eyebrow--light{background:var(--gold-bg-light);border:1px solid var(--gold-border-light);color:var(--gold-muted)}
+/* Sections */
+.section{padding:var(--py) var(--px);position:relative}
+.section--dark{background:var(--bg-dark);color:var(--text-hi)}
+.section--light{background:var(--bg-light);color:var(--dark-text)}
+.section__inner{max-width:var(--max);margin:0 auto}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:clamp(11px,1.2vw,12px);font-weight:700;text-transform:uppercase;letter-spacing:.18em;padding:15px 32px;border-radius:8px;text-decoration:none;min-height:50px;transition:transform .25s,box-shadow .25s}
+.btn--gold{background:linear-gradient(135deg,#D4A84B 0%,#C49A3C 50%,#D4A84B 100%);background-size:200% 100%;color:var(--bg-dark);box-shadow:0 2px 20px rgba(212,168,75,.25),inset 0 1px 0 rgba(255,255,255,.15)}
+.btn--gold:hover{transform:translateY(-2px);box-shadow:0 6px 32px rgba(212,168,75,.40)}
+.btn--outline{background:transparent;border:1px solid rgba(212,168,75,.5);color:var(--gold)}
+.btn--outline:hover{border-color:var(--gold);background:var(--gold-bg-dark);transform:translateY(-1px)}
+.btn--outline-dark{background:transparent;border:1px solid rgba(10,10,10,.3);color:var(--dark-text)}
+.btn--outline-dark:hover{border-color:rgba(10,10,10,.6);transform:translateY(-1px)}
+.btn-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:32px}
+/* Cards */
+.card-grid{display:grid;gap:16px;margin-top:32px}
+.card-grid--2{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card-grid--3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card-dark{background:rgba(255,255,255,.04);border:1px solid rgba(212,168,75,.12);border-radius:12px;padding:24px}
+.card-light{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.card__icon{font-size:24px;margin-bottom:12px;display:block}
+.card__label{font-family:var(--font-heading);font-weight:700;font-size:15px;margin-bottom:6px;color:inherit}
+.card__desc{font-size:14px;line-height:1.55;opacity:.75}
+/* Session timeline */
+.session-list{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.session-item{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:10px}
+.session-item--dark{background:rgba(255,255,255,.04);border:1px solid rgba(212,168,75,.12)}
+.session-item--light{background:#fff;border:1px solid rgba(0,0,0,.07);box-shadow:0 1px 6px rgba(0,0,0,.05)}
+.session-num{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold);background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);border-radius:6px;padding:4px 10px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.session-num--light{background:var(--gold-bg-light);border-color:var(--gold-border-light);color:var(--gold-muted)}
+.session-body h4{font-family:var(--font-heading);font-weight:700;font-size:15px;margin-bottom:4px}
+.session-body p{font-size:13px;line-height:1.5;opacity:.72}
+/* Take-home box */
+.take-home{border:1px solid var(--gold-border-dark);background:var(--gold-bg-dark);border-radius:12px;padding:28px 32px;margin-top:32px}
+.take-home--light{border-color:var(--gold-border-light);background:rgba(212,168,75,.06)}
+.take-home__label{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:10px}
+.take-home__title{font-family:var(--font-heading);font-weight:700;font-size:20px;margin-bottom:12px}
+.take-home ul{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.take-home li{font-size:14px;padding-left:20px;position:relative;opacity:.88}
+.take-home li::before{content:'→';position:absolute;left:0;color:var(--gold)}
+/* Format chips */
+.chip-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;padding:7px 16px;border-radius:999px}
+.chip--dark{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--text-lo)}
+.chip--light{background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.1);color:var(--dark-sub)}
+.chip--gold{background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);color:var(--gold)}
+/* Who grid */
+.who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:28px}
+.who-card{padding:20px 22px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+.who-card h4{font-family:var(--font-heading);font-weight:700;font-size:14px;margin-bottom:6px;color:var(--gold)}
+.who-card p{font-size:13px;opacity:.72;line-height:1.5}
+/* BI formula */
+.formula-box{background:rgba(212,168,75,.06);border:1px solid rgba(212,168,75,.25);border-radius:14px;padding:36px 32px;text-align:center;margin-top:32px}
+.formula-box .formula-text{font-family:var(--font-mono);font-size:clamp(18px,3vw,28px);font-weight:700;color:var(--gold);letter-spacing:.05em;margin-bottom:16px}
+.formula-terms{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:16px}
+.formula-term{font-size:13px;opacity:.8}
+.formula-term strong{color:var(--gold);font-weight:700}
+/* Day tabs */
+.day-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.day-tab{font-family:var(--font-mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;padding:8px 20px;border-radius:6px;border:1px solid rgba(0,0,0,.1);background:transparent;color:var(--dark-sub);cursor:pointer}
+.day-tab.active,.day-tab--active{background:var(--dark-text);color:#fff;border-color:var(--dark-text)}
+/* Divider */
+.divider{width:40px;height:2px;background:var(--gold);margin:20px 0;border-radius:2px}
+.divider--center{margin:20px auto}
+/* 7-mode grid */
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:28px}
+.mode-card{padding:18px 20px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.mode-card__num{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--gold-muted);margin-bottom:6px}
+.mode-card__name{font-family:var(--font-heading);font-weight:700;font-size:14px;color:var(--dark-text);margin-bottom:4px}
+.mode-card__desc{font-size:12px;color:var(--dark-sub);line-height:1.45}
+/* Argument arc */
+.arc-list{display:flex;flex-direction:column;gap:10px;margin-top:28px;counter-reset:arc}
+.arc-item{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,.07);box-shadow:0 1px 5px rgba(0,0,0,.04)}
+.arc-num{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold-muted);background:var(--gold-bg-light);border:1px solid var(--gold-border-light);border-radius:6px;padding:4px 10px;flex-shrink:0;margin-top:1px}
+.arc-body h4{font-family:var(--font-heading);font-weight:700;font-size:14px;color:var(--dark-text);margin-bottom:3px}
+.arc-body p{font-size:13px;color:var(--dark-sub);line-height:1.45}
+/* OS layer */
+.os-layers{display:flex;flex-direction:column;gap:10px;margin-top:28px}
+.os-layer{padding:20px 24px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff}
+.os-layer__tag{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--gold-muted);margin-bottom:6px}
+.os-layer__name{font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--dark-text);margin-bottom:4px}
+.os-layer__desc{font-size:13px;color:var(--dark-sub);line-height:1.5}
+/* Journey path */
+.journey-path{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.level-card{display:flex;gap:16px;align-items:flex-start;padding:22px 24px;border-radius:12px}
+.level-card--dark{background:rgba(255,255,255,.04);border:1px solid rgba(212,168,75,.14)}
+.level-badge{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;padding:5px 12px;border-radius:999px;white-space:nowrap;flex-shrink:0;margin-top:3px}
+.level-badge--l1{background:rgba(212,168,75,.15);border:1px solid rgba(212,168,75,.4);color:var(--gold)}
+.level-badge--l2{background:rgba(100,160,255,.12);border:1px solid rgba(100,160,255,.3);color:#82b4ff}
+.level-badge--l3{background:rgba(100,220,180,.10);border:1px solid rgba(100,220,180,.25);color:#6ddcb4}
+.level-badge--l4{background:rgba(255,150,100,.10);border:1px solid rgba(255,150,100,.25);color:#ff9870}
+.level-body h3{font-family:var(--font-heading);font-weight:700;font-size:16px;margin-bottom:5px}
+.level-body p{font-size:13px;opacity:.75;line-height:1.5}
+/* Navbar */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(212,168,75,.10);transition:all .4s}
+.navbar.scrolled{background:rgba(10,10,10,.98);box-shadow:0 2px 40px rgba(0,0,0,.35);border-bottom-color:rgba(212,168,75,.15)}
+.navbar::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent 5%,rgba(212,168,75,.6) 35%,#D4A84B 50%,rgba(212,168,75,.6) 65%,transparent 95%)}
+.navbar__inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 var(--px);height:70px}
+.navbar__logos{display:flex;align-items:center;gap:10px;background:#fff;padding:5px 12px;border-radius:7px;text-decoration:none}
+.navbar__logos img{height:24px;width:auto}
+.navbar__logos .logo-divider{width:1px;height:16px;background:rgba(0,0,0,.12)}
+.navbar__right{display:flex;align-items:center;gap:12px}
+.navbar__back{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--text-lo);text-decoration:none;padding:8px 14px;border-radius:6px;transition:color .3s;display:none}
+.navbar__back:hover{color:var(--text-hi)}
+@media(min-width:640px){.navbar__back{display:inline-flex}}
+.navbar__cta{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;padding:10px 22px;border-radius:6px;background:linear-gradient(135deg,#D4A84B,#C49A3C,#D4A84B);background-size:200%;color:var(--bg-dark);text-decoration:none;min-height:40px;display:inline-flex;align-items:center;transition:transform .25s,box-shadow .25s}
+.navbar__cta:hover{transform:translateY(-1px);box-shadow:0 4px 24px rgba(212,168,75,.35)}
+.navbar__mobile-toggle{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;min-height:44px;min-width:44px;align-items:center;justify-content:center}
+.navbar__mobile-toggle span{display:block;width:20px;height:1.5px;background:var(--text-hi);border-radius:1px}
+.navbar__mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,10,10,.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.navbar__mobile-menu.open{display:flex}
+.navbar__mobile-menu a{font-family:var(--font-heading);font-size:22px;font-weight:700;color:var(--text-hi);text-decoration:none}
+.navbar__mobile-menu a:hover{color:var(--gold)}
+.navbar__mobile-close{position:absolute;top:20px;right:24px;background:none;border:none;font-size:28px;color:var(--text-lo);cursor:pointer}
+@media(min-width:768px){.navbar__mobile-toggle{display:none}}
+@media(max-width:767px){.navbar__right .navbar__back,.navbar__right .navbar__cta{display:none}}
+/* Hero */
+.hero{padding:calc(var(--py) + 70px) var(--px) var(--py);background:var(--bg-dark)}
+.hero__inner{max-width:var(--max);margin:0 auto}
+.hero__sub{font-size:clamp(15px,1.7vw,18px);line-height:1.7;max-width:600px;margin-top:16px;color:var(--text-md)}
+/* Footer */
+.footer{background:#0A0A0A;border-top:1px solid rgba(212,168,75,.10);padding:40px var(--px)}
+.footer__inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer__logos{display:flex;align-items:center;gap:10px;background:#fff;padding:5px 12px;border-radius:7px}
+.footer__logos img{height:22px;width:auto}
+.footer__logos .logo-divider{width:1px;height:14px;background:rgba(0,0,0,.12)}
+.footer__copy{font-size:12px;color:rgba(240,236,228,.35);line-height:1.6}
+/* Util */
+.text-gold{color:var(--gold)}
+.mt-8{margin-top:8px}.mt-12{margin-top:12px}.mt-16{margin-top:16px}.mt-20{margin-top:20px}.mt-28{margin-top:28px}
+.mb-4{margin-bottom:4px}.mb-8{margin-bottom:8px}
+/* Responsive */
+@media(max-width:640px){
+  .card-grid--3,.card-grid--2{grid-template-columns:1fr}
+  .who-grid{grid-template-columns:1fr}
+  .mode-grid{grid-template-columns:repeat(2,1fr)}
+  .btn-row{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<nav class="navbar" id="navbar" aria-label="Main navigation">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logos" aria-label="IWDemy & Tjitra home">
+      <img src="images/logo-iwdemy.png" alt="IWDemy" class="navbar__logo-img">
+      <div class="logo-divider"></div>
+      <img src="images/logo-tjitra.jpg" alt="Tjitra & Associates" class="navbar__logo-img">
+    </a>
+    <div class="navbar__right">
+      <a href="index.html" class="navbar__back">← All Programmes</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform" class="navbar__cta" target="_blank" rel="noopener">Register</a>
+    </div>
+    <button class="navbar__mobile-toggle" aria-label="Menu" id="navToggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="navbar__mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="navbar__mobile-close" id="mobileClose" aria-label="Close">✕</button>
+  <a href="index.html">All Programmes</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform" target="_blank" rel="noopener">Register</a>
+</div>
+
+<section class="hero section--dark">
+  <div class="hero__inner">
+    <div class="eyebrow eyebrow--dark">Exclusive · AI First Alumni · 1 Day · 15 Seats <img src="images/claude-logo.png" alt="Claude" style="height:16px;vertical-align:middle;margin-left:6px;opacity:.85" onerror="this.style.display='none'"></div>
+    <h1 class="h1">Most people ask AI for answers.<br>The few who pull ahead<br>argue with it.</h1>
+    <p class="hero__sub">The tool isn't the secret. One day to change how you think — and build a Claude that already knows who you are.</p>
+    <div class="chip-row mt-20">
+                  <span class="chip chip--dark">SOHO Podomoro City · West Jakarta</span>
+      <span class="chip chip--dark">Prerequisite: AI First Connect</span>
+    </div>
+    <div class="btn-row">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform" class="btn btn--gold" target="_blank" rel="noopener">Secure Your Seat</a>
+      <a href="https://wa.me/6285959435052" class="btn btn--outline" target="_blank" rel="noopener">Ask Kristina</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--light">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--light">The Gap</div>
+    <h2 class="h2">There is a difference between asking AI for answers and arguing with it.</h2>
+    <p class="mt-16" style="color:var(--dark-sub);font-size:15px;max-width:620px">"Most people use AI to get answers faster. The few who pull ahead use it to think differently — and the difference in output quality is not subtle."</p>
+    <div class="card-grid card-grid--3 mt-28">
+      <div class="card-light">
+        <span class="card__icon">💬</span>
+        <div class="card__label">Generic outputs</div>
+        <p class="card__desc">AI responds the same way regardless of who you are. No context. No memory. No calibration.</p>
+      </div>
+      <div class="card-light">
+        <span class="card__icon">🔄</span>
+        <div class="card__label">Restarting every session</div>
+        <p class="card__desc">Each conversation begins from zero. Nothing accumulates. The potential compounds, but yours doesn't.</p>
+      </div>
+      <div class="card-light">
+        <span class="card__icon">🧠</span>
+        <div class="card__label">Answering, not thinking</div>
+        <p class="card__desc">AI gives you what you asked for. Not what you need. Not what would change your decision.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--light" style="padding-top:0">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--light">The Framework</div>
+    <h2 class="h2">7 Thinking Modes.</h2>
+    <p class="mt-12" style="color:var(--dark-sub);font-size:15px">Each mode is a different way of engaging AI as a thinking partner — not just a tool.</p>
+    <div class="mode-grid">
+      <div class="mode-card"><div class="mode-card__num">Mode 01</div><div class="mode-card__name">Decision</div><div class="mode-card__desc">Structure choices and weigh options with AI as your sounding board</div></div>
+      <div class="mode-card"><div class="mode-card__num">Mode 02</div><div class="mode-card__name">Analysis</div><div class="mode-card__desc">Break complex problems into components and surface patterns</div></div>
+      <div class="mode-card"><div class="mode-card__num">Mode 03</div><div class="mode-card__name">Creative</div><div class="mode-card__desc">Expand the solution space before narrowing to the best idea</div></div>
+      <div class="mode-card"><div class="mode-card__num">Mode 04</div><div class="mode-card__name">Writing</div><div class="mode-card__desc">Co-author content that sounds like you, not a chatbot</div></div>
+      <div class="mode-card"><div class="mode-card__num">Mode 05</div><div class="mode-card__name">Learning</div><div class="mode-card__desc">Use Claude as a tutor, explainer, and knowledge synthesiser</div></div>
+      <div class="mode-card"><div class="mode-card__num">Mode 06</div><div class="mode-card__name">Planning</div><div class="mode-card__desc">Build structured plans and stress-test them with AI</div></div>
+      <div class="mode-card"><div class="mode-card__num">Mode 07</div><div class="mode-card__name">Reflection</div><div class="mode-card__desc">Review decisions and extract transferable lessons</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--dark">One Day · Four Blocks · Four Outputs</div>
+    <h2 class="h2">Build a Claude that already knows who you are.</h2>
+    <div class="session-list mt-28">
+      <div class="session-item session-item--dark">
+        <span class="session-num">Block 01</span>
+        <div class="session-body"><h4>Calibrate — Custom Instructions</h4><p>Write the instructions that make Claude respond in your context, your voice, your priorities. This is the infrastructure. Everything after compounds from here.</p></div>
+      </div>
+      <div class="session-item session-item--dark">
+        <span class="session-num">Block 02</span>
+        <div class="session-body"><h4>Structure — Claude Project</h4><p>Organise your AI workspace. Upload what Claude needs to know. Build a system that holds context across sessions, not just within them.</p></div>
+      </div>
+      <div class="session-item session-item--dark">
+        <span class="session-num">Block 03</span>
+        <div class="session-body"><h4>Connect — 7 Thinking Modes</h4><p>Decision Support. Strategic Analysis. Long Thinking. Learn to engage AI as a thinking partner, not just a faster search engine. Seven distinct modes — each unlocks a different quality of reasoning.</p></div>
+      </div>
+      <div class="session-item session-item--dark">
+        <span class="session-num">Block 04</span>
+        <div class="session-body"><h4>Decide — A Finished Decision from Real Work</h4><p>Apply everything to one actual decision from your current work. You leave with a real output — not an exercise. Not a sample prompt. Something that was already on your desk.</p></div>
+      </div>
+    </div>
+    <div class="take-home mt-28">
+      <p class="take-home__label">What you take home</p>
+      <h3 class="take-home__title">A Claude that already knows who you are — and one finished decision</h3>
+      <ul>
+        <li>Custom Instructions built for your role and your way of working</li>
+        <li>Claude Project configured with your context, documents, and priorities</li>
+        <li>7 Thinking Mode prompts — ready to use every day from here</li>
+        <li>One real decision completed during the session — yours, not a case study</li>
+      </ul>
+    </div>
+    <div class="btn-row mt-28">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform" class="btn btn--gold" target="_blank" rel="noopener">Register Now</a>
+      <a href="https://wa.me/6285959435052" class="btn btn--outline" target="_blank" rel="noopener">Ask a Question</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--dark">Facilitated by</div>
+    <h2 class="h2">Practitioners who have built the system before teaching it.</h2>
+    <div style="margin-top:32px;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <div style="padding:28px;border:1px solid rgba(212,168,75,.18);border-radius:14px;background:rgba(255,255,255,.02)">
+        <p style="font-family:var(--font-heading);font-weight:700;font-size:19px;color:var(--text-hi);margin-bottom:8px">Dr. Hora Tjitra</p>
+        <p style="font-size:13px;color:var(--text-lo);line-height:1.6">Managing Partner, Tjitra &amp; Associates · Visiting Professor, CEIBS Shanghai (MBA / EMBA / PhD) · EFMD Gold Award · 30+ AI Micro-Apps Built &amp; Deployed · Pertamina · Bob Aubrey Associates · IWDemy Digital Lab</p>
+      </div>
+      <div style="padding:28px;border:1px solid rgba(212,168,75,.18);border-radius:14px;background:rgba(255,255,255,.02)">
+        <p style="font-family:var(--font-heading);font-weight:700;font-size:19px;color:var(--gold);margin-bottom:8px">Kristina Aryanti</p>
+        <p style="font-size:13px;color:var(--text-lo);line-height:1.6">CEO &amp; Co-founder, IWDemy · Organisational Psychologist · Programme Director, AI First · +62 859 5943 5052</p>
+      </div>
+    </div>
+    <div class="btn-row mt-28">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform" class="btn btn--gold" target="_blank" rel="noopener">Secure Your Seat — 15 Only</a>
+      <a href="https://wa.me/6285959435052" class="btn btn--outline" target="_blank" rel="noopener">Ask Kristina</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__logos">
+      <img src="images/logo-iwdemy.png" alt="IWDemy">
+      <div class="logo-divider"></div>
+      <img src="images/logo-tjitra.jpg" alt="Tjitra & Associates">
+    </div>
+    <p class="footer__copy">© 2026 IWDemy × Tjitra &amp; Associates. AI First Programme. All rights reserved.</p>
+  </div>
+</footer>
+<script>
+const nb=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{nb&&nb.classList.toggle('scrolled',window.scrollY>20)},{passive:true});
+const tog=document.getElementById('navToggle'),menu=document.getElementById('mobileMenu'),cls=document.getElementById('mobileClose');
+tog&&tog.addEventListener('click',()=>{menu.classList.toggle('open');menu.setAttribute('aria-hidden',!menu.classList.contains('open'))});
+cls&&cls.addEventListener('click',()=>{menu.classList.remove('open');menu.setAttribute('aria-hidden','true')});
+</script>
+</body>
+</html>
