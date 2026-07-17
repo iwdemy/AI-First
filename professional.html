@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="author" content="Tjitra &amp; Associates">
-<meta name="description" content="AIF Professional — Two days to build your Personal Prompt System: a connected AI workflow across 8 tools.">
-<title>AIF Professional — IWDemy × Tjitra &amp; Associates</title>
+<meta name="description" content="AI First Professional — Two days to build a personal system for working with AI, using your actual work, not someone else's case study.">
+<title>AI First Professional — IWDemy × Tjitra &amp; Associates</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
@@ -46,13 +46,11 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 .btn--gold:hover{transform:translateY(-2px);box-shadow:0 6px 32px rgba(212,168,75,.40)}
 .btn--outline{background:transparent;border:1px solid rgba(212,168,75,.5);color:var(--gold)}
 .btn--outline:hover{border-color:var(--gold);background:var(--gold-bg-dark);transform:translateY(-1px)}
-.btn--outline-dark{background:transparent;border:1px solid rgba(10,10,10,.3);color:var(--dark-text)}
-.btn--outline-dark:hover{border-color:rgba(10,10,10,.6);transform:translateY(-1px)}
 .btn-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:32px}
 /* Cards */
 .card-grid{display:grid;gap:16px;margin-top:32px}
 .card-grid--2{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-.card-grid--3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card-grid--3{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
 .card-dark{background:rgba(255,255,255,.04);border:1px solid rgba(212,168,75,.12);border-radius:12px;padding:24px}
 .card-light{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
 .card__icon{font-size:24px;margin-bottom:12px;display:block}
@@ -79,55 +77,27 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 .chip-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 .chip{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;padding:7px 16px;border-radius:999px}
 .chip--dark{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--text-lo)}
-.chip--light{background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.1);color:var(--dark-sub)}
 .chip--gold{background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);color:var(--gold)}
 /* Who grid */
 .who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:28px}
-.who-card{padding:20px 22px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
-.who-card h4{font-family:var(--font-heading);font-weight:700;font-size:14px;margin-bottom:6px;color:var(--gold)}
-.who-card p{font-size:13px;opacity:.72;line-height:1.5}
-/* BI formula */
-.formula-box{background:rgba(212,168,75,.06);border:1px solid rgba(212,168,75,.25);border-radius:14px;padding:36px 32px;text-align:center;margin-top:32px}
-.formula-box .formula-text{font-family:var(--font-mono);font-size:clamp(18px,3vw,28px);font-weight:700;color:var(--gold);letter-spacing:.05em;margin-bottom:16px}
-.formula-terms{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:16px}
-.formula-term{font-size:13px;opacity:.8}
-.formula-term strong{color:var(--gold);font-weight:700}
-/* Day tabs */
-.day-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
-.day-tab{font-family:var(--font-mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;padding:8px 20px;border-radius:6px;border:1px solid rgba(0,0,0,.1);background:transparent;color:var(--dark-sub);cursor:pointer}
-.day-tab.active,.day-tab--active{background:var(--dark-text);color:#fff;border-color:var(--dark-text)}
+.who-card{padding:20px 22px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.04)}
+.who-card h4{font-family:var(--font-heading);font-weight:700;font-size:14px;margin-bottom:6px;color:var(--gold-muted)}
+.who-card p{font-size:13px;color:var(--dark-sub);line-height:1.5}
+/* Entry signal */
+.entry-signal{margin-top:20px;padding:18px 22px;border-radius:10px;background:var(--gold-bg-light);border:1px solid var(--gold-border-light)}
+.entry-signal__label{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--gold-muted);margin-bottom:8px}
+.entry-signal p{font-size:14px;color:var(--dark-sub);line-height:1.55}
 /* Divider */
 .divider{width:40px;height:2px;background:var(--gold);margin:20px 0;border-radius:2px}
-.divider--center{margin:20px auto}
-/* 7-mode grid */
-.mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:28px}
-.mode-card{padding:18px 20px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-.mode-card__num{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--gold-muted);margin-bottom:6px}
-.mode-card__name{font-family:var(--font-heading);font-weight:700;font-size:14px;color:var(--dark-text);margin-bottom:4px}
-.mode-card__desc{font-size:12px;color:var(--dark-sub);line-height:1.45}
-/* Argument arc */
-.arc-list{display:flex;flex-direction:column;gap:10px;margin-top:28px;counter-reset:arc}
-.arc-item{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,.07);box-shadow:0 1px 5px rgba(0,0,0,.04)}
-.arc-num{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold-muted);background:var(--gold-bg-light);border:1px solid var(--gold-border-light);border-radius:6px;padding:4px 10px;flex-shrink:0;margin-top:1px}
-.arc-body h4{font-family:var(--font-heading);font-weight:700;font-size:14px;color:var(--dark-text);margin-bottom:3px}
-.arc-body p{font-size:13px;color:var(--dark-sub);line-height:1.45}
-/* OS layer */
-.os-layers{display:flex;flex-direction:column;gap:10px;margin-top:28px}
-.os-layer{padding:20px 24px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff}
-.os-layer__tag{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--gold-muted);margin-bottom:6px}
-.os-layer__name{font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--dark-text);margin-bottom:4px}
-.os-layer__desc{font-size:13px;color:var(--dark-sub);line-height:1.5}
-/* Journey path */
-.journey-path{display:flex;flex-direction:column;gap:12px;margin-top:28px}
-.level-card{display:flex;gap:16px;align-items:flex-start;padding:22px 24px;border-radius:12px}
-.level-card--dark{background:rgba(255,255,255,.04);border:1px solid rgba(212,168,75,.14)}
-.level-badge{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;padding:5px 12px;border-radius:999px;white-space:nowrap;flex-shrink:0;margin-top:3px}
-.level-badge--l1{background:rgba(212,168,75,.15);border:1px solid rgba(212,168,75,.4);color:var(--gold)}
-.level-badge--l2{background:rgba(100,160,255,.12);border:1px solid rgba(100,160,255,.3);color:#82b4ff}
-.level-badge--l3{background:rgba(100,220,180,.10);border:1px solid rgba(100,220,180,.25);color:#6ddcb4}
-.level-badge--l4{background:rgba(255,150,100,.10);border:1px solid rgba(255,150,100,.25);color:#ff9870}
-.level-body h3{font-family:var(--font-heading);font-weight:700;font-size:16px;margin-bottom:5px}
-.level-body p{font-size:13px;opacity:.75;line-height:1.5}
+/* Bio grid */
+.bio-card{padding:28px 24px;border:1px solid rgba(212,168,75,.15);border-radius:14px;background:rgba(255,255,255,.03)}
+.bio-avatar{width:72px;height:72px;border-radius:50%;overflow:hidden;margin-bottom:16px;border:2px solid rgba(212,168,75,.25)}
+.bio-avatar img{width:100%;height:100%;object-fit:cover}
+/* Trusted by */
+.trusted-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.trusted-chip{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.08em;padding:8px 18px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);color:var(--text-lo)}
+/* Day label */
+.day-label{font-weight:700;color:var(--dark-sub);font-size:13px;text-transform:uppercase;letter-spacing:.1em;margin-top:28px;margin-bottom:12px;padding:10px 14px;background:rgba(212,168,75,.06);border-left:2px solid var(--gold-muted);border-radius:3px}
 /* Navbar */
 .navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(212,168,75,.10);transition:all .4s}
 .navbar.scrolled{background:rgba(10,10,10,.98);box-shadow:0 2px 40px rgba(0,0,0,.35);border-bottom-color:rgba(212,168,75,.15)}
@@ -170,22 +140,27 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 @media(max-width:640px){
   .card-grid--3,.card-grid--2{grid-template-columns:1fr}
   .who-grid{grid-template-columns:1fr}
-  .mode-grid{grid-template-columns:repeat(2,1fr)}
   .btn-row{flex-direction:column;align-items:flex-start}
+  .two-col-compare{grid-template-columns:1fr!important}
+  .bio-grid{grid-template-columns:1fr!important}
 }
-.mt-24{margin-top:24px}</style>
+</style>
 </head>
 <body>
+
+<!-- NAVBAR -->
 <nav class="navbar" id="navbar" aria-label="Main navigation">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logos" aria-label="IWDemy & Tjitra home">
-      <img src="images/logo-iwdemy.png" alt="IWDemy" class="navbar__logo-img">
+    <a href="index.html" class="navbar__logos" aria-label="IWDemy &amp; Tjitra home">
+      <img src="images/logo-iwdemy.png" alt="IWDemy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span style="display:none;font-family:var(--font-heading);font-weight:800;font-size:13px;color:#0A0A0A">IWDemy</span>
       <div class="logo-divider"></div>
-      <img src="images/logo-tjitra.jpg" alt="Tjitra & Associates" class="navbar__logo-img">
+      <img src="images/logo-tjitra.jpg" alt="Tjitra &amp; Associates" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span style="display:none;font-family:var(--font-heading);font-weight:700;font-size:12px;color:#0A0A0A">T&amp;A</span>
     </a>
     <div class="navbar__right">
-      <a href="index.html" class="navbar__back">← All Programmes</a>
-      <a href="https://wa.me/6285959435052" class="navbar__cta" target="_blank" rel="noopener">Enquire</a>
+      <a href="journey.html" class="navbar__back">← All Programmes</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" class="navbar__cta" target="_blank" rel="noopener">Register Now</a>
     </div>
     <button class="navbar__mobile-toggle" aria-label="Menu" id="navToggle">
       <span></span><span></span><span></span>
@@ -194,175 +169,294 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 </nav>
 <div class="navbar__mobile-menu" id="mobileMenu" aria-hidden="true">
   <button class="navbar__mobile-close" id="mobileClose" aria-label="Close">✕</button>
-  <a href="index.html">All Programmes</a>
-  <a href="https://wa.me/6285959435052" target="_blank" rel="noopener">Enquire</a>
+  <a href="journey.html">All Programmes</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" target="_blank" rel="noopener">Register Now</a>
+  <a href="https://wa.me/6285959435052?text=Alo" target="_blank" rel="noopener">Tanya via WhatsApp</a>
 </div>
 
+<!-- S1: HERO — DARK -->
 <section class="hero section--dark">
   <div class="hero__inner">
-    <div class="eyebrow eyebrow--dark">AI First Professional · Level 2a · Professionals</div>
+    <div class="eyebrow eyebrow--dark">AI First Professional · Level 2a · EFMD Gold Award</div>
     <h1 class="h1">You direct the AI.<br>The thinking is yours.</h1>
     <p class="hero__sub">Two days to build a personal system for working with AI — using your actual work, not someone else's case study. From experimenting to being intentional. From someone who uses AI to the person on the team who actually knows how to work with it.</p>
     <div class="chip-row mt-20">
-      <span class="chip chip--dark">Two Days · In Person</span>
-      <span class="chip chip--dark">SOHO Podomoro City · Jakarta</span>
-      <span class="chip chip--dark">15 Seats</span>
+      <span class="chip chip--gold">15 &amp; 16 July 2026 · Wed–Thu</span>
+      <span class="chip chip--dark">In Person · SOHO Podomoro City Jakarta</span>
+      <span class="chip chip--dark">15 Seats · Small Cohort</span>
+      <span class="chip chip--gold">Rp 3.800.000</span>
     </div>
     <div class="btn-row">
-      <a href="https://wa.me/6285959435052" class="btn btn--gold" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" class="btn btn--gold" target="_blank" rel="noopener">Register Now</a>
+      <a href="https://wa.me/6285959435052?text=Alo" class="btn btn--outline" target="_blank" rel="noopener">Tanya via WhatsApp · "Alo"</a>
     </div>
+    <p style="font-size:12px;color:var(--text-lo);margin-top:12px">Registration closes 10 July · No reopening</p>
   </div>
 </section>
 
+<!-- S2: NAMED STRUGGLE — LIGHT -->
 <section class="section section--light">
   <div class="section__inner">
     <div class="eyebrow eyebrow--light">The Gap</div>
-    <h2 class="h2">There's a quiet gap between using AI and working with it.</h2>
-    <p class="mt-16" style="color:var(--dark-sub);font-size:15px;max-width:620px">"The tools were never the problem. What's been missing is a way of working."</p>
-    <div class="card-grid card-grid--3 mt-28">
-      <div class="card-light">
-        <span class="card__icon">⚡</span>
-        <div class="card__label">Trial and error</div>
-        <p class="card__desc">Every session starts from scratch. No structure, no continuity, no system you can build on.</p>
-      </div>
+    <h2 class="h2">There's a quiet gap between<br>using AI and working with it.</h2>
+    <div class="divider" style="margin-top:24px"></div>
+    <p class="mt-16" style="color:var(--dark-sub);line-height:1.75;max-width:580px">
+      You have opened AI. You have typed a question, gotten a decent answer, and moved on. Maybe a few times a week. But you cannot explain exactly how you get good results — and you cannot reliably repeat them. That is not a skill. That is luck.
+    </p>
+    <blockquote style="margin:28px 0 0;padding:20px 28px;border-left:3px solid var(--gold-muted);background:var(--gold-bg-light)">
+      <p style="font-family:var(--font-heading);font-weight:700;font-size:clamp(18px,2.4vw,24px);color:var(--dark-text);line-height:1.3;letter-spacing:-.02em">"The tools were never the problem.<br>What's been missing is a way of working."</p>
+      <p style="font-size:13px;color:var(--dark-sub);margin-top:10px">You are not doing it wrong. You just do not have a system yet.</p>
+    </blockquote>
+    <div class="card-grid card-grid--3" style="margin-top:28px">
       <div class="card-light">
         <span class="card__icon">🔁</span>
-        <div class="card__label">No reusable method</div>
-        <p class="card__desc">You get results sometimes. But you can't explain how — and you can't reliably repeat it.</p>
+        <div class="card__label">Every session, from scratch</div>
+        <p class="card__desc">No structure, no continuity. You get good results sometimes — but you cannot explain how, and you cannot repeat it on demand.</p>
       </div>
       <div class="card-light">
-        <span class="card__icon">📊</span>
+        <span class="card__icon">⚡</span>
+        <div class="card__label">Trial and error, every time</div>
+        <p class="card__desc">You rephrase the same question three times, hoping for a better answer. It works eventually — but it feels like guessing, not working.</p>
+      </div>
+      <div class="card-light">
+        <span class="card__icon">📄</span>
         <div class="card__label">Output that doesn't fit</div>
-        <p class="card__desc">AI produces content, but it doesn't carry your voice, logic, or professional standards.</p>
+        <p class="card__desc">AI produces text. But it does not carry your voice, your standards, or the context that makes the work actually yours.</p>
       </div>
     </div>
-    <p class="mt-28" style="color:var(--dark-sub);font-size:15px;max-width:620px">This programme closes that gap. From someone who experiments with AI — to the person on the team who actually knows how to work with it.</p>
   </div>
 </section>
 
+<!-- S3: THE REFRAME — DARK -->
 <section class="section section--dark">
   <div class="section__inner">
-    <div class="eyebrow eyebrow--dark">What You Build</div>
-    <h2 class="h2">A Personal Prompt Template. Built from your own work.</h2>
-    <div class="take-home">
-      <p class="take-home__label">You leave with</p>
-      <h3 class="take-home__title">A Personal Prompt Template — ready to use Monday morning</h3>
-      <ul>
-        <li>Data analysis framework — structured prompts for extracting insight from your own information</li>
-        <li>Business communication drafting — proposals, reports, and messages in your voice, not a chatbot's</li>
-        <li>A way of working you can explain, repeat, and teach</li>
-      </ul>
-    </div>
-    <div class="card-grid card-grid--3 mt-32">
-      <div class="card-dark">
-        <div class="card__label">Capability Shift 1</div>
-        <p class="card__desc">Apply Structured Mental Models (ACT→ACTIONS) to every AI interaction</p>
+    <div class="eyebrow eyebrow--dark">What Changes</div>
+    <h2 class="h2">From experimenting.<br>To being intentional.</h2>
+    <div class="divider" style="margin-top:24px"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px" class="two-col-compare">
+      <div style="padding:22px 24px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)">
+        <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:rgba(245,242,235,.35);margin-bottom:10px">Before</p>
+        <p style="color:var(--text-md);font-size:14px;line-height:1.6">You know AI can help. You try things. Some work, most are average. You cannot explain what you did differently on the days it worked.</p>
       </div>
-      <div class="card-dark">
-        <div class="card__label">Capability Shift 2</div>
-        <p class="card__desc">Accelerate ideation and analysis — not by working faster, but by thinking more clearly</p>
-      </div>
-      <div class="card-dark">
-        <div class="card__label">Capability Shift 3</div>
-        <p class="card__desc">Iterate for precision — judge AI output as sharply as you judge your team's</p>
+      <div style="padding:22px 24px;border-radius:10px;background:rgba(212,168,75,.07);border:1px solid rgba(212,168,75,.20)">
+        <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--gold);margin-bottom:10px">After two days</p>
+        <p style="color:var(--text-hi);font-size:14px;line-height:1.6">You have a method you can name, explain, repeat, and teach. It works on any tool. You are the person on the team who actually knows how to work with AI — not just use it.</p>
       </div>
     </div>
+    <p class="mt-20" style="color:var(--text-hi);font-weight:600;font-size:clamp(15px,1.7vw,18px);line-height:1.6">
+      The method is called <span class="text-gold">ACT→ACTIONS</span> — a structured way to talk to AI so it carries your context, not just your words.
+    </p>
+    <p class="mt-12" style="font-size:14px;color:var(--text-lo);line-height:1.65;max-width:560px">
+      Most people give AI a task. ACT→ACTIONS gives AI a role, context, a format, and constraints — before the task. The difference in output quality is not small. It is the difference between a generic draft and something you actually send.
+    </p>
   </div>
 </section>
 
+<!-- S4: THE PROGRAMME — LIGHT -->
 <section class="section section--light">
   <div class="section__inner">
-    <div class="eyebrow eyebrow--light">The Programme</div>
-    <h2 class="h2">Two days. Eight modules. One system built from your actual work.</h2>
-    <p class="mt-12" style="font-weight:700;color:var(--dark-sub);font-size:13px;text-transform:uppercase;letter-spacing:.1em">Day 1 · Foundation</p>
-    <div class="session-list" style="margin-top:12px">
+    <div class="eyebrow eyebrow--light">What Happens</div>
+    <h2 class="h2">Two days. Eight modules.<br>One system built from your actual work.</h2>
+    <p class="mt-16" style="color:var(--dark-sub);max-width:560px;line-height:1.7">
+      Each module is a distinct skill. Each builds on the one before. You leave Day 2 with a system that runs on Monday — not a notebook full of ideas.
+    </p>
+
+    <p class="day-label">Day 1 · 15 July · Foundation</p>
+    <div class="session-list" style="margin-top:0">
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">L2.1</span>
-        <div class="session-body"><h4>AI for Business</h4><p>Potential and limitation — an honest map of where AI actually adds value in professional work.</p></div>
+        <div class="session-body">
+          <h4>AI for Business</h4>
+          <p>An honest map of where AI actually adds value in professional work — and where it does not. No hype, no fear. Just a clear-eyed picture of what you are working with.</p>
+        </div>
       </div>
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">L2.2</span>
-        <div class="session-body"><h4>Ngobrol dengan AI</h4><p>The ACT→ACTIONS framework — a structured way to talk to AI so it carries your context, not just your words.</p></div>
+        <div class="session-body">
+          <h4>Ngobrol dengan AI</h4>
+          <p>The ACT→ACTIONS framework. A structured way to talk to AI so every conversation carries your context — not just your words. This is the core skill. Everything after this builds on it.</p>
+        </div>
       </div>
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">L2.3</span>
-        <div class="session-body"><h4>Grounded Thinking</h4><p>NotebookLM — anchor your AI conversations to your own documents, research, and data.</p></div>
+        <div class="session-body">
+          <h4>Grounded Thinking</h4>
+          <p>NotebookLM — anchor your AI conversations to your own documents, research, and data. AI stops guessing and starts working from what you actually know.</p>
+        </div>
       </div>
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">L2.4</span>
-        <div class="session-body"><h4>Business Process & AI</h4><p>Workflow redesign — identify where AI fits your current processes, and where it doesn't.</p></div>
+        <div class="session-body">
+          <h4>Business Process &amp; AI</h4>
+          <p>Workflow redesign — identify where AI fits your current processes and where it does not. You map one real workflow from your job and find the exact insertion points.</p>
+        </div>
       </div>
     </div>
-    <p class="mt-8" style="color:var(--dark-sub);font-size:13px;padding:12px 16px;background:rgba(212,168,75,.06);border-left:2px solid var(--gold);border-radius:4px">Between sessions: apply ACT→ACTIONS to your real work. Bring the results to Day 2.</p>
-    <p class="mt-24 mb-8" style="font-weight:700;color:var(--dark-sub);font-size:13px;text-transform:uppercase;letter-spacing:.1em">Day 2 · Application</p>
-    <div class="session-list" style="margin-top:12px">
+
+    <div style="margin-top:16px;padding:12px 16px;background:rgba(212,168,75,.06);border-left:2px solid var(--gold);border-radius:4px;font-size:13px;color:var(--dark-sub)">
+      Between Day 1 and Day 2: apply ACT→ACTIONS to your real work. Bring the results — what worked, what did not — to Day 2.
+    </div>
+
+    <p class="day-label">Day 2 · 16 July · Application</p>
+    <div class="session-list" style="margin-top:0">
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">L2.5</span>
-        <div class="session-body"><h4>Knowledge Management</h4><p>PARA and Second Brain — a personal system for organising what AI helps you learn and produce.</p></div>
+        <div class="session-body">
+          <h4>Knowledge Management</h4>
+          <p>PARA and Second Brain — a personal system for organising what AI helps you learn and produce. So the next time you need it, you find it in two seconds, not twenty minutes.</p>
+        </div>
       </div>
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">L2.6</span>
-        <div class="session-body"><h4>Writing Companion</h4><p>Produce reports, proposals, and communications that sound like you — and arrive faster.</p></div>
+        <div class="session-body">
+          <h4>Writing Companion</h4>
+          <p>Produce reports, proposals, and communications that sound like you — and arrive faster. Not a chatbot's draft. Yours — just faster and sharper.</p>
+        </div>
       </div>
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">L2.7</span>
-        <div class="session-body"><h4>AI Creative Partner</h4><p>Visuals — work with AI to design, present, and communicate ideas beyond text.</p></div>
+        <div class="session-body">
+          <h4>AI Creative Partner</h4>
+          <p>Work with AI to design, present, and communicate ideas beyond text. Visuals, decks, and presentations — produced in the same session where you think the idea through.</p>
+        </div>
       </div>
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">L2.8</span>
-        <div class="session-body"><h4>Personalised AI</h4><p>Memory and custom instructions — configure AI to already know who you are, what you do, and how you think.</p></div>
+        <div class="session-body">
+          <h4>Personalised AI</h4>
+          <p>Memory and custom instructions — configure AI to already know who you are, what you do, and how you think. No more briefing it from scratch every Monday.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- S5: WHAT YOU TAKE HOME — DARK -->
 <section class="section section--dark">
   <div class="section__inner">
-    <div class="eyebrow eyebrow--dark">Trusted By</div>
-    <h2 class="h2">Professionals from organisations that have already begun.</h2>
+    <div class="eyebrow eyebrow--dark">What You Leave With</div>
+    <h2 class="h2">Not a certificate.<br>A system you use Monday morning.</h2>
+    <div class="take-home mt-28">
+      <p class="take-home__label">Take Home</p>
+      <h3 class="take-home__title">A Personal Prompt Template — ready to use on any task, from day one</h3>
+      <ul>
+        <li><strong>Data analysis framework</strong> — structured prompts for extracting insight from your own information, not generic data</li>
+        <li><strong>Business communication drafting</strong> — proposals, reports, and messages in your voice, not a chatbot's</li>
+        <li><strong>A way of working you can explain, repeat, and teach</strong> — no more guessing what made last week's session good</li>
+      </ul>
+    </div>
     <div class="card-grid card-grid--3 mt-28">
-      <div class="card-dark"><div class="card__label">Pertamina</div></div>
-      <div class="card-dark"><div class="card__label">Telkom Metra</div></div>
-      <div class="card-dark"><div class="card__label">Danone Aqua</div></div>
-      <div class="card-dark"><div class="card__label">Ciputra</div></div>
-      <div class="card-dark"><div class="card__label">Pelindo</div></div>
-      <div class="card-dark"><div class="card__label">GEA</div></div>
+      <div class="card-dark">
+        <div class="card__label" style="color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Capability Shift 1</div>
+        <p style="font-size:14px;color:var(--text-md);line-height:1.6">Apply Structured Mental Models (ACT→ACTIONS) to every AI interaction — so the quality of your output is predictable, not random</p>
+      </div>
+      <div class="card-dark">
+        <div class="card__label" style="color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Capability Shift 2</div>
+        <p style="font-size:14px;color:var(--text-md);line-height:1.6">Accelerate ideation and analysis — not by working faster, but by thinking more clearly, with AI as a thinking partner that pushes back</p>
+      </div>
+      <div class="card-dark">
+        <div class="card__label" style="color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Capability Shift 3</div>
+        <p style="font-size:14px;color:var(--text-md);line-height:1.6">Iterate for precision — judge AI output as sharply as you judge your own work, and know exactly how to improve it in one or two turns</p>
+      </div>
     </div>
-    <div class="btn-row mt-32">
-      <a href="https://wa.me/6285959435052" class="btn btn--gold" target="_blank" rel="noopener">Secure Your Seat</a>
-      <a href="connect.html" class="btn btn--outline">Start with L1 Connect →</a>
-    </div>
-    <p class="mt-16" style="color:var(--dark-sub);font-size:13px;text-align:center">15 seats · Small cohort</p>
   </div>
 </section>
 
+<!-- S6: WHO IT'S FOR — LIGHT -->
 <section class="section section--light">
   <div class="section__inner">
-    <div class="eyebrow eyebrow--light">The Facilitators</div>
-    <h2 class="h2">Designed and led by the people who built the programme.</h2>
-    <div class="who-grid mt-28">
+    <div class="eyebrow eyebrow--light">Is This Right for You?</div>
+    <h2 class="h2">Right for you if…</h2>
+    <div class="entry-signal">
+      <p class="entry-signal__label">Entry Signal</p>
+      <p><strong>Right for you if:</strong> You use AI already — or want to start — and the output still does not feel like yours. You want a method that works across different tasks, not just one trick for one use case. No prior AI training required.<br><br>
+      <strong>Not right for you if:</strong> You are looking for a list of prompt templates to copy and paste. Those are free. This programme is about building the skill to write your own — for any situation.</p>
+    </div>
+    <div class="who-grid">
       <div class="who-card">
-        <h4>Dr. Hora Tjitra</h4>
-        <p>Managing Partner, Tjitra &amp; Associates. Professor at Zhejiang University. 24 years designing leadership programmes for PwC, Pertamina, and major Indonesian conglomerates. 30+ micro apps built and deployed. EFMD Gold Award recipient.</p>
+        <h4>Professionals who tried and stalled</h4>
+        <p>You have used AI a few times. Some results were good. Most were average. You want to make the good results repeatable — not accidental.</p>
       </div>
       <div class="who-card">
-        <h4>Kristina Aryanti</h4>
-        <p>CEO, IWDemy. Organisational Psychologist and Programme Director of AI First. Brings the programme together as a learning experience — not a technology demo.</p>
+        <h4>The person teams look to for AI</h4>
+        <p>You are expected to know. This is the programme that gives you something solid to stand on — not just a list of tools you have downloaded.</p>
+      </div>
+      <div class="who-card">
+        <h4>Professionals ready to go deeper</h4>
+        <p>You have done AI training before. This is the day it actually sticks — because the material you work on is yours, not a case study someone else wrote.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:40px">
+      <div class="eyebrow eyebrow--light">Trusted By</div>
+      <div class="trusted-grid" style="gap:10px">
+        <span style="font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.06em;padding:8px 18px;border-radius:6px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.09);color:var(--dark-sub)">Pertamina</span>
+        <span style="font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.06em;padding:8px 18px;border-radius:6px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.09);color:var(--dark-sub)">Telkom Metra</span>
+        <span style="font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.06em;padding:8px 18px;border-radius:6px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.09);color:var(--dark-sub)">Danone Aqua</span>
+        <span style="font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.06em;padding:8px 18px;border-radius:6px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.09);color:var(--dark-sub)">Ciputra</span>
+        <span style="font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.06em;padding:8px 18px;border-radius:6px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.09);color:var(--dark-sub)">Pelindo</span>
+        <span style="font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.06em;padding:8px 18px;border-radius:6px;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.09);color:var(--dark-sub)">GEA</span>
       </div>
     </div>
   </div>
 </section>
 
+<!-- S7: FACILITATORS + CTA — DARK -->
+<section class="section section--dark">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--dark">Designed and led by</div>
+    <h2 class="h2">The people who built this programme<br>from the ground up.</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px" class="bio-grid">
+
+      <div class="bio-card">
+        <div class="bio-avatar">
+          <img src="images/ht-batik-portrait.jpg" alt="Dr. Hora Tjitra"
+               onerror="this.parentElement.innerHTML='<div style=\'width:72px;height:72px;border-radius:50%;background:rgba(212,168,75,.12);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:800;font-size:20px;color:var(--gold)\'>HT</div>'">
+        </div>
+        <p style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:var(--text-hi);margin-bottom:4px">Dr. Hora Tjitra</p>
+        <p style="font-family:var(--font-mono);font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px">Managing Partner, Tjitra &amp; Associates</p>
+        <p style="font-size:13px;color:var(--text-lo);line-height:1.65">24 years designing leadership programmes across three continents — including PwC and Pertamina. EFMD Gold Award recipient. 30+ AI tools built and deployed in production. One of the first in Indonesia to integrate AI into senior leadership development.</p>
+      </div>
+
+      <div class="bio-card">
+        <div class="bio-avatar">
+          <img src="images/ka-batik.jpg" alt="Kristina Aryanti"
+               onerror="this.parentElement.innerHTML='<div style=\'width:72px;height:72px;border-radius:50%;background:rgba(212,168,75,.12);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:800;font-size:20px;color:var(--gold)\'>KA</div>'">
+        </div>
+        <p style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:var(--gold);margin-bottom:4px">Kristina Aryanti</p>
+        <p style="font-family:var(--font-mono);font-size:10px;color:rgba(212,168,75,.6);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px">CEO, IWDemy · Programme Director, AI First</p>
+        <p style="font-size:13px;color:var(--text-lo);line-height:1.65">Organisational Psychologist. Built IWDemy from the ground up as Indonesia's leading AI literacy platform for working professionals. Brings the programme together as a learning experience — not a technology demo.</p>
+      </div>
+
+    </div>
+
+    <div style="margin-top:56px;padding-top:40px;border-top:1px solid rgba(255,255,255,.06)">
+      <div class="eyebrow eyebrow--dark">What to Do Next</div>
+      <h2 class="h2">Two days. Your actual work.<br>A system that runs from Monday.</h2>
+      <div class="btn-row mt-20">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" class="btn btn--gold" target="_blank" rel="noopener">Register Now</a>
+        <a href="https://wa.me/6285959435052?text=Alo" class="btn btn--outline" target="_blank" rel="noopener">Tanya via WhatsApp · "Alo"</a>
+      </div>
+      <p style="font-size:13px;color:var(--text-lo);margin-top:16px">Rp 3.800.000 · 15 seats · Registration closes 10 July · SOHO Podomoro City, Jakarta</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer__inner">
     <div class="footer__logos">
-      <img src="images/logo-iwdemy.png" alt="IWDemy">
+      <img src="images/logo-iwdemy.png" alt="IWDemy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span style="display:none;font-family:var(--font-heading);font-weight:800;font-size:13px;color:#0A0A0A">IWDemy</span>
       <div class="logo-divider"></div>
-      <img src="images/logo-tjitra.jpg" alt="Tjitra & Associates">
+      <img src="images/logo-tjitra.jpg" alt="Tjitra &amp; Associates" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span style="display:none;font-family:var(--font-heading);font-weight:700;font-size:12px;color:#0A0A0A">T&amp;A</span>
     </div>
     <p class="footer__copy">© 2026 IWDemy × Tjitra &amp; Associates. AI First Programme. All rights reserved.</p>
   </div>
 </footer>
+
 <script>
 const nb=document.getElementById('navbar');
 window.addEventListener('scroll',()=>{nb&&nb.classList.toggle('scrolled',window.scrollY>20)},{passive:true});

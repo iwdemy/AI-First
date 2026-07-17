@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="author" content="Tjitra &amp; Associates">
-<meta name="description" content="AI Leaders Getaway — Two Saturdays and one midweek session. For leaders who have experienced AI First and are ready to think with AI, not just approve it.">
-<title>AI Leaders Getaway — IWDemy × Tjitra &amp; Associates</title>
+<meta name="description" content="Thinking with Claude — One day to build a Claude that already knows who you are, and seven ways to think with it.">
+<title>Thinking with Claude — IWDemy × Tjitra &amp; Associates</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
@@ -46,6 +46,8 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 .btn--gold:hover{transform:translateY(-2px);box-shadow:0 6px 32px rgba(212,168,75,.40)}
 .btn--outline{background:transparent;border:1px solid rgba(212,168,75,.5);color:var(--gold)}
 .btn--outline:hover{border-color:var(--gold);background:var(--gold-bg-dark);transform:translateY(-1px)}
+.btn--outline-dark{background:transparent;border:1px solid rgba(10,10,10,.3);color:var(--dark-text)}
+.btn--outline-dark:hover{border-color:rgba(10,10,10,.6);transform:translateY(-1px)}
 .btn-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:32px}
 /* Cards */
 .card-grid{display:grid;gap:16px;margin-top:32px}
@@ -77,22 +79,21 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 .chip-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 .chip{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;padding:7px 16px;border-radius:999px}
 .chip--dark{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--text-lo)}
+.chip--light{background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.1);color:var(--dark-sub)}
 .chip--gold{background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);color:var(--gold)}
 /* Who grid */
 .who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:28px}
 .who-card{padding:20px 22px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.04)}
 .who-card h4{font-family:var(--font-heading);font-weight:700;font-size:14px;margin-bottom:6px;color:var(--gold-muted)}
 .who-card p{font-size:13px;color:var(--dark-sub);line-height:1.5}
-/* Entry signal */
-.entry-signal{margin-top:20px;padding:18px 22px;border-radius:10px;background:var(--gold-bg-light);border:1px solid var(--gold-border-light)}
-.entry-signal__label{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--gold-muted);margin-bottom:8px}
-.entry-signal p{font-size:14px;color:var(--dark-sub);line-height:1.55}
 /* Divider */
 .divider{width:40px;height:2px;background:var(--gold);margin:20px 0;border-radius:2px}
-/* Bio grid */
-.bio-card{padding:28px 24px;border:1px solid rgba(212,168,75,.15);border-radius:14px;background:rgba(255,255,255,.03)}
-.bio-avatar{width:72px;height:72px;border-radius:50%;overflow:hidden;margin-bottom:16px;border:2px solid rgba(212,168,75,.25);flex-shrink:0}
-.bio-avatar img{width:100%;height:100%;object-fit:cover}
+.divider--center{margin:20px auto}
+/* 7-mode grid */
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:28px}
+.mode-card{padding:20px 24px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.04);display:flex;align-items:flex-start;gap:14px}
+.mode-card__num{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold-muted);background:var(--gold-bg-light);border:1px solid var(--gold-border-light);border-radius:6px;padding:4px 10px;flex-shrink:0;margin-top:2px;line-height:1}
+.mode-card__name{font-family:var(--font-heading);font-weight:700;font-size:15px;color:var(--dark-text);line-height:1.3}
 /* Navbar */
 .navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(212,168,75,.10);transition:all .4s}
 .navbar.scrolled{background:rgba(10,10,10,.98);box-shadow:0 2px 40px rgba(0,0,0,.35);border-bottom-color:rgba(212,168,75,.15)}
@@ -119,7 +120,7 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 /* Hero */
 .hero{padding:calc(var(--py) + 70px) var(--px) var(--py);background:var(--bg-dark)}
 .hero__inner{max-width:var(--max);margin:0 auto}
-.hero__sub{font-size:clamp(15px,1.7vw,18px);line-height:1.7;max-width:600px;margin-top:16px;color:var(--text-md)}
+.hero__sub{font-size:clamp(15px,1.7vw,18px);line-height:1.7;max-width:580px;margin-top:16px;color:var(--text-md)}
 /* Footer */
 .footer{background:#0A0A0A;border-top:1px solid rgba(212,168,75,.10);padding:40px var(--px)}
 .footer__inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
@@ -131,12 +132,18 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 .text-gold{color:var(--gold)}
 .mt-8{margin-top:8px}.mt-12{margin-top:12px}.mt-16{margin-top:16px}.mt-20{margin-top:20px}.mt-28{margin-top:28px}
 .mb-4{margin-bottom:4px}.mb-8{margin-bottom:8px}
+/* Entry signal */
+.entry-signal{margin-top:20px;padding:18px 22px;border-radius:10px;background:var(--gold-bg-light);border:1px solid var(--gold-border-light)}
+.entry-signal__label{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--gold-muted);margin-bottom:8px}
+.entry-signal p{font-size:14px;color:var(--dark-sub);line-height:1.55}
 /* Responsive */
 @media(max-width:640px){
   .card-grid--3,.card-grid--2{grid-template-columns:1fr}
   .who-grid{grid-template-columns:1fr}
+  .mode-grid{grid-template-columns:1fr}
   .btn-row{flex-direction:column;align-items:flex-start}
   .two-col-compare{grid-template-columns:1fr!important}
+  .bio-grid{grid-template-columns:1fr!important}
 }
 </style>
 </head>
@@ -147,14 +154,14 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
   <div class="navbar__inner">
     <a href="index.html" class="navbar__logos" aria-label="IWDemy &amp; Tjitra home">
       <img src="images/logo-iwdemy.png" alt="IWDemy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
-      <span style="display:none;font-family:var(--font-heading);font-weight:800;font-size:13px;color:#0A0A0A">IWDemy</span>
+      <span style="display:none;font-family:var(--font-heading);font-weight:800;font-size:13px;color:#0A0A0A;letter-spacing:-.01em">IWDemy</span>
       <div class="logo-divider"></div>
       <img src="images/logo-tjitra.jpg" alt="Tjitra &amp; Associates" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
       <span style="display:none;font-family:var(--font-heading);font-weight:700;font-size:12px;color:#0A0A0A">T&amp;A</span>
     </a>
     <div class="navbar__right">
       <a href="journey.html" class="navbar__back">← All Programmes</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" class="navbar__cta" target="_blank" rel="noopener">Apply Now</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=header" class="navbar__cta" target="_blank" rel="noopener">Daftar Sekarang</a>
     </div>
     <button class="navbar__mobile-toggle" aria-label="Menu" id="navToggle">
       <span></span><span></span><span></span>
@@ -164,139 +171,169 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 <div class="navbar__mobile-menu" id="mobileMenu" aria-hidden="true">
   <button class="navbar__mobile-close" id="mobileClose" aria-label="Close">✕</button>
   <a href="journey.html">All Programmes</a>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" target="_blank" rel="noopener">Apply Now</a>
-  <a href="https://wa.me/6285959435052?text=Halo%2C+saya+tertarik+dengan+AI+Leaders+Getaway.+Boleh+saya+dapat+informasi+lebih+lanjut%3F" target="_blank" rel="noopener">Tanya via WhatsApp</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=header" target="_blank" rel="noopener">Daftar Sekarang</a>
+  <a href="https://wa.me/6285959435052?text=Halo%2C+saya+tertarik+dengan+program+Thinking+with+Claude.+Boleh+saya+dapat+informasi+lebih+lanjut%3F" target="_blank" rel="noopener">Tanya via WhatsApp</a>
 </div>
 
 <!-- S1: HERO — DARK -->
 <section class="hero section--dark">
   <div class="hero__inner">
-    <div class="eyebrow eyebrow--dark">AI First Leaders Getaway · Level 2b · AI First Alumni</div>
-    <h1 class="h1">Conviction and mastery<br>are two different things.</h1>
-    <p class="hero__sub">You left a previous AI First session knowing AI is serious. What has been missing since: a space to actually think with AI — using your own real leadership challenge as the material. This is where that gap closes.</p>
+    <div class="eyebrow eyebrow--dark">Thinking with Claude · One-Day Intensive</div>
+    <h1 class="h1">Most people ask AI for answers.<br>The few who pull ahead<br>argue with it.</h1>
+    <p class="hero__sub">One day to build a Claude that already knows who you are — and seven ways to think with it.</p>
     <div class="chip-row mt-20">
-      <span class="chip chip--gold">1 &amp; 8 August 2026 · Two Saturdays</span>
-      <span class="chip chip--dark">Midweek Livestream Included</span>
-      <span class="chip chip--dark">15 Seats · Invite-Only</span>
-      <span class="chip chip--dark">AI First Alumni</span>
+      <span class="chip chip--gold">1 Day · 08.30–16.30</span>
+      <span class="chip chip--dark">Small Group · 15 Seats</span>
+      <span class="chip chip--dark">SOHO Podomoro City, Jakarta</span>
+      <span class="chip chip--dark">Open to Public · L1 Recommended</span>
+      <span class="chip chip--gold">Rp 880.000 · Public</span>
     </div>
     <div class="btn-row">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" class="btn btn--gold" target="_blank" rel="noopener">Apply Now</a>
-      <a href="https://wa.me/6285959435052?text=Halo%2C+saya+tertarik+dengan+AI+Leaders+Getaway.+Boleh+saya+dapat+informasi+lebih+lanjut%3F" class="btn btn--outline" target="_blank" rel="noopener">Tanya via WhatsApp</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=header" class="btn btn--gold" target="_blank" rel="noopener">Daftar Sekarang</a>
+      <a href="https://wa.me/6285959435052?text=Halo%2C+saya+tertarik+dengan+program+Thinking+with+Claude.+Boleh+saya+dapat+informasi+lebih+lanjut%3F" class="btn btn--outline" target="_blank" rel="noopener">Tanya via WhatsApp</a>
     </div>
   </div>
 </section>
 
-<!-- S2: NAMED STRUGGLE — LIGHT -->
+<!-- S2: THE PROBLEM — LIGHT -->
 <section class="section section--light">
   <div class="section__inner">
-    <div class="eyebrow eyebrow--light">The Gap</div>
-    <h2 class="h2">You know AI can help.<br>Knowing is not the same as being able to.</h2>
+    <div class="eyebrow eyebrow--light">Why It Still Feels Generic</div>
+    <h2 class="h2">A Claude that doesn't know you<br>can't think like you.</h2>
     <div class="divider" style="margin-top:24px"></div>
     <p class="mt-16" style="color:var(--dark-sub);line-height:1.75;max-width:580px">
-      Think about the last time you opened AI with a real leadership problem. You typed something in. The answer came back — clear, polished, confident. But it didn't quite land. It felt like advice from someone who had never been in the room with you.
+      Every time you open a new conversation, Claude begins from zero — no knowledge of your role, your industry, or the problem you've been working on all week. The output reads like advice from someone who has never met you. Because it hasn't.
     </p>
+    <!-- PULL QUOTE B -->
     <blockquote style="margin:28px 0 0;padding:20px 28px;border-left:3px solid var(--gold-muted);background:var(--gold-bg-light)">
-      <p style="font-family:var(--font-heading);font-weight:700;font-size:clamp(18px,2.4vw,24px);color:var(--dark-text);line-height:1.3;letter-spacing:-.02em">"I've started using AI. But the results still feel generic. Like answers that could be given to anyone."</p>
-      <p style="font-size:13px;color:var(--dark-sub);margin-top:10px">The problem is not how you ask. It's that AI does not know who is asking.</p>
+      <p style="font-family:var(--font-heading);font-weight:700;font-size:clamp(18px,2.4vw,24px);color:var(--dark-text);line-height:1.3;letter-spacing:-.02em">Every session, you brief it again.<br>Every week, you begin again.</p>
+      <p style="font-size:13px;color:var(--dark-sub);margin-top:10px">The problem isn't how you ask. It's that Claude doesn't know who is asking.</p>
     </blockquote>
-    <div class="card-grid card-grid--2" style="margin-top:28px">
-      <div class="card-light">
-        <div class="card__label">How AI feels right now</div>
-        <p class="card__desc">A fast, smart search engine. It answers the question you typed — but not the problem you actually have. Every session begins from zero. AI does not remember you, your role, or what you were working on last week.</p>
-      </div>
-      <div class="card-light">
-        <div class="card__label">What is possible</div>
-        <p class="card__desc">AI that knows your context, your way of thinking, and how you want to be answered — without you explaining it every time. Output that feels like it came from someone who was already in the meeting with you.</p>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- S3: THE REFRAME — DARK -->
+<!-- S3: THE BIG IDEA — DARK -->
 <section class="section section--dark">
   <div class="section__inner">
     <div class="eyebrow eyebrow--dark">The Distinction</div>
-    <h2 class="h2">Two kinds of leaders who use AI.<br>The difference is not a better prompt.</h2>
+    <h2 class="h2">Two kinds of Claude users.<br>The difference isn't a better prompt.</h2>
     <div class="divider" style="margin-top:24px"></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px" class="two-col-compare">
       <div style="padding:22px 24px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)">
-        <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:rgba(245,242,235,.35);margin-bottom:10px">Most leaders</p>
-        <p style="color:var(--text-md);font-size:14px;line-height:1.6">Open AI. Type a problem. Get a generic answer. Try again with different words. Still generic. Close it. Try again next week.</p>
+        <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:rgba(245,242,235,.35);margin-bottom:10px">Most users</p>
+        <p style="color:var(--text-md);font-size:14px;line-height:1.6">Open Claude. Type a question. Get an answer. Close it. Brief it again next week.</p>
       </div>
       <div style="padding:22px 24px;border-radius:10px;background:rgba(212,168,75,.07);border:1px solid rgba(212,168,75,.20)">
-        <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--gold);margin-bottom:10px">After this programme</p>
-        <p style="color:var(--text-hi);font-size:14px;line-height:1.6">Open an AI that already knows your role, your challenge, and the way you think. Start with substance, not setup. The first response already understands who is asking.</p>
+        <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--gold);margin-bottom:10px">After this day</p>
+        <p style="color:var(--text-hi);font-size:14px;line-height:1.6">Open a Claude that already knows your role, your documents, and how you think. Go straight to substance.</p>
       </div>
     </div>
     <p class="mt-20" style="color:var(--text-hi);font-weight:600;font-size:clamp(15px,1.7vw,18px);line-height:1.6">
-      The name for this skill is <span class="text-gold">Chat Mastery</span> — the ability to think alongside AI deliberately, not by trial and error. This programme is where you build it.
-    </p>
-    <p class="mt-12" style="font-size:14px;color:var(--text-lo);line-height:1.65;max-width:560px">
-      Chat Mastery is not a tool or a plugin. It is a way of working. Once you have it, every AI conversation becomes faster, deeper, and more useful — because AI finally knows who it is talking to.
+      The difference is setup. And the seven ways of thinking that follow.
     </p>
   </div>
 </section>
 
-<!-- S4: PROGRAMME ARC — LIGHT -->
+<!-- S4: HOW THE DAY IS BUILT — LIGHT -->
 <section class="section section--light">
   <div class="section__inner">
-    <div class="eyebrow eyebrow--light">How It Works</div>
-    <h2 class="h2">Three phases. One real challenge,<br>fully worked through.</h2>
+    <div class="eyebrow eyebrow--light">What Happens</div>
+    <h2 class="h2">Four blocks. One day.<br>A Claude that works for you.</h2>
     <p class="mt-16" style="color:var(--dark-sub);max-width:560px;line-height:1.7">
-      You bring in one real leadership challenge that is already on your desk. Every session builds toward a concrete action plan you can run the week after.
+      Each block builds on the last. You leave with a configured system — not a collection of notes.
     </p>
-    <div class="session-list">
+    <div class="session-list mt-28">
 
+      <!-- Block 01: Calibrate -->
       <div class="session-item session-item--light">
-        <span class="session-num session-num--light">Saturday 1</span>
+        <span class="session-num session-num--light">01</span>
         <div class="session-body">
-          <h4>Frame &amp; Build</h4>
-          <p>Understand how AI processes context — and why most prompts do not work. Set up an AI that knows you: your instructions, your memory, and how you want to be answered. Define the real challenge you are bringing in and begin working on it. Fifteen leaders, different challenges, one room.</p>
+          <h4>Calibrate — Teach Claude Who You Are</h4>
+          <p>You tell Claude your role, your priorities, and the way you think. From this point on, every conversation starts already knowing you — not from zero. This is the foundation. Everything after compounds from it.</p>
         </div>
       </div>
 
+      <!-- Block 02: Structure -->
       <div class="session-item session-item--light">
-        <span class="session-num session-num--light">Midweek</span>
+        <span class="session-num session-num--light">02</span>
         <div class="session-body">
-          <h4>Learning Injection</h4>
-          <p>One shared live session — no need to travel. A new framework that elevates what you started on Saturday. What you produced in Session 1 becomes the concrete discussion material. This is where the first Saturday compounds.</p>
+          <h4>Structure — Build Your AI Workspace</h4>
+          <p>Organise the documents, briefs, and context Claude needs to know. Upload what's relevant. From here, Claude reads your materials before you ask — so you skip the briefing and go straight to the thinking.</p>
         </div>
       </div>
 
-      <div class="session-item session-item--light">
-        <span class="session-num session-num--light">Saturday 2</span>
-        <div class="session-body">
-          <h4>Refine &amp; Transfer</h4>
-          <p>Sharpen your approach based on what you tried between sessions. Move from challenge to a finished action plan. Then transfer: how to carry this into your team and make it part of how you work every day. Closing: every leader shares one insight that changed how they see it.</p>
+      <!-- Block 03: Connect — with 7 modes embedded -->
+      <div class="session-item session-item--light" style="flex-direction:column;gap:0">
+        <div style="display:flex;gap:16px;align-items:flex-start">
+          <span class="session-num session-num--light" style="flex-shrink:0;margin-top:2px">03</span>
+          <div class="session-body">
+            <h4>Connect — Seven Ways to Think with Claude</h4>
+            <p>Most people use AI in one way: ask, get an answer, move on. This block builds seven distinct modes — each one a different quality of reasoning, from deep research to high-stakes decisions. You practice each on real work, not exercises.</p>
+          </div>
+        </div>
+        <div class="mode-grid" style="margin-top:20px;padding-left:0">
+          <div class="mode-card">
+            <span class="mode-card__num">01</span>
+            <span class="mode-card__name">Pre-Training &amp; Deep Research</span>
+          </div>
+          <div class="mode-card">
+            <span class="mode-card__num">02</span>
+            <span class="mode-card__name">Brainstorming</span>
+          </div>
+          <div class="mode-card">
+            <span class="mode-card__num">03</span>
+            <span class="mode-card__name">High-Quality Ideas</span>
+          </div>
+          <div class="mode-card">
+            <span class="mode-card__num">04</span>
+            <span class="mode-card__name">Sharpening &amp; Iteration</span>
+          </div>
+          <div class="mode-card">
+            <span class="mode-card__num">05</span>
+            <span class="mode-card__name">Decision Help — Full Stack</span>
+          </div>
+          <div class="mode-card">
+            <span class="mode-card__num">06</span>
+            <span class="mode-card__name">Thinking on Data</span>
+          </div>
+          <div class="mode-card">
+            <span class="mode-card__num">07</span>
+            <span class="mode-card__name">Reasoning · Long Thinking</span>
+          </div>
         </div>
       </div>
 
-    </div>
-    <div class="take-home take-home--light mt-28">
-      <p class="take-home__label" style="color:var(--gold-muted)">The design principle</p>
-      <h3 class="take-home__title" style="color:var(--dark-text)">Your challenge is not a case study. It is the curriculum.</h3>
-      <ul>
-        <li style="color:var(--dark-body)">No one else's business problem used as an example</li>
-        <li style="color:var(--dark-body)">The challenge you bring in is the one you work on — start to finish</li>
-        <li style="color:var(--dark-body)">15 seats means 15 different challenges in one room — a cohort, not a classroom</li>
-      </ul>
+      <!-- Block 04: Decide -->
+      <div class="session-item session-item--light">
+        <span class="session-num session-num--light">04</span>
+        <div class="session-body">
+          <h4>Decide — A Finished Decision from Real Work</h4>
+          <p>Apply everything to one actual decision from your current work. You leave with a real output — not an exercise, not a sample prompt. Something that was already on your desk.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- S5: WHAT YOU LEAVE WITH — DARK -->
+<!-- S5: WHAT YOU BUILD — DARK -->
 <section class="section section--dark">
   <div class="section__inner">
-    <div class="eyebrow eyebrow--dark">What You Leave With</div>
-    <h2 class="h2">Not notes. Not frameworks.<br>A real problem solved — and the<br>ability to repeat it.</h2>
-    <div class="take-home mt-28">
-      <p class="take-home__label">Three outcomes</p>
-      <h3 class="take-home__title">From "using AI" to "thinking with AI"</h3>
+    <div class="eyebrow eyebrow--dark">What You Take Home</div>
+    <h2 class="h2">Not notes. Not insights.<br>Something that works for you<br>Monday morning.</h2>
+    <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;padding:7px 14px;border-radius:999px;background:rgba(232,121,56,.10);border:1px solid rgba(232,121,56,.25)">
+      <img src="images/logo-claude.png" alt="Claude" style="height:16px;width:auto;display:block"
+           onerror="this.style.display='none'">
+      <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:#C4612A">Powered by Claude · Anthropic</span>
+    </div>
+    <div class="take-home mt-12">
+      <div class="take-home__label">Take Home</div>
+      <div class="take-home__title">A Claude already calibrated to you — before any conversation begins.</div>
       <ul>
-        <li><strong>Your AI skill moves up a level.</strong> You stop experimenting and start working with intent. Every conversation after this programme runs differently — because AI now knows who you are.</li>
-        <li><strong>One real problem, fully worked through.</strong> The leadership challenge you bring in — you leave with it as a concrete action plan ready to run.</li>
-        <li><strong>The credibility to lead the transformation.</strong> A leader who has done it speaks differently from one who has only read about it. Your team will hear the difference.</li>
+        <li>Claude configured to your role and thinking style — active in every session after</li>
+        <li>Your AI workspace built with your own documents inside</li>
+        <li>One live integration — Notion, Google Drive, or Gmail</li>
+        <li>One real decision from your work. Finished.</li>
       </ul>
     </div>
   </div>
@@ -306,53 +343,71 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 <section class="section section--light">
   <div class="section__inner">
     <div class="eyebrow eyebrow--light">Is This Right for You?</div>
-    <h2 class="h2">This programme has one entry signal.</h2>
-    <div class="entry-signal">
-      <p class="entry-signal__label">Entry Signal</p>
-      <p><strong>Right for you if:</strong> You have been to an AI First session before. You left with conviction. But when you open AI for real leadership work, the output is still too generic — it does not feel like yours. That gap has a name. This is where you close it.<br><br>
-      <strong>Not right for you if:</strong> You are looking for a tool demo or a prompt library. Those are free, everywhere, and they will not change how you work.</p>
+    <h2 class="h2">Right for you if…</h2>
+    <div class="entry-signal mt-20">
+      <div class="entry-signal__label">Entry Signal</div>
+      <p><strong>Right for you if:</strong> You use Claude — or want to — and the output still doesn't feel like yours. No prior AI training required.<br>
+      <strong>Not right for you if:</strong> You're looking for prompt templates. Those are free, everywhere. This isn't that.</p>
     </div>
     <div class="who-grid">
       <div class="who-card">
-        <h4>Senior leaders who tried and stalled</h4>
-        <p>You use AI. The output is fast but not contextual. You know this can be more — you just have not found the method yet.</p>
+        <h4>Leaders who know Claude can do more</h4>
+        <p>You've used it. But the output doesn't sound like you. This day closes that gap.</p>
       </div>
       <div class="who-card">
-        <h4>Executives going deeper</h4>
-        <p>You have done multiple AI sessions. You want one programme where you actually apply it to a problem that matters, end to end.</p>
+        <h4>Executives starting fresh</h4>
+        <p>No prior experience needed. Build the foundation right, from day one.</p>
       </div>
       <div class="who-card">
-        <h4>Leaders who need to model it</h4>
-        <p>You are expected to guide your team on AI adoption. To lead it credibly, you need to have done it yourself — not just approved the budget for it.</p>
+        <h4>Professionals ready to go deeper</h4>
+        <p>You've done AI training before. This is the day it actually sticks — with a system you use Monday morning.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- S7: FACILITATOR + CTA — DARK -->
+<!-- S7: FACILITATORS + CTA — DARK -->
 <section class="section section--dark">
   <div class="section__inner">
     <div class="eyebrow eyebrow--dark">Guided by</div>
-    <h2 class="h2">A practitioner who has done it<br>before teaching it.</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="bio-grid">
 
-    <div class="bio-card mt-28" style="max-width:600px">
-      <div class="bio-avatar">
-        <img src="images/ht-batik-portrait.jpg" alt="Dr. Hora Tjitra"
-             onerror="this.parentElement.innerHTML='<div style=\'width:72px;height:72px;border-radius:50%;background:rgba(212,168,75,.12);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:800;font-size:20px;color:var(--gold)\'>HT</div>'">
+      <!-- Hora Tjitra — ganti filename foto di src jika berbeda -->
+      <div style="padding:28px 24px;border:1px solid rgba(212,168,75,.15);border-radius:14px;background:rgba(255,255,255,.03)">
+        <div style="width:72px;height:72px;border-radius:50%;overflow:hidden;margin-bottom:16px;border:2px solid rgba(212,168,75,.25);flex-shrink:0">
+          <img src="images/ht-batik-portrait.jpg" alt="Dr. Hora Tjitra"
+               style="width:100%;height:100%;object-fit:cover"
+               onerror="this.parentElement.innerHTML='<div style=\'width:72px;height:72px;border-radius:50%;background:rgba(212,168,75,.12);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:800;font-size:20px;color:var(--gold)\'>HT</div>'">
+        </div>
+        <p style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:var(--text-hi);margin-bottom:4px">Dr. Hora Tjitra</p>
+        <p style="font-family:var(--font-mono);font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px">Managing Partner, Tjitra &amp; Associates</p>
+        <p style="font-size:13px;color:var(--text-lo);line-height:1.65">24 years designing leadership programmes across three continents — including PwC and Pertamina. EFMD Gold Award recipient. One of the first in Indonesia to integrate AI into senior leadership development.</p>
       </div>
-      <p style="font-family:var(--font-heading);font-weight:700;font-size:18px;color:var(--text-hi);margin-bottom:4px">Dr. Hora Tjitra</p>
-      <p style="font-family:var(--font-mono);font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px">Managing Partner, Tjitra &amp; Associates · Professor, Zhejiang University</p>
-      <p style="font-size:14px;color:var(--text-lo);line-height:1.7">24 years designing leadership programmes across three continents — for PwC, Pertamina, and major Indonesian conglomerates. EFMD Gold Award recipient. 30+ AI tools built and deployed in production. One of the first in Indonesia to integrate AI into senior leadership development. He does not teach from the outside — he leads from lived experience.</p>
+
+      <!-- Kristina Aryanti — ganti filename foto di src jika berbeda -->
+      <div style="padding:28px 24px;border:1px solid rgba(212,168,75,.15);border-radius:14px;background:rgba(255,255,255,.03)">
+        <div style="width:72px;height:72px;border-radius:50%;overflow:hidden;margin-bottom:16px;border:2px solid rgba(212,168,75,.25);flex-shrink:0">
+          <img src="images/ka-batik.jpg" alt="Kristina Aryanti"
+               style="width:100%;height:100%;object-fit:cover"
+               onerror="this.parentElement.innerHTML='<div style=\'width:72px;height:72px;border-radius:50%;background:rgba(212,168,75,.12);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:800;font-size:20px;color:var(--gold)\'>KA</div>'">
+        </div>
+        <p style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:var(--gold);margin-bottom:4px">Kristina Aryanti</p>
+        <p style="font-family:var(--font-mono);font-size:10px;color:rgba(212,168,75,.6);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px">CEO, IWDemy · Programme Director, AI First</p>
+        <p style="font-size:13px;color:var(--text-lo);line-height:1.65">Organisational Psychologist. Built IWDemy from the ground up as Indonesia's leading AI literacy platform for working professionals.</p>
+      </div>
+
     </div>
 
-    <div style="margin-top:56px;padding-top:40px;border-top:1px solid rgba(255,255,255,.06)">
+    <div style="margin-top:48px;padding-top:40px;border-top:1px solid rgba(255,255,255,.06)">
       <div class="eyebrow eyebrow--dark">What to Do Next</div>
-      <h2 class="h2">Two Saturdays. One real challenge.<br>A leadership skill that compounds.</h2>
+      <h2 class="h2">One day. The right setup.<br>A Claude that finally knows<br>who you are.</h2>
       <div class="btn-row mt-20">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" class="btn btn--gold" target="_blank" rel="noopener">Apply Now</a>
-        <a href="https://wa.me/6285959435052?text=Halo%2C+saya+tertarik+dengan+AI+Leaders+Getaway.+Boleh+saya+dapat+informasi+lebih+lanjut%3F" class="btn btn--outline" target="_blank" rel="noopener">Tanya via WhatsApp</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=header" class="btn btn--gold" target="_blank" rel="noopener">Daftar Sekarang</a>
+        <a href="https://wa.me/6285959435052?text=Halo%2C+saya+tertarik+dengan+program+Thinking+with+Claude.+Boleh+saya+dapat+informasi+lebih+lanjut%3F" class="btn btn--outline" target="_blank" rel="noopener">Tanya via WhatsApp</a>
       </div>
-      <p style="font-size:13px;color:var(--text-lo);margin-top:16px">15 seats · Invite-only · AI First Alumni · 1 &amp; 8 August 2026</p>
+      <p style="font-size:13px;color:var(--text-lo);margin-top:16px">
+        Rp 880.000 · Public. 15 seats per batch.
+      </p>
     </div>
   </div>
 </section>
