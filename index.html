@@ -505,6 +505,8 @@ body {
 }
 .hero__headline {
   margin-bottom: 24px;
+  font-size: clamp(26px, 3vw, 36px) !important;
+  line-height: 1.15 !important;
 }
 .hero__body {
   max-width: 640px;
@@ -1335,12 +1337,15 @@ body {
   max-width: var(--content-max);
   margin: 0 auto;
 }
+
+/* ── Brand columns ── */
 .footer__brands {
   display: grid;
   grid-template-columns: 1fr;
   gap: 32px;
   margin-bottom: 32px;
 }
+.footer__brand-col {}
 .footer__brand-logo {
   height: 24px;
   width: auto;
@@ -1361,7 +1366,7 @@ body {
 .footer__brand-tagline {
   font-size: 13px;
   color: var(--text-md);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .footer__contact {
   font-size: 13px;
@@ -1374,7 +1379,7 @@ body {
 }
 .footer__bottom {
   border-top: 1px solid var(--text-xs);
-  padding-top: 24px;
+  padding-top: 20px;
   text-align: center;
 }
 .footer__attr {
@@ -1432,10 +1437,9 @@ body {
   position: relative; overflow: hidden; min-height: 130px;
 }
 .cred__testimonial-slide {
-  opacity: 0; position: absolute; top: 0; left: 0; right: 0;
-  transition: opacity 0.5s ease;
+  display: none;
 }
-.cred__testimonial-slide.active { opacity: 1; position: relative; }
+.cred__testimonial-slide.active { display: block; }
 .cred__testimonial-role-tag {
   font-family: var(--font-mono); font-size: 10px; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase;
@@ -1651,7 +1655,7 @@ body {
   .cred__people { grid-template-columns: 1fr; max-width: 600px; }
   .cred__testimonials { grid-template-columns: repeat(2, 1fr); }
   .invest__tracks { grid-template-columns: repeat(3, 1fr); }
-  .footer__brands { grid-template-columns: repeat(2, 1fr); }
+  .footer__brands { grid-template-columns: repeat(2, 1fr); gap: 48px; }
   .closing__stats { gap: 40px; }
   .hero__body { max-width: 520px; }
   /* shift quote size handled by clamp */
@@ -1769,10 +1773,9 @@ body {
   position: relative; overflow: hidden; min-height: 120px;
 }
 .cred__testimonial-slide {
-  opacity: 0; position: absolute; top: 0; left: 0; right: 0;
-  transition: opacity 0.5s ease;
+  display: none;
 }
-.cred__testimonial-slide.active { opacity: 1; position: relative; }
+.cred__testimonial-slide.active { display: block; }
 .cred__testimonial-role-tag {
   font-family: var(--font-mono); font-size: 10px; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase;
@@ -1888,11 +1891,51 @@ body {
 .why-card:hover { transform:translateY(-4px); border-color:rgba(212,168,75,.4) }
 .why-vs { font-family:var(--font-mono); font-size:9px; color:rgba(245,240,232,.4); letter-spacing:.14em; margin-bottom:8px; text-transform:uppercase }
 .why-label { font-family:var(--font-heading); font-weight:700; font-size:16px; color:var(--text-hi); line-height:1.25 }
-.why-desc { font-size:13px; color:var(--text-md); line-height:1.65; margin-top:12px }
+.why-desc { font-size:13px; color:var(--text-md); line-height:1.65; margin-top:12px; max-height:0; overflow:hidden; opacity:0; transition:max-height .4s ease, opacity .35s ease }
+.why-card:hover .why-desc { max-height:200px; opacity:1 }
 
 .prog__level-take { margin-top:12px; padding-top:10px; border-top:1px solid rgba(212,168,75,.18); font-size:12px; font-weight:600; color:var(--gold-muted); line-height:1.4 }
 .prog__level-take span { display:block; font-family:var(--font-mono); font-size:8px; letter-spacing:.2em; color:rgba(30,28,24,.35); margin-bottom:3px }
 
+
+/* ── path-cascade staircase (big picture overview) ── */
+.path-cascade { margin: 32px 0 44px; }
+.path-cascade__step { position: relative; }
+.path-cascade__connector {
+  width: 2px; height: 24px;
+  background: linear-gradient(to bottom, rgba(212,168,75,.55), rgba(212,168,75,.08));
+}
+.path-cascade__level {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 20px; border-radius: 12px;
+  border: 1px solid rgba(212,168,75,.18);
+  background: rgba(255,255,255,.02);
+  color: var(--text-hi);
+  transition: border-color .3s, background .3s;
+}
+.path-cascade__level--featured {
+  border-color: rgba(212,168,75,.48); background: rgba(212,168,75,.09);
+}
+.path-cascade__num {
+  font-family: var(--font-mono); font-size: 22px; font-weight: 700;
+  color: var(--gold); min-width: 40px; line-height: 1; flex-shrink: 0;
+}
+.path-cascade__info { flex: 1; }
+.path-cascade__sublabel {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 3px; opacity: .85;
+}
+.path-cascade__title {
+  font-family: var(--font-heading); font-size: 16px; font-weight: 700;
+  color: var(--text-hi); margin-bottom: 3px;
+}
+.path-cascade__tagline {
+  font-size: 13px; color: var(--text-md); line-height: 1.45;
+}
+@media (max-width: 639px) {
+  .path-cascade__step { margin-left: 0 !important; }
+  .path-cascade__connector { margin-left: 10px !important; }
+}
 /* Your Path — entrance + 4 paths */
 .path-entry { display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-top:40px; padding:26px 28px; border-radius:14px; border:1px solid rgba(212,168,75,.45); background:rgba(212,168,75,.07) }
 .path-entry-left { max-width:560px }
@@ -1947,6 +1990,150 @@ html { scroll-behavior:smooth }
 .nav-spark { width:11px; height:11px; opacity:.9; animation:sparkPulse 3.5s ease-in-out infinite }
 @keyframes sparkPulse { 0%,100%{transform:scale(1);opacity:.9} 50%{transform:scale(1.25);opacity:1} }
 @media (prefers-reduced-motion:reduce){ .nav-spark{animation:none} }
+
+/* ── IWDemy Learning Lab ── */
+.lab-section { background: #0E0E0E; padding: 60px 0; }
+.lab-section__inner { max-width: 1040px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 60px); }
+.lab-section__eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); opacity: .8; text-align: center; margin-bottom: 10px; }
+.lab-section__heading { font-family: var(--font-heading); font-size: clamp(18px, 2.5vw, 24px); font-weight: 700; color: var(--text-hi); text-align: center; margin-bottom: 6px; }
+.lab-section__sub { font-size: 13px; color: var(--text-md); text-align: center; margin-bottom: 28px; }
+.lab-photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+@media (min-width: 640px) { .lab-photo-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1024px) { .lab-photo-grid { grid-template-columns: repeat(5, 1fr); } }
+.lab-photo-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: center; border-radius: 6px; display: block; filter: brightness(.93) blur(1.5px); transition: filter .4s ease; }
+.lab-photo-grid img:hover { filter: brightness(.98) blur(.5px); }
+
+
+/* ── HyFlex AHA (How We Teach) ── */
+.prog__hyflex {
+  margin-top: 28px;
+}
+.prog__hyflex-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .8;
+  margin-bottom: 8px;
+}
+.prog__hyflex-sub {
+  font-size: 14px;
+  color: var(--dark-sub);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.prog__hyflex-modes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 24px;
+}
+@media (min-width: 640px) {
+  .prog__hyflex-modes { grid-template-columns: repeat(4, 1fr); }
+}
+.prog__mode-card {
+  padding: 16px 18px;
+  border: 1.5px solid var(--dark-mute);
+  border-radius: 10px;
+  background: #fff;
+}
+.prog__mode-card--active {
+  border-color: var(--gold);
+  background: rgba(212,168,75,.06);
+}
+.prog__mode-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--dark-text);
+  margin-bottom: 4px;
+}
+.prog__mode-desc {
+  font-size: 12px;
+  color: var(--dark-sub);
+  line-height: 1.4;
+}
+.prog__aha-defs {
+  border-top: 1px solid var(--dark-mute);
+  padding-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.prog__aha-def {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  font-size: 13px;
+}
+.prog__aha-key {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--dark-text);
+  min-width: 100px;
+  flex-shrink: 0;
+}
+.prog__aha-val {
+  color: var(--dark-sub);
+  line-height: 1.5;
+}
+
+/* ── Path level grid (light-mode 4-box) ── */
+.path-level-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 28px 0 36px;
+}
+@media (min-width: 640px) {
+  .path-level-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+}
+.path-level-box {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
+  padding: 20px 18px;
+}
+.path-level-code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.path-level-verb {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--text-hi);
+  margin-bottom: 6px;
+}
+.path-level-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .04em;
+  color: var(--text-md);
+  line-height: 1.5;
+}
+
+/* ── Path invite (L1 registration card) ── */
+.path-invite {
+  margin: 32px 0 40px;
+  padding: 32px 36px;
+  background: rgba(212,168,75,.06);
+  border: 1.5px solid rgba(212,168,75,.3);
+  border-radius: 16px;
+  text-align: center;
+}
+
+/* ── Lab photo grid: 3-photo variant ── */
+.lab-photo-grid--3 {
+  grid-template-columns: repeat(3, 1fr) !important;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 </style>
 </head>
 <body>
@@ -1994,7 +2181,7 @@ html { scroll-behavior:smooth }
   <a href="#program" onclick="this.parentElement.classList.remove('open')">How We Teach</a>
   <a href="#invest" onclick="this.parentElement.classList.remove('open')">Your Path</a>
   <a href="journey.html" onclick="this.parentElement.classList.remove('open')">The Journey</a>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSckYF5f9kQtHtCcSUivfNCIIWtr43dJlKhjoiV3-_tpprsG_g/viewform?usp=header" class="cta-primary" target="_blank" style="margin-top:12px">Join the Programme →</a>
+  <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20ingin%20bergabung%20dengan%20AI%20First%20Programme" class="cta-primary" target="_blank" style="margin-top:12px">Join the Programme →</a>
 </div>
 
 <!-- ════════ SECTION 1: HERO (Light) ════════ -->
@@ -2014,7 +2201,7 @@ html { scroll-behavior:smooth }
 
       <h1 class="h1 hero__headline">Understanding AI<br>is not the competitive edge.<br><span class="gold-muted">Leading with it is.</span></h1>
 
-      <p class="body-text" style="margin-top:18px;max-width:460px">Four levels. Every level ends with <strong>a real deliverable</strong> &mdash; not an exercise you leave behind.</p>
+      <p class="body-text" style="margin-top:18px;max-width:460px">Four levels. Every level ends with <strong>a real deliverable</strong><br>&mdash; not an exercise you leave behind.</p>
 
 
       <div class="hero__levels" style="margin-top:26px;letter-spacing:0">
@@ -2089,7 +2276,7 @@ html { scroll-behavior:smooth }
 
       <div class="eyebrow eyebrow--dark">WHY AI FIRST</div>
       <h2 class="h2" style="margin-bottom:10px">Not another AI program.</h2>
-      <p class="body-text" style="max-width:480px">Three differences that determine whether learning transfers to work &mdash; or stays in the room.</p>
+      <p class="body-text" style="max-width:480px">Two differences that determine whether learning transfers to work &mdash; or stays in the room.</p>
 
       <div class="why-grid">
         <div class="why-card">
@@ -2101,11 +2288,6 @@ html { scroll-behavior:smooth }
           <div class="why-vs">Others &rarr; tool-based. AIF &rarr;</div>
           <div class="why-label">APT Framework</div>
           <div class="why-desc">Domain Expertise &times; Thinking Framework &times; AI Skill. Tools change. The triangle stays. You become tool-agnostic, not tool-dependent.</div>
-        </div>
-        <div class="why-card">
-          <div class="why-vs">Others &rarr; one-time, one-format. AIF &rarr;</div>
-          <div class="why-label">HyFlex AHA Delivery</div>
-          <div class="why-desc">In-person, live streaming, or self-paced &mdash; learning adapts to your calendar, not the other way around.</div>
         </div>
       </div>
     
@@ -2197,8 +2379,8 @@ html { scroll-behavior:smooth }
     <div class="cred__people">
       <div class="cred__person">
         <div class="cred__person-front">
-          <img src="data:image/jpeg;base64,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" alt="Dr. Hora Tjitra" class="cred__person-photo">
-          <div class="cred__person-badge">✦ EFMD AWARD WINNER</div>
+          <img src="images/ht-batik-buku--ref.jpg" alt="Dr. Hora Tjitra" class="cred__person-photo" loading="eager">
+          <div class="cred__person-badge">EFMD AWARD WINNER</div>
           <h3 class="cred__person-name">Dr. Hora Tjitra</h3>
           <p class="cred__person-role">Managing Partner, Tjitra &amp; Associates</p>
         </div>
@@ -2216,7 +2398,7 @@ html { scroll-behavior:smooth }
 
       <div class="cred__person">
         <div class="cred__person-front">
-          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAB9AMgDASIAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAAAQIAAwQFBgf/xAA3EAABBAEDAgQEBQMCBwAAAAABAAIDEQQFITESQQYTUWEicYGRFDIzQqEjUrEkYhVTgsHR4fD/xAAZAQEBAAMBAAAAAAAAAAAAAAAAAQIDBAX/xAAhEQEAAgIBBQEBAQAAAAAAAAAAAQIDERIEBRMhMSJBUf/aAAwDAQACEQMRAD8A48JglRCyQyYJUwQEJggEwQMEaQCcICGpw1AcJgqiAJthudlTkZDcaEyP+g9VpMjMmyeTQ/tHCm9Lp0TXxk7Pb91YAuYbDOeGOWdj5WTilvmhxYezlNrqW8CZLDIyaJsjDseE/dZMTD2U+SiPdAAEUVCEAS90491CAgrIU7bonhBAOyiFqINCiEqIUU4TBKEwQME6QJwgYJwkCYIiwIpQm7KjU6o4yZLYuGsH8lb3w5oMOTKHTix3C5/I6pdWIPDd122h6hjQRhz+tord3Sa+60XmXRirE/XUYui4IDAMZlNG2ywvEHhnEzoPgZ5UjeC0Lb4WZBNAJY5Q5h4cOFHahgz21mVE4jb8yw2z17eYYUL8PJmxXcDf6rPpPrMfk+I5WgbPYHhKFvpO4c941KI90O6KzYIoUUEECh5U3u1DwgU8JSNk1pUClRQqINAEQlCZRTBMEicIGHKcJAmCCwbJkg3TBBYEUoTBBhRY4drHS7iSl2+laJkYzWeXmzMivfpDSCPTdcbM2RmU2ZvZdnBrMjMJsTQG5D2XH1cFc9/rrxa4ttgYzRDkxNdY6vhNUqsbTs2HzI3zRPhc7aMwjj5oaLNmiN7H6eRZ2d5mzvVbI5Lo5TFK29rasNNjlfEeP5We2Y1bohGBXFGyf8LVArbeJ5mSZsbG35jG/H7XwtOCunHH5ceWf0ssI2q7RBWbWstBC91LQG0LQUKCIbKJUAPKiB5UQaBMEgRUU44TBKEQgsCYKsJwgsCYKsJxygsCcKsJwa5QCR3SzrBALNxazIzFrGEyKOMGWLhvcfJc5nzGacdN9ER+6y9PkycedmRjB1j0Wm7qx1mv16BpGPK3HEJww01+YhbCd2PpOIZCHOLR3NlxWu0rWtQy4WsjwyHf3OOybxKz8NoUz8mTrnmLWj2N3stcfW/U3tFYczkTvyciSaX87zZSWkiLnxCQjbj6oldUfHDkpalpi3017phwq2p7RrOpaW1FQbRvZL3UQG0tqdkp4QA8qIFRBoL3TJL3TDhRTgpr2VYTBBYEwKrBTAoLRyi6RrKs8qiaYQts7k8BUsJc4F5suUmXT0+DyT7+MwTdX5RRCpk6nOt5JogqRn+ofkEwFyOH+1Y7exTp8da+oVRRAySDnddD4YjhdP8Ah3VZ4B7rQGMueGdRFDYg0nj8xjwRI+2974WE1mU8UWpxmHreMyPGhumsaBZJ7LhfEur/APFMwMiP+nh2Z/uPqsXL1nUszGGJPkMfEGtss/cKunHutWWSNJ6ZaHoRakU0vS4PHPO3tvNJiMuBqLasNi627fuB2/8AvddMPCcD8GIOkfHk9Pxu5F/JafwSyfInfG5rDjinynp3JBsC/p/C70/mb81shw9xvFsmnC5/hnNwozKwtyIxz0cj6LUfJepX+b2XHeK9PxsZ0WXAQwzmjH6+4WW3mxWZ+OdB3Rv1SA7pr2VYje6lpb3QJVDWltC0CdkEtRLe6iDQ3umBVdog7rFVqa1Xaa1Q4KYFVgqPd0sJRYjc6Y0zzJkbcDYK0OpsR7EfZY8e56j/AHK9otgaf2uLT9VrmXp4I4x6XsfT5Se1BWj9f/oWIxxLgw8uNH6LJjNzPI7ABHfivy9Cf1AVYdyHDlV/u+Sdvoq3waD9IH1JP8pz8RqlXA6scNoX/wC1u/C2n/j9YZ1tuKD+o/39B90TyRjxcpdloWPjaLpEP4mWOF8g63l7q39Potnj5mLlSf6bIil6TuGOtapmVlxazkM/BtyIA2Ive8iom1uffuqdb1CWfG87SIIn4UT2POTEQCHh35a+33VeDes5Lcp/rfzu8uCZ/o0n+F534k1I5mpdDXAx44DGV/J+67vWJmwaXmSP2Aid/heUsdZNo6u24om02lmA3uiSqYnfD8k9rL+POzU4Xmpr3QtLalo1CSoSkJUtAb3US3uoqNCiEtpliprTgqoFOCgcHdCRpdGSC3bte6AO6qlNuI9lJbsMbsWFpIc09xYVzT8RP/Mbv8wq4R0vZ6EK1wprvbcfNYvRx1njtT1H8Q5wWZjOtrnHuVrTvI4rKx3kCr2VOnyftmfuTjglVtNhPeyPTrrQtADKvkL0XwfhDF0WOZwHmZPxuPt2XnkLDNNHE3mRwaPqvWoWtghjhZs2NoYPokPO7hk1SKQfIxhkROa2WSFzm9JfGd69PdYGlaHHprC05U8zL6vLcaYDzfT6raNdsg82PZZPK52iNOT8fakG4cODE74p3W/fhopcTGfhs9za2/jmB0PiJjw74JYQQLuuxWnadqU/r2e3xEU2yIXbkK21jxn4wrbVh5/cK6zb/wBNaFpbQtVxGtAlLahPoiGBUSgqKjR2mBVaYLFT2jaTuigcFAwSTSN8kjrPqatQK/EYJMmNp4J7qSyrvfpXJi5uKAMjElYBw7pSunYW72D3XoOmMbHA0MsD0B2+3CwPFMWO3S3zHEgLy3Z3RRH1HKwi0S665MlfTgg6zauidW/uqAKGyuYfgr3WS45nbMjdsrQ7ZY42AVoKj1KWnR+og2DRHC6PS/F+XjdMWc38TGP33Tx/5XMoqpkx1yerPVcDV8XPi8zGlDwOR3b8wszzvhs8LyTFyZsXJZNjvMcg4I/7+q77TtTfl6HLlvjAc2Nzi0HYkf4VeV1HTeL3HxzHjfJbNr8bAf0oQ368rRedG3dzgFnQQxarqT5M8Pe5/wAR6HdPPZdlpXh/SIWCRmCxzhwZD1n+VjM6b6574vxWHEwdb4/O8t4iJoPcKBKstdL40aGfhGtoNb1ANAoDjgLlrWdZ3Dhz5LZL7se0LS2parUa0L3S3uoUDWoktRB//9k=" alt="Kristina Aryanti" class="cred__person-photo">
+          <img src="images/ka-batik.jpg" alt="Kristina Aryanti" class="cred__person-photo" loading="eager">
           <div class="cred__person-badge">CEO IWDEMY</div>
           <h3 class="cred__person-name">Kristina Aryanti</h3>
           <p class="cred__person-role">CEO, IWDemy · Programme Director, AI First</p>
@@ -2235,27 +2417,26 @@ html { scroll-behavior:smooth }
 
     <!-- Testimonials — AI First Alumni -->
     <div class="cred__testimonials">
-      <div class="cred__testimonials-label">WHAT AI FIRST PARTICIPANTS SAY</div>
       <div class="cred__testimonial-carousel" id="testimonialCarousel">
         <div class="cred__testimonial-slide active">
           <div class="cred__testimonial">
-            <span class="cred__testimonial-role-tag">VP HUMAN CAPITAL · OIL &amp; GAS</span>
+            <span class="cred__testimonial-role-tag">OIL &amp; GAS</span>
             <p class="cred__testimonial-text">"A junior on my team produces better visuals with AI. But mine has structure and depth that only comes from years of experience. That combination is the real edge."</p>
-            <p class="cred__testimonial-attr">— AI First Alumni, Vice President Human Capital</p>
+            <p class="cred__testimonial-attr">— Vice President Human Capital</p>
           </div>
         </div>
         <div class="cred__testimonial-slide">
           <div class="cred__testimonial">
-            <span class="cred__testimonial-role-tag">BUSINESS OWNER · ENGINEERING</span>
+            <span class="cred__testimonial-role-tag">ENGINEERING</span>
             <p class="cred__testimonial-text">"We already had ERP in place. This programme showed me how many processes AI can still improve — alongside the systems we have, not instead of them. The opportunity was much larger than I expected."</p>
-            <p class="cred__testimonial-attr">— AI First Alumni, Business Owner</p>
+            <p class="cred__testimonial-attr">— Business Owner</p>
           </div>
         </div>
         <div class="cred__testimonial-slide">
           <div class="cred__testimonial">
-            <span class="cred__testimonial-role-tag">BUSINESS OWNER · DISTRIBUTOR FMCG</span>
+            <span class="cred__testimonial-role-tag">DISTRIBUTOR FMCG</span>
             <p class="cred__testimonial-text">"I came thinking AI would help me make better presentations. I left with a completely different picture of how AI can manage business processes for growth. That shift alone was worth it."</p>
-            <p class="cred__testimonial-attr">— AI First Alumni, Business Owner</p>
+            <p class="cred__testimonial-attr">— Business Owner</p>
           </div>
         </div>
       </div>
@@ -2294,21 +2475,6 @@ html { scroll-behavior:smooth }
   </div>
 </section>
 
-
-<!-- ════════ PHOTO STRIP ════════ -->
-<div style="overflow:hidden;background:#0E0E0E;padding:0">
-  <div style="display:flex;gap:4px;height:220px;overflow-x:auto;scrollbar-width:none">
-    <img src="images/foto-hub-02.jpg"  alt="AI First session" style="height:100%;flex-shrink:0;object-fit:cover;object-position:center;filter:brightness(.85)" onerror="this.style.display='none'">
-    <img src="images/foto-hub-05.jpg"  alt="AI First session" style="height:100%;flex-shrink:0;object-fit:cover;object-position:center;filter:brightness(.85)" onerror="this.style.display='none'">
-    <img src="images/foto-hub-12.jpg"  alt="AI First session" style="height:100%;flex-shrink:0;object-fit:cover;object-position:center;filter:brightness(.85)" onerror="this.style.display='none'">
-    <img src="images/foto-hub-14.jpg"  alt="AI First session" style="height:100%;flex-shrink:0;object-fit:cover;object-position:center;filter:brightness(.85)" onerror="this.style.display='none'">
-    <img src="images/foto-hub-15.jpg"  alt="AI First session" style="height:100%;flex-shrink:0;object-fit:cover;object-position:center;filter:brightness(.85)" onerror="this.style.display='none'">
-    <img src="images/foto-hub-28.jpg"  alt="AI First session" style="height:100%;flex-shrink:0;object-fit:cover;object-position:center;filter:brightness(.85)" onerror="this.style.display='none'">
-    <img src="images/foto-hub-29.jpg"  alt="AI First session" style="height:100%;flex-shrink:0;object-fit:cover;object-position:center;filter:brightness(.85)" onerror="this.style.display='none'">
-    <img src="images/foto-hub-session.png" alt="AI First session" style="height:100%;flex-shrink:0;object-fit:cover;object-position:center;filter:brightness(.85)" onerror="this.style.display='none'">
-  </div>
-</div>
-
 <!-- ════════ SECTION 5: PROGRAM (Light) ════════ -->
 <section class="section section--light" id="program">
   <div class="section__inner">
@@ -2319,28 +2485,40 @@ html { scroll-behavior:smooth }
       
     </div>
 
-    <!-- AHA Methodology — Cara Kami Mengajar -->
-    <div class="prog__aha-intro">HOW WE TEACH — <span style="font-size:11px;font-weight:500;opacity:.75;letter-spacing:.05em">designed for busy leaders</span></div>
-    <div class="prog__aha">
-      <div class="prog__aha-pill">
-        <span class="prog__aha-letter">A</span>
-        <div>
-          <div class="prog__aha-name">Adaptive</div>
-          <div class="prog__aha-desc">In-person, video, hybrid — optimised for how and when you learn best.</div>
+    <!-- HyFlex AHA -->
+    <div class="prog__hyflex">
+      <div class="prog__hyflex-eyebrow">HYFLEX AHA &mdash; EXECUTION EFFICIENCY</div>
+      <p class="prog__hyflex-sub">Let learning flow through real work, not compete with it.</p>
+      <div class="prog__hyflex-modes">
+        <div class="prog__mode-card prog__mode-card--active">
+          <div class="prog__mode-name">Self-Online</div>
+          <div class="prog__mode-desc">Anytime, anywhere</div>
+        </div>
+        <div class="prog__mode-card">
+          <div class="prog__mode-name">Live Stream</div>
+          <div class="prog__mode-desc">Remote, real-time</div>
+        </div>
+        <div class="prog__mode-card">
+          <div class="prog__mode-name">In-Person</div>
+          <div class="prog__mode-desc">Deep interaction</div>
+        </div>
+        <div class="prog__mode-card">
+          <div class="prog__mode-name">Hybrid</div>
+          <div class="prog__mode-desc">Blended flexibility</div>
         </div>
       </div>
-      <div class="prog__aha-pill">
-        <span class="prog__aha-letter">H</span>
-        <div>
-          <div class="prog__aha-name">Holistic</div>
-          <div class="prog__aha-desc">Briefing, workshop, peer coaching, action project — one integrated sequence that compounds impact.</div>
+      <div class="prog__aha-defs">
+        <div class="prog__aha-def">
+          <span class="prog__aha-key">A &mdash; Active</span>
+          <span class="prog__aha-val">Learners apply frameworks to their own challenges</span>
         </div>
-      </div>
-      <div class="prog__aha-pill">
-        <span class="prog__aha-letter">A</span>
-        <div>
-          <div class="prog__aha-name">Active</div>
-          <div class="prog__aha-desc">You are in the driver seat — the more engaged you are, the greater the result.</div>
+        <div class="prog__aha-def">
+          <span class="prog__aha-key">H &mdash; Holistic</span>
+          <span class="prog__aha-val">HyFlex Learning: in-person, live streaming, online, peer coaching</span>
+        </div>
+        <div class="prog__aha-def">
+          <span class="prog__aha-key">A &mdash; Adaptive</span>
+          <span class="prog__aha-val">Flexible modes and pacing for modern schedules</span>
         </div>
       </div>
     </div>
@@ -2358,6 +2536,20 @@ html { scroll-behavior:smooth }
   </div>
 </section>
 
+<!-- ════════ IWDEMY LEARNING LAB ════════ -->
+<section class="lab-section">
+  <div class="lab-section__inner">
+    <div class="lab-section__eyebrow">IWDEMY LEARNING LAB &middot; SOHO PODOMORO CITY</div>
+    <h2 class="lab-section__heading">Where AI learning becomes AI practice.</h2>
+    <p class="lab-section__sub">A dedicated space for leaders to think, build, and apply — with the people around them.</p>
+    <div class="lab-photo-grid lab-photo-grid--3">
+      <img src="images/foto-hub-15.jpg" alt="IWDemy Learning Lab" loading="lazy">
+      <img src="images/foto-hub-2026-04-04.jpg" alt="IWDemy Learning Lab" loading="lazy">
+      <img src="images/foto-hub-29.jpg" alt="IWDemy Learning Lab" loading="lazy">
+    </div>
+  </div>
+</section>
+
 <!-- ════════ SECTION 6: INVESTASI (Dark) ════════ -->
 <section class="section section--dark" id="invest">
 
@@ -2367,74 +2559,43 @@ html { scroll-behavior:smooth }
     <h2 class="h2 invest__headline">One journey.<br><span class="gold-muted">Everyone starts at Level 1.</span></h2>
     <p class="body-text" style="margin-top:14px;max-width:540px">Four levels &mdash; Strategize, Prompt, Create, Build. Enter at Level 1, continue by role, or branch into a one-day intensive.</p>
 
-    <div class="path-entry">
-      <div class="path-entry-left">
-        <div class="path-tag" style="color:var(--gold)">LEVEL 1 &middot; STRATEGIZE &middot; OPEN REGISTRATION</div>
-        <h3 class="path-name" style="font-size:22px">AI First Connect</h3>
-        <p class="path-tagline">Before you choose a path, see the whole map &mdash; awareness, calibration, and your organisation&rsquo;s AI readiness.</p>
-        <div class="path-take"><span>TAKE HOME</span>AI Readiness Scorecard</div>
+    <!-- ── LEVEL GRID: light-mode 4-box ── -->
+    <div class="path-level-grid">
+      <div class="path-level-box">
+        <div class="path-level-code">L1</div>
+        <div class="path-level-verb">Strategize</div>
+        <div class="path-level-sub">AI Readiness<br>Calibration</div>
       </div>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSckYF5f9kQtHtCcSUivfNCIIWtr43dJlKhjoiV3-_tpprsG_g/viewform?usp=header" target="_blank" class="cta-primary" style="font-size:12px;letter-spacing:.06em;white-space:nowrap">Register for Connect &rarr;</a>
-    </div>
-
-    <div class="path-connector" aria-hidden="true">
-      <div class="path-connector-stem"></div>
-      <div class="path-connector-label">CONTINUE THE JOURNEY &middot; LEVEL 2 &middot; PROMPT</div>
-    </div>
-
-    <div class="path-grid">
-      <div class="path-card" onclick="togglePath(this)" tabindex="0">
-        <div class="path-head">
-          <div>
-            <div class="path-tag">LEVEL 2 &middot; FOR LEADERS &middot; BY APPLICATION</div>
-            <h3 class="path-name">AI Leaders Getaway</h3>
-            <p class="path-tagline">You can't lead an AI transformation you haven't lived.</p>
-          </div>
-          <span class="path-chevron" aria-hidden="true">+</span>
-        </div>
-        <div class="path-body">
-          <p class="path-desc">Two Saturdays for leaders who want AI actually working in their organisation &mdash; not just talked about.</p>
-          <p class="path-for">&rarr; Selection by application. Priority to alumni actively applying AI in their organisations.</p>
-          <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20program%20AI%20First" target="_blank" class="path-cta" onclick="event.stopPropagation()">Ask about the next cohort &rarr;</a>
-        </div>
+      <div class="path-level-box">
+        <div class="path-level-code">L2</div>
+        <div class="path-level-verb">Prompt</div>
+        <div class="path-level-sub">Thinking<br>&amp; Productivity</div>
       </div>
-      <div class="path-card" onclick="togglePath(this)" tabindex="0">
-        <div class="path-head">
-          <div>
-            <div class="path-tag">LEVEL 2 &middot; FOR PROFESSIONALS &middot; MOST POPULAR</div>
-            <h3 class="path-name">AI First Professional</h3>
-            <p class="path-tagline">You direct the AI. The thinking is yours.</p>
-          </div>
-          <span class="path-chevron" aria-hidden="true">+</span>
-        </div>
-        <div class="path-body">
-          <p class="path-desc">Two days to build a personal system for working with AI &mdash; using your actual work, not someone else's case study.</p>
-          <p class="path-take"><span>TAKE HOME</span>Personal Prompt System</p>
-          <p class="path-for">&rarr; For professionals ready to move from experimenting to being intentional.</p>
-          <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20program%20AI%20First" target="_blank" class="path-cta" onclick="event.stopPropagation()">Ask about the next cohort &rarr;</a>
-        </div>
+      <div class="path-level-box">
+        <div class="path-level-code">L3</div>
+        <div class="path-level-verb">Create</div>
+        <div class="path-level-sub">Autonomy<br>&amp; Output</div>
+      </div>
+      <div class="path-level-box">
+        <div class="path-level-code">L4</div>
+        <div class="path-level-verb">Build</div>
+        <div class="path-level-sub">Impact<br>&amp; Scale</div>
       </div>
     </div>
 
-    <div class="path-connector" aria-hidden="true">
-      <div class="path-connector-stem"></div>
-      <div class="path-connector-label">THE JOURNEY CONTINUES</div>
+    <div class="path-invite">
+      <div class="path-tag" style="color:var(--gold);margin-bottom:14px">LEVEL 1 &middot; STRATEGIZE &middot; OPEN REGISTRATION</div>
+      <h3 class="path-name" style="font-size:clamp(22px,3vw,28px);margin-bottom:12px">AI First Connect</h3>
+      <p class="path-tagline" style="max-width:520px;margin-bottom:20px">Before you choose a path, see the whole map &mdash; awareness, calibration, and your organisation&rsquo;s AI readiness.</p>
+      <div class="path-take" style="margin-bottom:28px"><span>TAKE HOME</span>AI Readiness Scorecard</div>
+      <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20ingin%20mendaftar%20AI%20First%20Connect" target="_blank" class="cta-primary" style="font-size:13px;letter-spacing:.1em;padding:16px 40px">REGISTER FOR CONNECT &rarr;</a>
     </div>
 
-    <div class="path-levels-strip">
-      <div class="path-level-mini">
-        <div class="path-tag">LEVEL 3 &middot; CREATE</div>
-        <div class="path-mini-name">Autonomy &amp; Output</div>
-        <div class="path-take"><span>TAKE HOME</span>Multimodal Output Portfolio</div>
-      </div>
-      <div class="path-level-mini">
-        <div class="path-tag">LEVEL 4 &middot; BUILD</div>
-        <div class="path-mini-name">Impact &amp; Scale</div>
-        <div class="path-take"><span>TAKE HOME</span>Working Micro AI App</div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:18px">
-      <a href="journey.html" class="cta-secondary" target="_blank" style="font-size:12px">View the Full Programme Journey &rarr;</a>
+    <div class="roi-callout">
+      <div class="path-tag" style="color:var(--gold);margin-bottom:12px">RETURN ON INVESTMENT</div>
+      <p class="roi-head">One in-house cohort of 15 leaders &rarr; 15 working micro apps.</p>
+      <p class="roi-body">Every AI First cohort ends with working AI apps built by your own people &mdash; each equivalent to Rp 15&ndash;50 million if built by a vendor. At a fraction of the cost, with full organisational context. Knowledge that doesn&rsquo;t leave when people do.</p>
+      <a href="https://wa.me/6285959435052?text=Hi%2C%20I%27m%20interested%20in%20the%20AI%20First%20In-House%20programme" target="_blank" class="path-cta">Talk to us about in-house delivery &rarr;</a>
     </div>
 
     <div class="path-connector" aria-hidden="true">
@@ -2443,60 +2604,36 @@ html { scroll-behavior:smooth }
     </div>
     <p style="text-align:center;max-width:520px;margin:10px auto 0;font-size:12px;color:#9a9488;line-height:1.6">Level 1 (AI First Connect) is recommended but not required &mdash; and you can take these alongside Level 2.</p>
 
+    <div style="text-align:center;margin:24px 0 16px">
+      <span style="display:inline-block;font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);padding:6px 18px;border:1px solid rgba(212,168,75,.4);border-radius:100px;background:rgba(212,168,75,.06)">ONE-DAY INTENSIVE</span>
+    </div>
     <div class="path-grid path-grid--3">
-      <div class="path-card" onclick="togglePath(this)" tabindex="0">
+      <a href="journey.html" class="path-card" style="text-decoration:none;display:block;color:inherit">
         <div class="path-head">
           <div>
-            <div class="path-tag">ONE-DAY INTENSIVE</div>
-            <h3 class="path-name">Thinking with Claude <img src="images/claude-logo.png" alt="Claude" style="height:18px;vertical-align:middle;margin-left:6px;opacity:.85" onerror="this.style.display='none'"></h3>
-            <p class="path-tagline">Most people ask AI for answers. The few who pull ahead argue with it.</p>
+            <h3 class="path-name">Thinking with Claude <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojREE3NzU2Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojQzg1QTJCIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTUiIGZpbGw9InVybCgjY2cpIi8+PHRleHQgeD0iMTYiIHk9IjIxIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QzwvdGV4dD48L3N2Zz4=" alt="Claude" style="height:18px;vertical-align:middle;margin-left:6px;opacity:.85"></h3>
           </div>
-          <span class="path-chevron" aria-hidden="true">+</span>
+          <span class="path-chevron" aria-hidden="true">→</span>
         </div>
-        <div class="path-body">
-          <p class="path-desc">One day to change how you think &mdash; and build a Claude that already knows who you are.</p>
-          <p class="path-for">&rarr; For anyone whose AI still behaves like a search engine.</p>
-          <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20program%20AI%20First" target="_blank" class="path-cta" onclick="event.stopPropagation()">Ask about the next cohort &rarr;</a>
-        </div>
-      </div>
-      <div class="path-card" onclick="togglePath(this)" tabindex="0">
+      </a>
+      <a href="journey.html" class="path-card" style="text-decoration:none;display:block;color:inherit">
         <div class="path-head">
           <div>
-            <div class="path-tag">ONE-DAY INTENSIVE</div>
             <h3 class="path-name">Selling Ideas with AI</h3>
-            <p class="path-tagline">Most people still need an assistant to prepare their slides. Those who lead don't anymore.</p>
           </div>
-          <span class="path-chevron" aria-hidden="true">+</span>
+          <span class="path-chevron" aria-hidden="true">→</span>
         </div>
-        <div class="path-body">
-          <p class="path-desc">No assistant required. No communication loss. One day &mdash; straight from your head to a finished, interactive presentation.</p>
-          <p class="path-for">&rarr; For leaders whose ideas are judged in the moments that count: the board meeting, the pitch, the town hall.</p>
-          <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20program%20AI%20First" target="_blank" class="path-cta" onclick="event.stopPropagation()">Ask about the next cohort &rarr;</a>
-        </div>
-      </div>
-      <div class="path-card" onclick="togglePath(this)" tabindex="0">
+      </a>
+      <a href="journey.html" class="path-card" style="text-decoration:none;display:block;color:inherit">
         <div class="path-head">
           <div>
-            <div class="path-tag">ONE-DAY INTENSIVE</div>
-            <h3 class="path-name">AI OS for the Future of Work <img src="images/claude-logo.png" alt="Claude" style="height:18px;vertical-align:middle;margin-left:6px;opacity:.85" onerror="this.style.display='none'"></h3>
-            <p class="path-tagline">Most leaders still run their day by hand. The few who pull ahead let an AI OS run it with them.</p>
+            <h3 class="path-name">AI OS for the Future of Work <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojREE3NzU2Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojQzg1QTJCIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTUiIGZpbGw9InVybCgjY2cpIi8+PHRleHQgeD0iMTYiIHk9IjIxIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QzwvdGV4dD48L3N2Zz4=" alt="Claude" style="height:18px;vertical-align:middle;margin-left:6px;opacity:.85"></h3>
           </div>
-          <span class="path-chevron" aria-hidden="true">+</span>
+          <span class="path-chevron" aria-hidden="true">→</span>
         </div>
-        <div class="path-body">
-          <p class="path-desc">Not a productivity course. In one day, build a personal AI operating system on Claude &mdash; connected to your calendar and your work. You orchestrate. It runs.</p>
-          <p class="path-for">&rarr; For leaders whose day is run by the calendar and the inbox &mdash; not by their priorities.</p>
-          <a href="https://wa.me/6285959435052?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20AI%20OS%20for%20the%20Future%20of%20Work" target="_blank" class="path-cta" onclick="event.stopPropagation()">Ask about the next cohort &rarr;</a>
-        </div>
-      </div>
+      </a>
     </div>
 
-    <div class="roi-callout">
-      <div class="path-tag" style="color:var(--gold);margin-bottom:12px">RETURN ON INVESTMENT</div>
-      <p class="roi-head">One in-house cohort of 20 leaders &rarr; 20 working micro apps.</p>
-      <p class="roi-body">Every AI First cohort ends with working AI apps built by your own people &mdash; each equivalent to Rp 15&ndash;50 million if built by a vendor. At a fraction of the cost, with full organisational context. Knowledge that doesn&rsquo;t leave when people do.</p>
-      <a href="https://wa.me/6285959435052?text=Hi%2C%20I%27m%20interested%20in%20the%20AI%20First%20In-House%20programme" target="_blank" class="path-cta">Talk to us about in-house delivery &rarr;</a>
-    </div>
 
   </div>
 </section>
@@ -2510,7 +2647,7 @@ html { scroll-behavior:smooth }
     <h2 class="h2 closing__headline">Who is <span class="gold-muted">leading</span> this change<br>in your organisation?</h2>
 
     <div class="closing__body">
-      <p class="body-text">AI First is designed for leaders who already know where their business is headed — and want to ensure that they, not someone else, determine how AI changes the way their organisation works.</p>
+      <p class="body-text">Leadership programme for executives leading organisations in the AI era &mdash; not just adopting it.</p>
     </div>
 
     <div class="closing__stats">
@@ -2541,30 +2678,35 @@ html { scroll-behavior:smooth }
 <!-- ════════ FOOTER ════════ -->
 <footer class="footer">
   <div class="footer__inner">
+
+    <!-- Two brand columns -->
     <div class="footer__brands">
-      <div>
+
+      <!-- Insight Web Academy -->
+      <div class="footer__brand-col">
         <img src="data:image/png;base64,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" alt="IWDemy" class="footer__brand-logo">
         <div class="footer__brand-name">Insight Web Academy</div>
         <div class="footer__brand-tagline">Aspiring Growth, Experiencing Technology</div>
-        <div class="footer__contact">
-          Leadership programme for executives leading organisations in the AI era — not just adopting it.
-        </div>
-      </div>
-      <div>
-        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gA8Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2ODApLCBxdWFsaXR5ID0gMTAwCv/bAEMABQMEBAQDBQQEBAUFBQYHDAgHBwcHDwsLCQwRDxISEQ8RERMWHBcTFBoVEREYIRgaHR0fHx8TFyIkIh4kHB4fHv/bAEMBBQUFBwYHDggIDh4UERQeHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHv/AABEIADwAuwMBIgACEQEDEQH/xAAfAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgv/xAC1EAACAQMDAgQDBQUEBAAAAX0BAgMABBEFEiExQQYTUWEHInEUMoGRoQgjQrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj5OXm5+jp6vHy8/T19vf4+fr/xAAfAQADAQEBAQEBAQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/APsuiiigAoopM/WgBaKM0ZoAKKMiigAooooAKKKKACiiigAooooAKKSloAKKKRnVWVWYAtwoJ60ALRVa8v7GyUteXttbKMEmWVUHJwOp9eKmhmhmQvFKkig4JVgRmgB9FUxqmmlUb+0LTEkxgQ+cvzSDOUHPLDa3HXg+lWwQRkHigDmfFfiK9gvj4e8NR6fd+I3tDdxwXkzRwxwhwnmOVUn7xwFHXB5GK4Szi/aIhvxcXF34GuLfdk2581FI9AwXI+vNee/FXSPiTf8A7RWtJ4Furi1vX0m3kV0uVh3WwwpALcEeZnj1rota8Z6/4g8H2vw98Ka3ej4jWAiXUTu8r5ouJ/3zDY3JHTr2rldS7d76fie7DB+zhBw5ZcyTd1dxv1fZHs3hrxBFrEd9b7Yk1TTZRb39rHLvEUpRXADEDKkMMNgfoa8/8D/By2SO51vxnq2valruqTyXl1FHrdzDbWjSMW8qJIpFG1c7cnOcZGBxXKfsu2Hi+z+I3jlPFc0s19GtrHfSPKJN8+CV+YcEiMj9K+hjW1KbnG7PNx2Hjh6zhF3Wn4q58q/sv6HD4w8UfEyx8S6r4j1K30fXDZ6fHJr14BBEHmG0bZRnhV5OTxXqnh/4a674Zm8a6X4b8Tanb2Gt2MT6XeXt095Npt0BIjhfMYsyYMbAk56jsK4D9i3/AJHb4x/9jO3/AKMuK9W/aJtZbj4L+KZrfU9S024s9Nnu4Z7C6eCTfHGzAFlIJU9171ocg+58MeMp/gyPC9v48kXxQLRYD4gW3BYyqw3Ntz3AKZznv1rfgv4PC/gWG/8AE2vRXEem2Ctf6pKAiylEG+UgcDcQTgdzgV826rb3Df8ABP7TtTtdW1XT7qy0xbhXs7x4fNL3GGWTafnUhjwe/NaXxy0bTrr9hnSrq5heSXTtD0yW1ImdVR28lSxVSFbhiPmBxnI5oA+kNA1S11vQ7DWbHzPst/bR3MBkQo2x1DLkHocEcVaeeFN++VF2AFssBtB6Z9K8q+C3wv8AB2keEtD1/S7TULXUr3QoUlmXVblgPNhQuVVpCqnPIIAx2xXi/wADfhb4f+I2s/FTSPGV/r+rw2HiI20DzarLvGwyBZGOfncKMAsCAM4AyaAPr+R0jQvIyooGSWOAKEdXUOjBlIyCDkGvF/GPhrw5pfjewbxt4kj1Tw3FpcdhoXhGS3e6eSZQA0xiXc1w+1SASpxuPIxk4H7FFy32b4haVai7t9I0/wATzR6dZXGQbSM5/dhSSVxgZXsc980AfRNFRmeETiDzU80jcE3c49cUyS9tI5/s8l1Csu0tsZwDgDJOPpzQBPRVZNQsXMYS7gYyEhAHHzH0FImo2LxvIl5AyR43sJBgZ6fnQBaoqgmq2jTNi4tTAsQfzROp5LEYx26dfXihdY0prjyF1G1MnlCXHmj7hzg59ODQBfrP1D/kKab/ANdJP/RbVOt/ZN5eLuEmQ7UG8fMemKg1H/kJ6b/10k/9FtQB5d8bvDOr6x4ignt9Nl1m0Fi7/ZJLKCW3EiMNqsWGSzb2ILEhduQM810Hwj0u6g8EahD/AGncXcM95dpZu9ukBWJXaNGBC5OVVW3MCee4xW5rfjLStM159HkdZLiK2WaUK4zGzkiGMjrl9kpHYCMk9queFvEWn+INOW6tHIdYoZJ4zk+S0kSyhC2MEhXUnHTIoA+fb/wRqun+FLi4VY4BaX179hCJJcCC4SV0jTEgZpA4LYOApPVRkNX0lpdvJbabbW00glkiiVGcDG4gYzXASfF/w5HHHM6EQSvI0Di4j/fwqkzJJGM87zDtCnB+dD0INeh2swntopguBIgcDcDjIz1BwfqOKAMXxX4fm1RDeaTqT6LrSQtDBqMUCSsqFgxRlcEMhKg44ORwRXinhz4H/EXSviBceK08faZb3t08hnu4rDfI4kOXxG3yAnH4V9FUVnKlGTuzsw+OrUIuMLWemqT/ADM3QNHt9ItpFjZprm4fzbu5dVElxLtCl22gDOFA4AAAAFL4jOtjSpP+Eej099QyPLF87rD15JKAt+FaNFabHI227s8I+Bvws+Ivw48U69qVxq/hfVLTxJfi91JFjnhkhfc7MYuoI/eN8reg5HNegfH1lT4I+NmcgD+wrzk/9cmrt65H4peE7zxvoA8MnUxYaPett1YxoTPPACCYo2zhN2MMxBO3IAycgEePeFPBfifxx+x14W8G6Lc6XYR6npaC7uL0SM0cfm+YvlqgwScdSRgHvXbah8M9c8R/s8z/AAw8R6hpsF0tjDZW17YrIyEQhDG7o+CCSg3AEjHQ16jpljaabp1tp1hAlvaWsSwwRIMLGigBVHsAAKsUAea/C7SfiroXhaHR/Ec/hCc6Zpy2lh9jNxm4dAFjeV2A2DaOQqsSTnI6Vg/Az4beOvAPi3xJqOq6n4d1Cx8S376heLbpNHLbynecR7gQy5bHzYPGa9oooA8S1H4dfETSv2gdX+JHhe98Oahaavp0dk0OryTJJYhdn+q8tTuXKbtuVzuOcdak+A/wz8dfDvxV4l+36zoGoaHrOpSak80UEqXbyuD8u0nZGoJz1c8Y75HtNFAHOX2iahNrMl+ssDAuBtLsu+IYwnA+Ug5O4ZyCQeOkWraDqF7qTTH7A9v5rMIn3KHVoTGQ2ByeT82emBxiuoooA5CTwtqEsZQ6k8bFTF5wlZ3EBz+7bIxJjPDHBB7mpLnw3fzz6fd+daxzadFEkUahtkpRgTu4yBxwBnB55rq6KAOZvNG1ObVft0Q06LckSuvJPyyM5IO3gnd97Gfz4ow+EtQXTns2nsyHtYoS2GPzRSs68dw27B54967OloA5s6Dcm8gvIltbK4Vw0jwOx3jcCysCMSAgdTgg4Irbubdpbu0mDACB2Yg98qR/WrNFAHEeKPBt5qniS6vLSTT7W01CzitbyQxZnCq0u9k4xvZHCBycqCeDgCtXwdoEuh6XPocos59MjbZZbYyHMGMCOUHhiowgb+JQM85z0VFAHllp8KnWPw8J9QdDp9xM86wumxY2jlVVjBjPTevB4AzjtXp1nAttaQ2ysziJAgZ+WIAxk+9S0UAFFJ2o70ALRSUvtQAUUUUAFFFFABRQaKACig0UAFFFFABRRRQAlLSCloAKKTvS0AFFFBoAKKKKAP/Z" alt="Tjitra &amp; Associates" class="footer__brand-logo">
-        <div class="footer__brand-name">Tjitra &amp; Associates</div>
-        <div class="footer__brand-tagline">Excellence through Culture, Talent and Change</div>
         <div class="footer__contact">
           Email: <a href="mailto:halo@iwdemy.com">halo@iwdemy.com</a><br>
           Web: <a href="https://iwdemy.com" target="_blank">iwdemy.com</a>
         </div>
       </div>
-    </div>
+
+      <!-- Tjitra & Associates -->
+      <div class="footer__brand-col">
+        <img src="data:image/jpeg;base64,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" alt="Tjitra &amp; Associates" class="footer__brand-logo">
+        <div class="footer__brand-name">Tjitra &amp; Associates</div>
+        <div class="footer__brand-tagline">Excellence through Culture, Talent and Change</div>
+      </div>
+
+    </div><!-- /footer__brands -->
+
     <div class="footer__bottom">
       <div class="footer__attr">Designed by <span class="gold">Tjitra</span> · Powered by <span class="gold">IWDemy</span></div>
-      <div class="footer__attr" style="font-size:10px;margin-top:2px;font-weight:400">Aspiring Growth, Experiencing Technology</div>
       <div class="footer__copyright" style="margin-top:8px">© 2026 Tjitra &amp; Associates — IWDemy · Insight Web Academy. All rights reserved.</div>
     </div>
+
   </div>
 </footer>
 
