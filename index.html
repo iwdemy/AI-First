@@ -1751,6 +1751,15 @@ body {
   .closing__quote-text { color: var(--text-hi); }
   .closing__body .body-text { color: var(--text-md); }
   .section--light .divider { background: var(--text-xs); }
+  /* HyFlex elements — fix dark-text on dark bg */
+  .prog__hyflex-sub { color: var(--text-lo); }
+  .prog__aha-defs { border-top-color: rgba(255,255,255,.10); }
+  .prog__aha-key { color: var(--text-hi); }
+  .prog__aha-val { color: var(--text-md); }
+  .prog__mode-card { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.10); }
+  .prog__mode-card--active { background: rgba(212,168,75,.10); border-color: rgba(212,168,75,.30); }
+  .prog__mode-name { color: var(--text-hi); }
+  .prog__mode-desc { color: var(--text-lo); }
 }
 
 /* ── Credential Tags (scannable badges) ── */
@@ -2000,8 +2009,8 @@ html { scroll-behavior:smooth }
 .lab-photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
 @media (min-width: 640px) { .lab-photo-grid { grid-template-columns: repeat(4, 1fr); } }
 @media (min-width: 1024px) { .lab-photo-grid { grid-template-columns: repeat(5, 1fr); } }
-.lab-photo-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: center; border-radius: 6px; display: block; filter: brightness(.93) blur(1.5px); transition: filter .4s ease; }
-.lab-photo-grid img:hover { filter: brightness(.98) blur(.5px); }
+.lab-photo-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: center; border-radius: 6px; display: block; filter: brightness(.95); transition: filter .4s ease; }
+.lab-photo-grid img:hover { filter: brightness(1); }
 
 
 /* ── HyFlex AHA (How We Teach) ── */
@@ -2125,6 +2134,9 @@ html { scroll-behavior:smooth }
   border: 1.5px solid rgba(212,168,75,.3);
   border-radius: 16px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ── Lab photo grid: 3-photo variant ── */
@@ -2490,7 +2502,7 @@ html { scroll-behavior:smooth }
       <div class="prog__hyflex-eyebrow">HYFLEX AHA &mdash; EXECUTION EFFICIENCY</div>
       <p class="prog__hyflex-sub">Let learning flow through real work, not compete with it.</p>
       <div class="prog__hyflex-modes">
-        <div class="prog__mode-card prog__mode-card--active">
+        <div class="prog__mode-card">
           <div class="prog__mode-name">Self-Online</div>
           <div class="prog__mode-desc">Anytime, anywhere</div>
         </div>
@@ -2543,9 +2555,9 @@ html { scroll-behavior:smooth }
     <h2 class="lab-section__heading">Where AI learning becomes AI practice.</h2>
     <p class="lab-section__sub">A dedicated space for leaders to think, build, and apply — with the people around them.</p>
     <div class="lab-photo-grid lab-photo-grid--3">
-      <img src="images/foto-hub-15.jpg" alt="IWDemy Learning Lab" loading="lazy">
-      <img src="images/foto-hub-2026-04-04.jpg" alt="IWDemy Learning Lab" loading="lazy">
-      <img src="images/foto-hub-29.jpg" alt="IWDemy Learning Lab" loading="lazy">
+      <img src="images/foto-hub-15.jpg" alt="IWDemy Learning Lab" loading="eager">
+      <img src="images/foto-hub-2026-04-04.jpg" alt="IWDemy Learning Lab" loading="eager">
+      <img src="images/foto-hub-29.jpg" alt="IWDemy Learning Lab" loading="eager">
     </div>
   </div>
 </section>

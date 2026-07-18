@@ -98,6 +98,11 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 .trusted-chip{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.08em;padding:8px 18px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);color:var(--text-lo)}
 /* Day label */
 .day-label{font-weight:700;color:var(--dark-sub);font-size:13px;text-transform:uppercase;letter-spacing:.1em;margin-top:28px;margin-bottom:12px;padding:10px 14px;background:rgba(212,168,75,.06);border-left:2px solid var(--gold-muted);border-radius:3px}
+/* Mode grid */
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:20px}
+.mode-card{padding:16px 20px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.04);display:flex;align-items:flex-start;gap:12px}
+.mode-card__num{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold-muted);background:var(--gold-bg-light);border:1px solid var(--gold-border-light);border-radius:6px;padding:4px 10px;flex-shrink:0;margin-top:2px;line-height:1}
+.mode-card__name{font-family:var(--font-heading);font-weight:700;font-size:14px;color:var(--dark-text);line-height:1.3}
 /* Navbar */
 .navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(212,168,75,.10);transition:all .4s}
 .navbar.scrolled{background:rgba(10,10,10,.98);box-shadow:0 2px 40px rgba(0,0,0,.35);border-bottom-color:rgba(212,168,75,.15)}
@@ -143,6 +148,7 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
   .btn-row{flex-direction:column;align-items:flex-start}
   .two-col-compare{grid-template-columns:1fr!important}
   .bio-grid{grid-template-columns:1fr!important}
+  .mode-grid{grid-template-columns:1fr!important}
 }
 </style>
 </head>
@@ -160,7 +166,7 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
     </a>
     <div class="navbar__right">
       <a href="journey.html" class="navbar__back">← All Programmes</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" class="navbar__cta" target="_blank" rel="noopener">Register Now</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" class="navbar__cta" target="_blank" rel="noopener">Daftar Sekarang</a>
     </div>
     <button class="navbar__mobile-toggle" aria-label="Menu" id="navToggle">
       <span></span><span></span><span></span>
@@ -170,7 +176,7 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 <div class="navbar__mobile-menu" id="mobileMenu" aria-hidden="true">
   <button class="navbar__mobile-close" id="mobileClose" aria-label="Close">✕</button>
   <a href="journey.html">All Programmes</a>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" target="_blank" rel="noopener">Register Now</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" target="_blank" rel="noopener">Daftar Sekarang</a>
   <a href="https://wa.me/6285959435052?text=Alo" target="_blank" rel="noopener">Tanya via WhatsApp</a>
 </div>
 
@@ -178,19 +184,17 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 <section class="hero section--dark">
   <div class="hero__inner">
     <div class="eyebrow eyebrow--dark">AI First Professional · Level 2a · EFMD Gold Award</div>
-    <h1 class="h1">You direct the AI.<br>The thinking is yours.</h1>
-    <p class="hero__sub">Two days to build a personal system for working with AI — using your actual work, not someone else's case study. From experimenting to being intentional. From someone who uses AI to the person on the team who actually knows how to work with it.</p>
+    <h1 class="h1">AI is available to everyone.<br>A method for using it well is not.</h1>
+    <p class="hero__sub">Two days to build a personal system for working with AI — using your actual work, not someone else's case study. You leave with a method you can name, repeat, and teach.</p>
     <div class="chip-row mt-20">
-      <span class="chip chip--gold">15 &amp; 16 July 2026 · Wed–Thu</span>
-      <span class="chip chip--dark">In Person · SOHO Podomoro City Jakarta</span>
+      <span class="chip chip--gold">2 Days · In Person</span>
+      <span class="chip chip--dark">SOHO Podomoro City, Jakarta</span>
       <span class="chip chip--dark">15 Seats · Small Cohort</span>
-      <span class="chip chip--gold">Rp 3.800.000</span>
     </div>
     <div class="btn-row">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" class="btn btn--gold" target="_blank" rel="noopener">Register Now</a>
-      <a href="https://wa.me/6285959435052?text=Alo" class="btn btn--outline" target="_blank" rel="noopener">Tanya via WhatsApp · "Alo"</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" class="btn btn--gold" target="_blank" rel="noopener">Daftar Sekarang</a>
+      <a href="https://wa.me/6285959435052?text=Alo" class="btn btn--outline" target="_blank" rel="noopener">Tanya via WhatsApp</a>
     </div>
-    <p style="font-size:12px;color:var(--text-lo);margin-top:12px">Registration closes 10 July · No reopening</p>
   </div>
 </section>
 
@@ -261,70 +265,91 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
       Each module is a distinct skill. Each builds on the one before. You leave Day 2 with a system that runs on Monday — not a notebook full of ideas.
     </p>
 
-    <p class="day-label">Day 1 · 15 July · Foundation</p>
+    <p class="day-label">Day 1 · Foundation</p>
     <div class="session-list" style="margin-top:0">
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">L2.1</span>
         <div class="session-body">
-          <h4>AI for Business</h4>
-          <p>An honest map of where AI actually adds value in professional work — and where it does not. No hype, no fear. Just a clear-eyed picture of what you are working with.</p>
+          <h4>AI for Business — Potential &amp; Limitation</h4>
+          <p>Where AI creates real value in professional work — and where it does not. No hype, no fear. A clear starting point.</p>
         </div>
       </div>
-      <div class="session-item session-item--light">
-        <span class="session-num session-num--light">L2.2</span>
-        <div class="session-body">
-          <h4>Ngobrol dengan AI</h4>
-          <p>The ACT→ACTIONS framework. A structured way to talk to AI so every conversation carries your context — not just your words. This is the core skill. Everything after this builds on it.</p>
+      <div class="session-item session-item--light" style="flex-direction:column;gap:0">
+        <div style="display:flex;gap:16px;align-items:flex-start">
+          <span class="session-num session-num--light" style="flex-shrink:0;margin-top:2px">L2.2</span>
+          <div class="session-body">
+            <h4>Ngobrol dengan AI (ACT→ACTIONS)</h4>
+            <p>The core framework. Give AI a role, context, and precise task — before the question. The difference in output quality is immediate.</p>
+          </div>
+        </div>
+        <div class="mode-grid">
+          <div class="mode-card">
+            <span class="mode-card__num">A</span>
+            <span class="mode-card__name">Assign a role — give AI a specific identity and expertise</span>
+          </div>
+          <div class="mode-card">
+            <span class="mode-card__num">C</span>
+            <span class="mode-card__name">Context — ground the conversation in your actual situation</span>
+          </div>
+          <div class="mode-card">
+            <span class="mode-card__num">T</span>
+            <span class="mode-card__name">Task — precise instruction, not a vague question</span>
+          </div>
+          <div class="mode-card">
+            <span class="mode-card__num">→</span>
+            <span class="mode-card__name">Output format, tone &amp; constraints — so the result fits your real use</span>
+          </div>
         </div>
       </div>
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">L2.3</span>
         <div class="session-body">
           <h4>Grounded Thinking</h4>
-          <p>NotebookLM — anchor your AI conversations to your own documents, research, and data. AI stops guessing and starts working from what you actually know.</p>
+          <p>Anchor AI to your own documents and data using NotebookLM — so it works from what you know, not what it guesses.</p>
         </div>
       </div>
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">L2.4</span>
         <div class="session-body">
           <h4>Business Process &amp; AI</h4>
-          <p>Workflow redesign — identify where AI fits your current processes and where it does not. You map one real workflow from your job and find the exact insertion points.</p>
+          <p>Take one real workflow from your work. Learn to direct AI through it with precision. Leave with your workflow redesigned — not a general idea to figure out later.</p>
         </div>
       </div>
     </div>
 
-    <div style="margin-top:16px;padding:12px 16px;background:rgba(212,168,75,.06);border-left:2px solid var(--gold);border-radius:4px;font-size:13px;color:var(--dark-sub)">
-      Between Day 1 and Day 2: apply ACT→ACTIONS to your real work. Bring the results — what worked, what did not — to Day 2.
+    <div style="margin-top:16px;padding:14px 18px;background:rgba(212,168,75,.06);border-left:2px solid var(--gold);border-radius:4px;font-size:13px;color:var(--dark-sub);line-height:1.65">
+      <strong style="color:var(--gold-muted);font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.14em;display:block;margin-bottom:6px">Between Day 1 &amp; Day 2</strong>
+      One task. Apply the ACTIONS framework to something real that evening. Bring the prompt, the output, and your notes to Day 2.
     </div>
 
-    <p class="day-label">Day 2 · 16 July · Application</p>
+    <p class="day-label">Day 2 · Application</p>
     <div class="session-list" style="margin-top:0">
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">L2.5</span>
         <div class="session-body">
           <h4>Knowledge Management</h4>
-          <p>PARA and Second Brain — a personal system for organising what AI helps you learn and produce. So the next time you need it, you find it in two seconds, not twenty minutes.</p>
+          <p>A personal system — PARA and Second Brain — where AI handles capture and retrieval so you can focus on the thinking.</p>
         </div>
       </div>
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">L2.6</span>
         <div class="session-body">
           <h4>Writing Companion</h4>
-          <p>Produce reports, proposals, and communications that sound like you — and arrive faster. Not a chatbot's draft. Yours — just faster and sharper.</p>
+          <p>Reports, proposals, and communications in your voice — your standard, not AI's default. Faster and sharper.</p>
         </div>
       </div>
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">L2.7</span>
         <div class="session-body">
           <h4>AI Creative Partner</h4>
-          <p>Work with AI to design, present, and communicate ideas beyond text. Visuals, decks, and presentations — produced in the same session where you think the idea through.</p>
+          <p>Visuals and presentations from your own documents — produced in the same session where you think the idea through.</p>
         </div>
       </div>
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">L2.8</span>
         <div class="session-body">
-          <h4>Personalised AI</h4>
-          <p>Memory and custom instructions — configure AI to already know who you are, what you do, and how you think. No more briefing it from scratch every Monday.</p>
+          <h4>Personalized AI</h4>
+          <p>Memory and custom instructions — configure AI to already know who you are, what you do, and how you think. No more briefing it from scratch.</p>
         </div>
       </div>
     </div>
@@ -338,25 +363,25 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
     <h2 class="h2">Not a certificate.<br>A system you use Monday morning.</h2>
     <div class="take-home mt-28">
       <p class="take-home__label">Take Home</p>
-      <h3 class="take-home__title">A Personal Prompt Template — ready to use on any task, from day one</h3>
+      <h3 class="take-home__title">A Personal Prompt Template — for your three core work activities</h3>
       <ul>
-        <li><strong>Data analysis framework</strong> — structured prompts for extracting insight from your own information, not generic data</li>
+        <li><strong>Data analysis</strong> — structured prompts for making sense of your own numbers and information, not generic data</li>
+        <li><strong>Insight extraction</strong> — pull patterns, meaning, and decisions from documents that used to take hours of manual reading</li>
         <li><strong>Business communication drafting</strong> — proposals, reports, and messages in your voice, not a chatbot's</li>
-        <li><strong>A way of working you can explain, repeat, and teach</strong> — no more guessing what made last week's session good</li>
       </ul>
     </div>
     <div class="card-grid card-grid--3 mt-28">
       <div class="card-dark">
-        <div class="card__label" style="color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Capability Shift 1</div>
-        <p style="font-size:14px;color:var(--text-md);line-height:1.6">Apply Structured Mental Models (ACT→ACTIONS) to every AI interaction — so the quality of your output is predictable, not random</p>
+        <div class="card__label" style="color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;font-family:var(--font-mono)">Apply Structured Mental Models</div>
+        <p style="font-size:14px;color:var(--text-md);line-height:1.6">Move from trial-and-error to ACT→ACTIONS — a system for engineering precise, context-rich prompts that you can explain and repeat.</p>
       </div>
       <div class="card-dark">
-        <div class="card__label" style="color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Capability Shift 2</div>
-        <p style="font-size:14px;color:var(--text-md);line-height:1.6">Accelerate ideation and analysis — not by working faster, but by thinking more clearly, with AI as a thinking partner that pushes back</p>
+        <div class="card__label" style="color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;font-family:var(--font-mono)">Accelerate Ideation and Analysis</div>
+        <p style="font-size:14px;color:var(--text-md);line-height:1.6">Use AI as a thinking partner to synthesize information and brainstorm strategies. Work faster without working shallow.</p>
       </div>
       <div class="card-dark">
-        <div class="card__label" style="color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Capability Shift 3</div>
-        <p style="font-size:14px;color:var(--text-md);line-height:1.6">Iterate for precision — judge AI output as sharply as you judge your own work, and know exactly how to improve it in one or two turns</p>
+        <div class="card__label" style="color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;font-family:var(--font-mono)">Iterate for Precision</div>
+        <p style="font-size:14px;color:var(--text-md);line-height:1.6">Critically refine AI-generated responses until they align with your specific goals. Output you're confident putting your name on.</p>
       </div>
     </div>
   </div>
@@ -416,7 +441,7 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
         </div>
         <p style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:var(--text-hi);margin-bottom:4px">Dr. Hora Tjitra</p>
         <p style="font-family:var(--font-mono);font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px">Managing Partner, Tjitra &amp; Associates</p>
-        <p style="font-size:13px;color:var(--text-lo);line-height:1.65">24 years designing leadership programmes across three continents — including PwC and Pertamina. EFMD Gold Award recipient. 30+ AI tools built and deployed in production. One of the first in Indonesia to integrate AI into senior leadership development.</p>
+        <p style="font-size:13px;color:var(--text-lo);line-height:1.65">Professor at Zhejiang University (2004–2013). Senior Consultant at PwC. Senior Advisor for Pertamina's EFMD Gold Award-winning programme (2020). EFMD Gold Award recipient.</p>
       </div>
 
       <div class="bio-card">
@@ -426,7 +451,7 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
         </div>
         <p style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:var(--gold);margin-bottom:4px">Kristina Aryanti</p>
         <p style="font-family:var(--font-mono);font-size:10px;color:rgba(212,168,75,.6);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px">CEO, IWDemy · Programme Director, AI First</p>
-        <p style="font-size:13px;color:var(--text-lo);line-height:1.65">Organisational Psychologist. Built IWDemy from the ground up as Indonesia's leading AI literacy platform for working professionals. Brings the programme together as a learning experience — not a technology demo.</p>
+        <p style="font-size:13px;color:var(--text-lo);line-height:1.65">CEO, IWDemy. Programme Director, AI First. Organisational Psychologist.</p>
       </div>
 
     </div>
@@ -435,10 +460,10 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
       <div class="eyebrow eyebrow--dark">What to Do Next</div>
       <h2 class="h2">Two days. Your actual work.<br>A system that runs from Monday.</h2>
       <div class="btn-row mt-20">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" class="btn btn--gold" target="_blank" rel="noopener">Register Now</a>
-        <a href="https://wa.me/6285959435052?text=Alo" class="btn btn--outline" target="_blank" rel="noopener">Tanya via WhatsApp · "Alo"</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" class="btn btn--gold" target="_blank" rel="noopener">Daftar Sekarang</a>
+        <a href="https://wa.me/6285959435052?text=Alo" class="btn btn--outline" target="_blank" rel="noopener">Tanya via WhatsApp</a>
       </div>
-      <p style="font-size:13px;color:var(--text-lo);margin-top:16px">Rp 3.800.000 · 15 seats · Registration closes 10 July · SOHO Podomoro City, Jakarta</p>
+      <p style="font-size:13px;color:var(--text-lo);margin-top:16px">15 seats · SOHO Podomoro City, Jakarta</p>
     </div>
   </div>
 </section>
