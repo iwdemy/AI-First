@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="Tjitra &amp; Associates">
+<meta name="description" content="Thinking with Claude — One day to build a Claude that already knows who you are, and seven ways to think with it.">
+<title>Thinking with Claude — IWDemy × Tjitra &amp; Associates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-dark:#0E0E0E;--bg-light:#F8F6F2;
+  --gold:#D4A84B;--gold-muted:#8B7340;
+  --gold-bg-dark:rgba(212,168,75,.10);--gold-border-dark:rgba(212,168,75,.30);
+  --gold-bg-light:rgba(212,168,75,.08);--gold-border-light:rgba(212,168,75,.22);
+  --text-hi:#F5F2EB;--text-md:rgba(245,242,235,.95);
+  --text-lo:rgba(240,236,228,.75);
+  --dark-text:#0A0A0A;--dark-body:rgba(10,10,10,.92);
+  --dark-sub:rgba(16,14,10,.78);
+  --font-heading:'Plus Jakarta Sans','Arial',sans-serif;
+  --font-body:'Inter','Arial',sans-serif;
+  --font-mono:'JetBrains Mono','Consolas',monospace;
+  --py:clamp(56px,9vh,88px);--px:clamp(20px,6vw,72px);
+  --max:900px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1.6;background:var(--bg-dark);color:var(--text-hi);overflow-x:hidden}
+/* Typography */
+.h1{font-family:var(--font-heading);font-weight:800;font-size:clamp(28px,5vw,50px);line-height:1.08;letter-spacing:-.03em}
+.h2{font-family:var(--font-heading);font-weight:700;font-size:clamp(22px,3.8vw,36px);line-height:1.12;letter-spacing:-.02em}
+.h3{font-family:var(--font-heading);font-weight:700;font-size:clamp(16px,2.2vw,20px);line-height:1.2}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:clamp(10px,1.1vw,11px);font-weight:600;text-transform:uppercase;letter-spacing:.22em;padding:6px 16px;border-radius:999px;margin-bottom:20px;width:fit-content}
+.eyebrow--dark{background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);color:var(--gold)}
+.eyebrow--light{background:var(--gold-bg-light);border:1px solid var(--gold-border-light);color:var(--gold-muted)}
+/* Sections */
+.section{padding:var(--py) var(--px);position:relative}
+.section--dark{background:var(--bg-dark);color:var(--text-hi)}
+.section--light{background:var(--bg-light);color:var(--dark-text)}
+.section__inner{max-width:var(--max);margin:0 auto}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:clamp(11px,1.2vw,12px);font-weight:700;text-transform:uppercase;letter-spacing:.18em;padding:15px 32px;border-radius:8px;text-decoration:none;min-height:50px;transition:transform .25s,box-shadow .25s}
+.btn--gold{background:linear-gradient(135deg,#D4A84B 0%,#C49A3C 50%,#D4A84B 100%);background-size:200% 100%;color:var(--bg-dark);box-shadow:0 2px 20px rgba(212,168,75,.25),inset 0 1px 0 rgba(255,255,255,.15)}
+.btn--gold:hover{transform:translateY(-2px);box-shadow:0 6px 32px rgba(212,168,75,.40)}
+.btn--outline{background:transparent;border:1px solid rgba(212,168,75,.5);color:var(--gold)}
+.btn--outline:hover{border-color:var(--gold);background:var(--gold-bg-dark);transform:translateY(-1px)}
+.btn--outline-dark{background:transparent;border:1px solid rgba(10,10,10,.3);color:var(--dark-text)}
+.btn--outline-dark:hover{border-color:rgba(10,10,10,.6);transform:translateY(-1px)}
+.btn-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:32px}
+/* Cards */
+.card-grid{display:grid;gap:16px;margin-top:32px}
+.card-grid--2{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card-grid--3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card-dark{background:rgba(255,255,255,.04);border:1px solid rgba(212,168,75,.12);border-radius:12px;padding:24px}
+.card-light{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.card__icon{font-size:24px;margin-bottom:12px;display:block}
+.card__label{font-family:var(--font-heading);font-weight:700;font-size:15px;margin-bottom:6px;color:inherit}
+.card__desc{font-size:14px;line-height:1.55;opacity:.75}
+/* Session timeline */
+.session-list{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.session-item{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:10px}
+.session-item--dark{background:rgba(255,255,255,.04);border:1px solid rgba(212,168,75,.12)}
+.session-item--light{background:#fff;border:1px solid rgba(0,0,0,.07);box-shadow:0 1px 6px rgba(0,0,0,.05)}
+.session-num{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold);background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);border-radius:6px;padding:4px 10px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.session-num--light{background:var(--gold-bg-light);border-color:var(--gold-border-light);color:var(--gold-muted)}
+.session-body h4{font-family:var(--font-heading);font-weight:700;font-size:15px;margin-bottom:4px}
+.session-body p{font-size:13px;line-height:1.5;opacity:.72}
+/* Take-home box */
+.take-home{border:1px solid var(--gold-border-dark);background:var(--gold-bg-dark);border-radius:12px;padding:28px 32px;margin-top:32px}
+.take-home--light{border-color:var(--gold-border-light);background:rgba(212,168,75,.06)}
+.take-home__label{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:10px}
+.take-home__title{font-family:var(--font-heading);font-weight:700;font-size:20px;margin-bottom:12px}
+.take-home ul{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.take-home li{font-size:14px;padding-left:20px;position:relative;opacity:.88}
+.take-home li::before{content:'→';position:absolute;left:0;color:var(--gold)}
+/* Format chips */
+.chip-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;padding:7px 16px;border-radius:999px}
+.chip--dark{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--text-lo)}
+.chip--light{background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.1);color:var(--dark-sub)}
+.chip--gold{background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);color:var(--gold)}
+/* Who grid */
+.who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:28px}
+.who-card{padding:20px 22px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.04)}
+.who-card h4{font-family:var(--font-heading);font-weight:700;font-size:14px;margin-bottom:6px;color:var(--gold-muted)}
+.who-card p{font-size:13px;color:var(--dark-sub);line-height:1.5}
+/* Divider */
+.divider{width:40px;height:2px;background:var(--gold);margin:20px 0;border-radius:2px}
+.divider--center{margin:20px auto}
+/* 7-mode grid */
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:28px}
+.mode-card{padding:20px 24px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.04);display:flex;align-items:flex-start;gap:14px}
+.mode-card__num{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold-muted);background:var(--gold-bg-light);border:1px solid var(--gold-border-light);border-radius:6px;padding:4px 10px;flex-shrink:0;margin-top:2px;line-height:1}
+.mode-card__name{font-family:var(--font-heading);font-weight:700;font-size:15px;color:var(--dark-text);line-height:1.3}
+/* Navbar */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(212,168,75,.10);transition:all .4s}
+.navbar.scrolled{background:rgba(10,10,10,.98);box-shadow:0 2px 40px rgba(0,0,0,.35);border-bottom-color:rgba(212,168,75,.15)}
+.navbar::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent 5%,rgba(212,168,75,.6) 35%,#D4A84B 50%,rgba(212,168,75,.6) 65%,transparent 95%)}
+.navbar__inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 var(--px);height:70px}
+.navbar__logos{display:flex;align-items:center;gap:10px;background:#fff;padding:5px 12px;border-radius:7px;text-decoration:none}
+.navbar__logos img{height:24px;width:auto}
+.navbar__logos .logo-divider{width:1px;height:16px;background:rgba(0,0,0,.12)}
+.navbar__right{display:flex;align-items:center;gap:12px}
+.navbar__back{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--text-lo);text-decoration:none;padding:8px 14px;border-radius:6px;transition:color .3s;display:none}
+.navbar__back:hover{color:var(--text-hi)}
+@media(min-width:640px){.navbar__back{display:inline-flex}}
+.navbar__cta{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;padding:10px 22px;border-radius:6px;background:linear-gradient(135deg,#D4A84B,#C49A3C,#D4A84B);background-size:200%;color:var(--bg-dark);text-decoration:none;min-height:40px;display:inline-flex;align-items:center;transition:transform .25s,box-shadow .25s}
+.navbar__cta:hover{transform:translateY(-1px);box-shadow:0 4px 24px rgba(212,168,75,.35)}
+.navbar__mobile-toggle{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;min-height:44px;min-width:44px;align-items:center;justify-content:center}
+.navbar__mobile-toggle span{display:block;width:20px;height:1.5px;background:var(--text-hi);border-radius:1px}
+.navbar__mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,10,10,.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.navbar__mobile-menu.open{display:flex}
+.navbar__mobile-menu a{font-family:var(--font-heading);font-size:22px;font-weight:700;color:var(--text-hi);text-decoration:none}
+.navbar__mobile-menu a:hover{color:var(--gold)}
+.navbar__mobile-close{position:absolute;top:20px;right:24px;background:none;border:none;font-size:28px;color:var(--text-lo);cursor:pointer}
+@media(min-width:768px){.navbar__mobile-toggle{display:none}}
+@media(max-width:767px){.navbar__right .navbar__back,.navbar__right .navbar__cta{display:none}}
+/* Hero */
+.hero{padding:calc(var(--py) + 70px) var(--px) var(--py);background:var(--bg-dark)}
+.hero__inner{max-width:var(--max);margin:0 auto}
+.hero__sub{font-size:clamp(15px,1.7vw,18px);line-height:1.7;max-width:580px;margin-top:16px;color:var(--text-md)}
+/* Footer */
+.footer{background:#0A0A0A;border-top:1px solid rgba(212,168,75,.10);padding:40px var(--px)}
+.footer__inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer__logos{display:flex;align-items:center;gap:10px;background:#fff;padding:5px 12px;border-radius:7px}
+.footer__logos img{height:22px;width:auto}
+.footer__logos .logo-divider{width:1px;height:14px;background:rgba(0,0,0,.12)}
+.footer__copy{font-size:12px;color:rgba(240,236,228,.35);line-height:1.6}
+/* Util */
+.text-gold{color:var(--gold)}
+.mt-8{margin-top:8px}.mt-12{margin-top:12px}.mt-16{margin-top:16px}.mt-20{margin-top:20px}.mt-28{margin-top:28px}
+.mb-4{margin-bottom:4px}.mb-8{margin-bottom:8px}
+/* Entry signal */
+.entry-signal{margin-top:20px;padding:18px 22px;border-radius:10px;background:var(--gold-bg-light);border:1px solid var(--gold-border-light)}
+.entry-signal__label{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--gold-muted);margin-bottom:8px}
+.entry-signal p{font-size:14px;color:var(--dark-sub);line-height:1.55}
+/* FAQ accordion */
+details.faq-item{border-bottom:1px solid rgba(255,255,255,.07)}
+details.faq-item:last-child{border-bottom:none}
+details.faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-family:var(--font-heading);font-weight:700;font-size:15px;color:var(--text-hi);user-select:none;-webkit-user-select:none}
+details.faq-item summary::-webkit-details-marker{display:none}
+details.faq-item summary::after{content:'+';font-family:var(--font-mono);font-size:18px;font-weight:700;color:var(--gold);flex-shrink:0;margin-left:16px;line-height:1}
+details.faq-item[open] summary::after{content:'×'}
+details.faq-item .faq-ans{padding:0 24px 18px 0;font-size:14px;color:var(--text-lo);line-height:1.65}
+/* Responsive */
+@media(max-width:640px){
+  .card-grid--3,.card-grid--2{grid-template-columns:1fr}
+  .who-grid{grid-template-columns:1fr}
+  .mode-grid{grid-template-columns:1fr}
+  .btn-row{flex-direction:column;align-items:flex-start}
+  .two-col-compare{grid-template-columns:1fr!important}
+  .bio-grid{grid-template-columns:1fr!important}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar" aria-label="Main navigation">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logos" aria-label="IWDemy &amp; Tjitra home">
+      <img src="images/logo-iwdemy.png" alt="IWDemy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span style="display:none;font-family:var(--font-heading);font-weight:800;font-size:13px;color:#0A0A0A;letter-spacing:-.01em">IWDemy</span>
+      <div class="logo-divider"></div>
+      <img src="images/logo-tjitra.jpg" alt="Tjitra &amp; Associates" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span style="display:none;font-family:var(--font-heading);font-weight:700;font-size:12px;color:#0A0A0A">T&amp;A</span>
+    </a>
+    <div class="navbar__right">
+      <a href="journey.html" class="navbar__back">← All Programmes</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=header" class="navbar__cta" target="_blank" rel="noopener">Register Now</a>
+    </div>
+    <button class="navbar__mobile-toggle" aria-label="Menu" id="navToggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="navbar__mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="navbar__mobile-close" id="mobileClose" aria-label="Close">✕</button>
+  <a href="journey.html">All Programmes</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=header" target="_blank" rel="noopener">Register Now</a>
+  <a href="https://wa.me/6285959435052?text=Halo%2C+saya+tertarik+dengan+Thinking+with+Claude.+Boleh+saya+dapat+informasi+lebih+lanjut%3F.+Could+I+get+more+information%3F" target="_blank" rel="noopener">Ask via WhatsApp</a>
+</div>
+
+<!-- S1: HERO — DARK -->
+<section class="hero section--dark">
+  <div class="hero__inner">
+    <div class="eyebrow eyebrow--dark">Thinking with Claude · One-Day Intensive</div>
+    <h1 class="h1">Most people ask AI for answers.<br>The few who pull ahead<br>argue with it.</h1>
+    <p class="hero__sub">One day to think more clearly and decide with more confidence — with a Claude already set up to support how you work.</p>
+    <div class="chip-row mt-20">
+      <span class="chip chip--gold">1 Day · 08.30–16.30</span>
+      <span class="chip chip--dark">Small Group · 15 Seats</span>
+      <span class="chip chip--dark">SOHO Podomoro City, Jakarta</span>
+      <span class="chip chip--dark">Open to Public · L1 Recommended</span>
+      <span class="chip chip--gold">Rp 880.000 · Public</span>
+    </div>
+    <div class="btn-row">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=header" class="btn btn--gold" target="_blank" rel="noopener">Register Now</a>
+      <a href="https://wa.me/6285959435052?text=Halo%2C+saya+tertarik+dengan+Thinking+with+Claude.+Boleh+saya+dapat+informasi+lebih+lanjut%3F.+Could+I+get+more+information%3F" class="btn btn--outline" target="_blank" rel="noopener">Ask via WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- S2: THE PROBLEM — LIGHT -->
+<section class="section section--light">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--light">The Real Gap</div>
+    <h2 class="h2">The higher you go,<br>the fewer people tell you the truth.</h2>
+    <div class="divider" style="margin-top:24px"></div>
+    <p class="mt-16" style="color:var(--dark-sub);line-height:1.75;max-width:580px">
+      At this level, everyone in the room has an agenda. Your direct reports want approval. Your peers want alignment. The honest pushback — the kind that sharpens a decision before it's made — rarely comes anymore. Claude can be that sounding board. But only if it knows how you think.
+    </p>
+    <!-- PULL QUOTE B -->
+    <blockquote style="margin:28px 0 0;padding:20px 28px;border-left:3px solid var(--gold-muted);background:var(--gold-bg-light)">
+      <p style="font-family:var(--font-heading);font-weight:700;font-size:clamp(18px,2.4vw,24px);color:var(--dark-text);line-height:1.3;letter-spacing:-.02em">You're not short on information.<br>You're short on time to think.</p>
+      <p style="font-size:13px;color:var(--dark-sub);margin-top:10px">Claude doesn't replace your judgment. It gives you the space to actually use it.</p>
+    </blockquote>
+  </div>
+</section>
+
+<!-- S3: THE BIG IDEA — DARK -->
+<section class="section section--dark">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--dark">The Distinction</div>
+    <h2 class="h2">Two kinds of leaders.<br>Same information. Different clarity.</h2>
+    <div class="divider" style="margin-top:24px"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px" class="two-col-compare">
+      <div style="padding:22px 24px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)">
+        <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:rgba(245,242,235,.35);margin-bottom:10px">Most leaders</p>
+        <p style="color:var(--text-md);font-size:14px;line-height:1.6">Lots of inputs, not enough clarity. Make the call. Move on. Wonder later if you had the full picture.</p>
+      </div>
+      <div style="padding:22px 24px;border-radius:10px;background:rgba(212,168,75,.07);border:1px solid rgba(212,168,75,.20)">
+        <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--gold);margin-bottom:10px">After this day</p>
+        <p style="color:var(--text-hi);font-size:14px;line-height:1.6">Walk in with a structured way to think it through — and a thinking partner already briefed on your context. Every time.</p>
+      </div>
+    </div>
+    <p class="mt-20" style="color:var(--text-hi);font-weight:600;font-size:clamp(15px,1.7vw,18px);line-height:1.6">
+      The difference isn't how hard you think. It's having a process that holds up when the pressure is on.
+    </p>
+  </div>
+</section>
+
+<!-- S4: HOW THE DAY IS BUILT — LIGHT -->
+<section class="section section--light">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--light">What Happens</div>
+    <h2 class="h2">Four blocks. One day.<br>A sharper way to think —<br>and the setup to back it up.</h2>
+    <p class="mt-16" style="color:var(--dark-sub);max-width:560px;line-height:1.7">
+      Each block builds on the last. You leave with something that works — not a notebook full of ideas.
+    </p>
+    <div class="session-list mt-28">
+
+      <!-- Block 01: Calibrate -->
+      <div class="session-item session-item--light">
+        <span class="session-num session-num--light">01</span>
+        <div class="session-body">
+          <h4>Calibrate — Teach Claude Who You Are</h4>
+          <p>You brief Claude on your role, your priorities, and how you think — once. Every conversation after picks up from there.</p>
+        </div>
+      </div>
+
+      <!-- Block 02: Structure -->
+      <div class="session-item session-item--light">
+        <span class="session-num session-num--light">02</span>
+        <div class="session-body">
+          <h4>Structure — Build Your AI Workspace</h4>
+          <p>Your reports, briefs, and key documents go in once. Claude reads them before you speak — no briefing, straight to thinking.</p>
+        </div>
+      </div>
+
+      <!-- Block 03: Connect — with 7 modes embedded -->
+      <div class="session-item session-item--light" style="flex-direction:column;gap:0">
+        <div style="display:flex;gap:16px;align-items:flex-start">
+          <span class="session-num session-num--light" style="flex-shrink:0;margin-top:2px">03</span>
+          <div class="session-body">
+            <h4>Connect — Seven Ways to Think with Claude</h4>
+            <p>Seven modes — from deep research to high-stakes decisions. Each one a different quality of thinking. You practice every mode on real work from your role, not a case study.</p>
+          </div>
+        </div>
+        <div class="mode-grid" style="margin-top:20px;padding-left:0">
+          <div class="mode-card">
+            <span class="mode-card__num">01</span>
+            <span class="mode-card__name">Pre-Training &amp; Deep Research</span>
+          </div>
+          <div class="mode-card">
+            <span class="mode-card__num">02</span>
+            <span class="mode-card__name">Brainstorming</span>
+          </div>
+          <div class="mode-card">
+            <span class="mode-card__num">03</span>
+            <span class="mode-card__name">High-Quality Ideas</span>
+          </div>
+          <div class="mode-card">
+            <span class="mode-card__num">04</span>
+            <span class="mode-card__name">Sharpening &amp; Iteration</span>
+          </div>
+          <div class="mode-card">
+            <span class="mode-card__num">05</span>
+            <span class="mode-card__name">Decision Help — Full Stack</span>
+          </div>
+          <div class="mode-card">
+            <span class="mode-card__num">06</span>
+            <span class="mode-card__name">Thinking on Data</span>
+          </div>
+          <div class="mode-card">
+            <span class="mode-card__num">07</span>
+            <span class="mode-card__name">Reasoning · Long Thinking</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Block 04: Decide -->
+      <div class="session-item session-item--light">
+        <span class="session-num session-num--light">04</span>
+        <div class="session-body">
+          <h4>Decide — A Finished Decision from Real Work</h4>
+          <p>One real decision you've been sitting on. By end of day, it's done — not a practice run. Something that was already on your desk.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- S5: WHAT YOU BUILD — DARK -->
+<section class="section section--dark">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--dark">What You Take Home</div>
+    <h2 class="h2">Not notes. Not insights.<br>Something that works for you<br>Monday morning.</h2>
+    <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;padding:7px 14px;border-radius:999px;background:rgba(232,121,56,.10);border:1px solid rgba(232,121,56,.25)">
+      <img src="images/logo-claude.png" alt="Claude" style="height:16px;width:auto;display:block"
+           onerror="this.style.display='none'">
+      <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:#C4612A">Powered by Claude · Anthropic</span>
+    </div>
+    <div class="take-home mt-12">
+      <div class="take-home__label">Take Home</div>
+      <div class="take-home__title">Seven ways to think through any leadership challenge — and a Claude already built around how you work.</div>
+      <ul>
+        <li>Claude configured to your role and thinking style — active in every session after</li>
+        <li>Your AI workspace built with your own documents inside</li>
+        <li>One live integration — Notion, Google Drive, or Gmail</li>
+        <li>One real decision from your work. Finished.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- S6: WHO IT'S FOR — LIGHT -->
+<section class="section section--light">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--light">Is This Right for You?</div>
+    <h2 class="h2">Right for you if…</h2>
+    <div class="entry-signal mt-20">
+      <div class="entry-signal__label">Entry Signal</div>
+      <p><strong>Right for you if:</strong> You use Claude — or want to — and the output still doesn't feel like yours. No prior AI training required.<br>
+      <strong>Not right for you if:</strong> You're looking for prompt templates. Those are free, everywhere. This isn't that.</p>
+    </div>
+    <div class="who-grid">
+      <div class="who-card">
+        <h4>Leaders who want better thinking, not better prompts</h4>
+        <p>You don't need more information. You need a cleaner way to work through it.</p>
+      </div>
+      <div class="who-card">
+        <h4>Executives who haven't started with AI yet</h4>
+        <p>No prior experience needed. Build the foundation right, from day one.</p>
+      </div>
+      <div class="who-card">
+        <h4>Leaders who've tried AI training before</h4>
+        <p>You've done the training. This is the day it actually changes how you work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S7: FACILITATORS + CTA — DARK -->
+<section class="section section--dark">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--dark">Guided by</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="bio-grid">
+
+      <!-- Hora Tjitra — ganti filename foto di src jika berbeda -->
+      <div style="padding:28px 24px;border:1px solid rgba(212,168,75,.15);border-radius:14px;background:rgba(255,255,255,.03)">
+        <div style="width:72px;height:72px;border-radius:50%;overflow:hidden;margin-bottom:16px;border:2px solid rgba(212,168,75,.25);flex-shrink:0">
+          <img src="images/ht-batik-portrait.jpg" alt="Dr. Hora Tjitra"
+               style="width:100%;height:100%;object-fit:cover"
+               onerror="this.parentElement.innerHTML='<div style=\'width:72px;height:72px;border-radius:50%;background:rgba(212,168,75,.12);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:800;font-size:20px;color:var(--gold)\'>HT</div>'">
+        </div>
+        <p style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:var(--text-hi);margin-bottom:4px">Dr. Hora Tjitra</p>
+        <p style="font-family:var(--font-mono);font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px">Managing Partner, Tjitra &amp; Associates</p>
+        <p style="font-size:13px;color:var(--text-lo);line-height:1.65">24 years designing leadership programmes across three continents — including PwC and Pertamina. EFMD Gold Award recipient. One of the first in Indonesia to integrate AI into senior leadership development.</p>
+      </div>
+
+      <!-- Kristina Aryanti — ganti filename foto di src jika berbeda -->
+      <div style="padding:28px 24px;border:1px solid rgba(212,168,75,.15);border-radius:14px;background:rgba(255,255,255,.03)">
+        <div style="width:72px;height:72px;border-radius:50%;overflow:hidden;margin-bottom:16px;border:2px solid rgba(212,168,75,.25);flex-shrink:0">
+          <img src="images/ka-batik.jpg" alt="Kristina Aryanti"
+               style="width:100%;height:100%;object-fit:cover"
+               onerror="this.parentElement.innerHTML='<div style=\'width:72px;height:72px;border-radius:50%;background:rgba(212,168,75,.12);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:800;font-size:20px;color:var(--gold)\'>KA</div>'">
+        </div>
+        <p style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:var(--gold);margin-bottom:4px">Kristina Aryanti</p>
+        <p style="font-family:var(--font-mono);font-size:10px;color:rgba(212,168,75,.6);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px">CEO, IWDemy · Programme Director, AI First</p>
+        <p style="font-size:13px;color:var(--text-lo);line-height:1.65">Organisational Psychologist. Built IWDemy from the ground up as Indonesia's leading AI literacy platform for working professionals.</p>
+      </div>
+
+    </div>
+
+    <!-- FAQ -->
+    <div style="margin-top:40px;padding-top:36px;border-top:1px solid rgba(255,255,255,.06)">
+      <div class="eyebrow eyebrow--dark">Questions</div>
+      <div style="margin-top:20px">
+
+        <details class="faq-item">
+          <summary>Do I need prior experience with Claude?</summary>
+          <p class="faq-ans">No — we start from the ground up, whether this is your first time or you already use Claude regularly.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What do I need to bring?</summary>
+          <p class="faq-ans">Your laptop and a free Claude account. No pre-reading required.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>When is the next batch?</summary>
+          <p class="faq-ans">We run in small batches of 15. Message us on WhatsApp — or register now and we'll confirm your date.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I get an invoice for my company?</summary>
+          <p class="faq-ans">Yes. Mention it when you register or drop us a message on WhatsApp.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>How is this different from other AI training?</summary>
+          <p class="faq-ans">Most training teaches what AI can do. This trains how you think with it — the advantage holds across every tool, every decision.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is there a certificate of attendance?</summary>
+          <p class="faq-ans">Yes. All participants receive a certificate of attendance upon completion.</p>
+        </details>
+
+      </div>
+    </div>
+
+    <div style="margin-top:48px;padding-top:40px;border-top:1px solid rgba(255,255,255,.06)">
+      <div class="eyebrow eyebrow--dark">What to Do Next</div>
+      <h2 class="h2">One day. The right setup.<br>A Claude that finally knows<br>who you are.</h2>
+      <div class="btn-row mt-20">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=header" class="btn btn--gold" target="_blank" rel="noopener">Register Now</a>
+        <a href="https://wa.me/6285959435052?text=Halo%2C+saya+tertarik+dengan+Thinking+with+Claude.+Boleh+saya+dapat+informasi+lebih+lanjut%3F.+Could+I+get+more+information%3F" class="btn btn--outline" target="_blank" rel="noopener">Ask via WhatsApp</a>
+      </div>
+      <p style="font-size:13px;color:var(--text-lo);margin-top:16px">
+        Rp 880.000 · Public. 15 seats per batch.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__logos">
+      <img src="images/logo-iwdemy.png" alt="IWDemy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span style="display:none;font-family:var(--font-heading);font-weight:800;font-size:13px;color:#0A0A0A">IWDemy</span>
+      <div class="logo-divider"></div>
+      <img src="images/logo-tjitra.jpg" alt="Tjitra &amp; Associates" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span style="display:none;font-family:var(--font-heading);font-weight:700;font-size:12px;color:#0A0A0A">T&amp;A</span>
+    </div>
+    <p class="footer__copy">© 2026 IWDemy × Tjitra &amp; Associates. AI First Programme. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const nb=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{nb&&nb.classList.toggle('scrolled',window.scrollY>20)},{passive:true});
+const tog=document.getElementById('navToggle'),menu=document.getElementById('mobileMenu'),cls=document.getElementById('mobileClose');
+tog&&tog.addEventListener('click',()=>{menu.classList.toggle('open');menu.setAttribute('aria-hidden',!menu.classList.contains('open'))});
+cls&&cls.addEventListener('click',()=>{menu.classList.remove('open');menu.setAttribute('aria-hidden','true')});
+</script>
+</body>
+</html>

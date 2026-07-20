@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="Tjitra &amp; Associates">
+<meta name="description" content="AI First Professional — Two days to build a personal system for working with AI, using your actual work, not someone else's case study.">
+<title>AI First Professional — IWDemy × Tjitra &amp; Associates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-dark:#0E0E0E;--bg-light:#F8F6F2;
+  --gold:#D4A84B;--gold-muted:#8B7340;
+  --gold-bg-dark:rgba(212,168,75,.10);--gold-border-dark:rgba(212,168,75,.30);
+  --gold-bg-light:rgba(212,168,75,.08);--gold-border-light:rgba(212,168,75,.22);
+  --text-hi:#F5F2EB;--text-md:rgba(245,242,235,.95);
+  --text-lo:rgba(240,236,228,.75);
+  --dark-text:#0A0A0A;--dark-body:rgba(10,10,10,.92);
+  --dark-sub:rgba(16,14,10,.78);
+  --font-heading:'Plus Jakarta Sans','Arial',sans-serif;
+  --font-body:'Inter','Arial',sans-serif;
+  --font-mono:'JetBrains Mono','Consolas',monospace;
+  --py:clamp(56px,9vh,88px);--px:clamp(20px,6vw,72px);
+  --max:900px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1.6;background:var(--bg-dark);color:var(--text-hi);overflow-x:hidden}
+/* Typography */
+.h1{font-family:var(--font-heading);font-weight:800;font-size:clamp(28px,5vw,50px);line-height:1.08;letter-spacing:-.03em}
+.h2{font-family:var(--font-heading);font-weight:700;font-size:clamp(22px,3.8vw,36px);line-height:1.12;letter-spacing:-.02em}
+.h3{font-family:var(--font-heading);font-weight:700;font-size:clamp(16px,2.2vw,20px);line-height:1.2}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:clamp(10px,1.1vw,11px);font-weight:600;text-transform:uppercase;letter-spacing:.22em;padding:6px 16px;border-radius:999px;margin-bottom:20px;width:fit-content}
+.eyebrow--dark{background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);color:var(--gold)}
+.eyebrow--light{background:var(--gold-bg-light);border:1px solid var(--gold-border-light);color:var(--gold-muted)}
+/* Sections */
+.section{padding:var(--py) var(--px);position:relative}
+.section--dark{background:var(--bg-dark);color:var(--text-hi)}
+.section--light{background:var(--bg-light);color:var(--dark-text)}
+.section__inner{max-width:var(--max);margin:0 auto}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:clamp(11px,1.2vw,12px);font-weight:700;text-transform:uppercase;letter-spacing:.18em;padding:15px 32px;border-radius:8px;text-decoration:none;min-height:50px;transition:transform .25s,box-shadow .25s}
+.btn--gold{background:linear-gradient(135deg,#D4A84B 0%,#C49A3C 50%,#D4A84B 100%);background-size:200% 100%;color:var(--bg-dark);box-shadow:0 2px 20px rgba(212,168,75,.25),inset 0 1px 0 rgba(255,255,255,.15)}
+.btn--gold:hover{transform:translateY(-2px);box-shadow:0 6px 32px rgba(212,168,75,.40)}
+.btn--outline{background:transparent;border:1px solid rgba(212,168,75,.5);color:var(--gold)}
+.btn--outline:hover{border-color:var(--gold);background:var(--gold-bg-dark);transform:translateY(-1px)}
+.btn-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:32px}
+/* Cards */
+.card-grid{display:grid;gap:16px;margin-top:32px}
+.card-grid--2{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card-grid--3{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.card-dark{background:rgba(255,255,255,.04);border:1px solid rgba(212,168,75,.12);border-radius:12px;padding:24px}
+.card-light{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.card__icon{font-size:24px;margin-bottom:12px;display:block}
+.card__label{font-family:var(--font-heading);font-weight:700;font-size:15px;margin-bottom:6px;color:inherit}
+.card__desc{font-size:14px;line-height:1.55;opacity:.75}
+/* Session timeline */
+.session-list{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.session-item{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:10px}
+.session-item--dark{background:rgba(255,255,255,.04);border:1px solid rgba(212,168,75,.12)}
+.session-item--light{background:#fff;border:1px solid rgba(0,0,0,.07);box-shadow:0 1px 6px rgba(0,0,0,.05)}
+.session-num{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold);background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);border-radius:6px;padding:4px 10px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.session-num--light{background:var(--gold-bg-light);border-color:var(--gold-border-light);color:var(--gold-muted)}
+.session-body h4{font-family:var(--font-heading);font-weight:700;font-size:15px;margin-bottom:4px}
+.session-body p{font-size:13px;line-height:1.5;opacity:.72}
+/* Take-home box */
+.take-home{border:1px solid var(--gold-border-dark);background:var(--gold-bg-dark);border-radius:12px;padding:28px 32px;margin-top:32px}
+.take-home--light{border-color:var(--gold-border-light);background:rgba(212,168,75,.06)}
+.take-home__label{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:10px}
+.take-home__title{font-family:var(--font-heading);font-weight:700;font-size:20px;margin-bottom:12px}
+.take-home ul{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.take-home li{font-size:14px;padding-left:20px;position:relative;opacity:.88}
+.take-home li::before{content:'→';position:absolute;left:0;color:var(--gold)}
+/* Format chips */
+.chip-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;padding:7px 16px;border-radius:999px}
+.chip--dark{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--text-lo)}
+.chip--gold{background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);color:var(--gold)}
+/* Who grid */
+.who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:28px}
+.who-card{padding:20px 22px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.04)}
+.who-card h4{font-family:var(--font-heading);font-weight:700;font-size:14px;margin-bottom:6px;color:var(--gold-muted)}
+.who-card p{font-size:13px;color:var(--dark-sub);line-height:1.5}
+/* Entry signal */
+.entry-signal{margin-top:20px;padding:18px 22px;border-radius:10px;background:var(--gold-bg-light);border:1px solid var(--gold-border-light)}
+.entry-signal__label{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--gold-muted);margin-bottom:8px}
+.entry-signal p{font-size:14px;color:var(--dark-sub);line-height:1.55}
+/* Divider */
+.divider{width:40px;height:2px;background:var(--gold);margin:20px 0;border-radius:2px}
+/* Bio grid */
+.bio-card{padding:28px 24px;border:1px solid rgba(212,168,75,.15);border-radius:14px;background:rgba(255,255,255,.03)}
+.bio-avatar{width:72px;height:72px;border-radius:50%;overflow:hidden;margin-bottom:16px;border:2px solid rgba(212,168,75,.25)}
+.bio-avatar img{width:100%;height:100%;object-fit:cover}
+/* Trusted by */
+.trusted-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.trusted-chip{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.08em;padding:8px 18px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);color:var(--text-lo)}
+/* Day label */
+.day-label{font-weight:700;color:var(--dark-sub);font-size:13px;text-transform:uppercase;letter-spacing:.1em;margin-top:28px;margin-bottom:12px;padding:10px 14px;background:rgba(212,168,75,.06);border-left:2px solid var(--gold-muted);border-radius:3px}
+/* Mode grid */
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:20px}
+.mode-card{padding:16px 20px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.04);display:flex;align-items:flex-start;gap:12px}
+.mode-card__num{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold-muted);background:var(--gold-bg-light);border:1px solid var(--gold-border-light);border-radius:6px;padding:4px 10px;flex-shrink:0;margin-top:2px;line-height:1}
+.mode-card__name{font-family:var(--font-heading);font-weight:700;font-size:14px;color:var(--dark-text);line-height:1.3}
+/* Navbar */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(212,168,75,.10);transition:all .4s}
+.navbar.scrolled{background:rgba(10,10,10,.98);box-shadow:0 2px 40px rgba(0,0,0,.35);border-bottom-color:rgba(212,168,75,.15)}
+.navbar::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent 5%,rgba(212,168,75,.6) 35%,#D4A84B 50%,rgba(212,168,75,.6) 65%,transparent 95%)}
+.navbar__inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 var(--px);height:70px}
+.navbar__logos{display:flex;align-items:center;gap:10px;background:#fff;padding:5px 12px;border-radius:7px;text-decoration:none}
+.navbar__logos img{height:24px;width:auto}
+.navbar__logos .logo-divider{width:1px;height:16px;background:rgba(0,0,0,.12)}
+.navbar__right{display:flex;align-items:center;gap:12px}
+.navbar__back{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--text-lo);text-decoration:none;padding:8px 14px;border-radius:6px;transition:color .3s;display:none}
+.navbar__back:hover{color:var(--text-hi)}
+@media(min-width:640px){.navbar__back{display:inline-flex}}
+.navbar__cta{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;padding:10px 22px;border-radius:6px;background:linear-gradient(135deg,#D4A84B,#C49A3C,#D4A84B);background-size:200%;color:var(--bg-dark);text-decoration:none;min-height:40px;display:inline-flex;align-items:center;transition:transform .25s,box-shadow .25s}
+.navbar__cta:hover{transform:translateY(-1px);box-shadow:0 4px 24px rgba(212,168,75,.35)}
+.navbar__mobile-toggle{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;min-height:44px;min-width:44px;align-items:center;justify-content:center}
+.navbar__mobile-toggle span{display:block;width:20px;height:1.5px;background:var(--text-hi);border-radius:1px}
+.navbar__mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,10,10,.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.navbar__mobile-menu.open{display:flex}
+.navbar__mobile-menu a{font-family:var(--font-heading);font-size:22px;font-weight:700;color:var(--text-hi);text-decoration:none}
+.navbar__mobile-menu a:hover{color:var(--gold)}
+.navbar__mobile-close{position:absolute;top:20px;right:24px;background:none;border:none;font-size:28px;color:var(--text-lo);cursor:pointer}
+@media(min-width:768px){.navbar__mobile-toggle{display:none}}
+@media(max-width:767px){.navbar__right .navbar__back,.navbar__right .navbar__cta{display:none}}
+/* Hero */
+.hero{padding:calc(var(--py) + 70px) var(--px) var(--py);background:var(--bg-dark)}
+.hero__inner{max-width:var(--max);margin:0 auto}
+.hero__sub{font-size:clamp(15px,1.7vw,18px);line-height:1.7;max-width:600px;margin-top:16px;color:var(--text-md)}
+/* Footer */
+.footer{background:#0A0A0A;border-top:1px solid rgba(212,168,75,.10);padding:40px var(--px)}
+.footer__inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer__logos{display:flex;align-items:center;gap:10px;background:#fff;padding:5px 12px;border-radius:7px}
+.footer__logos img{height:22px;width:auto}
+.footer__logos .logo-divider{width:1px;height:14px;background:rgba(0,0,0,.12)}
+.footer__copy{font-size:12px;color:rgba(240,236,228,.35);line-height:1.6}
+/* Util */
+.text-gold{color:var(--gold)}
+.mt-8{margin-top:8px}.mt-12{margin-top:12px}.mt-16{margin-top:16px}.mt-20{margin-top:20px}.mt-28{margin-top:28px}
+.mb-4{margin-bottom:4px}.mb-8{margin-bottom:8px}
+/* Responsive */
+@media(max-width:640px){
+  .card-grid--3,.card-grid--2{grid-template-columns:1fr}
+  .who-grid{grid-template-columns:1fr}
+  .btn-row{flex-direction:column;align-items:flex-start}
+  .two-col-compare{grid-template-columns:1fr!important}
+  .bio-grid{grid-template-columns:1fr!important}
+  .mode-grid{grid-template-columns:1fr!important}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar" aria-label="Main navigation">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logos" aria-label="IWDemy &amp; Tjitra home">
+      <img src="images/logo-iwdemy.png" alt="IWDemy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span style="display:none;font-family:var(--font-heading);font-weight:800;font-size:13px;color:#0A0A0A">IWDemy</span>
+      <div class="logo-divider"></div>
+      <img src="images/logo-tjitra.jpg" alt="Tjitra &amp; Associates" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span style="display:none;font-family:var(--font-heading);font-weight:700;font-size:12px;color:#0A0A0A">T&amp;A</span>
+    </a>
+    <div class="navbar__right">
+      <a href="journey.html" class="navbar__back">← All Programmes</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" class="navbar__cta" target="_blank" rel="noopener">Register Now</a>
+    </div>
+    <button class="navbar__mobile-toggle" aria-label="Menu" id="navToggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="navbar__mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="navbar__mobile-close" id="mobileClose" aria-label="Close">✕</button>
+  <a href="journey.html">All Programmes</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" target="_blank" rel="noopener">Register Now</a>
+  <a href="https://wa.me/6285959435052?text=Halo%2C+saya+tertarik+dengan+AI+First+Professional.+Boleh+saya+dapat+informasi+lebih+lanjut%3F" target="_blank" rel="noopener">Ask via WhatsApp</a>
+</div>
+
+<!-- S1: HERO — DARK -->
+<section class="hero section--dark">
+  <div class="hero__inner">
+    <div class="eyebrow eyebrow--dark">AI First Professional · Level 2a · EFMD Gold Award</div>
+    <h1 class="h1">Stop prompting and hoping.<br>Build a system that works every time.</h1>
+    <p class="hero__sub">You already use AI. Now use it on purpose. Two days to build a workable method you can name and rely on.</p>
+    <div class="chip-row mt-20">
+      <span class="chip chip--gold">2 Days · In Person</span>
+      <span class="chip chip--dark">SOHO Podomoro City, Jakarta</span>
+      <span class="chip chip--dark">15 Seats · Small Cohort</span>
+    </div>
+    <div class="btn-row">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" class="btn btn--gold" target="_blank" rel="noopener">Register Now</a>
+      <a href="https://wa.me/6285959435052?text=Halo%2C+saya+tertarik+dengan+AI+First+Professional.+Boleh+saya+dapat+informasi+lebih+lanjut%3F" class="btn btn--outline" target="_blank" rel="noopener">Ask via WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- S2: NAMED STRUGGLE — LIGHT -->
+<section class="section section--light">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--light">The Gap</div>
+    <h2 class="h2">There's a quiet gap between<br>using AI and working with it.</h2>
+    <div class="divider" style="margin-top:24px"></div>
+    <p class="mt-16" style="color:var(--dark-sub);line-height:1.75;max-width:580px">
+      You've opened AI, typed a question, gotten a decent answer, moved on. Maybe a few times a week. But you can't explain how you get good results — and you can't reliably repeat them. That's not a skill. That's luck.
+    </p>
+    <blockquote style="margin:28px 0 0;padding:20px 28px;border-left:3px solid var(--gold-muted);background:var(--gold-bg-light)">
+      <p style="font-family:var(--font-heading);font-weight:700;font-size:clamp(18px,2.4vw,24px);color:var(--dark-text);line-height:1.3;letter-spacing:-.02em">"The tools were never the problem.<br>What's been missing is a way of working."</p>
+      <p style="font-size:13px;color:var(--dark-sub);margin-top:10px">You're not doing it wrong. You just don't have a system yet.</p>
+    </blockquote>
+    <div class="card-grid card-grid--3" style="margin-top:28px">
+      <div class="card-light">
+        <span class="card__icon">🔁</span>
+        <div class="card__label">Every session, from scratch</div>
+        <p class="card__desc">Good results happen sometimes. But you can't explain how — and you can't repeat them when it counts.</p>
+      </div>
+      <div class="card-light">
+        <span class="card__icon">⚡</span>
+        <div class="card__label">Trial and error, every time</div>
+        <p class="card__desc">You rephrase the same prompt three times hoping for better output. It works eventually. That's not working with AI — that's negotiating with it.</p>
+      </div>
+      <div class="card-light">
+        <span class="card__icon">📄</span>
+        <div class="card__label">Output that doesn't fit</div>
+        <p class="card__desc">AI produces text. It doesn't carry your voice, your standards, or your context.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3: THE REFRAME — DARK -->
+<section class="section section--dark">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--dark">What Changes</div>
+    <h2 class="h2">From experimenting.<br>To being intentional.</h2>
+    <div class="divider" style="margin-top:24px"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px" class="two-col-compare">
+      <div style="padding:22px 24px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)">
+        <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:rgba(245,242,235,.35);margin-bottom:10px">Before</p>
+        <p style="color:var(--text-md);font-size:14px;line-height:1.6">You know AI can help. You try things. Some work, most are average. You can't explain what you did differently on the good days.</p>
+      </div>
+      <div style="padding:22px 24px;border-radius:10px;background:rgba(212,168,75,.07);border:1px solid rgba(212,168,75,.20)">
+        <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--gold);margin-bottom:10px">After two days</p>
+        <p style="color:var(--text-hi);font-size:14px;line-height:1.6">You have a method you can name, repeat, and teach. It works on any tool. You're the one on the team who actually knows how to work with AI — not just use it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S4: THE PROGRAMME — LIGHT -->
+<section class="section section--light">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--light">What Happens</div>
+    <h2 class="h2">Two days. Eight modules.<br>One system built from your actual work.</h2>
+    <p class="mt-16" style="color:var(--dark-sub);max-width:560px;line-height:1.7">
+      Each module is a distinct skill that builds on the one before. You leave Day 2 with a system that runs on Monday — not a notebook full of ideas.
+    </p>
+
+    <p class="day-label">Day 1 · Foundation</p>
+    <div class="session-list" style="margin-top:0">
+      <div class="session-item session-item--light">
+        <span class="session-num session-num--light">L2.1</span>
+        <div class="session-body">
+          <h4>AI for You and Me</h4>
+          <p>Where AI creates real value in professional work — and where it does not. No hype, no fear. A clear starting point.</p>
+        </div>
+      </div>
+      <div class="session-item session-item--light">
+        <span class="session-num session-num--light">L2.2</span>
+        <div class="session-body">
+          <h4>Ngobrol dengan AI (ACT→ACTIONS)</h4>
+          <p>The core framework. Give AI a role, context, and precise task — before the question. The difference in output quality is immediate.</p>
+        </div>
+      </div>
+      <div class="session-item session-item--light">
+        <span class="session-num session-num--light">L2.3</span>
+        <div class="session-body">
+          <h4>Grounded Thinking</h4>
+          <p>Anchor AI to your own documents and data using NotebookLM — so it works from what you know, not what it guesses.</p>
+        </div>
+      </div>
+      <div class="session-item session-item--light">
+        <span class="session-num session-num--light">L2.4</span>
+        <div class="session-body">
+          <h4>Business Process × AI</h4>
+          <p>Take one real workflow from your own work. Map it with AI. Leave with something redesigned — not an idea to figure out later.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;padding:14px 18px;background:rgba(212,168,75,.06);border-left:2px solid var(--gold);border-radius:4px;font-size:13px;color:var(--dark-sub);line-height:1.65">
+      <strong style="color:var(--gold-muted);font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.14em;display:block;margin-bottom:6px">Between Day 1 &amp; Day 2</strong>
+      One task. Apply the ACTIONS framework to something real that evening. Bring the prompt, the output, and your notes to Day 2.
+    </div>
+
+    <p class="day-label">Day 2 · Application</p>
+    <div class="session-list" style="margin-top:0">
+      <div class="session-item session-item--light">
+        <span class="session-num session-num--light">L2.5</span>
+        <div class="session-body">
+          <h4>Knowledge Management</h4>
+          <p>A personal system — PARA and Second Brain — where AI handles capture and retrieval so you can focus on the thinking.</p>
+        </div>
+      </div>
+      <div class="session-item session-item--light">
+        <span class="session-num session-num--light">L2.6</span>
+        <div class="session-body">
+          <h4>Writing Companion</h4>
+          <p>Reports, proposals, and communications in your voice — your standard, not AI's default. Faster and sharper.</p>
+        </div>
+      </div>
+      <div class="session-item session-item--light">
+        <span class="session-num session-num--light">L2.7</span>
+        <div class="session-body">
+          <h4>AI Creative Partner</h4>
+          <p>Visuals and presentations from your own documents — produced in the same session where you think the idea through.</p>
+        </div>
+      </div>
+      <div class="session-item session-item--light">
+        <span class="session-num session-num--light">L2.8</span>
+        <div class="session-body">
+          <h4>Personalized AI</h4>
+          <p>Memory and custom instructions — configure AI to already know who you are, what you do, and how you think. No more briefing it from scratch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S5: WHAT YOU TAKE HOME — DARK -->
+<section class="section section--dark">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--dark">What You Leave With</div>
+    <h2 class="h2">Not a certificate.<br>A system you use Monday morning.</h2>
+    <div class="take-home mt-28">
+      <p class="take-home__label">Take Home</p>
+      <h3 class="take-home__title">Your Personal Prompt System — built around three things you actually do</h3>
+      <ul>
+        <li><strong>Data analysis</strong> — structured prompts for making sense of your own numbers and information, not generic data</li>
+        <li><strong>Insight extraction</strong> — pull patterns, meaning, and decisions from documents that used to take hours of manual reading</li>
+        <li><strong>Business communication drafting</strong> — proposals, reports, and messages in your voice, not a chatbot's</li>
+      </ul>
+    </div>
+    <div class="card-grid card-grid--3 mt-28">
+      <div class="card-dark">
+        <div class="card__label" style="color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;font-family:var(--font-mono)">Think in Systems</div>
+        <p style="font-size:14px;color:var(--text-md);line-height:1.6">Move from trial-and-error to ACT→ACTIONS — a method for precise, repeatable prompts you can explain to anyone.</p>
+      </div>
+      <div class="card-dark">
+        <div class="card__label" style="color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;font-family:var(--font-mono)">Think Faster, Decide Better</div>
+        <p style="font-size:14px;color:var(--text-md);line-height:1.6">Use AI as a thinking partner to synthesize and analyse. More done — without going shallow.</p>
+      </div>
+      <div class="card-dark">
+        <div class="card__label" style="color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;font-family:var(--font-mono)">Own Your Output</div>
+        <p style="font-size:14px;color:var(--text-md);line-height:1.6">Refine AI output until it meets your standard — not just your deadline. Work you're confident putting your name on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S6: WHO IT'S FOR — LIGHT -->
+<section class="section section--light">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--light">Is This Right for You?</div>
+    <h2 class="h2">Right for you if…</h2>
+    <div class="entry-signal">
+      <p class="entry-signal__label">Entry Signal</p>
+      <p>You use AI already — or want to start — and the output still does not feel like yours. You want a method that works across different tasks, not just one trick. No prior AI experience required.<br><br>
+      <strong>Not right for you:</strong> You want prompt templates to copy and paste. Those are free online. This programme builds the skill to write your own — for any situation.</p>
+    </div>
+    <div class="who-grid">
+      <div class="who-card">
+        <h4>Professionals who tried and stalled</h4>
+        <p>You've used AI. Some results were good, most were average. You want the good results to be repeatable — not accidental.</p>
+      </div>
+      <div class="who-card">
+        <h4>The person teams look to for AI</h4>
+        <p>You're expected to know. This gives you something solid to stand on — not a list of tools you've downloaded.</p>
+      </div>
+      <div class="who-card">
+        <h4>Professionals ready to go deeper</h4>
+        <p>You've done AI training before. This is where it actually sticks — because the work is yours, not someone else's case study.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- S6.5: FAQ — LIGHT -->
+<section class="section section--light">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--light">Common Questions</div>
+    <h2 class="h2">Things people ask<br>before they join.</h2>
+    <div style="display:flex;flex-direction:column;margin-top:32px;border:1px solid rgba(0,0,0,.07);border-radius:12px;overflow:hidden">
+
+      <div style="padding:24px 28px;border-bottom:1px solid rgba(0,0,0,.07)">
+        <p style="font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--dark-text);margin-bottom:10px">Do I need to be technical to join?</p>
+        <p style="font-size:14px;color:var(--dark-sub);line-height:1.65">No. This programme is for professionals who work with information, decisions, and communication — not engineers. If you can write a message, you can do this.</p>
+      </div>
+
+      <div style="padding:24px 28px;border-bottom:1px solid rgba(0,0,0,.07)">
+        <p style="font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--dark-text);margin-bottom:10px">How is this different from AI training I've done before?</p>
+        <p style="font-size:14px;color:var(--dark-sub);line-height:1.65">Most AI training teaches you what to ask. This teaches you how to think — so you can write your own prompts for any situation, not just the examples someone else prepared.</p>
+      </div>
+
+      <div style="padding:24px 28px;border-bottom:1px solid rgba(0,0,0,.07)">
+        <p style="font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--dark-text);margin-bottom:10px">Will I use my own work, or generic case studies?</p>
+        <p style="font-size:14px;color:var(--dark-sub);line-height:1.65">Your work is the material. Every exercise runs on something you actually do. You don't adapt a stranger's example — you bring the real thing.</p>
+      </div>
+
+      <div style="padding:24px 28px;border-bottom:1px solid rgba(0,0,0,.07)">
+        <p style="font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--dark-text);margin-bottom:10px">What do I walk away with?</p>
+        <p style="font-size:14px;color:var(--dark-sub);line-height:1.65">A personal prompt system built around three things you do most: writing, analysis, and communication. Not a certificate. A method you use on Monday.</p>
+      </div>
+
+      <div style="padding:24px 28px">
+        <p style="font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--dark-text);margin-bottom:10px">I've tried AI before and it didn't stick. Is this different?</p>
+        <p style="font-size:14px;color:var(--dark-sub);line-height:1.65">"Tried" usually means: opened it, got a decent answer, moved on. This programme is for people who know AI can do more — and want a method that makes the good results repeatable.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- S7: FACILITATORS + CTA — DARK -->
+<section class="section section--dark">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--dark">Designed and led by</div>
+    <h2 class="h2">The people who built this programme<br>from the ground up.</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px" class="bio-grid">
+
+      <div class="bio-card">
+        <div class="bio-avatar">
+          <img src="images/ht-batik-portrait.jpg" alt="Dr. Hora Tjitra"
+               onerror="this.parentElement.innerHTML='<div style=\'width:72px;height:72px;border-radius:50%;background:rgba(212,168,75,.12);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:800;font-size:20px;color:var(--gold)\'>HT</div>'">
+        </div>
+        <p style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:var(--text-hi);margin-bottom:4px">Dr. Hora Tjitra</p>
+        <p style="font-family:var(--font-mono);font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px">Managing Partner, Tjitra &amp; Associates</p>
+        <p style="font-size:13px;color:var(--text-lo);line-height:1.65">Professor at Zhejiang University (2004–2013). Senior Consultant at PwC. Senior Advisor for Pertamina's EFMD Gold Award-winning programme (2020). EFMD Gold Award recipient.</p>
+      </div>
+
+      <div class="bio-card">
+        <div class="bio-avatar">
+          <img src="images/ka-batik.jpg" alt="Kristina Aryanti"
+               onerror="this.parentElement.innerHTML='<div style=\'width:72px;height:72px;border-radius:50%;background:rgba(212,168,75,.12);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-weight:800;font-size:20px;color:var(--gold)\'>KA</div>'">
+        </div>
+        <p style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:var(--gold);margin-bottom:4px">Kristina Aryanti</p>
+        <p style="font-family:var(--font-mono);font-size:10px;color:rgba(212,168,75,.6);text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px">CEO, IWDemy · Programme Director, AI First</p>
+        <p style="font-size:13px;color:var(--text-lo);line-height:1.65">CEO, IWDemy. Programme Director, AI First. Organisational Psychologist.</p>
+      </div>
+
+    </div>
+
+    <div style="margin-top:56px;padding-top:40px;border-top:1px solid rgba(255,255,255,.06)">
+      <div class="eyebrow eyebrow--dark">What to Do Next</div>
+      <h2 class="h2">Two days. Your actual work.<br>A system that runs from Monday.</h2>
+      <div class="btn-row mt-20">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform?usp=dialog" class="btn btn--gold" target="_blank" rel="noopener">Register Now</a>
+        <a href="https://wa.me/6285959435052?text=Halo%2C+saya+tertarik+dengan+AI+First+Professional.+Boleh+saya+dapat+informasi+lebih+lanjut%3F" class="btn btn--outline" target="_blank" rel="noopener">Ask via WhatsApp</a>
+      </div>
+      <p style="font-size:13px;color:var(--text-lo);margin-top:16px">15 seats · SOHO Podomoro City, Jakarta</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__logos">
+      <img src="images/logo-iwdemy.png" alt="IWDemy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span style="display:none;font-family:var(--font-heading);font-weight:800;font-size:13px;color:#0A0A0A">IWDemy</span>
+      <div class="logo-divider"></div>
+      <img src="images/logo-tjitra.jpg" alt="Tjitra &amp; Associates" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span style="display:none;font-family:var(--font-heading);font-weight:700;font-size:12px;color:#0A0A0A">T&amp;A</span>
+    </div>
+    <p class="footer__copy">© 2026 IWDemy × Tjitra &amp; Associates. AI First Programme. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const nb=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{nb&&nb.classList.toggle('scrolled',window.scrollY>20)},{passive:true});
+const tog=document.getElementById('navToggle'),menu=document.getElementById('mobileMenu'),cls=document.getElementById('mobileClose');
+tog&&tog.addEventListener('click',()=>{menu.classList.toggle('open');menu.setAttribute('aria-hidden',!menu.classList.contains('open'))});
+cls&&cls.addEventListener('click',()=>{menu.classList.remove('open');menu.setAttribute('aria-hidden','true')});
+</script>
+</body>
+</html>
