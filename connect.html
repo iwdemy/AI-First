@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="author" content="Tjitra &amp; Associates">
-<meta name="description" content="AI First Connect — A structured half-day to find where AI fits in your work and build the formula that makes it stick.">
+<meta name="description" content="AI First Connect — A structured half-day: AI landscape, 10X Business Impact framework, and a gallery of real implementations. Leave with your Readiness Scorecard.">
 <title>AI First Connect — IWDemy × Tjitra &amp; Associates</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,107 +28,42 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1.6;background:var(--bg-dark);color:var(--text-hi);overflow-x:hidden}
-/* Typography */
 .h1{font-family:var(--font-heading);font-weight:800;font-size:clamp(28px,5vw,50px);line-height:1.08;letter-spacing:-.03em}
 .h2{font-family:var(--font-heading);font-weight:700;font-size:clamp(22px,3.8vw,36px);line-height:1.12;letter-spacing:-.02em}
 .h3{font-family:var(--font-heading);font-weight:700;font-size:clamp(16px,2.2vw,20px);line-height:1.2}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:clamp(10px,1.1vw,11px);font-weight:600;text-transform:uppercase;letter-spacing:.22em;padding:6px 16px;border-radius:999px;margin-bottom:20px;width:fit-content}
 .eyebrow--dark{background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);color:var(--gold)}
 .eyebrow--light{background:var(--gold-bg-light);border:1px solid var(--gold-border-light);color:var(--gold-muted)}
-/* Sections */
 .section{padding:var(--py) var(--px);position:relative}
 .section--dark{background:var(--bg-dark);color:var(--text-hi)}
 .section--light{background:var(--bg-light);color:var(--dark-text)}
 .section__inner{max-width:var(--max);margin:0 auto}
-/* Buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:clamp(11px,1.2vw,12px);font-weight:700;text-transform:uppercase;letter-spacing:.18em;padding:15px 32px;border-radius:8px;text-decoration:none;min-height:50px;transition:transform .25s,box-shadow .25s}
 .btn--gold{background:linear-gradient(135deg,#D4A84B 0%,#C49A3C 50%,#D4A84B 100%);background-size:200% 100%;color:var(--bg-dark);box-shadow:0 2px 20px rgba(212,168,75,.25),inset 0 1px 0 rgba(255,255,255,.15)}
 .btn--gold:hover{transform:translateY(-2px);box-shadow:0 6px 32px rgba(212,168,75,.40)}
 .btn--outline{background:transparent;border:1px solid rgba(212,168,75,.5);color:var(--gold)}
 .btn--outline:hover{border-color:var(--gold);background:var(--gold-bg-dark);transform:translateY(-1px)}
-.btn--outline-dark{background:transparent;border:1px solid rgba(10,10,10,.3);color:var(--dark-text)}
-.btn--outline-dark:hover{border-color:rgba(10,10,10,.6);transform:translateY(-1px)}
 .btn-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:32px}
-/* Cards */
 .card-grid{display:grid;gap:16px;margin-top:32px}
-.card-grid--2{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 .card-grid--3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-.card-dark{background:rgba(255,255,255,.04);border:1px solid rgba(212,168,75,.12);border-radius:12px;padding:24px}
 .card-light{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
-.card__icon{font-size:24px;margin-bottom:12px;display:block}
 .card__label{font-family:var(--font-heading);font-weight:700;font-size:15px;margin-bottom:6px;color:inherit}
 .card__desc{font-size:14px;line-height:1.55;opacity:.75}
-/* Session timeline */
 .session-list{display:flex;flex-direction:column;gap:12px;margin-top:28px}
 .session-item{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:10px}
-.session-item--dark{background:rgba(255,255,255,.04);border:1px solid rgba(212,168,75,.12)}
 .session-item--light{background:#fff;border:1px solid rgba(0,0,0,.07);box-shadow:0 1px 6px rgba(0,0,0,.05)}
 .session-num{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold);background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);border-radius:6px;padding:4px 10px;white-space:nowrap;flex-shrink:0;margin-top:2px}
 .session-num--light{background:var(--gold-bg-light);border-color:var(--gold-border-light);color:var(--gold-muted)}
 .session-body h4{font-family:var(--font-heading);font-weight:700;font-size:15px;margin-bottom:4px}
 .session-body p{font-size:13px;line-height:1.5;opacity:.72}
-/* Take-home box */
-.take-home{border:1px solid var(--gold-border-dark);background:var(--gold-bg-dark);border-radius:12px;padding:28px 32px;margin-top:32px}
-.take-home--light{border-color:var(--gold-border-light);background:rgba(212,168,75,.06)}
-.take-home__label{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:10px}
-.take-home__title{font-family:var(--font-heading);font-weight:700;font-size:20px;margin-bottom:12px}
-.take-home ul{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
-.take-home li{font-size:14px;padding-left:20px;position:relative;opacity:.88}
-.take-home li::before{content:'→';position:absolute;left:0;color:var(--gold)}
-/* Format chips */
 .chip-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 .chip{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;padding:7px 16px;border-radius:999px}
 .chip--dark{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--text-lo)}
-.chip--light{background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.1);color:var(--dark-sub)}
 .chip--gold{background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);color:var(--gold)}
-/* Who grid */
-.who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:28px}
+.who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:28px}
 .who-card{padding:20px 22px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
 .who-card h4{font-family:var(--font-heading);font-weight:700;font-size:14px;margin-bottom:6px;color:var(--gold)}
 .who-card p{font-size:13px;opacity:.72;line-height:1.5}
-/* BI formula */
-.formula-box{background:rgba(212,168,75,.06);border:1px solid rgba(212,168,75,.25);border-radius:14px;padding:36px 32px;text-align:center;margin-top:32px}
-.formula-box .formula-text{font-family:var(--font-mono);font-size:clamp(18px,3vw,28px);font-weight:700;color:var(--gold);letter-spacing:.05em;margin-bottom:16px}
-.formula-terms{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:16px}
-.formula-term{font-size:13px;opacity:.8}
-.formula-term strong{color:var(--gold);font-weight:700}
-/* Day tabs */
-.day-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
-.day-tab{font-family:var(--font-mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;padding:8px 20px;border-radius:6px;border:1px solid rgba(0,0,0,.1);background:transparent;color:var(--dark-sub);cursor:pointer}
-.day-tab.active,.day-tab--active{background:var(--dark-text);color:#fff;border-color:var(--dark-text)}
-/* Divider */
-.divider{width:40px;height:2px;background:var(--gold);margin:20px 0;border-radius:2px}
-.divider--center{margin:20px auto}
-/* 7-mode grid */
-.mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:28px}
-.mode-card{padding:18px 20px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-.mode-card__num{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--gold-muted);margin-bottom:6px}
-.mode-card__name{font-family:var(--font-heading);font-weight:700;font-size:14px;color:var(--dark-text);margin-bottom:4px}
-.mode-card__desc{font-size:12px;color:var(--dark-sub);line-height:1.45}
-/* Argument arc */
-.arc-list{display:flex;flex-direction:column;gap:10px;margin-top:28px;counter-reset:arc}
-.arc-item{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,.07);box-shadow:0 1px 5px rgba(0,0,0,.04)}
-.arc-num{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold-muted);background:var(--gold-bg-light);border:1px solid var(--gold-border-light);border-radius:6px;padding:4px 10px;flex-shrink:0;margin-top:1px}
-.arc-body h4{font-family:var(--font-heading);font-weight:700;font-size:14px;color:var(--dark-text);margin-bottom:3px}
-.arc-body p{font-size:13px;color:var(--dark-sub);line-height:1.45}
-/* OS layer */
-.os-layers{display:flex;flex-direction:column;gap:10px;margin-top:28px}
-.os-layer{padding:20px 24px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff}
-.os-layer__tag{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--gold-muted);margin-bottom:6px}
-.os-layer__name{font-family:var(--font-heading);font-weight:700;font-size:16px;color:var(--dark-text);margin-bottom:4px}
-.os-layer__desc{font-size:13px;color:var(--dark-sub);line-height:1.5}
-/* Journey path */
-.journey-path{display:flex;flex-direction:column;gap:12px;margin-top:28px}
-.level-card{display:flex;gap:16px;align-items:flex-start;padding:22px 24px;border-radius:12px}
-.level-card--dark{background:rgba(255,255,255,.04);border:1px solid rgba(212,168,75,.14)}
-.level-badge{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;padding:5px 12px;border-radius:999px;white-space:nowrap;flex-shrink:0;margin-top:3px}
-.level-badge--l1{background:rgba(212,168,75,.15);border:1px solid rgba(212,168,75,.4);color:var(--gold)}
-.level-badge--l2{background:rgba(100,160,255,.12);border:1px solid rgba(100,160,255,.3);color:#82b4ff}
-.level-badge--l3{background:rgba(100,220,180,.10);border:1px solid rgba(100,220,180,.25);color:#6ddcb4}
-.level-badge--l4{background:rgba(255,150,100,.10);border:1px solid rgba(255,150,100,.25);color:#ff9870}
-.level-body h3{font-family:var(--font-heading);font-weight:700;font-size:16px;margin-bottom:5px}
-.level-body p{font-size:13px;opacity:.75;line-height:1.5}
-/* Navbar */
 .navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(212,168,75,.10);transition:all .4s}
 .navbar.scrolled{background:rgba(10,10,10,.98);box-shadow:0 2px 40px rgba(0,0,0,.35);border-bottom-color:rgba(212,168,75,.15)}
 .navbar::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent 5%,rgba(212,168,75,.6) 35%,#D4A84B 50%,rgba(212,168,75,.6) 65%,transparent 95%)}
@@ -151,41 +86,35 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 .navbar__mobile-close{position:absolute;top:20px;right:24px;background:none;border:none;font-size:28px;color:var(--text-lo);cursor:pointer}
 @media(min-width:768px){.navbar__mobile-toggle{display:none}}
 @media(max-width:767px){.navbar__right .navbar__back,.navbar__right .navbar__cta{display:none}}
-/* Hero */
 .hero{padding:calc(var(--py) + 70px) var(--px) var(--py);background:var(--bg-dark)}
 .hero__inner{max-width:var(--max);margin:0 auto}
-.hero__sub{font-size:clamp(15px,1.7vw,18px);line-height:1.7;max-width:600px;margin-top:16px;color:var(--text-md)}
-/* Footer */
+.hero__sub{font-size:clamp(15px,1.7vw,18px);line-height:1.7;max-width:580px;margin-top:16px;color:var(--text-md)}
 .footer{background:#0A0A0A;border-top:1px solid rgba(212,168,75,.10);padding:40px var(--px)}
 .footer__inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .footer__logos{display:flex;align-items:center;gap:10px;background:#fff;padding:5px 12px;border-radius:7px}
 .footer__logos img{height:22px;width:auto}
 .footer__logos .logo-divider{width:1px;height:14px;background:rgba(0,0,0,.12)}
 .footer__copy{font-size:12px;color:rgba(240,236,228,.35);line-height:1.6}
-/* Util */
-.text-gold{color:var(--gold)}
-.mt-8{margin-top:8px}.mt-12{margin-top:12px}.mt-16{margin-top:16px}.mt-20{margin-top:20px}.mt-28{margin-top:28px}
-.mb-4{margin-bottom:4px}.mb-8{margin-bottom:8px}
-/* Responsive */
+.mt-12{margin-top:12px}.mt-16{margin-top:16px}.mt-20{margin-top:20px}.mt-28{margin-top:28px}
 @media(max-width:640px){
-  .card-grid--3,.card-grid--2{grid-template-columns:1fr}
+  .card-grid--3{grid-template-columns:1fr}
   .who-grid{grid-template-columns:1fr}
-  .mode-grid{grid-template-columns:repeat(2,1fr)}
   .btn-row{flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
 <body>
+
 <nav class="navbar" id="navbar" aria-label="Main navigation">
   <div class="navbar__inner">
     <a href="index.html" class="navbar__logos" aria-label="IWDemy & Tjitra home">
-      <img src="images/logo-iwdemy.png" alt="IWDemy" class="navbar__logo-img">
+      <img src="images/logo-iwdemy.png" alt="IWDemy">
       <div class="logo-divider"></div>
-      <img src="images/logo-tjitra.jpg" alt="Tjitra & Associates" class="navbar__logo-img">
+      <img src="images/logo-tjitra.jpg" alt="Tjitra & Associates">
     </a>
     <div class="navbar__right">
-      <a href="index.html" class="navbar__back">← All Programmes</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform" class="navbar__cta" target="_blank" rel="noopener">Register</a>
+      <a href="journey.html" class="navbar__back">← All Programmes</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSckYF5f9kQtHtCcSUivfNCIIWtr43dJlKhjoiV3-_tpprsG_g/viewform?usp=header" class="navbar__cta" target="_blank" rel="noopener">Register Now</a>
     </div>
     <button class="navbar__mobile-toggle" aria-label="Menu" id="navToggle">
       <span></span><span></span><span></span>
@@ -194,156 +123,182 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 </nav>
 <div class="navbar__mobile-menu" id="mobileMenu" aria-hidden="true">
   <button class="navbar__mobile-close" id="mobileClose" aria-label="Close">✕</button>
-  <a href="index.html">All Programmes</a>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform" target="_blank" rel="noopener">Register</a>
+  <a href="journey.html">All Programmes</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSckYF5f9kQtHtCcSUivfNCIIWtr43dJlKhjoiV3-_tpprsG_g/viewform?usp=header" target="_blank" rel="noopener">Register Now</a>
+  <a href="https://wa.me/6285959435052?text=Halo%2C+saya+tertarik+dengan+AI+First+Connect.+Boleh+saya+dapat+informasi+lebih+lanjut%3F" target="_blank" rel="noopener">Tanya via WhatsApp</a>
 </div>
 
+<!-- 01 · HERO -->
 <section class="hero section--dark">
   <div class="hero__inner">
-    <div class="eyebrow eyebrow--dark">AI First Connect · Level 1 · Strategize</div>
-    <h1 class="h1">You know AI matters.<br>The honest conversation<br>about where to start.</h1>
-    <p class="hero__sub">Many leaders already know the tools exist. What's been missing: one honest conversation about where to begin. That's what this half-day is.</p>
+    <div class="eyebrow eyebrow--dark">AI First Connect · Level 1 · Connect</div>
+    <h1 class="h1">You know AI matters.<br>This is the honest conversation<br>about where you stand.</h1>
+    <p class="hero__sub">Half a day. The AI landscape, a practical 10X Business Impact framework, and a gallery of real implementations. You leave with your Readiness Scorecard and one action to run next week.</p>
     <div class="chip-row mt-20">
       <span class="chip chip--gold">Half Day · 08.00–11.00</span>
-      <span class="chip chip--dark">Rp 640,000 · Complementary</span>
+      <span class="chip chip--dark"><span style="text-decoration:line-through;opacity:.45">Rp 640,000</span>&ensp;· Complementary — IWDemy 5th Anniversary</span>
       <span class="chip chip--dark">IWDemy Digital Lab · Jakarta</span>
       <span class="chip chip--dark">Ongoing Batches</span>
     </div>
     <div class="btn-row">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform" class="btn btn--gold" target="_blank" rel="noopener">Register Now</a>
-      <a href="https://wa.me/6285959435052" class="btn btn--outline" target="_blank" rel="noopener">Contact Us</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSckYF5f9kQtHtCcSUivfNCIIWtr43dJlKhjoiV3-_tpprsG_g/viewform?usp=header" class="btn btn--gold" target="_blank" rel="noopener">Register Now</a>
+      <a href="https://wa.me/6285959435052?text=Halo%2C+saya+tertarik+dengan+AI+First+Connect.+Boleh+saya+dapat+informasi+lebih+lanjut%3F" class="btn btn--outline" target="_blank" rel="noopener">Ask About the Next Cohort</a>
     </div>
   </div>
 </section>
 
+<!-- 02 · THE DISTINCTION -->
 <section class="section section--light">
   <div class="section__inner">
-    <div class="eyebrow eyebrow--light">The Starting Point</div>
-    <h2 class="h2">Most leaders know the tools are there. What's missing is one honest conversation about where to begin.</h2>
-    <p class="mt-16" style="color:var(--dark-sub);font-size:15px;max-width:620px">"The tools were never the problem. What's missing is a way of working — and the clarity to take the first step."</p>
+    <div class="eyebrow eyebrow--light">Connect · Professional · Leaders Getaway</div>
+    <h2 class="h2">Not sure which programme is yours? Start here.</h2>
     <div class="card-grid card-grid--3 mt-28">
-      <div class="card-light">
-        <span class="card__icon">🔦</span>
-        <div class="card__label">The current landscape</div>
-        <p class="card__desc">Where AI actually stands right now — what it can do, and what it still cannot.</p>
+      <div class="card-light" style="border-top:3px solid var(--gold)">
+        <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--gold-muted);margin-bottom:10px">L1 · You Are Here</div>
+        <div class="card__label">AI First Connect</div>
+        <p class="card__desc">Half a day to locate your starting position. You leave with a Readiness Scorecard and one clear next step.</p>
       </div>
       <div class="card-light">
-        <span class="card__icon">🧪</span>
-        <div class="card__label">Real experience, not demo</div>
-        <p class="card__desc">IWDemy Digital Lab — not a slideshow. You work with AI in the room.</p>
+        <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--dark-sub);opacity:.6;margin-bottom:10px">L2 · Next Step</div>
+        <div class="card__label">AI First Professional</div>
+        <p class="card__desc">The full programme. Eight weekday sessions to build a working AI system for your role.</p>
       </div>
       <div class="card-light">
-        <span class="card__icon">📍</span>
-        <div class="card__label">One concrete step</div>
-        <p class="card__desc">You leave with one specific AI action you can run Monday morning.</p>
+        <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--dark-sub);opacity:.6;margin-bottom:10px">L2 · Senior Leaders</div>
+        <div class="card__label">AI First Leaders Getaway</div>
+        <p class="card__desc">Same depth as Professional. Compressed into a long weekend for senior leaders whose schedules require it.</p>
       </div>
     </div>
+    <p class="mt-16" style="font-size:14px;color:var(--dark-sub)">Most Connect participants continue to Professional or a One-Day Intensive within eight weeks. Your Scorecard makes the next step clear. <a href="journey.html" style="color:var(--gold-muted);font-weight:600;text-decoration:none">See the full programme arc →</a></p>
+    <p style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold-muted);margin-top:14px;letter-spacing:.06em">Tetap leader, tapi augmented.</p>
   </div>
 </section>
 
-<section class="section section--dark">
-  <div class="section__inner">
-    <div class="eyebrow eyebrow--dark">The AI First Formula</div>
-    <h2 class="h2">One equation that explains everything.</h2>
-    <div class="formula-box">
-      <div class="formula-text">BI = D<sub style="font-size:.7em">x</sub> × (CAI)<sup style="font-size:.7em">APT</sup></div>
-      <div class="divider divider--center"></div>
-      <div class="formula-terms">
-        <span class="formula-term"><strong>BI</strong> — Business Impact</span>
-        <span class="formula-term"><strong>Dx</strong> — Your domain expertise</span>
-        <span class="formula-term"><strong>CAI</strong> — Cognitive AI capability</span>
-        <span class="formula-term"><strong>APT</strong> — AI Prompt Thinking</span>
-      </div>
-    </div>
-    <p class="mt-20" style="color:var(--text-lo);font-size:14px">Your domain knowledge multiplied by AI — not replaced by it. This session is where you locate yourself in the formula.</p>
-    <p class="mt-12" style="color:rgba(240,236,228,.45);font-size:13px">AI First Connect is offered at Rp 640,000 as a complementary contribution — a deliberate choice to keep the entry point accessible. Our commitment to Indonesia's AI readiness means this conversation should not be behind a gate.</p>
-  </div>
-</section>
-
+<!-- 03 · WHAT HAPPENS -->
 <section class="section section--light">
   <div class="section__inner">
     <div class="eyebrow eyebrow--light">What Happens</div>
-    <h2 class="h2">Three movements, one morning.</h2>
-    <p class="mt-12" style="color:var(--dark-sub);font-size:14px">This is what happens in the room — the experience from start to finish.</p>
+    <h2 class="h2">Four sessions. One morning.</h2>
     <div class="session-list">
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">01</span>
         <div class="session-body">
-          <h4>The AI landscape — what is actually real, right now</h4>
-          <p>The latest in AI: what it genuinely can and cannot do. Not hype. What matters for leaders in your industry, in your role, at this moment.</p>
+          <h4>The AI landscape — where it actually stands</h4>
+          <p>What AI genuinely can and cannot do, at this moment — for individuals and organisations.</p>
         </div>
       </div>
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">02</span>
         <div class="session-body">
-          <h4>AI at work — experiencing it directly</h4>
-          <p>IWDemy Digital Lab. Not a demo — a real working session. You see what changes when AI joins your thinking process, not just your typing.</p>
+          <h4>Framework 10X Business Impact</h4>
+          <p>A practical framework for creating measurable business value from AI — where the thinking meets the work you actually lead.</p>
         </div>
       </div>
       <div class="session-item session-item--light">
         <span class="session-num session-num--light">03</span>
         <div class="session-body">
-          <h4>Where you stand in the formula — and what to do next</h4>
-          <p>Using the BI Formula, you locate yourself on the AI First path. You leave knowing exactly which programme is the right next step — and why.</p>
+          <h4>Gallery Walk — AI in practice</h4>
+          <p>Case studies and best practices from AI implementations inside real organisations. Different sectors, different roles. You see what is already possible — and where you stand.</p>
+        </div>
+      <div class="session-item session-item--light">
+        <span class="session-num session-num--light">04</span>
+        <div class="session-body">
+          <h4>AI First Mindset — leading with clarity</h4>
+          <p>The shift from using AI as a tool to working with it as a thinking partner. What changes in how you lead, decide, and communicate when AI is genuinely integrated into the work.</p>
         </div>
       </div>
     </div>
+    <p class="mt-16" style="font-size:14px;color:var(--dark-sub)">Every participant leaves with a personal AI Readiness Scorecard and one action to run next week.</p>
+  </div>
+</section>
 
-    <div style="margin-top:32px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:28px 32px;box-shadow:0 2px 12px rgba(0,0,0,.05)">
-      <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gold-muted);margin-bottom:10px">What you take home</p>
-      <h3 style="font-family:var(--font-heading);font-weight:700;font-size:20px;color:var(--dark-text);margin-bottom:16px">Your AI Readiness Scorecard — and one clear action.</h3>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="display:flex;gap:12px;align-items:flex-start">
-          <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold-muted);background:rgba(212,168,75,.08);border:1px solid rgba(212,168,75,.2);border-radius:6px;padding:3px 10px;flex-shrink:0;margin-top:1px">01</span>
-          <div><strong style="font-size:14px;color:var(--dark-text)">Your personal AI Readiness Scorecard</strong><p style="font-size:13px;color:var(--dark-sub);margin-top:2px;line-height:1.5">Where you stand in the BI Formula — an honest read of your starting point, not a generic benchmark.</p></div>
+<!-- 04 · IS THIS FOR YOU -->
+<section class="section section--dark">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--dark">Right For You?</div>
+    <h2 class="h2">Connect is for two kinds of leaders.</h2>
+    <div class="who-grid">
+      <div class="who-card">
+        <h4>You know AI is serious — and you have not found the right starting point.</h4>
+        <p>You want one session that makes AI concrete for your context. Not a seminar — a structured morning that gives you a position and a next step.</p>
+      </div>
+      <div class="who-card">
+        <h4>You already use AI every day — and you wonder if there is a ceiling you have not broken through.</h4>
+        <p>You are not a beginner. But the output still feels like a reflection of your input. The Readiness Diagnostic shows you where the gap is.</p>
+      </div>
+    </div>
+    <div style="margin-top:28px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);border-radius:10px;padding:20px 24px">
+      <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:rgba(245,242,235,.32);margin-bottom:12px">Not right for you if</p>
+      <p style="font-size:13px;color:rgba(240,236,228,.45);line-height:1.7">You are looking for an AI implementation or build project (that is L3 or L4) — or you want a technical workshop on tools and automation. Not a judgement: it is how we make sure every participant is in the right room.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · PARTICIPANTS -->
+<section class="section section--light">
+  <div class="section__inner">
+    <div class="eyebrow eyebrow--light">Participants</div>
+    <h2 class="h2">What leaders say after Connect.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:32px">
+      <div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:14px;padding:28px 28px 24px;box-shadow:0 2px 12px rgba(0,0,0,.05)">
+        <p style="font-size:34px;color:var(--gold);line-height:1;margin-bottom:14px;font-family:var(--font-heading);font-weight:800">"</p>
+        <p style="font-size:15px;color:var(--dark-body);line-height:1.72;margin-bottom:20px">I gained many insights on how to apply AI within an organisation — how to use it to increase productivity, and what to consider in daily practice. This session was very eye-opening.</p>
+        <div style="border-top:1px solid rgba(0,0,0,.07);padding-top:14px">
+          <p style="font-family:var(--font-heading);font-weight:700;font-size:14px;color:var(--dark-text)">Senior Analytics</p>
+          <p style="font-size:12px;color:var(--dark-sub);margin-top:3px">Banking Sector</p>
         </div>
-        <div style="display:flex;gap:12px;align-items:flex-start">
-          <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold-muted);background:rgba(212,168,75,.08);border:1px solid rgba(212,168,75,.2);border-radius:6px;padding:3px 10px;flex-shrink:0;margin-top:1px">02</span>
-          <div><strong style="font-size:14px;color:var(--dark-text)">One AI action that is yours</strong><p style="font-size:13px;color:var(--dark-sub);margin-top:2px;line-height:1.5">Specific. Named. Something you will run in your own work the following week — not a generic exercise.</p></div>
-        </div>
-        <div style="display:flex;gap:12px;align-items:flex-start">
-          <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold-muted);background:rgba(212,168,75,.08);border:1px solid rgba(212,168,75,.2);border-radius:6px;padding:3px 10px;flex-shrink:0;margin-top:1px">03</span>
-          <div><strong style="font-size:14px;color:var(--dark-text)">A clear path forward</strong><p style="font-size:13px;color:var(--dark-sub);margin-top:2px;line-height:1.5">Which AI First programme fits where you are now — Professional, Leaders Getaway, or a One-Day Intensive — and why.</p></div>
+      </div>
+      <div style="background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:14px;padding:28px 28px 24px;box-shadow:0 2px 12px rgba(0,0,0,.05)">
+        <p style="font-size:34px;color:var(--gold);line-height:1;margin-bottom:14px;font-family:var(--font-heading);font-weight:800">"</p>
+        <p style="font-size:15px;color:var(--dark-body);line-height:1.72;margin-bottom:20px">This opened my eyes to how much more is possible. It deepened my interest to keep learning — and to understand what AI actually means for the work I lead.</p>
+        <div style="border-top:1px solid rgba(0,0,0,.07);padding-top:14px">
+          <p style="font-family:var(--font-heading);font-weight:700;font-size:14px;color:var(--dark-text)">Director</p>
+          <p style="font-size:12px;color:var(--dark-sub);margin-top:3px">Tourism Sector</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- 06 · FACILITATORS + CTA -->
 <section class="section section--dark">
   <div class="section__inner">
-    <div class="eyebrow eyebrow--dark">Who This Is For</div>
-    <h2 class="h2">Right for you if…</h2>
-    <div class="who-grid">
-      <div class="who-card">
-        <h4>Leaders who know AI is serious</h4>
-        <p>You've heard it enough. You want to actually understand what it means for your work — not the hype version.</p>
+    <div class="eyebrow eyebrow--dark">FACILITATORS</div>
+    <h2 class="h2">Guided by leaders<br>who have <span style="color:var(--gold-muted)">been there.</span></h2>
+    <p style="font-size:15px;color:var(--text-lo);margin-top:8px;max-width:560px">24 years designing leadership programmes across three continents.<br>Trusted by Indonesia's leading organisations.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:32px">
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(212,168,75,.15);border-radius:14px;overflow:hidden">
+        <img src="images/ht-batik-buku--ref.jpg" alt="Dr. Hora Tjitra" style="width:100%;height:220px;object-fit:cover;object-position:center top">
+        <div style="padding:20px 24px">
+          <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">EFMD Award Winner</div>
+          <p style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:var(--text-hi);margin-bottom:2px">Dr. Hora Tjitra</p>
+          <p style="font-size:12px;color:var(--text-lo);margin-bottom:12px;opacity:.7">Managing Partner, Tjitra &amp; Associates</p>
+          <p style="font-size:13px;color:var(--text-lo);line-height:1.65">Professor at Zhejiang University (2004–2013). Senior Consultant at PwC. Senior Advisor for Pertamina's EFMD Gold Award-winning programme (2020). The gallery you walk through in Connect is drawn directly from his work.</p>
+        </div>
       </div>
-      <div class="who-card">
-        <h4>Professionals before the next step</h4>
-        <p>You're considering AI First Professional or Leaders Getaway. This is where you start — with the honest conversation first.</p>
-      </div>
-      <div class="who-card">
-        <h4>Anyone who wants to leave with something</h4>
-        <p>Not a seminar. You work. You think. You leave with one clear action — not a brochure.</p>
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(212,168,75,.15);border-radius:14px;overflow:hidden">
+        <img src="images/ka-batik.jpg" alt="Kristina Aryanti" style="width:100%;height:220px;object-fit:cover;object-position:center top">
+        <div style="padding:20px 24px">
+          <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px">CEO IWDemy</div>
+          <p style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:var(--gold);margin-bottom:2px">Kristina Aryanti</p>
+          <p style="font-size:12px;color:var(--text-lo);margin-bottom:12px;opacity:.7">CEO, IWDemy · Programme Director, AI First</p>
+          <p style="font-size:13px;color:var(--text-lo);line-height:1.65">Builds programmes where leaders learn by doing — accelerated with technology. Leads the full AI First curriculum and content production. Present at every Connect session.</p>
+        </div>
       </div>
     </div>
 
-    <div style="margin-top:40px;padding:28px 32px;border:1px solid rgba(212,168,75,.18);border-radius:14px;background:rgba(255,255,255,.03)">
-      <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">Guided by</p>
-      <div style="margin-bottom:16px">
-        <p style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:var(--text-hi);margin-bottom:4px">Dr. Hora Tjitra</p>
-        <p style="font-size:13px;color:var(--text-lo);line-height:1.5">Visiting Professor · CEIBS Shanghai (MBA / EMBA / PhD) · EFMD Gold Award · Pertamina · Bob Aubrey Associates · 30+ AI Micro-Apps Built &amp; Deployed · IWDemy Digital Lab</p>
+    <div style="margin-top:52px;border-top:1px solid rgba(255,255,255,.06);padding-top:44px">
+      <h3 class="h3" style="color:var(--text-hi);font-size:clamp(20px,3vw,28px);font-weight:800;letter-spacing:-.02em;line-height:1.15">Half a day.<br>One diagnostic. One action.</h3>
+      <p style="font-size:15px;color:var(--text-lo);margin-top:12px;max-width:480px;line-height:1.7">Connect runs in ongoing batches. Register through the form, or ask about the next cohort on WhatsApp.</p>
+      <div class="btn-row">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSckYF5f9kQtHtCcSUivfNCIIWtr43dJlKhjoiV3-_tpprsG_g/viewform?usp=header" class="btn btn--gold" target="_blank" rel="noopener">Register Now</a>
+        <a href="https://wa.me/6285959435052?text=Halo%2C+saya+tertarik+dengan+AI+First+Connect.+Boleh+saya+dapat+informasi+lebih+lanjut%3F" class="btn btn--outline" target="_blank" rel="noopener">Ask About the Next Cohort</a>
       </div>
-      <div style="padding-top:16px;border-top:1px solid rgba(255,255,255,.06)">
-        <p style="font-family:var(--font-heading);font-weight:700;font-size:17px;color:var(--gold);margin-bottom:4px">Kristina Aryanti</p>
-        <p style="font-size:13px;color:var(--text-lo);line-height:1.5">Co-founder &amp; CEO, IWDemy · Present at every session.</p>
+      <div style="margin-top:28px;padding:16px 22px;border:1px solid rgba(212,168,75,.14);border-radius:10px;background:rgba(212,168,75,.04);max-width:540px">
+        <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:6px">After Connect</p>
+        <p style="font-size:13px;color:var(--text-lo);line-height:1.6">Most participants continue to AI First Professional or a One-Day Intensive. Your Scorecard tells you which. <a href="journey.html" style="color:var(--gold);text-decoration:none;font-weight:600">See the full programme arc →</a></p>
       </div>
-    </div>
-
-    <div class="btn-row mt-28">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_omaKA4a8LRqrJptL6t1JrZdjtwT4slhZCb4hbQ8yFmoLHQ/viewform" class="btn btn--gold" target="_blank" rel="noopener">Register Now</a>
-      <a href="https://wa.me/6285959435052" class="btn btn--outline" target="_blank" rel="noopener">Contact Us</a>
     </div>
   </div>
 </section>
@@ -353,7 +308,7 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
     <div class="footer__logos">
       <img src="images/logo-iwdemy.png" alt="IWDemy">
       <div class="logo-divider"></div>
-      <img src="images/logo-tjitra.jpg" alt="Tjitra & Associates">
+      <img src="images/logo-tjitra.jpg" alt="Tjitra &amp; Associates">
     </div>
     <p class="footer__copy">© 2026 IWDemy × Tjitra &amp; Associates. AI First Programme. All rights reserved.</p>
   </div>
