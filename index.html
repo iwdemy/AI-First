@@ -1754,8 +1754,8 @@ body {
   /* HyFlex elements — fix dark-text on dark bg */
   .prog__hyflex-sub { color: var(--text-lo); }
   .prog__aha-defs { border-top-color: rgba(255,255,255,.10); }
-  .prog__aha-key { color: var(--text-hi); }
-  .prog__aha-val { color: var(--text-md); }
+  .prog__hyflex .prog__aha-key { color: var(--gold); }
+  .prog__hyflex .prog__aha-val { color: var(--text-lo); }
   .prog__mode-card { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.10); }
   .prog__mode-card--active { background: rgba(212,168,75,.10); border-color: rgba(212,168,75,.30); }
   .prog__mode-name { color: var(--text-hi); }
@@ -2079,12 +2079,12 @@ html { scroll-behavior:smooth }
 .prog__aha-key {
   font-family: var(--font-heading);
   font-weight: 700;
-  color: var(--dark-text);
-  min-width: 100px;
+  color: var(--gold);
+  min-width: 110px;
   flex-shrink: 0;
 }
 .prog__aha-val {
-  color: var(--dark-sub);
+  color: var(--dark-body);
   line-height: 1.5;
 }
 

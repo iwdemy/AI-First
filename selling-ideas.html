@@ -4,13 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="author" content="Tjitra &amp; Associates">
-<meta name="description" content="Selling Ideas with AI — One day to build your own case. A finished interactive presentation, in your voice, ready this week.">
+<meta name="description" content="Selling Ideas with AI — One day to turn your ideas into a finished interactive presentation, built from your own work.">
 <title>Selling Ideas with AI — IWDemy × Tjitra &amp; Associates</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ── Tokens ─────────────────────────────────────────────────── */
 :root{
   --bg-dark:#0E0E0E;--bg-light:#F8F6F2;
   --gold:#D4A84B;--gold-muted:#8B7340;
@@ -26,87 +25,61 @@
   --py:clamp(56px,9vh,88px);--px:clamp(20px,6vw,72px);
   --max:900px;
 }
-/* ── Reset ──────────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1.6;background:var(--bg-dark);color:var(--text-hi);overflow-x:hidden}
-/* ── Typography ─────────────────────────────────────────────── */
 .h1{font-family:var(--font-heading);font-weight:800;font-size:clamp(28px,5vw,50px);line-height:1.08;letter-spacing:-.03em}
 .h2{font-family:var(--font-heading);font-weight:700;font-size:clamp(22px,3.8vw,36px);line-height:1.12;letter-spacing:-.02em}
 .h3{font-family:var(--font-heading);font-weight:700;font-size:clamp(16px,2.2vw,20px);line-height:1.2}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:clamp(10px,1.1vw,11px);font-weight:600;text-transform:uppercase;letter-spacing:.22em;padding:6px 16px;border-radius:999px;margin-bottom:20px;width:fit-content}
 .eyebrow--dark{background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);color:var(--gold)}
 .eyebrow--light{background:var(--gold-bg-light);border:1px solid var(--gold-border-light);color:var(--gold-muted)}
-/* ── Sections ───────────────────────────────────────────────── */
 .section{padding:var(--py) var(--px);position:relative}
 .section--dark{background:var(--bg-dark);color:var(--text-hi)}
 .section--light{background:var(--bg-light);color:var(--dark-text)}
 .section__inner{max-width:var(--max);margin:0 auto}
-/* ── Buttons ────────────────────────────────────────────────── */
 .btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:clamp(11px,1.2vw,12px);font-weight:700;text-transform:uppercase;letter-spacing:.18em;padding:15px 32px;border-radius:8px;text-decoration:none;min-height:50px;transition:transform .25s,box-shadow .25s}
 .btn--gold{background:linear-gradient(135deg,#D4A84B 0%,#C49A3C 50%,#D4A84B 100%);background-size:200% 100%;color:var(--bg-dark);box-shadow:0 2px 20px rgba(212,168,75,.25),inset 0 1px 0 rgba(255,255,255,.15)}
 .btn--gold:hover{transform:translateY(-2px);box-shadow:0 6px 32px rgba(212,168,75,.40)}
 .btn--outline{background:transparent;border:1px solid rgba(212,168,75,.5);color:var(--gold)}
 .btn--outline:hover{border-color:var(--gold);background:var(--gold-bg-dark);transform:translateY(-1px)}
-.btn--outline-dark{background:transparent;border:1px solid rgba(10,10,10,.3);color:var(--dark-text)}
-.btn--outline-dark:hover{border-color:rgba(10,10,10,.6);transform:translateY(-1px)}
 .btn-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:32px}
-/* ── Cards ──────────────────────────────────────────────────── */
 .card-grid{display:grid;gap:16px;margin-top:32px}
 .card-grid--2{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 .card-grid--3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 .card-light{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
-.card-dark{background:rgba(255,255,255,.04);border:1px solid rgba(212,168,75,.12);border-radius:12px;padding:24px}
 .card__icon{font-size:24px;margin-bottom:12px;display:block}
 .card__label{font-family:var(--font-heading);font-weight:700;font-size:15px;margin-bottom:6px;color:inherit}
 .card__desc{font-size:14px;line-height:1.55;opacity:.75}
-/* ── Sessions ───────────────────────────────────────────────── */
 .session-list{display:flex;flex-direction:column;gap:12px;margin-top:28px}
 .session-item{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:10px}
 .session-item--light{background:#fff;border:1px solid rgba(0,0,0,.07);box-shadow:0 1px 6px rgba(0,0,0,.05)}
-.session-item--dark{background:rgba(255,255,255,.04);border:1px solid rgba(212,168,75,.12)}
 .session-num{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold);background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);border-radius:6px;padding:4px 10px;white-space:nowrap;flex-shrink:0;margin-top:2px}
 .session-num--light{background:var(--gold-bg-light);border-color:var(--gold-border-light);color:var(--gold-muted)}
 .session-body h4{font-family:var(--font-heading);font-weight:700;font-size:15px;margin-bottom:4px}
 .session-body p{font-size:13px;line-height:1.5;opacity:.72}
-/* ── Take Home ──────────────────────────────────────────────── */
 .take-home{border:1px solid var(--gold-border-dark);background:var(--gold-bg-dark);border-radius:12px;padding:28px 32px;margin-top:32px}
-.take-home--light{border-color:var(--gold-border-light);background:rgba(212,168,75,.06)}
 .take-home__label{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:10px}
 .take-home__title{font-family:var(--font-heading);font-weight:700;font-size:20px;margin-bottom:12px}
 .take-home ul{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
 .take-home li{font-size:14px;padding-left:20px;position:relative;opacity:.88}
 .take-home li::before{content:'→';position:absolute;left:0;color:var(--gold)}
-/* ── Chips ──────────────────────────────────────────────────── */
 .chip-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 .chip{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.12em;padding:7px 16px;border-radius:999px}
 .chip--dark{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--text-lo)}
 .chip--gold{background:var(--gold-bg-dark);border:1px solid var(--gold-border-dark);color:var(--gold)}
-.chip--light{background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.1);color:var(--dark-sub)}
-/* ── Who Grid ───────────────────────────────────────────────── */
 .who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:28px}
 .who-card{padding:20px 22px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.04)}
 .who-card h4{font-family:var(--font-heading);font-weight:700;font-size:14px;margin-bottom:6px;color:var(--gold-muted)}
 .who-card p{font-size:13px;color:var(--dark-sub);line-height:1.5}
-/* ── Divider ────────────────────────────────────────────────── */
 .divider{width:40px;height:2px;background:var(--gold);margin:20px 0;border-radius:2px}
-.divider--center{margin:20px auto}
-/* ── Mode Grid ──────────────────────────────────────────────── */
 .mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:28px}
 .mode-card{padding:20px 24px;border-radius:10px;border:1px solid rgba(0,0,0,.07);background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.04);display:flex;align-items:flex-start;gap:14px}
 .mode-card__num{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--gold-muted);background:var(--gold-bg-light);border:1px solid var(--gold-border-light);border-radius:6px;padding:4px 10px;flex-shrink:0;margin-top:2px;line-height:1}
 .mode-card__name{font-family:var(--font-heading);font-weight:700;font-size:15px;color:var(--dark-text);line-height:1.3}
-/* ── Entry Signal ───────────────────────────────────────────── */
 .entry-signal{margin-top:20px;padding:18px 22px;border-radius:10px;background:var(--gold-bg-light);border:1px solid var(--gold-border-light)}
 .entry-signal__label{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--gold-muted);margin-bottom:8px}
 .entry-signal p{font-size:14px;color:var(--dark-sub);line-height:1.55}
-/* ── FAQ ────────────────────────────────────────────────────── */
-.faq-list{display:flex;flex-direction:column;margin-top:32px}
-.faq-item{border-bottom:1px solid rgba(255,255,255,.06);padding:22px 0}
-.faq-item:first-child{border-top:1px solid rgba(255,255,255,.06)}
-.faq-q{font-family:var(--font-heading);font-weight:700;font-size:clamp(15px,1.8vw,17px);color:var(--text-hi);margin-bottom:8px}
-.faq-a{font-size:14px;color:var(--text-lo);line-height:1.7;max-width:680px}
-/* ── Navbar ─────────────────────────────────────────────────── */
 .navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(212,168,75,.10);transition:all .4s}
 .navbar.scrolled{background:rgba(10,10,10,.98);box-shadow:0 2px 40px rgba(0,0,0,.35);border-bottom-color:rgba(212,168,75,.15)}
 .navbar::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent 5%,rgba(212,168,75,.6) 35%,#D4A84B 50%,rgba(212,168,75,.6) 65%,transparent 95%)}
@@ -129,22 +102,17 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 .navbar__mobile-close{position:absolute;top:20px;right:24px;background:none;border:none;font-size:28px;color:var(--text-lo);cursor:pointer}
 @media(min-width:768px){.navbar__mobile-toggle{display:none}}
 @media(max-width:767px){.navbar__right .navbar__back,.navbar__right .navbar__cta{display:none}}
-/* ── Hero ───────────────────────────────────────────────────── */
 .hero{padding:calc(var(--py) + 70px) var(--px) var(--py);background:var(--bg-dark)}
 .hero__inner{max-width:var(--max);margin:0 auto}
 .hero__sub{font-size:clamp(15px,1.7vw,18px);line-height:1.7;max-width:580px;margin-top:16px;color:var(--text-md)}
-/* ── Footer ─────────────────────────────────────────────────── */
 .footer{background:#0A0A0A;border-top:1px solid rgba(212,168,75,.10);padding:40px var(--px)}
 .footer__inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .footer__logos{display:flex;align-items:center;gap:10px;background:#fff;padding:5px 12px;border-radius:7px}
 .footer__logos img{height:22px;width:auto}
 .footer__logos .logo-divider{width:1px;height:14px;background:rgba(0,0,0,.12)}
 .footer__copy{font-size:12px;color:rgba(240,236,228,.35);line-height:1.6}
-/* ── Utilities ──────────────────────────────────────────────── */
 .text-gold{color:var(--gold)}
 .mt-8{margin-top:8px}.mt-12{margin-top:12px}.mt-16{margin-top:16px}.mt-20{margin-top:20px}.mt-28{margin-top:28px}
-.mb-4{margin-bottom:4px}.mb-8{margin-bottom:8px}
-/* ── Responsive ─────────────────────────────────────────────── */
 @media(max-width:640px){
   .card-grid--3,.card-grid--2{grid-template-columns:1fr}
   .who-grid{grid-template-columns:1fr}
@@ -187,8 +155,8 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 <section class="hero section--dark">
   <div class="hero__inner">
     <div class="eyebrow eyebrow--dark">Selling Ideas with AI · One-Day Intensive</div>
-    <h1 class="h1">Leaders who own their ideas<br>own the room.</h1>
-    <p class="hero__sub">AI removed the briefing chain. One day to build your own case — a finished interactive presentation, in your voice, ready this week.</p>
+    <h1 class="h1">Your ideas. No translator.<br>Just the room.</h1>
+    <p class="hero__sub">One day. Four modules. You leave with a finished interactive presentation — built from your own work.</p>
     <div class="chip-row mt-20">
       <span class="chip chip--gold">1 Day · 08.30–16.30</span>
       <span class="chip chip--dark">Small Group · 15 Seats</span>
@@ -207,17 +175,17 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 <section class="section section--light">
   <div class="section__inner">
     <div class="eyebrow eyebrow--light">Why the Gap Persists</div>
-    <h2 class="h2">The bottleneck was never the idea.<br>It was the dependency.</h2>
+    <h2 class="h2">An idea that still needs a ghostwriter<br>isn't really yours yet.</h2>
     <div class="divider" style="margin-top:24px"></div>
     <p class="mt-16" style="color:var(--dark-sub);line-height:1.75;max-width:580px">
-      Designers. Drafts. Briefing rounds. Each step adds time, removes nuance, and puts distance between your thinking and what lands in the room.
+      The idea is clear in your head. Making it room-ready takes other people, more drafts, more briefing rounds. Each step adds time and loses nuance.
     </p>
     <p style="color:var(--dark-sub);line-height:1.75;max-width:580px;margin-top:16px">
-      AI didn't close that gap. It moved the bottleneck one step earlier. Paste in your notes — still get generic output. Because the tool doesn't know the argument you're making. It doesn't know how you think.
+      AI didn't close that gap. It moved the bottleneck one step earlier. Paste in your notes — still get generic output. Because the tool doesn't know the argument you're making.
     </p>
     <blockquote style="margin:28px 0 0;padding:20px 28px;border-left:3px solid var(--gold-muted);background:var(--gold-bg-light)">
-      <p style="font-family:var(--font-heading);font-weight:700;font-size:clamp(18px,2.4vw,24px);color:var(--dark-text);line-height:1.3;letter-spacing:-.02em">Every meeting, you're explaining yourself<br>through someone else's work.</p>
-      <p style="font-size:13px;color:var(--dark-sub);margin-top:10px">The problem isn't the tool. It's the dependency. And the dependency is finally optional.</p>
+      <p style="font-family:var(--font-heading);font-weight:700;font-size:clamp(18px,2.4vw,24px);color:var(--dark-text);line-height:1.3;letter-spacing:-.02em">Every presentation, you brief someone else.<br>Every meeting, you explain yourself again.</p>
+      <p style="font-size:13px;color:var(--dark-sub);margin-top:10px">The problem isn't the slide software. It's that no one in the chain knows how you think.</p>
     </blockquote>
   </div>
 </section>
@@ -231,15 +199,15 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px" class="two-col-compare">
       <div style="padding:22px 24px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)">
         <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:rgba(245,242,235,.35);margin-bottom:10px">Most leaders</p>
-        <p style="color:var(--text-md);font-size:14px;line-height:1.6">Brief a designer. Wait for a draft. Revise. Brief again. Enter the room with slides that don't sound like you — and lose authority the moment questions go off script.</p>
+        <p style="color:var(--text-md);font-size:14px;line-height:1.6">Brief a designer. Wait for a draft. Revise. Brief again. Enter the room with slides that don't quite sound like you — and can't respond when questions go off script.</p>
       </div>
       <div style="padding:22px 24px;border-radius:10px;background:rgba(212,168,75,.07);border:1px solid rgba(212,168,75,.20)">
         <p style="font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--gold);margin-bottom:10px">After this day</p>
-        <p style="color:var(--text-hi);font-size:14px;line-height:1.6">Bring your idea. Build a live interactive presentation during the session. Leave with something that responds to the room — in your voice, not a designer's interpretation of it.</p>
+        <p style="color:var(--text-hi);font-size:14px;line-height:1.6">Bring your idea. Build it into a live interactive presentation during the session. Leave with something that responds to the room — ready to deliver this week.</p>
       </div>
     </div>
     <p class="mt-20" style="color:var(--text-hi);font-weight:600;font-size:clamp(15px,1.7vw,18px);line-height:1.6">
-      The difference is owning your workflow. And seven presentation modes — one for every room you walk into.
+      The difference is a workflow. And seven presentation modes — one for every room you walk into.
     </p>
   </div>
 </section>
@@ -248,25 +216,25 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
 <section class="section section--light">
   <div class="section__inner">
     <div class="eyebrow eyebrow--light">What Happens</div>
-    <h2 class="h2">Four blocks. One finished presentation<br>from your actual work.</h2>
+    <h2 class="h2">Four modules. One finished presentation<br>from your actual work.</h2>
     <p class="mt-16" style="color:var(--dark-sub);max-width:560px;line-height:1.7">
-      Each block builds on the last. You leave with a finished presentation — not notes.
+      Each module builds on the last. You leave with a finished presentation — not notes.
     </p>
     <div class="session-list mt-28">
 
-      <!-- 01 -->
+      <!-- M1 -->
       <div class="session-item session-item--light">
-        <span class="session-num session-num--light">01</span>
+        <span class="session-num session-num--light">M1</span>
         <div class="session-body">
           <h4>Framing — AI as Sceptical Audience</h4>
           <p>AI becomes your first sceptical audience. One live demo shows what a strong argument looks like. You map your communication moments using ACTIONS, then match each to the right mode.</p>
         </div>
       </div>
 
-      <!-- 02 with 7-mode grid -->
+      <!-- M2 with 7-mode grid -->
       <div class="session-item session-item--light" style="flex-direction:column;gap:0">
         <div style="display:flex;gap:16px;align-items:flex-start">
-          <span class="session-num session-num--light" style="flex-shrink:0;margin-top:2px">02</span>
+          <span class="session-num session-num--light" style="flex-shrink:0;margin-top:2px">M2</span>
           <div class="session-body">
             <h4>Map &amp; Decide — Seven Ways to Present with AI</h4>
             <p>Seven modes mapped across prep speed, engagement, post-session reach, and total effort. No single mode wins all four. You choose which fits the room — then build from your own idea.</p>
@@ -283,18 +251,18 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
         </div>
       </div>
 
-      <!-- 03 -->
+      <!-- M3 -->
       <div class="session-item session-item--light">
-        <span class="session-num session-num--light">03</span>
+        <span class="session-num session-num--light">M3</span>
         <div class="session-body">
           <h4>Build Artifact — Interactive Prototype</h4>
-          <p>Build a live Artifact — something that computes, responds to questions, and updates in real time. From your own work. Using the AI tool you already have. Done by end of Block 03.</p>
+          <p>Build a live Artifact using Gemini Canvas — something that computes, responds to questions, and updates in real time. From your own work. Done by end of M3.</p>
         </div>
       </div>
 
-      <!-- 04 -->
+      <!-- M4 -->
       <div class="session-item session-item--light">
-        <span class="session-num session-num--light">04</span>
+        <span class="session-num session-num--light">M4</span>
         <div class="session-body">
           <h4>Deliver &amp; Test — Perform, Respond, Leave Behind</h4>
           <p>Deliver with the live Artifact. Simulate objections — respond in the room, not after. Add supporting slides, see a Multimedia demo. Leave tested and ready.</p>
@@ -350,44 +318,7 @@ body{font-family:var(--font-body);font-size:clamp(15px,1.6vw,17px);line-height:1
   </div>
 </section>
 
-<!-- S7: QUESTIONS — DARK -->
-<section class="section section--dark">
-  <div class="section__inner">
-    <div class="eyebrow eyebrow--dark">Questions</div>
-    <h2 class="h2">Things you might be asking<br>before you commit to a day.</h2>
-    <div class="divider" style="margin-top:24px"></div>
-    <div class="faq-list">
-
-      <div class="faq-item">
-        <p class="faq-q">Is this about slide design?</p>
-        <p class="faq-a">No. Slides are one of seven modes — and not always the right one. This is about argument structure, delivery, and building a presentation that responds to the room. Design is a by-product, not the goal.</p>
-      </div>
-
-      <div class="faq-item">
-        <p class="faq-q">What AI tool do I need?</p>
-        <p class="faq-a">Any. ChatGPT, Gemini, Claude — all work. The programme is tool-agnostic by design. What matters is how you use it to articulate your argument, not which platform you're on.</p>
-      </div>
-
-      <div class="faq-item">
-        <p class="faq-q">Do I need to bring an idea before I come?</p>
-        <p class="faq-a">Yes. Come with one real idea from your actual work — a proposal, a case you need to make, a decision you need the room to support. In Block 03, you build from it. Generic ideas produce generic output.</p>
-      </div>
-
-      <div class="faq-item">
-        <p class="faq-q">How is this different from other AI programmes?</p>
-        <p class="faq-a">You leave with something finished — not notes, not templates, not a list of prompts. A live interactive presentation, built on the day, from your own work. That's the benchmark we hold the session to.</p>
-      </div>
-
-      <div class="faq-item">
-        <p class="faq-q">What if I'm not technical?</p>
-        <p class="faq-a">No coding. No technical background required. The only prerequisite is an idea worth presenting and the willingness to build it yourself. The programme handles the rest.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- S8: FACILITATORS + CTA — DARK -->
+<!-- S7: FACILITATORS + CTA — DARK -->
 <section class="section section--dark">
   <div class="section__inner">
     <div class="eyebrow eyebrow--dark">Guided by</div>
